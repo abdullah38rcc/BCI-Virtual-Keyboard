@@ -421,7 +421,8 @@ def update(decision):
 		chosen = gv._box2
 		Nchosen = gv._box1
 
-	bg._calcEmissions(gv._currProbs,chosen,Nchosen)
+	if gv._posInWrd = 0:
+		bg._calcPriorEmiss(gv._currProbs,chosen,Nchosen)
 
 	#split(chosen,Nchosen)	#split symbols like binary search
 	#shuffle(chosen,Nchosen)	#shuffle symbols
