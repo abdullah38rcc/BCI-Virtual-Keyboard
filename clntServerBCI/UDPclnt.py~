@@ -1,0 +1,19 @@
+#UDP socket client interface
+
+from socket import *
+from decimal import *
+
+port = 20320
+host = "192.168.1.110"
+addr = (host,port)
+buf = 1024
+
+sock = socket(AF_INET,SOCK_DGRAM)
+
+for i in range(1,10):
+	pos = Decimal(1) / Decimal(i);
+	data = "%s %f" % ("yCursPos",pos)
+	#print(data) #stub
+	sock.sendto(data,addr)
+
+sock.close

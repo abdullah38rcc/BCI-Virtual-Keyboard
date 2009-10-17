@@ -1,0 +1,14 @@
+;; This buffer is for notes you don't want to save, and for Lisp evaluation.
+;; If you want to create a file, visit that file with C-x C-f,
+;; then enter the text in that file's own buffer.
+
+import socket
+mySocket = socket.socket ( socket.AF_INET, socket.SOCK_STREAM )
+mySocket.bind ( ( '', 2727 ) )
+mySocket.listen ( 1 )
+while True:
+   channel, details = mySocket.accept()
+   print 'We have opened a connection with', details
+   print channel.recv ( 100 )
+   channel.send ( 'Green-eyed monster.' )
+   channel.close()

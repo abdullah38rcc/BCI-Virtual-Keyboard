@@ -1,0 +1,162 @@
+# a robot simulation of robot that moves into a room and looks around, taking note of obstacles
+# last edit: 4/29
+##########TODO##############
+# lambda expressions for case-swtich/dictionary
+# maps algorithm
+# argument to drawRoom() to specify num obastacles
+# in drawObstacles() randomly place objects in room
+#					check for max obstacle size
+######################BUGS#######################
+# 
+##############CURRENTLY WORKING ON##########
+# obstacle detection/avoidance
+# 	- calculate 4? vectors and determine objects with which they intersect
+
+from Tkinter import *
+import time
+
+def getKeyIn():
+	#print "in getKeyIn()"
+	global canvas
+		
+	def keyCtrl(event):
+		#print "in keyCtrl()"
+		#print "key pressed:",event.keysym
+		tag = 'bot1'
+		
+		if event.keysym == 'Up':
+			print "key up"
+			moveBot(tag,dir)
+		if event.keysym == 'Down':
+			print "key down"			
+		return "break"
+	
+	#print "before bind call"
+	
+	canvas.bind_all('<Key>',keyCtrl)
+	
+	
+	
+#def moveBot(id,dir):
+	#global canvas
+	#while loop to keep moving
+	#move = {"left":canvas.move(id,-1,0),
+		#"right":canvas.move(id,1,0),
+		#"up":canvas.move(id,0,-1),
+		#"down":canvas.move(id,0,1)}
+		
+def makeRobots(numBots,dcenter, dwidth, rheight):
+	x = dcenter
+	y = rheight + 50
+	r = 10
+	tag = 'bot1'
+	drawCircle(x,y,r,tag)
+	return tag
+	
+
+def drawCircle(x, y, r, tag):
+	global canvas
+	canvas.create_oval(x-r, y-r, x+r, y+r, fill='black',tag=tag)
+	
+def left(id):
+	global canvas
+	canvas.move(id,-2,0)
+	
+def right(id):
+	global canvas
+	canvas.move(id,2,0)
+	
+def up(id):
+	global canvas
+	canvas.move(id,0,-2)
+	
+def down(id):
+	global canvas
+	canvas.move(id,0,-2)
+	
+def startBot(id,rHeight):
+	print "in startBot()"
+	#get key event to start robot
+	global canvas
+	dir = "up"
+	#moveBot(id,dir)
+	
+	moveBot = {"left":left,
+		"right":right,
+		"up":up,
+		"down":down}
+		
+	ypos = canvas.coords(id)[3]	
+	print "ypos =" , ypos
+	
+	#for i in range(1,10):
+	while ypos > rHeight:
+		#print "in while loop"
+		moveBot[dir](id)
+		ypos = canvas.coords(id)[3]	
+		#canvas.move(id,0,-1)
+		canvas.update()
+		#print "in for loop"
+		time.sleep(.5)
+	
+	
+def stopBot():
+	#get key event to stop robot
+	print "in stopBot()"
+	
+
+def drawWalls():
+	global canvas
+	rmHeight = int( canvas.cget("height") ) - 100 #make room for robot to enter
+	rmWidth = int( canvas.cget("width") )
+	#print height
+	doorWidth = 40
+	doorCenter = rmWidth / 2
+	doorBegin = doorCenter - doorWidth/2
+	doorEnd = doorCenter + doorWidth/2
+	wallThick = 5  #wall thickness
+	walls = [doorBegin,rmHeight,wallThick,rmHeight,wallThick,wallThick,rmWidth,wallThick,rmWidth,rmHeight,doorEnd,rmHeight]
+	canvas.create_line(walls,width=wallThick)
+	return rmHeight,rmWidth,wallThick,doorCenter, doorWidth
+	#canvas.update()
+	
+def drawObstacles(rmHeight, rmWidth, wallThick):
+	global canvas
+	numObst = 3
+	
+	#max height and width of each obstacle
+	objHeightMax = rmHeight / numObst
+	objWidthMax = rmWidth / numObst
+	
+	r = 30 #radius
+	obst1Dim = [wallThick,wallThick,wallThick+r,wallThick+r]
+	obst2Dim = [rmWidth-r,rmHeight-r,rmWidth-r*2,rmHeight-r*2]
+	#write check for max size
+	canvas.create_oval(obst1Dim,fill="yellow")
+	canvas.create_rectangle(obst2Dim,fill="yellow")
+	
+	#print obst2Dim
+	#print rmHeight, rmWidth
+
+	
+	
+def drawRoom():
+	global canvas
+	rheight, rwidth, wthick, dcenter, dwidth = drawWalls()
+	drawObstacles(rheight, rwidth, wthick)
+	canvas.update()
+	return dcenter, dwidth, rheight
+	
+	
+	
+
+root = Tk()
+numRobots = 1
+
+canvas = Canvas(root,height=400,width=400,bg='green')
+canvas.grid(row=1,column=1)
+#getKeyIn()
+doorcenter, doorwidth, roomheight = drawRoom()
+tag = makeRobots(numRobots,doorcenter, doorwidth, roomheight)
+startBot(tag,roomheight)
+root.mainloop()

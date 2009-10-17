@@ -1,0 +1,11 @@
+# simple keyboard controlled hexospell implementation
+# last edit: 4/9
+
+from Tkinter import *
+
+root = Tk()
+
+w = Canvas(root,height=100,width=100)
+w.grid()
+
+root.mainloop()

@@ -1,0 +1,16 @@
+# UDP socket server interface
+from socket import *
+
+host = "localhost"
+port = 20320
+buf = 1024
+addr = (host,port)
+
+sock = socket(AF_INET,SOCK_DGRAM)
+sock.bind(addr)
+
+data,daddr = sock.recvfrom(buf)
+
+print data
+
+#sock.close()

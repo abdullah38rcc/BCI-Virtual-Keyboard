@@ -1,0 +1,25 @@
+#! usr/bin/python
+
+from heapq import *
+
+def test_for():
+	for i in range(1, 5):
+		print i
+	else:
+		print 'The for loop is over'
+		
+def test_heap():
+	heap = []
+	data = [(1, 'J'), (4, 'N'), (3, 'H'), (2, 'O')]
+	for item in data:
+	     heappush(heap, item)
+	
+	while heap:
+	     print heappop(heap)[1]
+	
+
+test_heap()
+	
+	
+	
+

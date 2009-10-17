@@ -1,0 +1,734 @@
+Documentation for the module graph.py
+
+By leonardo maffi
+This document version: 1.8, Jun 30 2006.
+
+
+A graph is set of items (nodes or vertices) connected by arcs (also called edges).
+This module contains a Graph class to implement a network data structure.
+
+REQUIREMENTS: Python 2.4
+OPTIONAL: Tkinter, Psyco, GrafPlotLib, Graphviz, Pajek.
+
+DATA STRUCTURES:
+This structure allows loops, and no more than one directed arc from a node to another one
+  (another arc in the opposite direction is allowed too).
+- This directed graph class contains a dictionary "o". Inside "o" each key is a node;
+    the corresponding value is another dictionary, it contains keys (final ends of arcs),
+    and their values are the arcs weights.
+    Undirected arcs are made with two opposite directed arcs.
+- There is second dictionary, called "i", that is the trasposed of "o", and with equal structure.
+- The third dictionary is "nodeData", it contains optional data associated with nodes.
+    By default if a node isn't present inside nodeData, then it's associated data is None.
+    Associating None as the data of a node, removes it from nodeData.
+- "arcCount" is the total number of directed arcs of the graph. Loops are counted two times.
+
+
+EXAMPLE GRAPH:
+self.o = {0:{1:2}, 1:{2:2}, 2:{0:2,1:2}}
+self.i = {0:{2:2}, 1:{0:2,2:2}, 2:{1:2}}
+self.nodeData = {0:"N1", 1:"N2", 2:"N3"}
+self.arcCount = 4
+self.nextNode = 0
+
+This graph as adjacency matrix (1 = arc present):
+     0 1 2
+0: | 0 1 0 |
+1: | 0 0 1 |
+2: | 1 1 0 |
+
+Its matrix of arc weights:
+     0 1 2
+0: |   2   |
+1: |     2 |
+2: | 2 2   |
+
+
+NOTES:
+- Method names beginning with "_" are usually private. Sometimes they are public, but low level and
+  without safety cheeks, for people that know well the details of data structures used by the graph.
+- Masking/unmasking of nodes and arcs isn't supported, to keep algorithms simple enough.
+- "Bidirectional arcs" (here usually called "BiArcs") are defined as a couple of
+  opposite arcs between two nodes with the same arc weights.
+- Self-loops are allowed, they count as *two* for the global arc count of the graph. So a complete
+  graph has n*(n+1) arcs (and not just n*n).
+- Node IDs must be hashable, but they can be unsortable. So [1] isn't allowed as node ID, but 1+8J
+  is allowed. Unsortable nodes change the behaviour of some printing methods (that call _mysorted).
+- Arc weights and nodeData can be any object, like a tuple of the coordinates of a node, its
+  color, a number, it's masking status, etc.
+
+
+INDEX OF METHOD CATEGORIES:
+
+NODE OPERATIONS:       ARC OPERATIONS:          GRAPH OPERATORS:        GRAPH STATS AND ANALYSIS:
+  addNode  add           addArc  __getitem__      __init__                order
+  addNodes               addBiArc                 makeUndirect            size
+  hasNode                hasArc                   copy                    __len__
+  getNodeData            getArcw                  __copy__                __nonzero__
+  changeNodeData         setArcw                  transpose               isUndirected
+  renameNode             delArc                   clear                   isTournament
+  renameNodes            delBiArc                 complement              maxDegree
+  firstNode              inArcs                   subgraphExtract         loopCount
+  delNode                outArcs                  __contains__            integerw
+  popNode                xinArcs                  degreeDict              realw
+  delManyNodes           xoutArcs                 inboundDict             startNodes
+  inNodes                arcs                     addArcs                 isIndependentSet
+  outNodes               xarcs                    addMulti                connectedComponents
+  xinNodes               arcsw                    addSource               shortestPath
+  xoutNodes              xarcsw                   addSink                 shortestPaths
+  inOutNodes             delAllLoops              addClique               toposort
+  xinOutNodes            hasLoops                 addPath                 allPairsShortestPaths
+  nodes                  directedArcs             create2dGrid            stats
+  xnodes                 undirectedArcs           createNcube             viewStats
+  degree                 delAllArcs               createRandom            density
+  inDegree               sumw                     createIntervalgGraph    isRegular
+  outDegree              sumPathw                 createPetersen          isKregular
+  xselectNodeData        inThroughCapacity        randomw                 isBiregular
+  createID               outThroughCapacity       randomCoords            isCubic
+  _rawDelNode            throughCapacity          circularCoords          isTrivalent
+                         maxThroughCapacity       springCoords            isConnected
+                         isUndirectedArc          euclidify2d             eccentricity
+                         reverseArc               __hash__                diameter
+                         makeUndirectArc          __iter__                radius
+                         addLoop                  _regenerate             diameterRadius
+                         firstArc                 _new                    levelStructure
+                         xselectw                                         mostDistantNodes
+                         convexHull                                       pseudoperipheralNode
+                         _fastAddArc                                      isEmbedded
+                         _fastAddBiArc                                    _methods
+                         _recountArcs                                     __getattr__
+                         _fastDelArc       
+                         _cleanDeadArcs
+
+GRAPH REPRESENTATION:  BINARY GRAPH OPERATORS:  GRAPH VISITS:           GRAPH I/O:
+  __repr__               addUpdate                DFS                     save
+  short                  subUpdate                BFS                     load
+  ushort                 intersection             xDFS                    textSave
+  sview                  nodeIntersection         xBFS                    textLoad
+  __str__                __eq__                                           saveDot
+  __unicode__            __ne__                                           savePajek
+  _matrixView            isOrientation                                    fromAmatrix
+  _compactBitMatrixView  isIsomorphic                                     fromMap
+  aform                  isomorphMap                                      _fastLoad
+  wform                  _testBinary                                      
+  iform
+  lform
+  aview
+  wview
+  iview
+  lview
+  aplot
+  plot2d
+
+
+METHOD LIST (originally generated with method "_methods", with __copy__ and sview added):
+
+BFS(startNode, sort=False, direction=1): return a breadth-first search list of nodes
+   starting from the given node.
+   If sort==True then it sorts the nodes at each step (gives an error on unsortable node IDs).
+   direction= 1  normal (downward) BFS use outgoing arcs.
+   direction=-1  backward BFS use incoming arcs.
+   direction= 0  bidirectional BFS use incoming and outgoing arcs.
+DFS(startNode, sort=False, direction=1): depth-first search list of nodes,
+   starting from the given node. It walks inbound arcs too.
+   If sort==True then it sorts the nodes at each step (gives an error on unsortable node IDs).
+   direction= 1  normal (downward) BFS use outgoing arcs.
+   direction=-1  backward BFS use incoming arcs.
+   direction= 0  bidirectional BFS use incoming and outgoing arcs.
+__contains__: called in response to the expression 'node in self'
+__copy__: like copy, return a shallow copy of the graph.
+__eq__(): == between graphs.
+__getitem__: to set and get an arc of the graph with the syntax graph[n1][n2].
+   This is rather slow, use addArc or getArcw for a faster access.
+__hash__(): a Graph cannot be hashed.
+__init__(self, nodesGraph=None, nodeData=None): create a graph structure.
+__iter__(): for n in g
+__len__(): return the number of nodes of the graph (its order).
+__ne__(): != between graphs.
+__nonzero__(): return if the graph is not empty.
+__repr__(): return a textual representation of the graph, suitable, for creating the
+   same structure. The representation contains only a dictionary of outbound arcs with their
+   weights, and the nodeData, if present. (The __init__ method can be rebuild the other
+   information).
+__unicode__(): return a unicode textual representation of the graph, suitable, for
+   creating the same structure. The representation contains only a dictionary of outbound
+   arcs with their weights, and the nodeData, if present. (The __init__ method can be
+   rebuild the other information).
+_cleanDeadArcs(): low level method: clean dead-ending arcs, useful after many "raw"
+   node deletions, and then it calls regenerate.
+_compactBitMatrixView(mat): private method used by *view methods; it converts
+   mat into a string. Useful for a compact representation for aview, without labels.
+   See aform.__doc__ for the description of the structure of mat.
+_fastAddArc(n1, n2, w=None): Low level method: nodes must be already present, and arc
+   must not be present.
+_fastAddBiArc(n1, n2, w=None): low level method: nodes must be already present, and
+   arcs must not be present.
+_fastDelArc(n1, n2): low level method: remove the directed arc between n1 and n2.
+   The directed arc must be present.
+_fastLoad(fileName, compressed=False): low level method: load the graph with cPickle.
+   If compressed=True, read the graph compresses with BZ2. This doesn't perform the regenerate.
+_matrixView(mat): private method used by *view methods; it converts mat into a
+   string. See aform.__doc__ for the description of the structure of mat.
+_methods(): return a formatted string with all the methods of the class Graph.
+_new(outboundDict, nodeData=None): low level method: quickly reinitialize the
+   graph from a given outbound arcs dictionary (as self.o) like those written by repr(g).
+   nodeData dictionary can also be given. No safety cheeks are performed, use
+   Graph(outboundDict, nodeData) if you want the safety cheeks.
+_rawDelNode(n): low level method: quickly delete a node from the graph without removing
+   dead-ending arcs. After one or more rawDelNode, a cleanDeadArcs is necessary.
+_recountArcs(): low level method: recount all the arcs of the graph, updating arcCount.
+   Useful after some low level changes to the graph. Each self-loops counts as two arcs.
+_regenerate(): low level method: regenerate a new graph structure just on the base of the outbound
+   arc dictionary and nodeData. It's useful after some "raw" low level operations on the graph.
+_testBinary(other, sop): private method, used to test if the other object is a Graph
+   too, useful for binary methods between graphs. Inspired by a similar method in sets module.
+   sop is the name of the operation.
+addArc(n1, n2, w=None) (or just add): add/update a directed arc between node n1 and n2.
+   The weight w can be any object, and it is always present (None by default).
+addArcs(seq, w=None, bi=False, paired=True): add a sub-graph from a given sequence
+    of arcs expressed as pairs of nodes, plus optional weight (default weight w=None).
+    If bi=True, bidirectional arcs are added (with the same weight).
+    If paired=False then seq is meant as a flattened sequence, to be paired.
+    Example:
+      g.addArcs(  [(1,2,5),(1,6),(3,1,None),(2,3,"a"),7,[],(8,)]  ) ==>
+      g.o == {1: {2:5, 6:None}, 2: {3:'a'}, 3: {1:None}, 6:{}, 7:{}, 8:{}}
+    That is:
+      g.nodes() ==> [1,2,3,6,7,8]
+      g.arcs() ==> [(1,2,5),(1,6,None),(3,1,None),(2,3,"a")]
+    Another example:
+      g.clear()
+      g.addArcs([1,2,3,4,5,6], paired=False)
+      print g ==>
+      1>2  2  3>4  4  5>6  6 
+addBiArc(n1, n2, w=None): add/update two arcs in opposite directions (an undirected arc) between
+   node n1 and n2. Their weight w can be any object, and they are always present (None by default).
+addClique(nodes, nodeData=None, w=None, loops=False):
+   add a clique (a complete subgraph) of given nodes.
+   If loops==True then nodes are connected with themselves too.
+addLoop(self, n, w=None): add/update a self-loop at node n.
+   The weight w can be any object, and it is always present (None by default).
+addMulti(seq, w=None, nodeData=None, bi=False): add a sub-graph from a given sequence of
+   groups node-arcs (nodes must be hashable). All weights are set to w (or None by default).
+   Groups can be just pairs. Example: g.addMulti( [(1,2,6),2,(3,1),(1,6),[],[7]], w=0 )
+   ==> g.o == {1: {2:None, 6:0}, 2: {}, 3: {1:0}, 6:{}, 7:{}}
+   That is:
+   g.nodes() ==> [1,2,3,6,7]
+   g.arcsw() ==> [(1,2,0),(1,6,0),(3,1,0)]
+addNcube(dim=3, nodes=None, w=None, nodeData=None): add to the self graph a graph
+   with the structure of an dim-dimensional cube. All arcs are created bidirectional and have
+   the given weight w, or None. Nodes are created with the given optional nodeData.
+   nodes = optional list of 2**dim nodeIDs, they must not be present in the graph.
+   If nodes==None then integer nodeIDs are created with createID.
+addNode(n, nodeData=None): add a node n, if not already present.
+   Updates its nodeData if necessary. nodeData exists only if it's != None.
+   n must be hashable, otherwise a TypeError is raised.
+addNodes(nodes, nodeData=None): add a sequence of nodes.
+   Updates their nodeData if necessary. nodeData exists only if it's != None.
+   nseq must contain hashables, otherwise a TypeError is raised.
+addPath(self, nodes, nodeData=None, w=None, closed=False):
+   add a linear structure of chained nodes; open, or closed in a circle. Example:
+     addPath(g.createID(50), closed=True)
+addSink(node, nodeData=None, w=None): sink receives arcs from all other nodes.
+addSource(node, nodeData=None, w=None): source is a node with arcs to all other nodes.
+addUpdate(other): update/overwrite the graph adding nodes and arcs present in another graph.
+aform(): return the graph represented as an Adjacency Matrix, inside a mat structure.
+   A graph with n nodes can be represented as a Adjacency Matrix of n rows and n columns;
+   the (i,j) entry of the matrix is 1 if there is an arc from node i to node j, 0 otherwise.
+   mat is a tuple of: (matrix, xlabels, ylabels, title, mapping):
+   - matrix is a list of lists (0,0 is in the upper left).
+   - xlabels and ylabels are lists usually containing node or arc IDs.
+   - title is the name of the representation (Adjacency Matrix, Incidence Matrix,
+     Adjacency Matrix weights).
+   - mapping is an optional dictionary that helps mapping elements of the matrices to strings.
+       For Incidence Matrix: {0:" .", 1:" 1", -1:"-1", 2:" 2"}
+       For Adjacency Matrix: {0:".", 1:"1"}
+allPairsShortestPaths(weights=True, forceInternal=False): Floyd-Warshall all pairs shortest paths.
+   Find the shortest distance between every pair of nodes in the graph. Return a matrix of
+   distances, and the node sequence of the rows (it's the same for the columns).
+   If there isn't a path between the two nodes, the matrix entry is sys.maxint = 2147483647
+   If weights=False then all arc weights are meant as 1. If you want to use weights, self-loops
+   must be all present, and usually their weights must be 0.
+   If weights are 0, and g.hasLoop(n)==True, then g.shortestPath(n,n) ==> 0.
+   forceInternal=True, then it force the use of the python algorithm.
+   The algorithm works if there isn't a negative weight cycle in the graph.
+   This algorithm should be used to compute shortest paths between
+   every pair of nodes for dense graphs.
+aplot(): show the adjacency matrix of the graph (structure plot) using MatPlotLib.
+   A graph with n nodes can be represented as a Adjacency Matrix of n rows and n columns;
+   the (i,j) entry of the matrix is 1 if there is an arc from node i to node j, 0 otherwise.
+   Loops are counted as 1.
+arcs(): return an unsorted list of all the arcs of the graph, without weights.
+   Its elements are (n1,n2).
+arcsw(): return an unsorted list of all the arcs of the graph, with weights.
+   Its elements are (n1,n2,w).
+aview(compact=False): return a string with the graph represented as Adjacency Matrix.
+   If compact=True, it shows a more compact binary matrix, without node labels.
+   A graph with n nodes can be represented as a Adjacency Matrix of n rows and n columns;
+   the (i,j) entry of the matrix is 1 if there is an arc from node i to node j, 0 otherwise.
+changeNodeData(n, newnd): updates/adds nodeData to a node n, if n is present.
+   if nodeData=None its nodeData is deleted.
+circularCoords(center=(0,0), radius=1): assign coordinates to all the nodes of the graph,
+   putting them on a circle. center and radius are an optional pair of coordinates and a number.
+clear(): remove all elements from the graph.
+complement(w=None):
+   complement(w=None): create the complement of the graph. nodeData of nodes are kept.
+   Old arc weights are discarded, the new arcs have the optionally given weight w or None.
+   Definition: the complement of a graph G is the graph G' with the same nodes, whose arcs
+   are precisely those that are not in the arc set of G. Note that self loops are considered too.
+connectedComponents(): return the list of the Connected Components of the graph.
+   Return a list of lists of nodes. The connected components of a graph represent,
+   in grossest terms, the pieces of the graph. Two nodes are in the same component if
+   and only if there is some path between them. (Each arc is meant as bidirectional).
+convexHull(add=False, bi=False, w=None): return a list of the 2D convex hull of the nodes
+   of the graph.
+   If add=True add directed arcs of the convex hull to the graph, with given w arc weight.
+   nodeData of nodes must contain their (x,y) coordinates.
+   If add=True and bi=True, arcs are created undirected.
+copy(): return a shallow copy of the graph.
+create2dGrid(nodes, columns, w=None, coords=False): create a 2D grid undirected graph,
+   from the given sequence of nodes. Columns is the number of desired columns.
+   len(nodes) must be divisible by columns. All arcs are created with the given weight w, or
+   the default None. If coords is True, nodeData of nodes contains (x,y) coordinates of the
+   node (integer coordinates). Example:
+     g.create2dGrid(range(6), 3, w=0, coords=True) ==>
+     g.nodeData = {0:(0,0), 1:(1,0), 2:(2,0), 3:(0,1), 4:(1,1), 5:(2,1)}
+     g.short() = 0>1,3  1>0,2,4  2>1,5  3>0,4  4>1,3,5  5>2,4
+createID(n): return a list of n integers (or longs) that aren't already nodes of the graph.
+createIntervalgGraph(seq, w=None): given a list, tuple or set seq containing *distinct*
+   pairs (t0,t1) with t0<=t1, where t is int, long, or float, create an interval graph,
+   whose nodes are the given pairs, and there is an arc between the (t0a,t1a) and (t0b,t1b)
+   nodes if the [t0a,t1a] and [t0b,t1b] intervals intersection isn't empty.
+   All intervals are closed, so the intersection between [1,2] and [2,5.1] is the point 2.
+   Duplicated intervals are ignored.
+   All arcs are created with the specified weight w, or with the default weight=None. Ex:
+    g.createIntervalgGraph([ (1,4),(5,7),(8,11),(3,7.1),(5,7),(5,8) ])
+      Produces the graph:
+     (1,4)>(3,7.1) (3,7.1)>(1,4),(5,7),(5,8) (5,7)>(3,7.1),(5,8) (5,8)>(3,7.1),(5,7),(8,11)
+     (8,11)>(5,8)
+createPetersen(): delete the graph and create the Petersen Graph.
+degree(node): return the degree (the number of inbound + outbound arcs) of a node.
+   Self-loops are counted twice. Return 0 if the node isn't in the graph.
+degreeDict(): return a dictionary of all (node, node_degree) of the graph.
+   Self-loops are counted twice.
+delAllArcs(): removes all the arcs from the graph.
+delAllLoops(): delete all loops from the graph.
+delArc(n1, n2): remove, if present, the directed arc between node n1 and node n2.
+delBiArc(n1, n2): remove, if present, the bidirectional arc between n1 and n2,
+   or just one of the directional ones.
+delManyNodes(nodes): quickly deletes many nodes, given as a sequence.
+   Useful to remove ~30% or more of the nodes of the graph for a complete graph, or
+   ~55% or more of the nodes for a path graph. For fewer nodes delNode method is faster.
+delNode(n): remove the node n, if present.
+density(): return the density of the graph, computed as:
+     DirectedArcNumber / ( NodeNumber * (NodeNumber+1) )
+   Note that self-loops count twice.
+   output=0.0 means that the graph hasn't any directed arcs (or the graph is empty).
+   output=1.0 means that the graph is complete (with self-loops too).
+diameter(weights=False): return the diameter of graph, that is the length of the longest
+   shortest path between any two nodes. Return -1 if the graph isn't connected, 0 if empty.
+   If weights=True then arc weights count too. This is usually False. If you want to use
+   weights, self-loops must be all present, and usually their weights must be 0.
+diameterRadius(weights=False): return the diameter and radius of graph, that is the maximum and minimum
+   eccentricity of any node. Return (0,0) if the graph is empty.
+   This is faster than calling both methods because it computes the eccentricity one time only.
+   Return diameter=-1 if the graph isn't connected.
+   Return radius=-1 if all the nodes are unconnected.
+   If weights=True then arc weights count too. This is usually False. If you want to use
+   weights, self-loops must be all present, and usually their weights must be 0.
+directedArcs(): return an unsorted list of all the directed arcs of the graph.
+   In the result there aren't self-loops.
+eccentricity(node=None, weights=False): return the eccentricity of each node n of graph
+   (that is the length of the longest shortest path from node), and a list of node mapping.
+   If node is given return its eccentricity, without mapping, and return sys.maxint if the node
+   isn't connected.
+   If weights=True then arc weights count too. This is usually False. If you want to use
+   weights, self-loops must be all present, and usually their weights must be 0.
+euclidify2d(): replace arc weights with the 2D Euclidean distance between incident nodes.
+   nodeData must contain the x,y coordinate pair of all nodes.
+firstNode(): return an arbitrary node, without removing it, or None if the graph is empty.
+   It uses the next() method of the nodes dictionary, so it usually returns the same node.
+fromAmatrix(amatrix, nodes=None, w=None, nodeData=None): clear the graph, and
+   create a new graph based on the given (square) adjacency matrix. Parameters:
+   - matrix can be a list of lists containing values that can be casted to True or False,
+     a True means that there is an oriented arc. Otherwise amatrix can be a square 2D
+     array of numarray (arcs are numbers !=0).
+   - nodes is optional, it can be None, or it can be a Python list of hashable node IDs
+     to be used to create the graph.
+     If nodesID!=None, nodesID must be long as the side of the (square) amatrix.
+     If nodesID=None, the nodes are created with ID as sequential integers starting from 0.
+   - All the arcs can be created with the given weight w, or the default weight None.
+   - nodeData is the optional value assigned as nodeData of all the created nodes.
+     Default is None, it means no nodeData at all.
+   Example:
+     g = Graph()
+     g.createRandom(range(100), 0.03, w=0, nodeData=1)
+     matrix, xlabels, ylabels, title, mapping = g.aform()
+     h = Graph()
+     h.fromAmatrix(matrix, nodes=xlabels, w=0, nodeData=1)
+     assert g == h
+fromMap(m, good=None, coords=True, w=1): clear the graph, and convert the given
+   matrix m (list or tuple of list or tuples) into an undirected graph, with 4-connectivity.
+   good is a given boolean function that returns True for the matrix elements to insert into
+     the graph. Default: def good(x): return bool(x)
+   If coords=True then nodeData of nodes contains (x,y) coordinates of the node in m.
+   w is the arc weight for all undirected arcs created. Default=1. Example:
+     m = [[1,1,1],
+          [0,0,1],
+          [0,1,1]]
+     g.fromMap(m)
+     print g
+     ==> (0, 0)-(1, 0)  (1, 0)-(2, 0)  (1, 2)-(2, 2)  (2, 0)-(2, 1)  (2, 1)-(2, 2)
+getArcw(n1, n2): if the directed arc between n1 and n2 exists return its weight,
+   otherwise raise KeyError.
+getNodeData(n): if the node n exists, return its nodeData, otherwise return None.
+hasArc(n1, n2): return True is the directed arc between n1 and n2 exists in the graph.
+hasLoops(): return True if the Graph has one or more loops.
+hasNode(n): return True if node n exists in the graph. You can also use 'n in g'.
+iform(): return the graph represented as the Incidence Matrix.
+   It is a matrix M that represents the incidence of arcs to nodes in the graph.
+   If the arc is directed from i to j, then M(i,k)=-1, and M(j,k)=1. In this implementation
+   self-loops are represented with 2. See aform.__doc__ for the description of mat structure.
+inArcs(n): return the list of arcs (*,n).
+inDegree(node): return the number of arcs coming into a node.
+    Self-loops are counted one time. Return 0 if the node isn't in the graph.
+inNodes(n): return the list of nodes with arcs to the node n.
+   If n isn't present, return [].
+inOutNodes(n): return a list containing the nodes connected with arcs coming from the
+   node n, followed by the nodes with arcs to the node n. If n isn't present, return [].
+inThroughCapacity(node): return the max in flow that may be received through the node.
+   Return 0 by default.
+inboundDict(): return a dictionary. Its keys are all the nodes of the graph.
+   Its values are sets of their inbound arcs.
+integerw(): return True if all arcs have int or long weights.
+   Return True if there aren't arcs.
+intersection(other): return the intersection with a second graph.
+   Weights/nodeData for shared arcs/nodes go into the intersection only if they are equal,
+   otherwise they become None/absent.
+isBiregular(): return True if the graph is biregular. An empty graph is not biregular.
+   A graph is biregular if it has unequal maximum and minimum degrees and every node
+   has one of those two degrees.
+   (The degree is the number of inbound + outbound arcs of a node, with loops counted twice).
+isConnected(): return true if the graph is connected.
+   A graph is connected if there is a path connecting every pair of nodes. A graph that is not
+   connected can be divided into connected components (disjoint connected subgraphs).
+isCubic(): return True if the graph is cubic. An empty graph is not cubic.
+   A 3-regular graph is said to be cubic, or trivalent.
+   A graph is k-regular if every vertex has degree k.
+   The degree is the number of inbound + outbound arcs of a node, with loops counted twice).
+isEmbedded(): return True if all nodes of the graph have good 2D coordinates in
+   their nodeData, otherwise return an error string message. Return True for an empty graph.
+isIndependentSet(nodes): a set of nodes in a graph is said to be an independent
+   set of nodes if no two nodes in the set are adjacent.
+isIsomorphic(other, m): given another graph, and a dictionary m containing
+   a partial (or complete) node mapping (from the other to the self graph), return True if
+   the two graphs/subgraphs are isomorphic. All arc weights and nodeData are ignored. Ex:
+     g = Graph()
+     g.addArcs([ (3,1), (3,2), (3,7) ])
+     h = Graph()
+     h.addArcs([ ("c","a"), ("c","d"), ("a",4) ])
+     m = { "d":1, "a":2, "c":3}
+     assert g.isIsomorphic(h, m) == True
+isKregular(k): return True if the graph is k-regular. An empty graph is not regular.
+   A graph is k-regular if every vertex has degree k.
+   (The degree is the number of inbound + outbound arcs of a node, with loops counted twice).
+isomorphMap(other): return the mapping dictionary (from the other to the self graph)
+   if the self graph is isomorphic to the other graph, otherwise return None. All arc
+   weights and nodeData are ignored. This method is very slow, it can be used only for
+   small graphs, up to about 12-13 nodes. For bigger graphs you can use Boost library:
+   http://www.boost.org/libs/graph/doc/index.html
+   For even bigger graphs (up to 1000 nodes) you can use nauty by Brendan McKay:
+   http://cs.anu.edu.au/~bdm/nauty/
+isOrientation(other): return True if the self graph is an orientation of the other graph.
+   This means it returns True if:
+   1) Both graphs have one or more node.
+   2) The other graph is undirected and without self-loops (in this implementation, a
+      graph is undirected if for each node1->node2 arc, the node2->node1 arc exists too).
+   3) The two graphs have exactly the same nodes.
+   4) For each pair of arcs in the other graph, there is exactly one oriented arc in the
+      self graph. In self there aren't other arcs. Arc weights are ignored.
+isRegular(): return True if the graph is regular. An empty graph is not regular.
+   A graph is regular if every vertex has the same degree.
+   (The degree is the number of inbound + outbound arcs of a node, with loops counted twice).
+isTournament(): return True is the graph is a tournament. A tournament is a graph with
+   exactly one oriented arc between each pair of nodes, and without self-loops.
+   An empty graph isn't a tournament.
+isTrivalent(): the same as cubic()
+isUndirected(): return True if the graph is undirect. In directed graph, if there is an
+   arc i,j with weight w, there there must be the arc j,i with the same weight w.
+isUndirectedArc(n1, n2): return True if between two nodes there are two arcs with the
+   same weight. Return False otherwise.
+iview(): return a string with the graph represented as Incidence Matrix.
+   It is a matrix M that represents the incidence of arcs to nodes in the graph.
+   If the arc is directed from i to j, then M(i,k)=-1, and M(j,k)=1. In this implementation
+   self-loops are represented with 2. See aform.__doc__ for more info.
+levelStructure(rootNode, weights=False): return the level structure of given root node.
+   The result is a dictionary, keys=distances, values=nodes with that distance from rootNode,
+   Example: {0: ["A"], 1: ["C"], 2: ["B", "D", "K"]}
+   If weights=False then arc weights are meant as 1. Usually it is False. If you want to use
+   weights, self-loops must be all present, and usually their weights must be 0.
+   A level structure of a graph is a partition of the set of nodes (only nodes in the
+   connected component of rootNode) into equivalence classes of nodes with the same distance
+   from a given root node. See also: http://en.wikipedia.org/wiki/Level_structure
+lform(): return a string with the graph represented as Adjacency List.
+   vet is a tuple of: (vector, ylabels, title):
+   - vector is the list of outbound neighbours and the weights (n2,w) for each node.
+   - ylabels are lists usually containing node IDs.
+   - title is the name of the representation (Adjacency List).
+load(fileName="graph.pik", compressed=False): load the graph with cPickle.
+   If compressed=True, read the graph compresses with BZ2.
+loopCount(): return the number of nodes with an arc to themselves.
+lview(viewNodeData=False): return a string with the graph represented as Adjacency Lists.
+   In each line there is a node (optionally followed by its nodeData), followed by its outbound arcs.
+makeUndirected(reconcile=None): make the graph undirected, duplicating isolated arcs.
+   When there are already two arcs between two nodes, and their weights are different,
+   it calls the given reconcile function, that takes two weights as input, and chooses
+   which one to keep (or raises an exception when needed). If reconcile isn't given, then
+   it uses the standard one that always raises an exception.
+   Few possible alternative reconcile functions:
+   from random import random
+   def reconcile(w1, w2): # Random choose.
+       if random() <= 0.5: return w1
+       else: return w2
+   Another possible:
+   def reconcile(w1, w2): # Always choose the first.
+       return w1
+   Another possible:
+   def reconcile(w1, w2): # Average of two.
+       return (w1+w2)/2
+   Another possible:
+   def reconcile(w1, w2): # Weight = None
+       return None
+makeUndirectArc(n1, n2, reconcile=None): make the already existing arc undirected,
+   duplicating it if it's directed. Do nothing if they don't share an arc.
+   When there are already two arcs between the two nodes, and their weights are
+   different, it calls the given reconcile function (like the makeUndirected), that takes two
+   weights as input, and chooses which one to keep (or raises an exception when needed).
+   If reconcile isn't given, then it uses the standard one that always raises an exception.
+   Few possible alternative reconcile functions:
+   from random import random
+   def reconcile(w1, w2): # Random choose.
+       if random() <= 0.5: return w1
+       else: return w2
+   Another possible:
+   def reconcile(w1, w2): # Always choose the first.
+       return w1
+   Another possible:
+   def reconcile(w1, w2): # Average of two.
+       return (w1+w2)/2
+   Another possible:
+   def reconcile(w1, w2): # Weight = None
+       return None
+maxDegree(): return the maximum degree (the number of inbound + outbound arcs) of any node.
+maxThroughCapacity(): return the max flow that may be sent through any node of the graph.
+mostDistantNodes(node, weights=False): return a list of the nodes most distant from the
+   given node (in the same connected component), and their distance (that is the eccentricity
+   of node). Note that all nodes in the result have the same distance from node.
+   If Weights=False then all arc weights are meant as 1. It is usually False. If you want to
+   use weights, self-loops must be all present, and usually their weights must be 0.
+nodeIntersection(other): return the list of nodes shared between two graphs.
+nodes(): return an unsorted list of the IDs of all the nodes of the graph.
+order(): return the order of the graph, that is the number of its nodes.
+outArcs(n): return the list of arcs (n,*).
+outDegree(node): return the number of arcs coming from a node.
+   Self-loops are counted one time. Return 0 if the node isn't in the graph.
+outNodes(n): return the list of nodes connected with arcs coming from the node n.
+   If n isn't present, return [].
+outThroughCapacity(node): return the max out flow that may be given through the node.
+   Return 0 by default.
+plot2d(arcs=True, nodes=True, plotRange=None, grid=None, axes=False, nodeLabels=True):
+   plot the graph in 2D using node coordinates contained in nodeData.
+   If arcs=False don't show arcs. If nodes=False don't show nodes. Directed arcs are blue,
+   undirected arcs are black. Bidirectional arcs with different weights are black too.
+   Self-loops are green. plotRange must be a sequence of 4 coordinates (minx, miny, maxx, maxy).
+   plotRange=None ==> full auto.
+   grid must be a number, representing the space between the grid lines.
+     grid=None ==> no grid and axes.
+   If axes=True show axes too.
+   If NodeLabels=True show node IDs too beside nodes.
+popNode(): remove and return an arbitrary node of the graph. Raises IndexError if the
+   graph is empty.
+pseudoperipheralNode(startNode=None): return one pseudo-peripheral node of the graph.
+   A peripheral node is often hard to calculate, but sometimes a pseudo-peripheral node can be
+   enough. As starting point it uses the given startNode, or the first node of the graph.
+   See: http://en.wikipedia.org/wiki/Pseudo-peripheral_vertex
+radius(weights=False): return the radius of graph, that is the minimum eccentricity of any node.
+   Return -1 if all the graph nodes are unconnected.
+   If weights=True then arc weights count too. This is usually False. If you want to use
+   weights, self-loops must be all present, and usually their weights must be 0.
+firstArc(): return an arbitrary arc, without removing it, or None if there aren't arcs.
+   It uses the next() method of the nodes dictionary, so it usually returns the same node.
+randomCoords(randx=None, randy=None): assign random coordinates to all the nodes of
+   the graph. randx and randy are optional given functions that generates the x and y
+   coordinates (default is random). Examples:
+     g.randomCoords( lambda:randint(0,100), lambda:randint(0,100) )
+     g.randomCoords(lambda:gauss(1,1), lambda:gauss(1,1)) 
+randomw(randw=None): assign random weights to all the arcs of the graph.
+   rand is an optional given function that generates the random weight (default is random).
+   Example: g.randomw( lambda:randint(1,6) )
+realw(): return True if all arcs have int, long or float weights.
+   Return True if there aren't arcs.
+renameNode(oldnode, newnode): copy old node with a new name (not already present),
+   then delete the old node (this is a slow operation).
+renameNodes(trans): renames nodeIDs using a trans translation dictionary.
+   trans.keys() are the old nodeIDs, and trans.values() are new NodeIDs.
+   renameNodes is faster than many calls to renameNode.
+reverseArc(n1, n2): invert the direction of a single arc, or both bidirectional arcs,
+   between node n1 and n2.
+save(fileName="graph.pik", compressed=False): save the graph with cPickle.
+   if compressed=True, compresses the graph with BZ2 (compresslevel=3).
+   In some situations it doesn't work, for example:
+     g = Graph()
+     g.addNode(1, nodeData=lambda:0)
+   Now g.nodeData is:
+     {1: <function <lambda> at 0xhhhhhhhh>}
+   This nodeData cannot be saved in the file.
+saveDot(fileName="graph.dot", nodeLabels=True, arcLabels=False, hideArcLabel=None,
+        nodeDataLabels=False, colorConnectedComponents=False):
+   save the graph in a file suitable for Graphviz, a program for visualising graphs:
+     http://www.research.att.com/sw/tools/graphviz/
+   If nodeLabels=True show node labels too as a string.
+   If arcLabels=True show weights too as labels (but don't show weights equal to hideArcLabel).
+   If nodeDataLabels=True, show nodeData too (under node IDs) as a string.
+   If colorConnectedComponents=True use a different node color for each connected component. Ex:
+       def savegraph(f, nl=True):
+           g.saveDot(fileName=f+".dot", nodeLabels=nl, arcLabels=False, hideArcLabel="a",
+                     nodeDataLabels=True, colorConnectedComponents=True)
+           subprocess.call("neato -Tpng -o" + f + ".png " + f + ".dot")
+       g = graph.Graph()
+       g.addClique(range(8), w="a", loops=True)
+       savegraph("clique", nl=False)
+       g.createRandom(range(28), 0.023, nodeData="hello")
+       savegraph("random")
+       g.createNcube(4)
+       savegraph("tesseract")
+       g.create2dGrid(range(49), 7)
+       savegraph("2dgrid7x7", nl=False)
+savePajek(fileName="graph.net"): save the graph in format readable by Pajek:
+   http://vlado.fmf.uni-lj.si/pub/networks/pajek/
+setArcw(n1, n2, neww): if the directed arc between n1 and n2 is present, then updates its weight w.
+short(self, out=True, showw=False, hidew=None, all=False, separator="  "): a short
+   representation of the graph without nodeData. You can use ushort for an even shorter
+   representation of undirected graphs.
+   out=True shows only the outbound arcs of each node.
+   out=False shows only the inbound arcs of each node.
+   If showw=True show weights too (separated by /), but don't show weights equal to hidew.
+   separator is the string that separates the nodes.
+   If all=False and the graph is very big, it shows just a shortened representation. If all=True
+   then it forces to show all the graph.
+   Note that > means outbound, < inbound arcs, and - means bidirectional ones for undirected
+   graphs. For exampe, this graph (as adjacency matrix):
+        0 1 2
+   0: | 0 1 1 |
+   1: | 1 0 1 |
+   2: | 1 1 0 |
+   Prints as:
+   0-1,2  1-2
+shortestPath(n1, n2, weights=True): return the shortest path (based on arc weights)
+   between two given nodes, using a Dijkstra algorithm (at the moment from an external module).
+   If weights=False then all arc weights are meant as 1. If you want to use weights,
+   self-loops must be all present, and usually their weights must be 0.
+   g.shortestPath(n,n) ==> [n]
+   Dijkstra's algorithm is only guaranteed to work correctly when all arc weights are positive.
+   return dijkstra.shortestPath(self.o, n1, n2)
+shortestPaths(n, weights=True): return the shortest paths (based on arc weights) from
+   a given node to each other node, using a Dijkstra algorithm (from an external module).
+   The output is a pair (D,P) where D[v] is the distance from start to v and P[v] is the
+   predecessor of v along the shortest path from s to v.
+   If weights=False then all arc weights are meant as 1. If you want to use weights, self-loops
+   must be all present, and usually their weights must be 0.
+   Dijkstra's algorithm is only guaranteed to work correctly when all arc weights are positive.
+size(): return the size of the graph, that is the number of its arcs (equal to len(graph)).
+springCoords(iterations=50, restart=False): spring force model layout.
+  iterations: number of iteration of the algorigh, the more the better is the result, but it
+    requires more time.
+  restart: if it's False then it uses the coordinates of the nodes (stored in nodeData).
+    This is useful to apply springLayout more than one time, until results are good enough.
+startNodes(): return the set of all the nodes of the graph without any incoming arcs.
+stats(): return a list containing some statistics about the graph.
+subUpdate(other): update the graph deleting nodes and arcs present in a second graph.
+subgraphExtract(nodes): return a subgraph of the graph, containing only nodes from nodes
+   sequence (and contained in the graph), with only the arcs between such elements.
+sumPathw(path): given a sequence of nodes, return the summed weight of the path.
+   All arc weights must have __add__ defined (like int, long, float, basestring, complex),
+   otherwise an error is raised. If path is empty, or len(path)==1, return None. Example:
+     g = Graph()
+     g.addArcs( [("a","b",1), ("b","c",0.5)] )
+     print g.sumPathw( "abc" ) ==> 1.5
+     print g.sumPathw( "ab" ) ==> 1
+     print g.sumPathw( "a" ) ==> None
+sumw(): return the sum of the weights of all arcs.
+   NOTE: weights must be int, long or float, otherwise an error is raised.
+   You can use integerw or realw to test it before.
+sview: a sinonym of short method.
+textLoad(fileName="graph.txt"): load graph from text file.
+textSave(fileName="graph.txt"): save graph in a text file, with a simple method.
+   In some situations it doesn't work, for example:
+     g = Graph()
+     g.addNode(1, nodeData=lambda:0)
+   Now g.nodeData is:
+     {1: <function <lambda> at 0xhhhhhhhh>}
+   This nodeData cannot be saved in the textual file.
+throughCapacity(node): return the max flow that may be sent through the node.
+   It's the min of inThroughCapacity and outThroughCapacity.
+toposort(): return a list with the topological sorting of nodes. NOTE: if this returns
+   a list with less nodes than the graph, then the graph contains one or more cycles.
+transpose(): return the transposed of the graph, that is the directed graph with all the
+   arcs reversed (this operation is nearly instantaneous for this implementation).
+undirectedArcs(): return an unsorted list of all the undirected arcs of the graph.
+   In the result there is only one arc (randomly chosen) for each undirected arc,
+   and self-loops too. An arc is undirected if there is only an arc between two nodes, or if
+   there are two but the tweir weights are different.
+ushort(self, showw=False, hidew=None, all=False, separator="  "): a short representation of
+    the undirected graph without nodeData. Arcs are shown only once (use the method "short" to see
+    all arcs twice). In this class ushort is the standard textual representation of the graph.
+    If showw=True it shows weights too (separated by /), but it doesn't show weights equal to hidew.
+    separator is the string that separates the nodes.
+    If all=False and the graph is very big, it shows just a shortened representation. If all=True
+    then it forces to show all the graph.
+    Note that > means outbound, < inbound arcs, and - means bidirectional ones for undirected
+    graphs. For exampe, this graph (as adjacency matrix):
+         0 1 2
+    0: | 0 1 1 |
+    1: | 1 0 1 |
+    2: | 1 1 0 |
+    Prints as:
+    0-1,2  1-2
+viewStats(): call the stats method, and return a formatted string containing some
+   statistics on the graph.
+wform(): return the graph represented as Adjacency Matrix, but with arc weights instead
+   of binary values.
+   See aform.__doc__ for the description of mat structure and the Adjacency Matrix.
+wview(): return a string with the graph represented as Adjacency Matrix, but with
+   arc weights instead of binary values. See aform.__doc__ for more info.
+xBFSstartNode, sort=False, direction=1): iterable breadth-first search list of nodes
+   starting from the given node.
+   If sort==True then it sorts the nodes at each step (gives an error on unsortable node IDs).
+   direction= 1  normal (downward) BFS use outgoing arcs.
+   direction=-1  backward BFS use incoming arcs.
+   direction= 0  bidirectional BFS use incoming and outgoing arcs.
+xDFS(startNode, sort=False, direction=1): iterable depth-first search list of nodes,
+   starting from the given node.
+   If sort==True then it sorts the nodes at each step (gives an error on unsortable node IDs).
+   direction= 1  normal (downward) BFS use outgoing arcs.
+   direction=-1  backward BFS use incoming arcs.
+   direction= 0  bidirectional BFS use incoming and outgoing arcs.
+xarcs(): return an iterator on all the unsorted arcs of the graph, without weights.
+   Its elements are (n1,n2).
+xarcsw(): return an iterator on all the unsorted arcs of the graph, with weights.
+   Its elements are (n1,n2,w).
+xinArcs(n): return the iterable of arcs (*,n).
+xinNodes(n): return the iterable of nodes with arcs to the node n.
+   If n isn't present, return [].
+xinOutNodes(n): return an iterable of the nodes connected with arcs coming from the
+   node n, chained with the iterable of nodes with arcs to the node n.
+   If n isn't present, return [].
+xnodes(): return an unsorted iterable of the IDs of all the nodes of the graph.
+xoutArcs(n): return the iterable of arcs (n,*).
+xoutNodes(n): return the iterable of nodes connected with arcs coming from the node n.
+   If n isn't present, return [].
+xselectNodeData(nodeData): return an iterable of all the nodes with predicate(nodeData)==True. Ex:
+     xselectNodeData(lambda nd: isinstance(nd, (tuple,list)) and len(nd)=2 )
+   Another example to select nodes without nodeData:
+     xselectNodeData( lambda nd: nd==None )
+xselectw(predicate=bool): return an iterable of all the arcs with predicate(w)==True.
+   Ex: xselectw(lambda w: w>=12)

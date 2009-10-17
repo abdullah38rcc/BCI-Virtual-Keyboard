@@ -1,0 +1,383 @@
+# simple circlespell - works with keyboard input - morse code language model
+# up arrow = select   ::  down arrow = rotate  :: use undo if you overshoot a circle
+#
+# last edit: 5/12
+################CHANGES############
+# capitalize letters
+# 
+##########TODO##############
+# tcp/ip socket
+# scan text and calculate freq
+# need to determine max_r2
+# window resizable?
+# window on top?
+# addition of phrases: menu of topics, add to first circle, how to layout phrases?
+# diving bell and butterfly
+# change window name
+# window focus: see line 309
+# position root window in center of screen
+# do colors aid in text scanning?
+# is class._doc_ writable?
+# put del b4 spc in training version, then switch
+# last rotation = selection
+######################BUGS#######################
+#
+##############CURRENTLY WORKING ON##########
+# min_steps.py
+# best encoding algorithm?
+# graph theory problem?
+
+
+
+from copy import deepcopy
+from Tkinter import *
+from math import *
+from socket import *
+from tkFont import *
+#import GlobalVariables
+import time
+
+
+
+if False:
+	class GlobalVariables:
+		def _init_(self):
+			self._highlighted = 0
+			self._circleList = []
+			self._canvas = 0
+			self._txtBox = 0
+
+class GlobalVariables:
+		_highlighted = 0
+		_circleList = []
+		_canvas = 0
+		_txtBox = 0
+
+
+def draw_circle(x, y, r, width, tag):
+	global gv
+	gv._canvas.create_oval(x-r, y-r, x+r, y+r, width=width, tags=tag)
+
+
+
+def draw_interface(x, y, r1, max_r2):
+	#print "in draw interface()"	
+	#print "gv._circleList @beginning of draw_interface():",gv._circleList
+	
+	global gv
+	
+	num_circles = len(gv._circleList)
+	##print "num_circles in draw_interface =",num_circles
+	angle       = ((2 * pi) / num_circles)
+
+	if num_circles > 1:
+		r2          = min(r1 * sin(angle/2), max_r2)
+	else:
+		r2			= r1
+	
+	##print "in draw_interface gv._circleList:",gv._circleList
+	
+	# draw each circle
+	for i, circle in enumerate(gv._circleList):
+		##print "in for loop"
+		##print "circle%i" %i, " contains:",circle
+		
+		#name each circle
+		tag = "circ%s" %i
+		
+		if i == gv._highlighted:
+			width    = 3
+		else:
+			width    = 1
+			
+		if num_circles > 1:
+			x_offset =  r1 * sin( angle * i)
+			y_offset = -r1 * cos( angle * i)
+		else:
+			x_offset = 0
+			y_offset = 0
+
+		draw_circle(x+x_offset, y+y_offset, r2, width, tag)
+		
+		##print "1st interface drawn:", tag, "width=",gv._canvas.itemcget(tag,"width")
+		##print "circle:",circle," width:",width
+		
+		#if circle == 'DEL': #print "true!"
+			
+		if circle == 'DEL' or circle == 'SPC':
+			gv._canvas.create_text(x+x_offset, y+y_offset, text=circle, font="Courier 16 bold")
+		else:
+			num_objs = len(circle)
+		
+			##print "num_objs:",num_objs
+		
+			small_angle = ((2 * pi) / num_objs)
+
+			#draw stuff in circle
+			for j, letter in enumerate(circle):
+				if num_objs > 1:		#space objects around circle
+					letter_x_offset = 0.75 *  r2 * sin( small_angle * j)
+					letter_y_offset = 0.75 * -r2 * cos( small_angle * j)
+				else:	#center object
+					letter_x_offset = 0
+					letter_y_offset = 0
+
+				gv._canvas.create_text(x+x_offset+letter_x_offset, y+y_offset+letter_y_offset, text=letter, font="Courier 16 bold")
+						
+	##print "gv._circleList @end of draw_interface():",gv._circleList
+	gv._canvas.update()		#process all events in event queue
+	
+	
+	
+def update(decision):
+			#global gv._circleList
+			#print "in update()"
+			##print "gv._circleList = ",gv._circleList
+			update_circs(decision,x,y,r1,max_r2)
+			##print "after update_circs call: gv._highlighted=",gv._highlighted
+			return
+			
+
+def update_circs(decision,x,y,r1,max_r2):
+				#print "in update_circs()"
+				global gv
+				#print "stack = ", stack
+				
+				select = 1
+				rotate = 0
+				go_back = ['BACK']
+				
+				##print "decision =",decision
+				##print "begin update_circs: gv._highlighted:",gv._highlighted
+				
+				if decision == select:
+					#print "decision == select"
+					##print "in update_circs(): selected =", gv._circleList[gv._highlighted]
+					#print "stack = ",stack
+					
+					if gv._circleList[gv._highlighted] == go_back:
+						#print "back selected"
+						##print "gv._circleList b4 pop", gv._circleList
+						#print "stack = ",stack
+						gv._circleList=[]
+						gv._circleList = pop()
+						##print "gv._circleList in update_circs after pop()",gv._circleList
+						#print "stack after pop()",stack
+					else:
+						#print "back not selected"
+						##print "in update_circs, gv._circleList b4 pushing", gv._circleList
+						#print "stack b4 push() = ",stack
+						push(gv._circleList)
+						gv._circleList = gv._circleList[gv._highlighted]
+						#print "in update_circs, new gv._circleList after pushing", gv._circleList
+						#print "stack = ",stack
+						##print "in update_circs(): selected =", gv._circleList
+					
+					if gv._circleList == 'DEL' or gv._circleList == 'SPC':
+						num_circles = 1
+					else:
+						num_circles = len(gv._circleList)
+					
+					#clear screen
+					gv._canvas.delete('all')
+					
+					if num_circles == 1:   #single option left, must be user's choice
+						##print "num_circles == 1"
+						output(gv._circleList)
+						gv._circleList = []
+						gv._canvas.delete('all') #clear gv._canvas
+					
+					##print "gv._circleList before layout():", gv._circleList						
+					##print "in update() gv._circleList b4 get_layou() call:",gv._circleList
+					#print "stack right b4 get_layout",stack
+					get_layout()	#arrange items in circles and determine next default highlighing
+					gv._canvas.update()
+					#print "in update() gv._circleList after layout():", gv._circleList						
+					#print "stack after get_layout = ",stack	
+					draw_interface(x,y,r1,max_r2)
+					
+				else:	#decision = rotate
+					#print "decision = rotate"
+					#print "stack = ",stack
+					item = "circ%s" %gv._highlighted
+					gv._canvas.itemconfigure(item,width=1)
+					
+					##print item,": width=",gv._canvas.itemcget(item,"width")
+					
+					gv._highlighted = (gv._highlighted + 1) % len(gv._circleList)
+					item = "circ%s" %gv._highlighted
+					gv._canvas.itemconfigure(item,width=3)
+					
+					##print item,": width=",gv._canvas.itemcget(item,"width")
+					gv._canvas.update()		#process all events in event queue
+				
+									
+
+def output(item):
+	#global gv._canvas, gv._txtBox
+	
+	##print "in output():"
+	##print item[0]
+		
+	if item[0] == "SPC":
+		gv._txtBox.insert(INSERT," ")
+	elif item == "DEL":
+		gv._txtBox.delete("%s-1c" % INSERT,INSERT)
+	else:
+		gv._txtBox.insert(INSERT,item[0].lower())
+	
+	##print "2rd cursor pos:", gv._txtBox.index(INSERT)
+			
+	
+
+def get_layout():
+			#print "in get_layout()"
+			global gv
+			
+			##print "gv._circleList:",gv._circleList
+			#print "stack @ beginning get_layout",stack
+			
+			#use huffman to determine
+			#gv._highlighted = huffman()			
+			gv._highlighted = 0
+			#num_circles = 5
+			num_circles = 0
+			morseCode = [['SPC'],['DEL','E'],['I','T'],['S','A','N'],['H','U','R','D','M'],['W','G','V','L','F','B','K'],['O','P','J','X','C','Z'],['Y','Q']]
+						
+			num_items = len(gv._circleList)		#number objects to be distributed among circles
+			undo = ['BACK']
+			
+			#default screen
+			if num_items == 0:
+				##print "default screen"
+				##print "stack = ",stack
+				#gv._circleList = ['DEL','SPC']
+				#gv._circleList = map(chr,range(97,123))
+				gv._circleList = morseCode
+				#gv._circleList.insert(0,'DEL')
+				#gv._circleList.insert(0,'SPC')
+				#gv._circleList.insert(1,['DEL','SPC'])
+				num_items = len(gv._circleList)
+				
+			elif gv._circleList[num_items-1] != undo:
+				#print "in get_layout: last circle:",gv._circleList[num_items-1]
+				#print "stack = ",stack
+				##print gv._circleList[0]
+				##print len(gv._circleList)
+				gv._circleList.append(undo)		#add "undo" circle to the set
+				#print "stack after appending undo in get_layout= ",stack
+			##print "stack @ end get_layout = ",stack			
+			
+			
+			
+
+
+def push(item):
+	#print "in push()"
+	#global stack
+	#global circle_list
+	itemCpy = deepcopy(item)
+	stack.append(itemCpy)
+	##print "stack after append = ", stack
+
+def pop():
+	#print "in pop()"
+	#global stack, circle_list
+	
+	if stack != []:
+		s = stack.pop()
+	#s = stack[len(stack)-1]
+	##print s," has been popped"
+		return s
+	#return stack.pop()
+
+
+def test_interface():
+	time.sleep(2)	#just to see initial interface
+	##print "in test_interface()"
+	numtries = 10
+	for i in range(1,numtries):
+		##print "user input #",i
+		##print "in test_interface: gv._highlighted=",gv._highlighted
+		update(1)
+		time.sleep(2)
+		
+
+def getKeyIn():
+	#print "in getKeyIn()"
+	##print event.keysym
+	#decision = gv._highlighted
+	
+	#global gv._canvas
+	
+	##print "in getKeyIn, gv._highlighted=",gv._highlighted
+	
+	def keyCtrl(event):
+		##print "in keyCtrl()"
+		#return "break"
+		
+		#global gv._circleList, gv._highlighted, gv._txtBox
+		
+		decision = 2
+		
+		##print "key pressed:",event.keysym
+		
+		if event.keysym == 'Up':
+			##print "key up"
+			decision = 1	#select
+		if event.keysym == 'Down':
+			##print "key down"
+			decision = 0	#rotate
+			
+		##print "before update call"
+		
+		if decision < 2:
+			update(decision)
+					
+		##print "after upddte call"
+		##print "in keyCtrl gv._highlighted=", gv._highlighted
+		
+		return "break"
+	
+	##print "before bind call"
+	
+	gv._canvas.bind_all('<Key>',keyCtrl)
+	
+	#canv.bind_all('<Key-u>',keyCtrl)
+
+	##print "end of getKeyIn"	
+	
+
+
+
+
+root = Tk()
+gv = GlobalVariables()
+s = 50
+x = 200
+y = 200
+r1 = 110 #radius of center circle
+max_r2 = 80
+
+#gv._circleList = []
+stack = []
+
+gv._canvas = Canvas(root,height=400,width=400,bg='yellow')
+gv._canvas.grid(row=2,column=1)
+#gv._canvas.focus_set()
+
+gv._txtBox = Text(root,width=50,height=1,padx=5,pady=5,insertofftime=250,takefocus=1)
+gv._txtBox.grid(row=1,column=1)
+gv._txtBox.focus()
+#gv._txtBox.insert(INSERT,"hello")
+
+get_layout()
+draw_interface(x,y,r1,max_r2)
+
+#testing
+#test_interface(gv._highlighted,gv._circleList,gv._txtBox)
+
+#grab keyboard input
+getKeyIn()
+
+root.mainloop()
