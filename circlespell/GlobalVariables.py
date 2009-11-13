@@ -6,7 +6,7 @@ from decimal import Decimal
 
 class GlobalVariables:
 	def __init__(self):
-		self._highlighted = 0
+		self._highlighted = 0			#int which represents num of circle currently highlighted
 		self._circleList = []
 		self._canvas = 0
 		self._txtBox = 0

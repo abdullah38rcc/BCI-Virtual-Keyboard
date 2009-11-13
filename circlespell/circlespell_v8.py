@@ -1,7 +1,11 @@
-# simple circlespell - works with keyboard input - morse code language model
+# simple circlespell 
+#	- works with keyboard input 
+#	- alphabetical letters
+#	- HMM
+#	- moving hilite
+# last edit: 11/10
+########################## TO USE #############################
 # up arrow = select   ::  down arrow = rotate  :: use undo if you overshoot a circle
-#
-# last edit: 9/9
 ################CHANGES############
 # functions organized
 # alphabetized keyboard
@@ -256,6 +260,8 @@ def setCircs():
 		circSymbs.append(item[0])
 	gv._circleList.append(circSymbs)
 	gv._circleList.insert(0,['SPC'])
+	#print "gv._circleList:", gv._circleList
+	#print "-" * 10
 
 
 
@@ -303,13 +309,17 @@ def pop():
 
 def output(item):
 	#global gv._canvas, gv._txtBox
-	
-	##print "in output():"
-	##print item[0]
+	#print #
+	#print "in output():"
+	#print item
+	#print item[0]
+	#print "-" * 10
+	#print 'DEL' == item[0]
+	#print #
 		
-	if item[0] == "SPC":
+	if item[0] == 'SPC':
 		gv._txtBox.insert(INSERT," ")
-	elif item == "DEL":
+	elif item == 'DEL' or item[0] == 'DEL':
 		gv._txtBox.delete("%s-1c" % INSERT,INSERT)
 	else:
 		gv._txtBox.insert(INSERT,item[0])

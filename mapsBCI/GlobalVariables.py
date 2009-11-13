@@ -8,28 +8,54 @@
 class GlobalVariables:
 	def __init__(self, canvas):
 		self._canvas = canvas
-		self._travelPlan = ['left','up','right','down','left']		#plan for traveling round a room
+		self._walls = {}		#walls{name:coords}
+
 		self._LOS = []		#line of sight
 		self._COM = []		#center of mass
+
+		self._travelPlan = ['left','up','right','down','left']		#plan for traveling round a room
 		self._move = {"left":self._left, "right":self._right, "up":self._up, "down":self._down}		#dict of fxns for moving
+
 		self._nlosOffset = {"left":[-2,0,-2,0],"up":[0,-2,0,-2],"right":[2,0,2,0],"down":[0,2,0,2]}
 		self._feelerOffset = {"left":[-1,0,70,0],"up":[0,-5,0,70],"right":[1,0,-70,0],"down":[0,5,0,-70]}
 		self._comOffset = {"left":[-2,0],"up":[0,-2],"right":[2,0],"down":[0,2]}
 
+		self._currPos = 0		#current posititon
+		self._stopDist = 10		#closest distance to an obstacle before a stop
+
+
+
+
 	def _left(self, id):
 		self._canvas.move(id,-2,0)
+		#print "in left"
+		#print "currPos: ", self._currPos
+		self._currPos = self._canvas.coords(id)
 
 
 
 	def _right(self, id):
 		self._canvas.move(id,2,0)
+		self._currPos = self._canvas.coords(id)
 
 
 
 	def _up(self, id):
 		self._canvas.move(id,0,-2)
+		self._currPos = self._canvas.coords(id)
 
 
 
 	def _down(self, id):
 		self._canvas.move(id,0,2)
+		self._currPos = self._canvas.coords(id)
+
+
+
+	def _add(self,x,y):
+		#print "in add"
+		#print "x:", x
+		#print "y:", y
+		#print "-" * 10
+		return x + y
+

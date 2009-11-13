@@ -1,12 +1,18 @@
-# simple circlespell - works with keyboard input - morse code language model
+# simple circlespell 
+#	- works with keyboard input 
+#	- morse code language model
+#	- HMM
+#	- moving hilite
+# last edit: 11/10
+########################## TO USE #############################
 # up arrow = select   ::  down arrow = rotate  :: use undo if you overshoot a circle
-#
-# last edit: 9/9
-################CHANGES############
-# like v.8 but using morse code
-##########TODO##############
+################################ CHANGES ############
+# updated method of random error
+# changed error msg
+# changed output (del)
+# del inserted right after highlighted in layout()
+########## TODO ##############
 # tcp/ip socket
-# scan text and calculate freq
 # need to determine max_r2
 # window resizable?
 # window on top?
@@ -18,10 +24,11 @@
 # do colors aid in text scanning?
 # is class._doc_ writable?
 # put del b4 spc in training version, then switch
-# last rotation = selection
-######################BUGS#######################
-# last few circles missing back
-##############CURRENTLY WORKING ON##########
+#
+#change highlight and hiprob text color
+###################### BUGS #######################
+# 
+############## CURRENTLY WORKING ON ##########
 # 
 
 
@@ -217,6 +224,7 @@ def set_layout():
 			morseCode2 = [['SPC'],['DEL','e'],['i','t','s'],['a','n','h','u'],['r','d','m','w'],['g','v','l','f'],['b','k','o','p','j'],['x','c','z','y','q']]
 						
 			num_items = len(gv._circleList)		#number objects to be distributed among circles
+			#print "num_items:", num_items
 			undo = ['BACK']
 			delete = ['DEL']
 
@@ -230,10 +238,15 @@ def set_layout():
 				gv._circleList.append(undo)		#add "undo" circle to the set
 				#print gv._circleList
 				#print #
-				if delete[0] not in gv._circleList:
-					gv._circleList.append(delete)
+				#if delete[0] not in gv._circleList:
+					#gv._circleList.append(delete)
 			##print "stack @ end set_layout = ",stack			
 			set_highlighted()	#determine highlighted circle
+
+			num_items = len(gv._circleList)
+			if num_items <= 6 and delete[0] not in gv._circleList:
+				gv._circleList.insert(gv._highlighted+1,delete)		#place delete option near highest prob letter
+				print "gv._circleList:",gv._circleList
 
 
 
@@ -274,6 +287,7 @@ def set_highlighted():
 				#print "in set_highlighted"
 				#print "highest prob: ", item[0]
 				gv._highlighted = gv._circleList.index(symbSet)
+				#print "gv._highlighted:",gv._highlighted
 				return
 
 
@@ -307,13 +321,15 @@ def output(item):
 	#global gv._canvas, gv._txtBox
 	#print #
 	#print "in output():"
+	#print item
 	#print item[0]
+	#print "-" * 10
 	#print 'DEL' == item[0]
 	#print #
 		
 	if item[0] == 'SPC':
 		gv._txtBox.insert(INSERT," ")
-	elif item[0] == 'DEL':
+	elif item == 'DEL' or item[0] == 'DEL':
 		gv._txtBox.delete("%s-1c" % INSERT,INSERT)
 	else:
 		gv._txtBox.insert(INSERT,item[0])
@@ -348,8 +364,6 @@ def getKeyIn():
 		#global gv._circleList, gv._highlighted, gv._txtBox
 		
 		decision = 2
-		errArr = [1,0,1,1,1,0,1,1,1,1]
-		##print "key pressed:",event.keysym
 		
 		if event.keysym == 'Up':
 			##print "key up"
@@ -359,16 +373,17 @@ def getKeyIn():
 			decision = 0	#rotate
 			
 		#simulate misclassification
-		bool = random.choice(errArr)
-		bool = 1
-		if bool == 0:
+		err_var = random.random()		#returns number b/t 0-1
+		
+		#err_var = 1
+		if err_var <= 0.2: 			#bad case
 			if decision == 1:
 				decision = 0
 			else:
 				decision = 1
 			gv._numErrors = gv._numErrors + 1
-			print "oops! classifier error!"
-			print ####
+			print "oops! classifier error number:", gv._numErrors
+			print "-" * 10
 		
 		if decision < 2:
 			update(decision)
