@@ -3,15 +3,15 @@
 
 from operator import itemgetter
 
-class GlobalVariables_v2:
+class GlobalVariables:
 	def __init__(self):
 		#self._highlighted = 0
 		self._box1Freqs = []
 		self._box2Freqs = []
 		self._canvas = 0
 		self._txtBox = 0
-		self._currSymbList = []
-		self._nxtProb = 0
+		#self._currSymbList = []
+		#self._nxtProb = 0
 		self._suggested = ''
 		self._huffSuggest = ''
 		self._canHt = 0

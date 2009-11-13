@@ -1,20 +1,13 @@
 #Touched 
 class State:
-	#def __init__(self,box1,box2,suggested,huff,bgrph,hilite,norm):
-	#def __init__(self,box1,box2,currprobs,hiprob,usrchoice):
-	def __init__(self,lasttyped,conditionals):
-		#self._box1 = list(box1)
-		#self._box2 = list(box2)
-		self._lasttyped = lasttyped
-		self._conditionals = conditionals
-		#self._currprobs = currprobs
-		#self._hiprob = hiprob
-		#self._usrchoice = usrchoice
-		#self._suggested = suggested
-		#self._huff = huff
-		#self._bgraph = list(bgrph)
-		#self._highlighted = hilite
-		#self._normal = norm
+	def __init__(self,box1,box2,suggested,huff,bgrph,hilite,norm):
+		self._box1 = list(box1)
+		self._box2 = list(box2)
+		self._suggested = suggested
+		self._huff = huff
+		self._bgraph = list(bgrph)
+		self._highlighted = hilite
+		self._normal = norm
 		
 		#self._printContents()
 		

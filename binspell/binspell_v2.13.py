@@ -351,54 +351,10 @@ def shuffle(chosen,Nchosen):
 			return
 		else:
 			gv._currProbs = resetConsts(hiProb[0])
-			viterbi(gv._obsOut)
 			saveState()
 			infoTransferRate()
 
 	set_layout(chosen,gv._currProbs)
-
-
-
-def shuffle_alternate(chosen,Nchosen):
-	global gv
-
-	if False:
-		if gv._numTyped > 0:					#sumthin already typed so check for delete
-			gv._box2.remove('[DEL]')		#remove delete
-
-	gv._currProbs = updateProbs(chosen,Nchosen,gv._currProbs)
-	gv._currProbs = bg._normalize(gv._currProbs)
-	#compareProbs()				#difference between largest and smallest prob
-	hiProb = getLrgstLeaf(gv._currProbs)
-	hiProb = hiProb[0]					####### HACK ########
-	gv._hiProb = hiProb
-	#print "in shuffle: hiProb: ", hiProb
-	#if singleSymbInBx(chosen):
-		#print "eureka!"
-	#if hiProb[1] > gv._threshold or singleSymbInBx(chosen) and hiProb[0] in chosen:			#output a symbol
-	if hiProb[1] > gv._threshold:
-		#condList = list((gv._currProbs[key],key) for key in gv._currProbs)
-		#printProbs(condList)
-		output(hiProb[0])
-		if '[DEL]' in chosen[0]:
-			#print "deleting"
-			gv._numTyped = gv._numTyped - 1
-			gv._numDels += 1
-			print "numDels in shuffle: ", gv._numDels
-			return2PrevState()
-			return
-		else:
-			gv._currProbs = resetConsts(hiProb[0])
-			saveState()
-			set_layout(chosen,gv._currProbs)
-			infoTransferRate()
-
-	if gv._numB4Shuffle == 3:
-		set_layout(chosen,gv._currProbs)
-		gv._numB4Shuffle = 0
-	else:
-		gv._numB4Shuffle += 1
-
 
 
 
@@ -421,9 +377,8 @@ def update(decision):
 		chosen = gv._box2
 		Nchosen = gv._box1
 
-	#split(chosen,Nchosen)	#split symbols like binary search
+	split(chosen,Nchosen)	#split symbols like binary search
 	#shuffle(chosen,Nchosen)	#shuffle symbols
-	shuffle_alternate(chosen,Nchosen)
 
 	updateCanvas(hilite,norm)
 
@@ -730,8 +685,8 @@ def set_layout(symbs,probs):
 
 	#splitLayAlpha(symbs,probs)
 	#splitLaySrtd(symbs,probs)
-	#splitLayHuff(symbs,probs)
-	shuffleHuffLay(probs)
+	splitLayHuff(symbs,probs)
+	#shuffleHuffLay(probs)
 	#~ shuffleRndmLay(probs)
 
 	#print "box1: ", gv._box1
@@ -961,10 +916,9 @@ def getKeyIn():
 			decision = 2	#select right
 
 		#simulate misclassification
-		err_var = random.random()		#returns number b/t 0-1
-		
-		#err_var = 1
-		if err_var <= 0.2: 			#bad case
+		bool = random.choice(errArr)
+		#bool = 1
+		if bool == 0:
 			if decision == 1:
 				decision = 2
 			else:
@@ -1037,7 +991,7 @@ canvHeight = 400
 canvWidth = 800
 gv._canHt = canvHeight
 gv._canWdth = canvWidth
-txtBxWidth = canvWidth / 20
+txtBxWidth = canvWidth / 8
 txtBxHeight = 1
 
 gv._canvas = Canvas(root,height=canvHeight,width=canvWidth,bg='yellow')
@@ -1045,7 +999,7 @@ gv._canvas.grid(row=2,column=1)
 
 #why doesn't tag work?
 #gv._txtBox = Text(root,width=txtBxWidth,height=txtBxHeight,padx=5,pady=5,insertofftime=250,takefocus=1,tags='txtBox')
-gv._txtBox = Text(root,width=txtBxWidth,height=txtBxHeight,padx=5,pady=5,insertofftime=250,takefocus=1, font='Courier 32 bold')
+gv._txtBox = Text(root,width=txtBxWidth,height=txtBxHeight,padx=5,pady=5,insertofftime=250,takefocus=1)
 
 gv._txtBox.grid(row=1,column=1)
 gv._txtBox.focus()

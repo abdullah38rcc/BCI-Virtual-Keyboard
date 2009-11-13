@@ -1,4 +1,4 @@
-# binspell - works with keyboard input - shuffle symbols
+# binspell - works with keyboard input - morse code language model
 # up arrow = left   ::  down arrow = right
 #
 # last edit: 7/28

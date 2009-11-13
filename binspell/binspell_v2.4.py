@@ -126,7 +126,7 @@ def draw_text(cntrx, cntry, h, w, symbolList):
 					gv._canvas.create_text(x+padx, y+pady, text=item[1].upper(), font=font, tag='text', fill=color, anchor=pos)
 					x = x + tab + xtraSymbSpace
 			else:
-				#print "suggsymblsy empty"
+				print "suggsymblsy empty"
 				if len(str(item[1])) > 1:  #SPC or DEL, etc
 					color = 'cyan'
 					fontSz = 20
@@ -478,9 +478,9 @@ def start():
 
 
 root = Tk()
-gv = GlobalVariables_v2()
+gv = GlobalVariables()
 bgrph = Bigraph()
-#bgrph._print(bgrph._bigrph)
+bgrph._print(bgrph._bigrph)
 stack = Stack()
 
 canvHeight = 300
@@ -497,7 +497,7 @@ gv._txtBox = Text(root,width=txtBxWidth,height=txtBxHeight,padx=5,pady=5,inserto
 gv._txtBox.grid(row=1,column=1)
 gv._txtBox.focus()
 
-start()
+#start()
 #testing
 #test_interface()
 

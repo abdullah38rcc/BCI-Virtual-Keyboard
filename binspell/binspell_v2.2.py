@@ -33,7 +33,7 @@ from math import *
 from socket import *
 from tkFont import *
 import random, time, heapq
-from GlobalVariables_v2 import *
+from GlobalVariables import *
 from Bigraph import *
 
 

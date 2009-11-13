@@ -2,17 +2,10 @@
 # delete immediately available
 # up arrow = left   ::  down arrow = right
 #
-# last edit: 9/15
+# last edit: 10/22
 ################CHANGES############
 # emission probs modeled as dynamically weighted transition probs -- calcEmission() 
 ##########TODO##############
-#-----------Sri suggest------------
-# use without huffman
-# prove huffman's optimality in this case
-# compare itr w/o error of circlespell/hexospell/binspell
-# display tree or change size of letter according to probs
-#-----------------------------------
-# break update() into more helper functions
 # tcp/ip socket
 # scan text and calculate freq
 # window resizable?
@@ -28,7 +21,7 @@
 # draw_interface: allow for multiple boxes
 # delete state object after pop
 ######################BUGS#######################
-# order in boxes after default layout, incorrect
+# emission prob saved in 1st state incorrect
 ##############CURRENTLY WORKING ON##########
 # viterbi
 
@@ -189,7 +182,9 @@ def saveState():
 	#print "in save state"
 	#print "gv._lastTyped: ", gv._lastTyped
 	#print "box1"
-	stateObj = State(gv._lastTyped, gv._currCondTree)
+	#print "in saveState(): emissionProbs:"
+	#bg._print(bg._emissionProbs)
+	stateObj = State(gv._lastTyped, gv._currCondTree, bg._transitionProbs, bg._emissionProbs)
 	stack._push(stateObj)
 
 
@@ -201,14 +196,15 @@ def getPrevState():
 	#gv._box1 = stateObj._box1
 	#gv._box2 = stateObj._box2
 	gv._lastTyped = stateObj._lasttyped
-	gv._currCondTree = stateObj._conditionals
+	gv._currCondTree = stateObj._currCondTree
+	bg._transitionProbs = stateObj._currTrnsProbs
 	#gv._currProbs = stateObj._currprobs
 	#gv._hiProb = stateObj._hiprob
 	#gv._suggested = stateObj._suggested
 	#gv._huffSuggest = stateObj._huff
 	#bg._topList = stateObj._bgraph
 	#return stateObj._usrchoice
-	return stateObj._conditionals
+	return stateObj._currTrnsProbs, stateObj._currEmissProbs
 
 
 
@@ -218,21 +214,17 @@ def return2PrevState():
 	gv._box2 = []
 	#prevDecision = getPrevState()
 	#print "in return2PrevState"
-	gv._currProbs = getPrevState()
-	if False:
-		if gv._lastTyped != ' ':
-			#print "gv._lastTyped: ", gv._lastTyped
-			gv._box1 = list((key) for key in gv._currProbs)
-			gv._box1.sort()
-			gv._box2.insert(0,'[DEL]')
-		else:
-			set_layout([],gv._currProbs)
+	gv._currProbs, emissProbs = getPrevState()
+	if gv._lastTyped == '' or 'SPC' in gv._lastTyped:
+		bg._priorEmiss = emissProbs
+	else:
+		bg._emissionProbs = emissProbs
 	set_layout([],gv._currProbs)
 	#gv._currProbs = conds[gv._lastTyped]
 	#hilite = "box%i" %prevDecision
 
 	hiProb = getLrgstLeaf(gv._currProbs)
-	gv._hiProb = hiProb[0]					####### HACK ########
+	gv._hiProb = hiProb[0]				####### HACK ########
 
 	hilite = "box1"
 	norm = "box2"
@@ -249,9 +241,7 @@ def return2PrevState():
 #reset global constants
 def resetConsts(typed):
 	global gv, bg
-
 	gv._lastTyped = typed
-	gv._obsOut.append(typed)
 	gv._numTyped += 1
 	gv._posInWrd += 1
 	#print "typed: ",gv._lastTyped
@@ -259,11 +249,18 @@ def resetConsts(typed):
 	#check for position in word being typed
 	if gv._lastTyped == '[SPC]':
 		#print "space ttyped"
-		gv._currCondTree = bg._prior2
+		#bg._transitionProbs = bg._prior2
+		#bg._priorEmiss = copy.deepcopy(bg._prior2)
+		#bg._emissionProbs = {}
+		#gv._currCondTree = bg._prior2
 		gv._posInWrd = 0
-	elif gv._posInWrd > 1:
+	if gv._posInWrd > 1:
+		bg._transitionProbs = bg._conditional2
+		bg._emissionProbs = copy.deepcopy(bg._conditional2)
 		gv._currCondTree = bg._conditional2[gv._lastTyped]
 	else:	#begginning of word
+		bg._transitionProbs = bg._conditional1
+		bg._emissionProbs = copy.deepcopy(bg._conditional1)
 		gv._currCondTree = bg._conditional1[gv._lastTyped]
 
 	#print "in resetConsts"
@@ -350,10 +347,16 @@ def shuffle(chosen,Nchosen):
 			return2PrevState()
 			return
 		else:
-			gv._currProbs = resetConsts(hiProb[0])
-			viterbi(gv._obsOut)
+			#print "in shuffle: begin else: bg._emissionProbs:",
+			#bg._print(bg._emissionProbs)
 			saveState()
+			gv._obsOut.append(hiProb[0])
+			#gv._obsOut.append(hiProb[0])
+			viterbi(gv._obsOut)
+			gv._currProbs = resetConsts(hiProb[0])
 			infoTransferRate()
+
+
 
 	set_layout(chosen,gv._currProbs)
 
@@ -388,11 +391,12 @@ def shuffle_alternate(chosen,Nchosen):
 			return2PrevState()
 			return
 		else:
+			viterbi(gv._obsOut)
 			gv._currProbs = resetConsts(hiProb[0])
 			saveState()
 			set_layout(chosen,gv._currProbs)
 			infoTransferRate()
-
+						
 	if gv._numB4Shuffle == 3:
 		set_layout(chosen,gv._currProbs)
 		gv._numB4Shuffle = 0
@@ -421,12 +425,27 @@ def update(decision):
 		chosen = gv._box2
 		Nchosen = gv._box1
 
-	if gv._posInWrd = 0:
-		bg._calcPriorEmiss(gv._currProbs,chosen,Nchosen)
+	#print "in update: bg._prior:"
+	#bg._print(bg._prior)
+	#print "in update: gv._posInWrd:", gv._posInWrd
+
+	if gv._posInWrd == 0:
+		#print "in if:"
+		bg._priorEmiss = bg._calcEmiss(bg._priorEmiss,chosen)
+		#print "in update: bg._emissionProbs:"
+		#bg._print(bg._emissionProbs)
+		#print #
+	else:
+		#print "in else"
+		bg._emissionProbs[gv._lastTyped] = bg._calcEmiss(bg._emissionProbs[gv._lastTyped],chosen)
+
+	#print #
+	#print "bg._priorEmiss: "
+	#bg._print(bg._emissionProbs)
 
 	#split(chosen,Nchosen)	#split symbols like binary search
-	#shuffle(chosen,Nchosen)	#shuffle symbols
-	shuffle_alternate(chosen,Nchosen)
+	shuffle(chosen,Nchosen)	#shuffle symbols
+	#shuffle_alternate(chosen,Nchosen)
 
 	updateCanvas(hilite,norm)
 
@@ -536,22 +555,31 @@ def output(item):
 
 #args: list of observed output symbols
 def viterbi(obs):
-	global bg, gv
+	global bg, gv, stack
 	#print "in viterbi: observed:", obs
+	#print "len(obs):", len(obs)
 	#print #
+	state_obj = stack._pop()
+	transProbs = state_obj._currTrnsProbs
+	emissProbs = state_obj._currEmissProbs
+
 	if len(obs) == 1:
 		gv._psi[len(obs)], gv._delta[len(obs)] = init(obs[0])
+		#print "in viterbi: gv._delta[len(obs)]:", gv._delta[len(obs)]
+		stack._push(state_obj)
 		return gv._delta[len(obs)]
 	else:
 		for symb in obs:
-			mxDltaAij, gv._psi[len(obs)] = calcMax(viterbi(obs[0:-1]),bg._conditional1,obs)
-			gv._delta[len(obs)] = multEmission(mxDltaAij,bg._emissionProbs,obs[-1])
+			mxDltaAij, gv._psi[len(obs)] = calcMax(viterbi(obs[0:-1]),transProbs,obs)
+			gv._delta[len(obs)] = multEmission(mxDltaAij,emissProbs,obs[-1])
+
+	stack._push(state_obj)
 
 	if len(obs) == len(gv._obsOut):
-		T = len(obs)
+  		T = len(obs)
 		qstar = {}
 		pstar,qstar[T] = terminate(gv._delta,gv._psi,T)
-		gv._qStar = backTrack(gv._psi,qstar[T],T-1)
+		gv._qStar = backTrack(gv._psi,qstar,T)
 		gv._qStar[T] = qstar[T]
 		print "most probable path:", getPath(gv._qStar,T)
 		#print "path: ", gv._qStar
@@ -572,21 +600,23 @@ def getPath(qstar,time):
 
 
 def terminate(dlta,psy,time):
+	#print "in terminate: 
 	maxProb = max(dlta[time].values())
 	rev_dlta = gv._swap_dictionary(dlta[time])
-	index = rev_dlta[maxProb]
-	return maxProb, index
+	argMx = rev_dlta[maxProb]
+	return maxProb, argMx
 
 
 
-def backTrack(psy,qstar_T,time):
-	qstar_t = {}
-	qstar_t[time] = psy[time+1][qstar_T]
-	time -= 1
-	while time != 0:
-		qstar_t[time] = psy[time+1][qstar_t[time+1]]
-		time -= 1
-	return qstar_t
+def backTrack(psy,qstar,T):
+	while T > 0:
+		print "T:", T
+		print "qstar[T]:", qstar[T]
+		print "psy[qstar[T]]: ", psy
+		print #
+		qstar[T-1] = psy[qstar[T]]
+		T -= 1
+	return qstar
 
 
 
@@ -596,53 +626,62 @@ def multEmission(mx_DltaAij,emiss,obsrvd):
 	dlta = {}		#delta
 
 	for key in mx_DltaAij:
+		#print "mx_DltaAij: ", mx_DltaAij
+		#print #
+		#print "key:", key
+		#print "in multemission: emiss[key]:", emiss[key]
+		#print "mx_DltaAij[key]:", mx_DltaAij[key]
+		#print #
 		dlta[key] = mx_DltaAij[key] * emiss[key][obsrvd]
 	return dlta
 
 
 
 #intermediate viterbi calculation
-#see rabiner paper
-#args: delta, transition graph
+#returns max(delta * aij)
+#args: delta, transition  probs, observed(just for testing)
 def calcMax(delta,aij,obs):
 	#print "in calcMax: observed:",obs
 	#print #
 	mxDltaxAij = {}			# max(delta * aij)
-	argmax_i = {}				#argmax_i of max(delta * aij)
+	argmax_i = {}				#argmax(i) of max(delta * aij)
 
 	alphabet = map(chr,range(97,123))
 
 	for lett in alphabet:
-		mxArg = ''
-		mxProb = 0
-
+		mxDltaxAij[lett] = 0
 		#print "in calcMax: delta:", delta
 		#print #
-		for key in aij:
+		for key in delta:
 			#print "key: ", key
 			#print "delta[key]:", delta[key]
 			#print #
 			temp = aij[key][lett] * delta[key]
-			if temp > mxProb:
-				mxProb = temp
-				mxArg = key
+			if temp > mxDltaxAij[lett]:
+				mxDltaxAij[lett] = temp
+				argmax_i[lett] = key
 
-		mxDltaxAij[lett] = mxProb
-		argmax_i[lett] = mxArg
 	return mxDltaxAij, argmax_i
 
 
 
 #initialize gamma and delta for 1st observation
+#args: 1st typed symbol
 def init(symb):
 	global bg
 	#temp = 0
 	delta_0 = {}
 	gamma_0 = {}
 	for key in bg._prior:
-		delta_0[key] = bg._prior[key] * bg._emissionProbs[key][symb]
+		#print "[key]:", [key]
+		#print "in init: bg._emissionProbs[key]:", bg._emissionProbs[key]
+		#print #
+		delta_0[key] = bg._prior[key] * bg._priorEmiss[symb]
 		gamma_0[key] = 0
 	return gamma_0, delta_0
+
+
+
 #####################################################---------- hmm ---------################
 
 # recalculate probabilities for shuffling
@@ -814,6 +853,7 @@ def default():
 	#print "cond[' ']:", bg._conditional1[gv._lastTyped]
 	gv._currProbs = bg._prior
 	gv._currCondTree = bg._prior
+	bg._transitionProbs = bg._prior
 	hiProb = getLrgstLeaf(gv._currProbs)
 	gv._hiProb = hiProb[0]					####### HACK ########
 	#print "in default, hiprob:", hiProb
