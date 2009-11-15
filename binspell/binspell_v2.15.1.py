@@ -217,12 +217,9 @@ def return2PrevState():
 
 
 #reset global constants
-#return transition probs
 def resetConsts(typed):
 	global gv, bg
-	gv._prevTyped = gv._lastTyped
 	gv._lastTyped = typed
-	condOn = gv._lastTyped		#conditioned on
 	gv._numTyped += 1
 	gv._posInWrd += 1
 	#print "typed: ",gv._lastTyped
@@ -232,11 +229,13 @@ def resetConsts(typed):
 		gv._posInWrd = 0
 	if gv._posInWrd < 2:		#only one letter typed
 		gv._currCondTable = bg._conditional1
-	elif gv._posInWrd == 2:		#only 2 letters typed
-		gv._currCondTable = bg._conditional2
-	else:
-		condOn = gv._obsOut[-1:-3]
+	else:				#use trigram conditionals
+		gv._lastTyped = getBgram()
 		gv._currCondTable = tg._tgraph
+		print "in reset consts: last typed:", gv._lastTyped
+		print "new transition probs:"
+		print gv._sortByValue(gv._currCondTable[gv._lastTyped])
+		print "-" * 10 
 
 	gv._transitionProbs = gv._currCondTable
 	gv._emissionProbs = deepcopy(gv._transitionProbs)
@@ -249,9 +248,11 @@ def resetConsts(typed):
 	gv._numSteps = 0
 	gv._numErrors = 0
 	gv._typed = ['',0]
-	gv._hiProb = ['',0]
+
+	hiProb = getLrgstLeaf(gv._transitionProbs[gv._lastTyped])
+	gv._hiProb = hiProb[0]					####### HACK ########
+
 	gv._numTimesLargest = 0
-	return gv._transitionProbs
 
 
 
@@ -310,9 +311,9 @@ def shuffle(chosen,Nchosen):
 			gv._box2.remove('[DEL]')		#remove delete
 
 	gv._emissionProbs[gv._lastTyped] = updateEmiss(gv._emissionProbs[gv._lastTyped], chosen)
-	print "in shuffle: gv._lastTyped:", gv._lastTyped
-	print gv._sortByValue(gv._emissionProbs[gv._lastTyped])
-	print "-" * 10 
+	#print "in shuffle: gv._lastTyped:", gv._lastTyped
+	#print gv._sortByValue(gv._emissionProbs[gv._lastTyped])
+	#print "-" * 10 
 
 	hiProb = getLrgstLeaf(gv._emissionProbs[gv._lastTyped])
 	hiProb = hiProb[0]					####### HACK ########
@@ -333,14 +334,16 @@ def shuffle(chosen,Nchosen):
 			#bg._print(bg._emissionProbs)
 			saveState()
 			gv._obsOut.append(hiProb[0])
+			#print "in shuffle: obsout:", gv._obsOut
+			#print #
 			#gv._obsOut.append(hiProb[0])
 			#viterbi(gv._obsOut)
 			resetConsts(hiProb[0])
 			#infoTransferRate()
-			print "in shuffle: new last typed: ", gv._lastTyped
-			print "in shuffle: new emission probs:"
-			print gv._sortByValue(gv._emissionProbs[gv._lastTyped])
-			print "-" * 10 
+			#print "in shuffle: new last typed: ", gv._lastTyped
+			#print "in shuffle: new emission probs:"
+			#print gv._sortByValue(gv._emissionProbs[gv._lastTyped])
+			#print "-" * 10 
 
 
 
@@ -421,6 +424,12 @@ def update(decision):
 
 
 ####################################################--------- helper fxns----------#########
+
+#returns: string containing last 2 letters output
+def getBgram():
+	global gv
+	temp = gv._obsOut[-2:]
+	return temp[0]+temp[1]
 
 
 def consonant(symb):

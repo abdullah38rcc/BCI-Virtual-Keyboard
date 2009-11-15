@@ -35,7 +35,7 @@ class Trigraph:
 			self._addToTree(row)
 		for key in self._tgraph:
 			self._normalize(self._tgraph[key])
-		#self._print(self._tgraph)
+		self._print(self._tgraph)
 			
 
 
@@ -56,12 +56,16 @@ class Trigraph:
 	#args: list containing one row read in
 	#returns: ['trigram','freq']
 	def _cleanRow(self,row):
+		#print "row:", row
+		#print #
 		row[0] = row[0][0:-1]				#strip just the last xtra white-space off row[0]
-
+		row[0] = row[0].lower()
 		row[1] = row[1].strip(' ')			#strip all xtra white-space off row[1]
 		row[1] = string.split(row[1],' ')
 		row[1] = row[1][0]					#for tgramnospc
 		#row = row[0:-1]					#strip end of row to get ['trigram','value']
+		#print "row:", row
+		#print #
 		return row
 
 
