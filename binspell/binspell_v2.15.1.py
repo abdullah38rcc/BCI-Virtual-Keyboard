@@ -310,10 +310,10 @@ def shuffle(chosen,Nchosen):
 			gv._box2.remove('[DEL]')		#remove delete
 
 	gv._emissionProbs[gv._lastTyped] = updateEmiss(gv._emissionProbs[gv._lastTyped], chosen)
-	#print "last typed: ", gv._lastTyped
-	#print "in shuffle: emission probs:", gv._emissionProbs[gv._lastTyped]
+	print "in shuffle: gv._lastTyped:", gv._lastTyped
+	print gv._sortByValue(gv._emissionProbs[gv._lastTyped])
+	print "-" * 10 
 
-	#compareProbs()				#difference between largest and smallest prob
 	hiProb = getLrgstLeaf(gv._emissionProbs[gv._lastTyped])
 	hiProb = hiProb[0]					####### HACK ########
 	gv._hiProb = hiProb
@@ -336,11 +336,14 @@ def shuffle(chosen,Nchosen):
 			#gv._obsOut.append(hiProb[0])
 			#viterbi(gv._obsOut)
 			resetConsts(hiProb[0])
-			infoTransferRate()
+			#infoTransferRate()
+			print "in shuffle: new last typed: ", gv._lastTyped
+			print "in shuffle: new emission probs:"
+			print gv._sortByValue(gv._emissionProbs[gv._lastTyped])
+			print "-" * 10 
 
 
-	#print "last typed: ", gv._lastTyped
-	#print "in shuffle: emission probs:", gv._emissionProbs[gv._lastTyped]
+
 	set_layout(chosen,gv._emissionProbs[gv._lastTyped])
 
 
@@ -408,15 +411,6 @@ def update(decision):
 		norm = "box%i" %left
 		chosen = gv._box2
 		Nchosen = gv._box1
-
-	#print "in update:"
-	#bg._print(gv._emissionProbs)
-
-	gv._emissionProbs[gv._lastTyped] = updateEmiss(gv._emissionProbs[gv._lastTyped],chosen)
-
-	#print #
-	#print "bg._priorEmiss: "
-	#bg._print(bg._emissionProbs)
 
 	#split(chosen,Nchosen)	#split symbols like binary search
 	shuffle(chosen,Nchosen)	#shuffle symbols
@@ -819,15 +813,17 @@ def layoutHuff(hTree,box):
 
 # start with prior probs
 def default():
-	#print "in default()"
+	print "in default()"
 	global gv, bg
+	print gv._sortByValue(bg._prior)
+	print "-" * 20
 	gv._currCondTable = bg._conditional1
 	gv._transitionProbs = gv._currCondTable
 	gv._emissionProbs = deepcopy(gv._transitionProbs)
-	hiProb = getLrgstLeaf(gv._emissionProbs[gv._lastTyped])
+	hiProb = getLrgstLeaf(bg._prior)
 	gv._hiProb = hiProb[0]					####### HACK ########
 	#print "in default, hiprob:", hiProb
-	set_layout([],gv._emissionProbs[gv._lastTyped])
+	set_layout([],bg._prior)
 	saveState()
 	#print gv._emissionProbs[gv._lastTyped]
 	#print "box1:", gv._box1

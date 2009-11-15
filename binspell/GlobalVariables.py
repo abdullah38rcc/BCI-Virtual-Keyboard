@@ -108,7 +108,7 @@ class GlobalVariables:
 
 
 	#args: unsorted dictionary
-	#returns dictionary as a list sorted from greatest to least
+	#returns list of dict items sorted from greatest to least
 	def _sortByValue(self, unsrtdDict):
 		#print "dict:", unsrtdDict
 		#print ###
