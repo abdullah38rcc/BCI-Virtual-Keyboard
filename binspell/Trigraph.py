@@ -25,7 +25,7 @@ class Trigraph:
 	#builds trigram tree
 	#args: filename
 	def _buildTgraph(self,flname):
-		print "in buildTgrams"
+		#print "in buildTgrams"
 		tgrams = csv.reader(open(flname),delimiter='-')
 		for row in tgrams:
 			#print row
@@ -35,7 +35,7 @@ class Trigraph:
 			self._addToTree(row)
 		for key in self._tgraph:
 			self._normalize(self._tgraph[key])
-		self._print(self._tgraph)
+		#self._print(self._tgraph)
 			
 
 

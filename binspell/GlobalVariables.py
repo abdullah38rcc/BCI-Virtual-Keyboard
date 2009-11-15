@@ -43,20 +43,23 @@ class GlobalVariables:
 		self._psi = {}				#viterbi: argmax_i
 		self._qStar = ''			#viterbi: most probable path
 
-		self._huffTree = []						#huffman tree of conditional probs
-		self._hiProb = ['',0]					#[most probable symbol, prob]
-		self._currProbs = {}					#{symbols:current probilities}
-		self._currCondTree = {}					#current bigram conditional tree being referenced (for saving state purpose)
+		self._huffTree = []			#huffman tree of conditional probs
+		self._hiProb = ['',0]			#[most probable symbol, prob]
+		self._currProbs = {}			#{symbols:current probilities}
+		self._currCondTable = {}		#current bigram conditional tree being referenced (for saving state purpose)
 
-		self._classAcc = Decimal('0.8')			#classifier accuracy
-		self._threshold = Decimal('0.85')		#threshold
+		self._transitionProbs = {}
+		self._emissionProbs = {}
+
+		self._classAcc = Decimal('0.8')		#classifier accuracy
+		self._threshold = Decimal('0.90')	#threshold
 		self._diffThreshold = Decimal('0.3')	#difference threshold
-		self._trialLen = 3						#trial length
+		self._trialLen = 3			#trial length
 		#self._nxtProb = 0
 
 		self._suggested = ''
 		self._huffSuggest = ''
-		self._lastTyped = ' '				#assume start with a space
+		self._lastTyped = '[SPC]'		#assume start with a space
 
 		self._symbolFreqList = [
 			(0.124167  , 'e'),

@@ -99,16 +99,13 @@ class Bigraph:
 		freqs1 = self._readFile(self._f1name)
 		freqs2 = self._readFile(self._f2name)
 		freqs3 = self._readFile(self._f3name)
-		#print lst
+
 		freqs1 = self._addN(freqs1,val)  #get rid of all zeros
 		freqs2 = self._addN(freqs2,val)
 		freqs3 = self._addN(freqs3,val)
 
-		self._prior = self._getPrior(freqs1,0)	#calculate prior
-		#print "prior:"
-		#print self._prior
-
-		#add [SPC] to both tables of frequency
+		######### HACK #############
+		#add [SPC] and [DEL] to both tables of frequency
 		alphabet = map(chr,range(97,123))
 		for lett in alphabet:
 			sCount = Decimal(0)
@@ -125,37 +122,23 @@ class Bigraph:
 			#print "in Bigraph: freqs1: ", freqs1
 			#print "sCount: ", sCount
 
-		self._prior2 = self._getPrior(freqs1,dCount)	#calculate prior
-		#print "in Bigraph: prior2:"
-		#self._print(self._prior2)
+		self._joint1 = self._buildGraph(freqs1)						#self._joint1{'a':{'a':prob,'b':prob,etc..}}		
+		self._prior = self._getPrior()							#calculate prior
+		#print "prior:"
+		#print self._prior
 
 		#build 1st table of conditionals
-		temp = self._normalize(dict(freqs1))
-		freqs1 = list((key,temp[key]) for key in temp)  #flatten out dict to pass to graph
-		self._joint1 = self._buildGraph(freqs1)
-		#self._print(self._joint1)
-		for key in self._joint1:	#build graph of conditional probs
-			self._conditional1[key] =  self._conditionalOn(self._joint1[key])
-		#self._conditional1.update(self._prior)
-		#print "self._conditional1[" "] :", self._conditional1[" "]
-		#print "conditional graph:"
-		#self._print(self._conditional1)
-		#print ##
+		self._conditional1 = self._joint1
+		self._conditional1['[SPC]'] = self._prior
+		for key in self._conditional1:
+			self._conditional1[key] = self._normalize(self._conditional1[key])	#prob of alphabet given any letter = 1
+
+		self._joint2 = self._buildGraph(freqs2)						#self._joint2{'a':{'a':prob,'b':prob,etc..}}		
 
 		#build 2nd table of conditionals
-		temp = self._normalize(dict(freqs2))
-		#print temp
-		freqs2 = list((key,temp[key]) for key in temp)  #flatten out dict to pass to graph
-		self._joint2 = self._buildGraph(freqs2)
-		#self._print(self._joint2)
-		for key in self._joint2:	#build graph of conditional probs
-			self._conditional2[key] =  self._conditionalOn(self._joint2[key])
-		#self._print(self._conditional2)
-
-		#temp = self._normalize(self._conditional2)
-		#self._print(self._conditional2)
-		#self._emissionProbs = self._buildEmission()
-		#self._print(self._emissionProbs)
+		for key in self._joint2:
+			self._conditional2[key] = self._normalize(self._joint2[key])
+		
 
 
 
@@ -174,29 +157,14 @@ class Bigraph:
 		return grph
 
 
-
-	def _getPrior(self,joint,dcnt):
-		#print joint
-		raw = self._buildGraph(joint)
-		#print "raw:"
-		#self._print(raw)
-		#print ##
-		temp = {}
+	#returns dict of prior probs
+	def _getPrior(self):
 		prior = {}
-		for key in raw:
-			temp[key] = sum(raw[key][k] for k in raw[key])
-			#print "key:", key
-			#print "temp[key]", temp[key]
-			#print ##
-		if dcnt > 0:
-			temp['[DEL]'] = dcnt
-		#print temp
-		#prior[" "] = self._normalize(temp)
-		#print "prior:"
-		#self._print(prior)
-		#print ##
-		#return prior
-		return self._normalize(temp)
+		#print "in prior: joint1: "
+		#self._print(self._joint1)
+		for key in self._joint1:
+			prior[key] = sum(self._joint1[key][k] for k in self._joint1[key])
+		return self._normalize(prior)
 
 
 
@@ -225,8 +193,8 @@ class Bigraph:
 
 
 
-	# normalize prob graph so that they all sum to one
-	#def normalize(self,flist):
+	# normalize so that they all sum to one
+	# args: dict{'lett':val}
 	def _normalize(self,d):
 		#print "in normalize: d:",
 		#print sum(sum([d[k][key] for key in d[k]]) for k in d)
@@ -289,71 +257,9 @@ class Bigraph:
 
 
 
-	def _adjacent(self,lett1, lett2):
-	    return lett2 in self._bigrph[lett1]
-
-
-
-	def _get_weight(self,lett1,lett2):
-	    if self._adjacent(lett1,lett2):
-	        tmp = self._bigrph[lett1]
-	        return tmp[lett2]
-	    else: return 0
-
-
-
 	def _print(self,grph):
 		for key in grph:
 			#print key
 			print key, " : ", grph[key]
-			print "###############"
+			print "-" * 10
 
-
-
-#################### no longer used ###################
-
-if False:
-		def _buildEmission(self):
-			alphabet = map(chr,range(97,123))
-			grph = {}
-			for item in alphabet:
-				for lett in alphabet:
-					if item == lett:
-						prob = Decimal('0.8')
-					else:
-						prob = Decimal(str(0.2/25))
-					self._add(grph,item,lett,prob)
-			return grph
-
-
-
-	# read in frequency values from a text file and build dict with values
-	if False:
-	    def _buildGraph(self,fname,grph):
-	        fd = open(fname, 'r')
-	        for line in fd:
-	            bits = string.split(line, ',')
-	            del(bits[len(bits)-1])
-	            for i in range(1,len(bits),2):
-	                self._add(grph, bits[0], bits[i], Decimal(bits[i+1]))
-
-
-	def _setSuggSymbList(self, lastTyped):
-		#print "len of lastTyped:", len(str(lastTyped))
-		if len(str(lastTyped)) == 1:
-			self._topList = sorted(self._bigrph[lastTyped].items(), key=itemgetter(1), reverse=True)
-			#print "self._topList:", self._topList
-			#print "####################"
-
-
-
-	def _nxtProb(self, lastTyped, lastSuggSymb):
-		#print "lastTyped: ", lastTyped
-		#print "lastSuggSymb:", lastSuggSymb
-		if lastSuggSymb == '':  #nuthin suggested yet
-			self._setSuggSymbList(lastTyped)
-		elif self._topList == []:  #reached end of list
-				return ''
-		nxtSuggSymb = self._topList[0][0]
-		del self._topList[0]
-		return nxtSuggSymb

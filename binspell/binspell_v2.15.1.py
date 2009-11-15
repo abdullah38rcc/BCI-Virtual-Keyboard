@@ -192,56 +192,32 @@ def saveState():
 
 
 
-
-def getPrevState():
-	global gv, stack
-	stateObj = stack._pop()
-	#gv._box1 = stateObj._box1
-	#gv._box2 = stateObj._box2
-	gv._lastTyped = stateObj._lasttyped
-	gv._currCondTable = stateObj._currCondTree
-	bg._transitionProbs = stateObj._currTrnsProbs
-	#gv._currProbs = stateObj._currprobs
-	#gv._hiProb = stateObj._hiprob
-	#gv._suggested = stateObj._suggested
-	#gv._huffSuggest = stateObj._huff
-	#bg._topList = stateObj._bgraph
-	#return stateObj._usrchoice
-	return stateObj._currTrnsProbs, stateObj._currEmissProbs
-
-
-
 def return2PrevState():
 	global gv, bg
+
 	gv._box1 = []
 	gv._box2 = []
-	#prevDecision = getPrevState()
-	#print "in return2PrevState"
-	gv._currProbs, emissProbs = getPrevState()
-	if gv._lastTyped == '' or 'SPC' in gv._lastTyped:
-		bg._priorEmiss = emissProbs
-	else:
-		bg._emissionProbs = emissProbs
-	set_layout([],gv._currProbs)
-	#gv._currProbs = conds[gv._lastTyped]
-	#hilite = "box%i" %prevDecision
 
-	hiProb = getLrgstLeaf(gv._currProbs)
+	stateObj = stack._pop()
+	gv._lastTyped = stateObj._lasttyped
+	gv._currCondTable = stateObj._currCondTree
+	gv._transitionProbs = stateObj._currTrnsProbs
+	gv._emissionProbs = stateObj._currEmissProbs
+
+	set_layout([],gv._transitionProbs[gv._lastTyped])
+
+	hiProb = getLrgstLeaf(gv._transitionProbs[gv._lastTyped])
 	gv._hiProb = hiProb[0]				####### HACK ########
 
 	hilite = "box1"
 	norm = "box2"
-	if False:
-		if prevDecision > 1:
-			norm = "box1"
-		else:
-			norm = "box2"
 
 	updateCanvas(hilite,norm)	#process all events in event queue
 
 
 
 #reset global constants
+#return transition probs
 def resetConsts(typed):
 	global gv, bg
 	gv._prevTyped = gv._lastTyped
@@ -253,9 +229,8 @@ def resetConsts(typed):
 
 	#check for position in word being typed
 	if gv._lastTyped == '[SPC]':
-		gv._currCondTable = bg._prior
 		gv._posInWrd = 0
-	elif gv._posInWrd == 1:		#only one letter typed
+	if gv._posInWrd < 2:		#only one letter typed
 		gv._currCondTable = bg._conditional1
 	elif gv._posInWrd == 2:		#only 2 letters typed
 		gv._currCondTable = bg._conditional2
@@ -263,8 +238,8 @@ def resetConsts(typed):
 		condOn = gv._obsOut[-1:-3]
 		gv._currCondTable = tg._tgraph
 
-	gv._transitionProbs = gv._currCondTable[condOn]
-	gv._emissionProbs = copy.deepcopy(gv._currCondTable)
+	gv._transitionProbs = gv._currCondTable
+	gv._emissionProbs = deepcopy(gv._transitionProbs)
 
 	#print "in resetConsts"
 	#bg._print(gv._currCondTable)		#stub
@@ -311,7 +286,7 @@ def split(chosen,Nchosen):
 		if gv._numSteps > 1:
 			gv._box2.remove('[BACK]')		#remove BACKSPACE cuz its not in prob tree
 		if chosen != []:
-			gv._currProbs = updateProbs(chosen,Nchosen,gv._currProbs)
+			gv._currProbs = updateEmiss(chosen)
 			gv._currProbs = bg._normalize(gv._currProbs)
 
 	hiProb = getLrgstLeaf(gv._currProbs)
@@ -321,26 +296,30 @@ def split(chosen,Nchosen):
 
 
 
+
+#shuffles symbols
+#args: list of symbols in chosen box, not chosen box
 def shuffle(chosen,Nchosen):
 	global gv
+	#print "in shuffle"
+	#print "in shuffle: chosen:", chosen
+	#print "-" * 10
 
 	if False:
 		if gv._numTyped > 0:					#sumthin already typed so check for delete
 			gv._box2.remove('[DEL]')		#remove delete
 
-	gv._currProbs = updateProbs(chosen,Nchosen,gv._currProbs)
-	gv._currProbs = bg._normalize(gv._currProbs)
+	gv._emissionProbs[gv._lastTyped] = updateEmiss(gv._emissionProbs[gv._lastTyped], chosen)
+	#print "last typed: ", gv._lastTyped
+	#print "in shuffle: emission probs:", gv._emissionProbs[gv._lastTyped]
+
 	#compareProbs()				#difference between largest and smallest prob
-	hiProb = getLrgstLeaf(gv._currProbs)
+	hiProb = getLrgstLeaf(gv._emissionProbs[gv._lastTyped])
 	hiProb = hiProb[0]					####### HACK ########
 	gv._hiProb = hiProb
-	#print "in shuffle: hiProb: ", hiProb
-	#if singleSymbInBx(chosen):
-		#print "eureka!"
-	#if hiProb[1] > gv._threshold or singleSymbInBx(chosen) and hiProb[0] in chosen:			#output a symbol
-	if hiProb[1] > gv._threshold:
-		#condList = list((gv._currProbs[key],key) for key in gv._currProbs)
-		#printProbs(condList)
+
+
+	if hiProb[1] > gv._threshold:			#output a symbol
 		output(hiProb[0])
 		if '[DEL]' in chosen[0]:
 			#print "deleting"
@@ -355,13 +334,14 @@ def shuffle(chosen,Nchosen):
 			saveState()
 			gv._obsOut.append(hiProb[0])
 			#gv._obsOut.append(hiProb[0])
-			viterbi(gv._obsOut)
-			gv._currProbs = resetConsts(hiProb[0])
+			#viterbi(gv._obsOut)
+			resetConsts(hiProb[0])
 			infoTransferRate()
 
 
-
-	set_layout(chosen,gv._currProbs)
+	#print "last typed: ", gv._lastTyped
+	#print "in shuffle: emission probs:", gv._emissionProbs[gv._lastTyped]
+	set_layout(chosen,gv._emissionProbs[gv._lastTyped])
 
 
 
@@ -372,7 +352,7 @@ def shuffle_alternate(chosen,Nchosen):
 		if gv._numTyped > 0:					#sumthin already typed so check for delete
 			gv._box2.remove('[DEL]')		#remove delete
 
-	gv._currProbs = updateProbs(chosen,Nchosen,gv._currProbs)
+	gv._currProbs = updateEmiss(chosen,Nchosen,gv._currProbs)
 	gv._currProbs = bg._normalize(gv._currProbs)
 	#compareProbs()				#difference between largest and smallest prob
 	hiProb = getLrgstLeaf(gv._currProbs)
@@ -432,7 +412,7 @@ def update(decision):
 	#print "in update:"
 	#bg._print(gv._emissionProbs)
 
-	gv._emissionProbs[gv._lastTyped] = calcEmiss(gv._emissionProbs[gv._lastTyped],chosen)
+	gv._emissionProbs[gv._lastTyped] = updateEmiss(gv._emissionProbs[gv._lastTyped],chosen)
 
 	#print #
 	#print "bg._priorEmiss: "
@@ -447,15 +427,6 @@ def update(decision):
 
 
 ####################################################--------- helper fxns----------#########
-
-def calcEmiss(eProbs,chos):
-	for key in eProbs:
-		if key in chos:
-			eProbs[key] *= Decimal('0.8')
-		else:
-			eProbs[key] *= Decimal('0.2')
-	return eProbs
-
 
 
 def consonant(symb):
@@ -497,14 +468,13 @@ def singleSymbInBx(symb):
 #returns: font size for symbol determined by it's order in orderd prob list
 def getRelFntSz(symb,max, min):
 	global gv
-	sortdProbs = gv._sortByValue(gv._currProbs)		#sort current probs in order greatest to least
+	sortdProbs = gv._sortByValue(gv._emissionProbs[gv._lastTyped])		#sort current probs in order greatest to least
 	for item in sortdProbs:
 		if symb in item:
 			return max
 		max = max - 2
 		if max < min:
 			return min
-	#return round(gv._currProbs[symb] * max)
 
 
 
@@ -672,16 +642,16 @@ def calcMax(delta,aij,obs):
 
 #initialize gamma and delta for 1st observation
 #args: 1st typed symbol
-def init(symb,emiss):
+def init(obs,emiss):
 	global bg
 	#temp = 0
 	delta_0 = {}
 	gamma_0 = {}
 	for key in bg._prior:
 		#print "[key]:", [key]
-		#print "in init: bg._emissionProbs[key]:", bg._emissionProbs[key]
+		#print "in init: emis[key]:", bg._emissionProbs[key]
 		#print #
-		delta_0[key] = bg._prior[key] * emiss[symb]
+		delta_0[key] = bg._prior[key] * emiss[key][obs]
 		gamma_0[key] = 0
 	return gamma_0, delta_0
 
@@ -689,25 +659,19 @@ def init(symb,emiss):
 
 #####################################################---------- hmm ---------################
 
-# recalculate probabilities for shuffling
-# args: selected box, box not selected, conditionals
-# returns dict of probabilites multiplied by classifier accuracy
-def updateProbs(selBx,notSelBx, condTree):
-	global gv, bg
-	#print "in update probs"
-	selTree = getLeaves(selBx,condTree)	#selected subtree
-	notSelTree = getLeaves(notSelBx,condTree)	#subtree not selected
-	selTree = bg._mult(selTree, gv._classAcc)
-	notSelTree = bg._mult(notSelTree, 1-gv._classAcc)
-	selTree.update(notSelTree)
-	return selTree
-
+def updateEmiss(eProbs,chos):
+	for key in eProbs:
+		if key in chos:
+			eProbs[key] *= Decimal('0.8')
+		else:
+			eProbs[key] *= Decimal('0.2')
+	return bg._normalize(eProbs)
 
 
 #check out what current probs are doing to find a better threshold
 def compareProbs():
 	global gv
-	sortedProbs = gv._sortByValue(gv._currProbs)
+	sortedProbs = gv._sortByValue(gv._emissionProbs[gv._lastTyped])
 	#print "largest prob: ", sortedProbs[0]
 	#print "smallest prob: ",sortedProbs[-1]
 	print "difference b/t largest and smallest: ", sortedProbs[0][1] - sortedProbs[-1][1]
@@ -767,10 +731,12 @@ def getLrgstLeaf(tree):
 
 ###################################--------------------------------- layout -------------##############
 
+#args: chosen symbols, trans probs given last typed
 def set_layout(symbs,probs):
 	#print "in set_layout()"
+	#print "probs: ", probs
 	#print "in set layout:", symbs
-	#print #
+	print #
 	global gv
 	gv._box1 = []
 	gv._box2 = []
@@ -855,17 +821,15 @@ def layoutHuff(hTree,box):
 def default():
 	#print "in default()"
 	global gv, bg
-	#print "cond[' ']:", bg._conditional1[gv._lastTyped]
-	gv._currProbs = bg._prior
-	gv._currCondTable = bg._prior
-	gv._transitionProbs = bg._prior
-	gv._emissionProbs = deepcopy(bg._conditional1)
-	hiProb = getLrgstLeaf(gv._currProbs)
+	gv._currCondTable = bg._conditional1
+	gv._transitionProbs = gv._currCondTable
+	gv._emissionProbs = deepcopy(gv._transitionProbs)
+	hiProb = getLrgstLeaf(gv._emissionProbs[gv._lastTyped])
 	gv._hiProb = hiProb[0]					####### HACK ########
 	#print "in default, hiprob:", hiProb
-	set_layout([],gv._currProbs)
+	set_layout([],gv._emissionProbs[gv._lastTyped])
 	saveState()
-	#print gv._currProbs
+	#print gv._emissionProbs[gv._lastTyped]
 	#print "box1:", gv._box1
 	#print ###
 	#print "box2:", gv._box2
@@ -1019,7 +983,7 @@ def getKeyIn():
 			else:
 				decision = 1
 			gv._numErrors = gv._numErrors + 1
-			print "oops! classifier error!"
+			print "oops! classifier error number ", gv._numErrors
 			print ####
 
 		if decision < 3:
