@@ -16,9 +16,11 @@ import csv
 
 class Trigraph:
 	def __init__(self):
-		self._fname = "tgramsNoSpc.txt"
+		self._f1name = "tgramsNoSpc.txt"
+		self._f2name = "trgramsWithSpc.txt"
 		self._tgraph = {}
-		self._buildTgraph(self._fname)
+		#self._buildTgraph(self._f1name)
+		self._buildTgraph(self._f2name)
 
 
 
@@ -29,13 +31,13 @@ class Trigraph:
 		tgrams = csv.reader(open(flname),delimiter='-')
 		for row in tgrams:
 			#print row
-			row = self._cleanRow(row)
+			row = self._cleanRow2(row)
 			#print row
 			#print "-" * 10
 			self._addToTree(row)
 		for key in self._tgraph:
 			self._normalize(self._tgraph[key])
-		self._print(self._tgraph)
+		#self._print(self._tgraph)
 			
 
 
@@ -52,6 +54,7 @@ class Trigraph:
 
 
 
+	#for trigrams no space
 	#strip off extra stuff read in from file
 	#args: list containing one row read in
 	#returns: ['trigram','freq']
@@ -64,6 +67,41 @@ class Trigraph:
 		row[1] = string.split(row[1],' ')
 		row[1] = row[1][0]					#for tgramnospc
 		#row = row[0:-1]					#strip end of row to get ['trigram','value']
+		#print "row:", row
+		#print #
+		return row
+
+
+
+	#for trigrams with space
+	#strip off extra stuff read in from file
+	#args: list containing one row read in
+	#returns: ['trigram','freq']
+	def _cleanRow2(self,row):
+		#print "row:", row
+		#print #
+		row[0] = row[0][0:-1]				#strip just the last xtra white-space off row[0]
+		row[0] = row[0].lower()
+
+		#replace whitespace with [SPC]
+		x = row[0].find(' ')
+		if x>=0:
+			y = list(row[0])
+			y[x] = '[SPC]'
+			row[0] = ''.join(y)
+
+		#for cases with single letter surrounded by whitespace
+		x = row[0].find(' ')
+		if x>=0:
+			y = list(row[0])
+			y[x] = '[SPC]'
+			row[0] = ''.join(y)
+
+
+		row[1] = row[1].strip(' ')			#strip all xtra white-space off row[1]
+		row[1] = string.split(row[1],' ')
+		row[1] = row[1][0]				
+		row = row[0:-1]					#strip end of row to get ['trigram','value']
 		#print "row:", row
 		#print #
 		return row
