@@ -202,7 +202,7 @@ def return2PrevState():
 	gv._lastTyped = stateObj._lasttyped
 	gv._currCondTable = stateObj._currCondTree
 	gv._transitionProbs = stateObj._currTrnsProbs
-	gv._emissionProbs = stateObj._currEmissProbs
+	gv._emissionProbs = deepcopy(gv._transitionProbs)
 
 	set_layout([],gv._transitionProbs[gv._lastTyped])
 
@@ -493,7 +493,7 @@ def infoTransferRate():
 	print "number of classifier errors:", gv._ttlNumErr
 	print "number of times delete used: ", gv._numDels
 	print "total number of steps taken: ", gv._ttlNumSteps
-	print "information transfer rate: %.5f" %(float(gv._numTyped) / (gv._ttlNumSteps * gv._trialLen)) + " chars/sec"
+	print "information transfer rate: %.5f" %(float(gv._numTyped) / float(gv._ttlNumSteps * gv._trialLen)) + " chars/sec"
 	print #
 
 
@@ -666,16 +666,16 @@ def init(obs,emiss):
 #####################################################---------- hmm ---------################
 
 def updateEmiss(eProbs,chos):
-	#print "in updateemiss: old eprobs:", gv._sortByValue(eProbs)
-	#print #
+	print "in updateemiss: old eprobs:", gv._sortByValue(eProbs)
+	print #
 	for key in eProbs:
 		if key in chos:
-			eProbs[key] *= Decimal('0.8')
+			eProbs[key] *= float(0.8)
 		else:
-			eProbs[key] *= Decimal('0.2')
+			eProbs[key] *= float(0.2)
 	eProbs = bg._normalize(eProbs)
-	#print "in updateemiss: new eprobs:", gv._sortByValue(eProbs)
-	#print "-"*10
+	print "in updateemiss: new eprobs:", gv._sortByValue(eProbs)
+	print "-"*10
 	return eProbs
 	#return bg._normalize(eProbs)
 
@@ -692,7 +692,7 @@ def compareProbs():
 	print "diff b/t largest and 2nd largest : ", sortedProbs[0][1] - sortedProbs[1][1]
 	print "number of times largest leaf remained largest consecutively:", gv._numTimesLargest
 	print ##
-	#return Decimal(sortedProbs[0][1] - sortedProbs[1][1])
+	#return float(sortedProbs[0][1] - sortedProbs[1][1])
 	return ((sortedProbs[0][1] - sortedProbs[-1][1]) > gv._diffThreshold)
 
 

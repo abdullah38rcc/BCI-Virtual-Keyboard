@@ -9,6 +9,7 @@ import string
 from decimal import Decimal
 #from NGramDB import *
 from Trigraph import *
+from Bigraph import *
 
 def cleanRow(row):
 	row[0] = row[0][0:-1]	#strip just the last xtra white-space off row[0]
@@ -141,5 +142,5 @@ if False:
 #connection.close()
 
 
-
-tg = Trigraph()
+bg = Bigraph()
+#tg = Trigraph()

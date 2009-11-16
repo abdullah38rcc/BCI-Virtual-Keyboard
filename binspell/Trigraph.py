@@ -11,7 +11,6 @@
 
 from operator import itemgetter
 import string
-from decimal import Decimal
 import csv
 
 class Trigraph:
@@ -98,7 +97,7 @@ class Trigraph:
 		#print "lett:",lett
 		#print #		
 
-		val = Decimal(row[1]) + 1				# +1 avoids zero vals
+		val = float(row[1]) + 1				# +1 avoids zero vals
 		#print "bgrm:", bgrm
 		if bgrm in self._tgraph.keys() and lett in self._alphabet:
 			self._tgraph[bgrm][lett] = val
@@ -190,7 +189,7 @@ class Trigraph:
 		tot = sum(d[key] for key in d)
 		#print "in normalize: tot:", tot
 		#print "1/tot", 1/tot
-		mplier = Decimal(1) / Decimal(tot)
+		mplier = float(1) / float(tot)
 		return self._mult(d, mplier)
 
 

@@ -12,7 +12,7 @@
 
 from operator import itemgetter
 import string
-from decimal import Decimal
+
 
 
 
@@ -60,7 +60,7 @@ class Bigraph:
 				[('b','a'),1.1],
 				[('a','d'),1.4],
 				[(' ','a'),2.2],
-				[(' ', 'c'),0.4],
+				[(' ', 'c'),0.4],	
 				[(' ','e'),0.03]
 		]
 
@@ -108,8 +108,8 @@ class Bigraph:
 		#add [SPC] and [DEL] to both tables of frequency
 		alphabet = map(chr,range(97,123))
 		for lett in alphabet:
-			sCount = Decimal(2)
-			dCount = Decimal(2)
+			sCount = float(2)
+			dCount = float(50)
 			freqs1.append(((lett,'[SPC]'),sCount))
 			freqs1.append(((lett,'[DEL]'),dCount))
 			freqs2.append(((lett,'[SPC]'),sCount))
@@ -145,9 +145,9 @@ class Bigraph:
 		for item in alphabet:
 			for lett in alphabet:
 				if item == lett:
-					prob = Decimal('0.8')
+					prob = float(0.8)
 				else:
-					prob = Decimal(str(0.2/25))
+					prob = float(0.2/25)
 				self._add(grph,item,lett,prob)
 		return grph
 
@@ -155,10 +155,12 @@ class Bigraph:
 	#returns dict of prior probs
 	def _getPrior(self):
 		prior = {}
-		#print "in prior: joint1: "
-		#self._print(self._joint1)
+		print "in prior: joint1: "
+		self._print(self._joint1)
 		for key in self._joint1:
 			prior[key] = sum(self._joint1[key][k] for k in self._joint1[key])
+		print "prior b4 normalize:"
+		self._print(prior)
 		return self._normalize(prior)
 
 
@@ -195,7 +197,7 @@ class Bigraph:
 		#print sum(sum([d[k][key] for key in d[k]]) for k in d)
 		tot = sum(d[key] for key in d)
 		#print "in normalize: tot:", tot
-		mplier = Decimal(1) / Decimal(tot)
+		mplier = float(1) / float(tot)
 		return self._mult(d, mplier)
 
 
@@ -228,12 +230,12 @@ class Bigraph:
 		for line in fd:
 			#print line
 			bits = string.split(line, ',')
-			#print Decimal(bits[2].strip(' ')) + 1
+			#print float(bits[2].strip(' ')) + 1
 			del(bits[-1])
 			#print "bits:", bits
 			#print ####
 			for i in range(1,len(bits),2):
-			    item = [(bits[0], bits[i]), Decimal(bits[i+1]) ]
+			    item = [(bits[0], bits[i]), float(bits[i+1]) ]
 			    #print item
 			    lst.append(item)
 		#print lst
