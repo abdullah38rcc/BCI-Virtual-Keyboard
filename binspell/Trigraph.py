@@ -20,13 +20,29 @@ class Trigraph:
 		self._f2name = "trgramsWithSpc.txt"
 		self._tgraph = {}
 		#self._buildTgraph(self._f1name)
-		self._buildTgraph(self._f2name)
+		self._initTgraph()
+		self._addData(self._f2name)
+		self._print(self._tgraph)
 
+
+
+	#generate all possible trigrams and assign frequncy of 1 to each
+	def _initTgraph(self):
+		alphabet = map(chr,range(97,123))
+		alphabet.append('[SPC]')
+		alphabet.append('[DEL]')
+		for symb1 in alphabet:
+			for symb2 in alphabet:
+				temp = {}
+				for symb3 in alphabet:
+					temp[symb3] = 1
+				self._tgraph[symb1+symb2] = temp
+		#self._print(self._tgraph)
 
 
 	#builds trigram tree
 	#args: filename
-	def _buildTgraph(self,flname):
+	def _addData(self,flname):
 		#print "in buildTgrams"
 		tgrams = csv.reader(open(flname),delimiter='-')
 		for row in tgrams:
@@ -37,6 +53,9 @@ class Trigraph:
 			self._addToTree(row)
 		for key in self._tgraph:
 			self._normalize(self._tgraph[key])
+			#print "in addData: key, val", key
+			#print "val", self._tgraph[key]
+			#print "-" * 10
 		#self._print(self._tgraph)
 			
 
@@ -47,6 +66,8 @@ class Trigraph:
 		val = Decimal(row[1]) + 1				# +1 avoids zero vals
 		#print "bgrm:", bgrm
 		if bgrm not in self._tgraph.keys():
+			print "not in tree:", bgrm
+			print #
 			temp = {lett:val}		
 			self._tgraph[bgrm] = temp	
 		else:
@@ -125,11 +146,14 @@ class Trigraph:
 	# returns normalized prob graph
 	# args: dict{lett: val}
 	def _normalize(self,d):
-		#print "in normalize: d:", 
+		#print "in normalize: d:", d
+		#print #
 		#print sum(sum([d[k][key] for key in d[k]]) for k in d)
 		tot = sum(d[key] for key in d)
 		#print "in normalize: tot:", tot
-		return self._mult(d, 1/tot)
+		#print "1/tot", 1/tot
+		mplier = Decimal(1) / Decimal(tot)
+		return self._mult(d, mplier)
 
 
 
