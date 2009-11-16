@@ -23,9 +23,9 @@
 # draw_interface: allow for multiple boxes
 # delete state object after pop
 ###################### BUGS #######################
-# 
+# print msg for printing del's 'in shuffle keeps printing for no reason
 ############## CURRENTLY WORKING ON ##########
-# debugging viterbi: write out matrix dims on paper
+# 
 
 
 
@@ -223,6 +223,7 @@ def resetConsts(typed):
 	gv._numTyped += 1
 	gv._posInWrd += 1
 	#print "typed: ",gv._lastTyped
+	print "in reset consts: pos in word:", gv._posInWrd
 
 	#check for position in word being typed
 	if gv._lastTyped == '[SPC]':
@@ -322,8 +323,12 @@ def shuffle(chosen,Nchosen):
 
 	if hiProb[1] > gv._threshold:			#output a symbol
 		output(hiProb[0])
-		if '[DEL]' in chosen[0]:
+		gv._obsOut.append(hiProb[0])
+		print "in shuffle: obsout:", gv._obsOut
+		print #
+		if '[DEL]' in hiProb[0]:
 			#print "deleting"
+			print "in shuffle: ", chosen[0]
 			gv._numTyped = gv._numTyped - 1
 			gv._numDels += 1
 			print "numDels in shuffle: ", gv._numDels
@@ -333,9 +338,6 @@ def shuffle(chosen,Nchosen):
 			#print "in shuffle: begin else: bg._emissionProbs:",
 			#bg._print(bg._emissionProbs)
 			saveState()
-			gv._obsOut.append(hiProb[0])
-			#print "in shuffle: obsout:", gv._obsOut
-			#print #
 			#gv._obsOut.append(hiProb[0])
 			#viterbi(gv._obsOut)
 			resetConsts(hiProb[0])
@@ -429,6 +431,7 @@ def update(decision):
 def getBgram():
 	global gv
 	temp = gv._obsOut[-2:]
+	print "in getBgram: temp:", temp
 	return temp[0]+temp[1]
 
 
@@ -663,16 +666,16 @@ def init(obs,emiss):
 #####################################################---------- hmm ---------################
 
 def updateEmiss(eProbs,chos):
-	print "in updateemiss: old eprobs:", gv._sortByValue(eProbs)
-	print #
+	#print "in updateemiss: old eprobs:", gv._sortByValue(eProbs)
+	#print #
 	for key in eProbs:
 		if key in chos:
 			eProbs[key] *= Decimal('0.8')
 		else:
 			eProbs[key] *= Decimal('0.2')
 	eProbs = bg._normalize(eProbs)
-	print "in updateemiss: new eprobs:", gv._sortByValue(eProbs)
-	print "-"*10
+	#print "in updateemiss: new eprobs:", gv._sortByValue(eProbs)
+	#print "-"*10
 	return eProbs
 	#return bg._normalize(eProbs)
 
@@ -988,13 +991,18 @@ def getKeyIn():
 		err_var = random.random()		#returns number b/t 0-1
 		
 		#err_var = 1
-		if err_var <= 0.2: 			#bad case
+		#if err_var <= 0.2: 			#bad case
+
+		bool = random.choice(errArr)
+		#bool = 1
+		if bool == 0:
 			if decision == 1:
 				decision = 2
 			else:
 				decision = 1
-			gv._numErrors = gv._numErrors + 1
-			print "oops! classifier error number ", gv._numErrors
+			#gv._numErrors = gv._numErrors + 1
+			gv._ttlNumErr = gv._ttlNumErr + 1
+			print "oops! classifier error number ", gv._ttlNumErr
 			print ####
 
 		if decision < 3:
