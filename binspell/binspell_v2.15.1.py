@@ -663,12 +663,18 @@ def init(obs,emiss):
 #####################################################---------- hmm ---------################
 
 def updateEmiss(eProbs,chos):
+	print "in updateemiss: old eprobs:", gv._sortByValue(eProbs)
+	print #
 	for key in eProbs:
 		if key in chos:
 			eProbs[key] *= Decimal('0.8')
 		else:
 			eProbs[key] *= Decimal('0.2')
-	return bg._normalize(eProbs)
+	eProbs = bg._normalize(eProbs)
+	print "in updateemiss: new eprobs:", gv._sortByValue(eProbs)
+	print "-"*10
+	return eProbs
+	#return bg._normalize(eProbs)
 
 
 #check out what current probs are doing to find a better threshold

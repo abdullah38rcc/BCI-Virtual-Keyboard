@@ -108,13 +108,8 @@ class Bigraph:
 		#add [SPC] and [DEL] to both tables of frequency
 		alphabet = map(chr,range(97,123))
 		for lett in alphabet:
-			sCount = Decimal(0)
-			dCount = Decimal(7)
-			for bigram, freq in freqs3:
-				if lett in bigram[1]:
-					#print "key:", key
-					#print "in: ", bigram
-					sCount += freq
+			sCount = Decimal(2)
+			dCount = Decimal(3)
 			freqs1.append(((lett,'[SPC]'),sCount))
 			freqs1.append(((lett,'[DEL]'),dCount))
 			freqs2.append(((lett,'[SPC]'),sCount))
@@ -200,7 +195,8 @@ class Bigraph:
 		#print sum(sum([d[k][key] for key in d[k]]) for k in d)
 		tot = sum(d[key] for key in d)
 		#print "in normalize: tot:", tot
-		return self._mult(d, 1/tot)
+		mplier = Decimal(1) / Decimal(tot)
+		return self._mult(d, mplier)
 
 
 	#adds n to every value in list

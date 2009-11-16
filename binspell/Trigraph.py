@@ -19,10 +19,21 @@ class Trigraph:
 		self._f1name = "tgramsNoSpc.txt"
 		self._f2name = "trgramsWithSpc.txt"
 		self._tgraph = {}
+		self._start()
+		
+
+
+
+	def _start(self):
 		#self._buildTgraph(self._f1name)
 		self._initTgraph()
-		self._addData(self._f2name)
-		self._print(self._tgraph)
+		self._addf1Data(self._f1name)
+		self._addf2Data(self._f2name)
+		
+		for key in self._tgraph:
+			self._normalize(self._tgraph[key])
+		#self._print(self._tgraph)
+		#print self._tgraph.keys()
 
 
 
@@ -40,22 +51,27 @@ class Trigraph:
 		#self._print(self._tgraph)
 
 
-	#builds trigram tree
+
+	#adds datat from file 1 to tree
 	#args: filename
-	def _addData(self,flname):
-		#print "in buildTgrams"
+	def _addf1Data(self,flname):
+		tgrams = csv.reader(open(flname),delimiter='-')
+		for row in tgrams:
+			#print row
+			row = self._cleanRow1(row)
+			self._addToTree(row)
+		#self._print(self._tgraph)
+
+
+
+	#adds data from file 2 to tree
+	#args: filename
+	def _addf2Data(self,flname):
 		tgrams = csv.reader(open(flname),delimiter='-')
 		for row in tgrams:
 			#print row
 			row = self._cleanRow2(row)
-			#print row
-			#print "-" * 10
 			self._addToTree(row)
-		for key in self._tgraph:
-			self._normalize(self._tgraph[key])
-			#print "in addData: key, val", key
-			#print "val", self._tgraph[key]
-			#print "-" * 10
 		#self._print(self._tgraph)
 			
 
@@ -65,12 +81,7 @@ class Trigraph:
 		lett = row[0][2]
 		val = Decimal(row[1]) + 1				# +1 avoids zero vals
 		#print "bgrm:", bgrm
-		if bgrm not in self._tgraph.keys():
-			print "not in tree:", bgrm
-			print #
-			temp = {lett:val}		
-			self._tgraph[bgrm] = temp	
-		else:
+		if bgrm in self._tgraph.keys():
 			self._tgraph[bgrm][lett] = val
 
 
@@ -79,7 +90,7 @@ class Trigraph:
 	#strip off extra stuff read in from file
 	#args: list containing one row read in
 	#returns: ['trigram','freq']
-	def _cleanRow(self,row):
+	def _cleanRow1(self,row):
 		#print "row:", row
 		#print #
 		row[0] = row[0][0:-1]				#strip just the last xtra white-space off row[0]
