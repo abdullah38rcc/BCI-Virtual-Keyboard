@@ -18,6 +18,7 @@ class Trigraph:
 	def __init__(self):
 		self._f1name = "tgramsNoSpc.txt"
 		self._f2name = "trgramsWithSpc.txt"
+		self._alphabet = []			#for building tgraph
 		self._tgraph = {}
 		self._start()
 		
@@ -39,13 +40,13 @@ class Trigraph:
 
 	#generate all possible trigrams and assign frequncy of 1 to each
 	def _initTgraph(self):
-		alphabet = map(chr,range(97,123))
-		alphabet.append('[SPC]')
-		alphabet.append('[DEL]')
-		for symb1 in alphabet:
-			for symb2 in alphabet:
+		self._alphabet = map(chr,range(97,123))
+		self._alphabet.append('[SPC]')
+		self._alphabet.append('[DEL]')
+		for symb1 in self._alphabet:
+			for symb2 in self._alphabet:
 				temp = {}
-				for symb3 in alphabet:
+				for symb3 in self._alphabet:
 					temp[symb3] = 1
 				self._tgraph[symb1+symb2] = temp
 		#self._print(self._tgraph)
@@ -64,7 +65,7 @@ class Trigraph:
 
 
 
-	#adds data from file 2 to tree
+	#reads in file, cleans up data and adds data to tree
 	#args: filename
 	def _addf2Data(self,flname):
 		tgrams = csv.reader(open(flname),delimiter='-')
@@ -76,13 +77,39 @@ class Trigraph:
 			
 
 
+	#adds row of data to tree
+	#args: list containing properly formatted data [trigram,val]
 	def _addToTree(self, row):
-		bgrm = row[0][0:2]
-		lett = row[0][2]
+		#print "row:", row
+		#print "-" * 10
+
+		if '[' in row[0][0] or '[' in row[0][1]:
+			bgrm = row[0][0:6]
+			lett = row[0][6:len(row[0])]
+		elif ']' in row[0][-1]:
+			x = row[0].find('[')
+			bgrm = row[0][0:x]
+			lett = row[0][x:len(row[0])]	
+		else:
+			bgrm = row[0][0:2]
+			lett = row[0][-1]
+
+		#print "bigram:", bgrm
+		#print "lett:",lett
+		#print #		
+
 		val = Decimal(row[1]) + 1				# +1 avoids zero vals
 		#print "bgrm:", bgrm
-		if bgrm in self._tgraph.keys():
+		if bgrm in self._tgraph.keys() and lett in self._alphabet:
 			self._tgraph[bgrm][lett] = val
+		else:
+			print "not in tree bgram: ", bgrm
+			print "lett:",lett
+			print #
+
+
+
+
 
 
 
