@@ -7,6 +7,8 @@
 # last edit: 11/14
 ################ CHANGES ############
 # works with Trigraph class 
+# fill boxes with color -- orange = chosen, white = not chosen
+# added .4s delay to color change
 ########## TODO ##############
 # tcp/ip socket
 # scan text and calculate freq
@@ -23,7 +25,7 @@
 # draw_interface: allow for multiple boxes
 # delete state object after pop
 ###################### BUGS #######################
-# print msg for printing del's 'in shuffle keeps printing for no reason
+# 
 ############## CURRENTLY WORKING ON ##########
 # 
 
@@ -51,7 +53,7 @@ def updateCanvas(hilite,norm):
 	#gv._canvas.itemconfigure(hilite,width=3)
 	#gv._canvas.itemconfigure(norm,width=1)
 	gv._canvas.update()		#process all events in event queue
-	time.sleep(0.5)
+	time.sleep(0.4)
 	gv._canvas.delete('text')
 	#set_layout(gv._box1)
 	draw_interface(gv._canHt,gv._canWdth)
