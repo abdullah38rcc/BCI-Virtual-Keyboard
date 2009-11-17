@@ -109,7 +109,7 @@ class Bigraph:
 		alphabet = map(chr,range(97,123))
 		for lett in alphabet:
 			sCount = float(2)
-			dCount = float(50)
+			dCount = float(30)
 			freqs1.append(((lett,'[SPC]'),sCount))
 			freqs1.append(((lett,'[DEL]'),dCount))
 			freqs2.append(((lett,'[SPC]'),sCount))

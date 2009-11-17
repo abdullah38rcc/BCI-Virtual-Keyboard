@@ -7,6 +7,8 @@
 # last edit: 11/14
 ################ CHANGES ############
 # works with Trigraph class 
+# fill boxes with color -- orange = chosen, white = not chosen
+# added .4s delay to color change
 ########## TODO ##############
 # tcp/ip socket
 # scan text and calculate freq
@@ -23,7 +25,7 @@
 # draw_interface: allow for multiple boxes
 # delete state object after pop
 ###################### BUGS #######################
-# print msg for printing del's 'in shuffle keeps printing for no reason
+# 
 ############## CURRENTLY WORKING ON ##########
 # 
 
@@ -46,9 +48,12 @@ from Trigraph import *
 ######################################---------------------- gui -----------#############
 
 def updateCanvas(hilite,norm):
-	gv._canvas.itemconfigure(hilite,width=3)
-	gv._canvas.itemconfigure(norm,width=1)
-	#gv._canvas.update()		#process all events in event queue
+	gv._canvas.itemconfigure(hilite,fill='orange')
+	gv._canvas.itemconfigure(norm,fill='white')
+	#gv._canvas.itemconfigure(hilite,width=3)
+	#gv._canvas.itemconfigure(norm,width=1)
+	gv._canvas.update()		#process all events in event queue
+	time.sleep(0.4)
 	gv._canvas.delete('text')
 	#set_layout(gv._box1)
 	draw_interface(gv._canHt,gv._canWdth)
@@ -125,7 +130,7 @@ def draw_text(cntrx, cntry, h, w, symbolList):
 		#print "len(str(item)):", len(str(symbolList[0]))
 		#print #
 		if len(str(symbolList[0])) > 1:  #SPC or DEL, etc
-			color = 'cyan'
+			color = 'red'
 			fontSz = 40
 			font = 'Courier %i bold' %fontSz
 			xtraSymbSpace = len(str(symbolList[0])) * fontSz/2
@@ -226,8 +231,8 @@ def resetConsts(typed):
 	print "in reset consts: pos in word:", gv._posInWrd
 
 	#check for position in word being typed
-	if gv._lastTyped == '[SPC]':
-		gv._posInWrd = 0
+	#if gv._lastTyped == '[SPC]':
+		#gv._posInWrd = 0
 	if gv._posInWrd < 2:		#only one letter typed
 		gv._currCondTable = bg._conditional1
 	else:				#use trigram conditionals
@@ -341,7 +346,7 @@ def shuffle(chosen,Nchosen):
 			#gv._obsOut.append(hiProb[0])
 			#viterbi(gv._obsOut)
 			resetConsts(hiProb[0])
-			#infoTransferRate()
+			infoTransferRate()
 			#print "in shuffle: new last typed: ", gv._lastTyped
 			#print "in shuffle: new emission probs:"
 			#print gv._sortByValue(gv._emissionProbs[gv._lastTyped])
