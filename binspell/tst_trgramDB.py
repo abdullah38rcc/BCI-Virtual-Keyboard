@@ -142,5 +142,5 @@ if False:
 #connection.close()
 
 
-bg = Bigraph()
-#tg = Trigraph()
+#bg = Bigraph()
+tg = Trigraph()

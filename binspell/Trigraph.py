@@ -11,12 +11,14 @@
 
 from operator import itemgetter
 import string
+from decimal import Decimal
 import csv
 
 class Trigraph:
 	def __init__(self):
-		self._f1name = "tgramsNoSpc.txt"
-		self._f2name = "trgramsWithSpc.txt"
+		#self._f1name = "tgramsNoSpc.txt"
+		#self._f2name = "trgramsWithSpc.txt"
+		self._fname = "trigrams.txt"
 		self._alphabet = []			#for building tgraph
 		self._tgraph = {}
 		self._start()
@@ -27,8 +29,9 @@ class Trigraph:
 	def _start(self):
 		#self._buildTgraph(self._f1name)
 		self._initTgraph()
-		self._addf1Data(self._f1name)
-		self._addf2Data(self._f2name)
+		#self._addf1Data(self._f1name)
+		#self._addf2Data(self._f2name)
+		self._addData(self._fname)
 		
 		for key in self._tgraph:
 			self._normalize(self._tgraph[key])
@@ -49,6 +52,19 @@ class Trigraph:
 					temp[symb3] = 1
 				self._tgraph[symb1+symb2] = temp
 		#self._print(self._tgraph)
+
+
+
+	#reads in file, cleans up data and adds data to tree
+	#args: filename
+	def _addData(self,flname):
+		tgrams = csv.reader(open(flname),delimiter=',')
+		for row in tgrams:
+			#print row
+			#row = self._cleanRow(row)
+			self._cleanAndAdd(row)
+		#self._print(self._tgraph)
+
 
 
 
@@ -77,7 +93,7 @@ class Trigraph:
 
 
 	#adds row of data to tree
-	#args: list containing properly formatted data [trigram,val]
+	#args: list containing properly formatted data [trigram,valS]
 	def _addToTree(self, row):
 		#print "row:", row
 		#print "-" * 10
@@ -106,6 +122,39 @@ class Trigraph:
 			print "lett:",lett
 			print #
 
+
+
+
+	#strip off extra stuff read in from file
+	#args: list containing one row read in
+	#returns: ['trigram','freq']
+	def _cleanAndAdd(self,row):
+		#print "row:", row
+		#print #
+		bgram = row[0][0:2]
+		lett = row[0][-1]
+		#print "orig bgram:",bgram
+		#replace whitespace with [SPC]
+		x = bgram.find(' ')
+		while x >= 0:
+			#print 'x', x >= 0
+			y = list(bgram)
+			y[x] = '[SPC]'
+			bgram = ''.join(y)
+			x = bgram.find(' ')
+
+		x = lett.find(' ')
+		if x == 0:
+			lett = '[SPC]'
+		#print "new bgram", bgram
+		#print "lett:",lett
+
+
+		row[1] = row[1].strip(' ')			#strip all xtra white-space off row[1]
+		val = float(row[1])			
+		#print "val:", val
+		#print #
+		self._tgraph[bgram][lett] = val
 
 
 
