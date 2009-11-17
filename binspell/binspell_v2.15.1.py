@@ -50,7 +50,8 @@ def updateCanvas(hilite,norm):
 	gv._canvas.itemconfigure(norm,fill='white')
 	#gv._canvas.itemconfigure(hilite,width=3)
 	#gv._canvas.itemconfigure(norm,width=1)
-	#gv._canvas.update()		#process all events in event queue
+	gv._canvas.update()		#process all events in event queue
+	time.sleep(0.5)
 	gv._canvas.delete('text')
 	#set_layout(gv._box1)
 	draw_interface(gv._canHt,gv._canWdth)
@@ -228,8 +229,8 @@ def resetConsts(typed):
 	print "in reset consts: pos in word:", gv._posInWrd
 
 	#check for position in word being typed
-	if gv._lastTyped == '[SPC]':
-		gv._posInWrd = 0
+	#if gv._lastTyped == '[SPC]':
+		#gv._posInWrd = 0
 	if gv._posInWrd < 2:		#only one letter typed
 		gv._currCondTable = bg._conditional1
 	else:				#use trigram conditionals
