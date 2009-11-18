@@ -1,39 +1,36 @@
-#trigraph class
-# last edit: 11/12
+# words class
+# last edit: 11/117
 ################CHANGES############
 # 
 ##########TODO##############
 # 
 ######################BUGS#######################
-# 
+#
 ##############CURRENTLY WORKING ON##########
-# 
+#
+
 
 import string
 import csv
 
-class Trigraph:
+class Words:
 	def __init__(self):
-		#self._f1name = "tgramsNoSpc.txt"
-		#self._f2name = "trgramsWithSpc.txt"
-		self._fname = "trigrams.txt"
-		self._alphabet = []			#for building tgraph
-		self._tgraph = {}
+		self._unifname = "written-lexicon.txt"
+		self._alphabet = []
+		self._singleLettWrds = ['a','i']	#acceptable single letter words
+		self._unigrams = {}
+		self._bigrams = {}
 		self._start()
 		
 
 
 
 	def _start(self):
-		#self._buildTgraph(self._f1name)
-		self._initTgraph()
-		#self._addf1Data(self._f1name)
-		#self._addf2Data(self._f2name)
-		self._addData(self._fname)
-		self._delsEqlAvg()
-		for key in self._tgraph:
-			self._normalize(self._tgraph[key])
-		#self._print(self._tgraph)
+		self._alphabet = map(chr,range(97,123))
+		self._buildUniDict()
+		#for key in self._tgraph:
+			#self._normalize(self._tgraph[key])
+		self._print(self._unigrams)
 		#print self._tgraph.keys()
 
 
@@ -55,40 +52,39 @@ class Trigraph:
 
 	#reads in file, cleans up data and adds data to tree
 	#args: filename
-	def _addData(self,flname):
-		tgrams = csv.reader(open(flname),delimiter=',')
+	def _buildUniDict(self):
+		tgrams = csv.reader(open(self._unifname),delimiter=' ')
 		for row in tgrams:
 			#print row
-			self._cleanAndAdd(row)
+			self._cleanAddUni(row)
 		#self._print(self._tgraph)
 
 			
 
 
-	#strip off extra stuff read in from file, and seperate into bigram, single letter, value, which is added to tgraph{}
+	#strip off extra stuff read in from file, and seperate into word, count and add to unigram dict
 	#args: list containing one row read in from file
-	def _cleanAndAdd(self,row):
-		bgram = row[0][0:2]
-		lett = row[0][-1]
+	def _cleanAddUni(self,row):
+		word = row[0]
+		val = row[1].strip(' ')
+		if word[0].isdigit():
+			return
+		while word[0] not in self._alphabet:
+			#print "old word:",word
+			word = word.strip(word[0])
+			#print "new word:", word
+			#print #
 
-		#replace whitespace with [SPC]
-		x = bgram.find(' ')
-		while x >= 0:
-			#print 'x', x >= 0
-			y = list(bgram)
-			y[x] = '[SPC]'
-			bgram = ''.join(y)
-			x = bgram.find(' ')
-
-		x = lett.find(' ')
-		if x == 0:
-			lett = '[SPC]'
-		#print "new bgram", bgram
-		#print "lett:",lett
-
-		row[1] = row[1].strip(' ')			#strip all xtra white-space off row[1]
-		val = float(row[1])			
-		self._tgraph[bgram][lett] = val
+		while word[-1] not in self._alphabet:
+			#print "old word:",word
+			word = word.strip(word[-1])
+			#print "new word:", word
+			#print #
+		if len(word)==1 and word not in self._singleLettWrds:
+			#print word
+			return
+		
+		self._unigrams[word] = float(val)
 
 
 
