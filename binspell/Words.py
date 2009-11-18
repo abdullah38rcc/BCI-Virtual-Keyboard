@@ -14,6 +14,7 @@ import string
 import csv
 from difflib import *
 import cPickle as pickle
+from operator import itemgetter
 
 class Words:
 	def __init__(self):
@@ -62,22 +63,32 @@ class Words:
 		#get_close_matches(word, possibilities[, n][, cutoff])
 		#n= max num to return (default-3), cutoff=num b/t 0-1, if not at least this num, ignore (default-.6)
 		print "in closest words"
-		matches = get_close_matches(string, self._unigrams.keys(),10)
-		print "matches:", matches
+		matches = {}
 		top3 = []
-		top3.append({matches[0]:self._unigrams[matches[0]]})
-		top3.append({matches[1]:self._unigrams[matches[1]]})
-		top3.append({matches[2]:self._unigrams[matches[2]]})
-		for i in matches[3:]:		
-			print i + ':' + str(self._unigrams[i])
-			if self._unigrams[i] > top3[0].values():
-				top3[0] = {i:self._unigrams[i]}
-			elif self._unigrams[i] > top3[1].values():
-				top3[1] = {i:self._unigrams[i]}
-			elif self._unigrams[i] > top3[2].values():
-				top3[2] = {i:self._unigrams[i]}
-		print "top3: ", top3
+		for word in self._unigrams:
+			if word.startswith(string):
+				matches[word] = self._unigrams[word]
+		self._normalize(matches)
+		
+		srtMatch = self._sortByValue(matches)
+		#for i,(word,prob) in enumerate(srtMatch):
+			#print "%d: %s   with prob %3.3f" % (i, word, prob)
+			#if i > 8: break
+		top3 = dict(srtMatch[0:3])
+		return top3
+		#self._print(top3)
 			
+
+
+	#args: unsorted dictionary
+	#returns list of dict items sorted from greatest to least
+	def _sortByValue(self, unsrtdDict):
+		#print "dict:", unsrtdDict
+		#print ###
+		items = unsrtdDict.items()
+		#print "items:", items
+		items.sort(key = itemgetter(1), reverse=True)
+		return items
 
 
 
