@@ -12,17 +12,21 @@
 
 import string
 import csv
+from difflib import *
+import cPickle as pickle
 
 class Words:
 	def __init__(self):
-		self._unifname = "written-lexicon.txt"
-		#self._bifname = "wordBgrams.txt"
-		self._bifname = "testwords.txt"
-		self._cleanBgrmFile = "cleanWordBgrams.txt"
+		self._unifname = "written-lexicon.txt"			#file containing word unigrams and their freqs
+		self._bifname = "wordBgrams.txt"			#file containing word bigrams and their freqs
+		#self._bifname = "testwords.txt"				#test file
+		self._bdictFile = "bgramPickle.txt"			#file containg pickled bigram dict
+		self._udictFile = "ugramPickle.txt"			#file containg pickled unigram dict
 		self._alphabet = []
-		self._singleLettWrds = ['a','i']	#acceptable single letter words
+		self._singleLettWrds = ['a','i']			#acceptable single letter words
 		self._unigrams = {}
 		self._bigrams = {}
+
 		self._start()
 		
 
@@ -30,12 +34,50 @@ class Words:
 
 	def _start(self):
 		self._alphabet = map(chr,range(97,123))
-		self._buildUniDict()
-		self._buildBiDict()
-		self._writeCleanBgmFile()
-		#for key in self._tgraph:
-			#self._normalize(self._tgraph[key])
+		#self._buildUniDict()
+		#self._buildBiDict()
+		self._unpickleUni()
+		#self._unpickleBi()
 		#self._print(self._bigrams)
+
+
+
+	#read pickle string into unigram dict
+	def _unpickleUni(self):
+		fd = open(self._udictFile,'r')
+		self._unigrams = pickle.load(fd)
+		#self._print(self._unigrams)
+
+
+
+	#read pickle string into bigram dict
+	def _unpickleBi(self):
+		fd = open(self._bidictFile,'r')
+		self._bigrams = pickle.load(fd)
+		#self._print(self._bigrams)
+
+
+
+	def _closestWords(self,string):
+		#get_close_matches(word, possibilities[, n][, cutoff])
+		#n= max num to return (default-3), cutoff=num b/t 0-1, if not at least this num, ignore (default-.6)
+		print "in closest words"
+		matches = get_close_matches(string, self._unigrams.keys(),10)
+		print "matches:", matches
+		top3 = []
+		top3.append({matches[0]:self._unigrams[matches[0]]})
+		top3.append({matches[1]:self._unigrams[matches[1]]})
+		top3.append({matches[2]:self._unigrams[matches[2]]})
+		for i in matches[3:]:		
+			print i + ':' + str(self._unigrams[i])
+			if self._unigrams[i] > top3[0].values():
+				top3[0] = {i:self._unigrams[i]}
+			elif self._unigrams[i] > top3[1].values():
+				top3[1] = {i:self._unigrams[i]}
+			elif self._unigrams[i] > top3[2].values():
+				top3[2] = {i:self._unigrams[i]}
+		print "top3: ", top3
+			
 
 
 
@@ -46,7 +88,11 @@ class Words:
 		for row in tgrams:
 			#print row
 			self._cleanAddBi(row)
-		#self._print(self._tgraph)
+		for key in self._bigrams:
+			self._normalize(self._bigrams[key])
+		fd = open(self._bdictFile,'w')
+		pickle.dump(self._bigrams,fd)
+		#self._print(self._bigrams)
 
 
 
@@ -92,10 +138,13 @@ class Words:
 
 	#reads in unigramfile and sends rows of data to be cleaned and added unigram dict
 	def _buildUniDict(self):
-		tgrams = csv.reader(open(self._unifname),delimiter=' ')
-		for row in tgrams:
+		ugrams = csv.reader(open(self._unifname),delimiter=' ')
+		for row in ugrams:
 			#print row
 			self._cleanAddUni(row)
+		self._normalize(self._unigrams)
+		fd = open(self._udictFile,'w')
+		pickle.dump(self._unigrams,fd)
 		#self._print(self._tgraph)
 
 			
@@ -122,25 +171,18 @@ class Words:
 		if len(word)==1 and word not in self._singleLettWrds:
 			#print word
 			return
+
+		#check for repeats	
+		if word in self._unigrams.keys():
+			self._unigrams[word] += float(val)
+		else:
+			self._unigrams[word] = float(val)
 		
-		self._unigrams[word] = float(val)
+		#print "word:",word
+		#print "val:", self._unigrams[word]
+		#print "-"*10
 
 
-
-
-	#write bigram dictionary to a file for easier future reading
-	#writing -- word1,word2-1,val,word2-2,val,etc
-	def _writeCleanBgmFile(self):
-		fd = open(self._cleanBgrmFile,'w')
-		kys = self._bigrams.keys()
-		for k in kys:
-			string = k + ','
-			fd.write(string)
-			for key in self._bigrams[k]:
-				string = key + ',' + str(self._bigrams[k][key]) + ','
-				fd.write(string)
-			fd.write('\n')
-		fd.close
 
 
 
@@ -157,7 +199,7 @@ class Words:
 	# returns normalized prob graph
 	# args: dict{lett: val}
 	def _normalize(self,d):
-		#print "in normalize: d:", d
+		#print "in normalize: d:"
 		#print #
 		#print sum(sum([d[k][key] for key in d[k]]) for k in d)
 		tot = sum(d[key] for key in d)
