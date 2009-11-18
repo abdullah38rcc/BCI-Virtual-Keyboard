@@ -38,7 +38,7 @@ class Words:
 		#self._buildUniDict()
 		#self._buildBiDict()
 		self._unpickleUni()
-		#self._unpickleBi()
+		self._unpickleBi()
 		#self._print(self._bigrams)
 
 
@@ -53,21 +53,31 @@ class Words:
 
 	#read pickle string into bigram dict
 	def _unpickleBi(self):
-		fd = open(self._bidictFile,'r')
+		fd = open(self._bdictFile,'r')
 		self._bigrams = pickle.load(fd)
 		#self._print(self._bigrams)
 
 
 
-	def _closestWords(self,string):
+	#returns dict of top 3 words predicted
+	#args: ngram string of letters, last full word typed
+	def _closestWords(self,ngram,lastwrd):
 		#get_close_matches(word, possibilities[, n][, cutoff])
 		#n= max num to return (default-3), cutoff=num b/t 0-1, if not at least this num, ignore (default-.6)
 		print "in closest words"
 		matches = {}
 		top3 = []
-		for word in self._unigrams:
-			if word.startswith(string):
-				matches[word] = self._unigrams[word]
+
+		if lastwrd != '' and lastwrd in self._bigrams.keys():
+			temp = self._bigrams[lastwrd]
+			for word in temp:
+				if word.startswith(ngram):
+					matches[word] = temp[word]
+
+		if len(matches.keys()) < 3:
+			for word in self._unigrams:
+				if word.startswith(ngram):
+					matches[word] = self._unigrams[word]
 		self._normalize(matches)
 		
 		srtMatch = self._sortByValue(matches)

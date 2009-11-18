@@ -187,11 +187,11 @@ def saveState():
 	global gv, bg, stack
 	#stateObj = State(gv._box1, gv._box2, gv._currProbs, gv._hiProb, usrChoice)
 	#print "in save state"
-	#print "gv._lastTyped: ", gv._lastTyped
+	#print "gv._ngram: ", gv._ngram
 	#print "box1"
 	#print "in saveState(): emissionProbs:"
 	#bg._print(bg._emissionProbs)
-	stateObj = State(gv._lastTyped, gv._currCondTable, gv._transitionProbs, gv._emissionProbs)
+	stateObj = State(gv._ngram, gv._currCondTable, gv._transitionProbs, gv._emissionProbs, gv._lastWordTyped)
 	stack._push(stateObj)
 
 
@@ -203,14 +203,19 @@ def return2PrevState():
 	gv._box2 = []
 
 	stateObj = stack._pop()
-	gv._lastTyped = stateObj._lasttyped
+	gv._ngram = stateObj._ngram
 	gv._currCondTable = stateObj._currCondTree
 	gv._transitionProbs = stateObj._currTrnsProbs
 	gv._emissionProbs = deepcopy(gv._transitionProbs)
+	gv._lastWordTyped = stateObj._lastWord
 
-	set_layout([],gv._transitionProbs[gv._lastTyped])
+	if gv._numTyped > 1:
+		wordProbs = wd._closestWords(gv._ngram,gv._lastWordTyped)		#guess words based on what's been typed
+		updateDist(wordProbs,gv._emissionProbs[gv._ngram])
+	
+	set_layout([],gv._transitionProbs[gv._ngram])
 
-	hiProb = getLrgstLeaf(gv._transitionProbs[gv._lastTyped])
+	hiProb = getLrgstLeaf(gv._emissionProbs[gv._ngram])
 	gv._hiProb = hiProb[0]				####### HACK ########
 
 	hilite = "box1"
@@ -223,30 +228,37 @@ def return2PrevState():
 #reset global constants
 def resetConsts(typed):
 	global gv, bg
-	gv._lastTyped = typed
-	gv._numTyped += 1
-	gv._posInWrd += 1
-	#print "typed: ",gv._lastTyped
+
+	if len(typed) > 1 and '[' not in typed[0]:	#check for selection of a full word, but not [spc] or [del]
+		gv._lastWordTyped = typed
+		gv._posInWrd = 0
+		gv._ngram = typed[-1] + '[SPC]'		#reset bigram to last letter of last word typed + spc
+		gv._numTyped = += len(typed)
+	else:			
+		gv._ngram = typed
+		gv._numTyped += 1
+		gv._posInWrd += 1
+	#print "typed: ",gv._ngram
 	print "in reset consts: pos in word:", gv._posInWrd
 
 	#check for position in word being typed
-	#if gv._lastTyped == '[SPC]':
+	#if gv._ngram == '[SPC]':
 		#gv._posInWrd = 0
-	if gv._posInWrd < 2:		#only one letter typed
+	if gv._numTyped < 2:				#only one letter typed
 		gv._currCondTable = bg._conditional1
-	else:				#use trigram conditionals
-		gv._lastTyped = getBgram()
+	else:						#use trigram conditionals
+		gv._ngram = getBgram()
 		gv._currCondTable = tg._tgraph
-		print "in reset consts: last typed:", gv._lastTyped
-		print "new transition probs:"
-		print gv._sortByValue(gv._currCondTable[gv._lastTyped])
-		print "-" * 10 
+		#print "in reset consts: last typed:", gv._ngram
+		#print "new transition probs:"
+		#print gv._sortByValue(gv._currCondTable[gv._ngram])
+		#print "-" * 10 
 
 	gv._transitionProbs = gv._currCondTable
 	gv._emissionProbs = deepcopy(gv._transitionProbs)
 
-	wordProbs = wd._closestWords(gv._lastTyped)		#guess words based on what's been typed
-	updateDist(wordProbs,gv._emissionProbs[gv._lastTyped])
+	wordProbs = wd._closestWords(gv._ngram,gv._lastWordTyped)		#guess words based on what's been typed
+	updateDist(wordProbs,gv._emissionProbs[gv._ngram])
 
 	#print "in resetConsts"
 	#bg._print(gv._currCondTable)		#stub
@@ -257,7 +269,7 @@ def resetConsts(typed):
 	gv._numErrors = 0
 	gv._typed = ['',0]
 
-	hiProb = getLrgstLeaf(gv._transitionProbs[gv._lastTyped])
+	hiProb = getLrgstLeaf(gv._emissionProbs[gv._ngram])
 	gv._hiProb = hiProb[0]					####### HACK ########
 
 	gv._numTimesLargest = 0
@@ -318,12 +330,12 @@ def shuffle(chosen,Nchosen):
 		if gv._numTyped > 0:					#sumthin already typed so check for delete
 			gv._box2.remove('[DEL]')		#remove delete
 
-	gv._emissionProbs[gv._lastTyped] = updateEmiss(gv._emissionProbs[gv._lastTyped], chosen)
-	#print "in shuffle: gv._lastTyped:", gv._lastTyped
-	#print gv._sortByValue(gv._emissionProbs[gv._lastTyped])
+	gv._emissionProbs[gv._ngram] = updateEmiss(gv._emissionProbs[gv._ngram], chosen)
+	#print "in shuffle: gv._ngram:", gv._ngram
+	#print gv._sortByValue(gv._emissionProbs[gv._ngram])
 	#print "-" * 10 
 
-	hiProb = getLrgstLeaf(gv._emissionProbs[gv._lastTyped])
+	hiProb = getLrgstLeaf(gv._emissionProbs[gv._ngram])
 	hiProb = hiProb[0]					####### HACK ########
 	gv._hiProb = hiProb
 
@@ -331,14 +343,14 @@ def shuffle(chosen,Nchosen):
 	if hiProb[1] > gv._threshold:			#output a symbol
 		output(hiProb[0])
 		gv._obsOut.append(hiProb[0])
-		print "in shuffle: obsout:", gv._obsOut
-		print #
+		#print "in shuffle: obsout:", gv._obsOut
+		#print #
 		if '[DEL]' in hiProb[0]:
 			#print "deleting"
-			print "in shuffle: ", chosen[0]
+			#print "in shuffle: ", chosen[0]
 			gv._numTyped = gv._numTyped - 1
 			gv._numDels += 1
-			print "numDels in shuffle: ", gv._numDels
+			#print "numDels in shuffle: ", gv._numDels
 			return2PrevState()
 			return
 		else:
@@ -349,14 +361,14 @@ def shuffle(chosen,Nchosen):
 			#viterbi(gv._obsOut)
 			resetConsts(hiProb[0])
 			infoTransferRate()
-			#print "in shuffle: new last typed: ", gv._lastTyped
+			#print "in shuffle: new last typed: ", gv._ngram
 			#print "in shuffle: new emission probs:"
-			#print gv._sortByValue(gv._emissionProbs[gv._lastTyped])
+			#print gv._sortByValue(gv._emissionProbs[gv._ngram])
 			#print "-" * 10 
 
 
 
-	set_layout(chosen,gv._emissionProbs[gv._lastTyped])
+	set_layout(chosen,gv._emissionProbs[gv._ngram])
 
 
 
@@ -434,7 +446,9 @@ def update(decision):
 
 ####################################################--------- helper fxns----------#########
 
+#update emission probs to include words
 #normalize emission probs so that they sum to 1 - word probs
+#args: dict of most likely words:probs, dict of emission probs of letters
 def updateDist(wrdProbs,eProbs):
 	wtot = sum(wrdProbs[key] for key in wrdProbs)		#sum of probs in top words dict
 	ltot = sum(eProbs[key] for key in eProbs)		#sum of probs in emission probs dict
@@ -465,10 +479,10 @@ def consonant(symb):
 
 def wrongGrammar(symb):
 	global gv
-	if symb == '[SPC]' and gv._lastTyped == '[SPC]':
+	if symb == '[SPC]' and gv._ngram == '[SPC]':
 		return True
 	#if gv._posInWrd > 0 and gv._posInWrd < 4:
-		#if consonant(gv._lastTyped) and consonant(symb):
+		#if consonant(gv._ngram) and consonant(symb):
 			#return True
 	return False
 
@@ -493,7 +507,7 @@ def singleSymbInBx(symb):
 #returns: font size for symbol determined by it's order in orderd prob list
 def getRelFntSz(symb,max, min):
 	global gv
-	sortdProbs = gv._sortByValue(gv._emissionProbs[gv._lastTyped])		#sort current probs in order greatest to least
+	sortdProbs = gv._sortByValue(gv._emissionProbs[gv._ngram])		#sort current probs in order greatest to least
 	for item in sortdProbs:
 		if symb in item:
 			return max
@@ -547,7 +561,7 @@ def output(item):
 		gv._txtBox.insert(INSERT,item)
 	else:
 		gv._txtBox.insert(INSERT,item)
-	#gv._lastTyped = item
+	#gv._ngram = item
 	##print "2rd cursor pos:", gv._txtBox.index(INSERT)
 
 
@@ -703,7 +717,7 @@ def updateEmiss(eProbs,chos):
 #check out what current probs are doing to find a better threshold
 def compareProbs():
 	global gv
-	sortedProbs = gv._sortByValue(gv._emissionProbs[gv._lastTyped])
+	sortedProbs = gv._sortByValue(gv._emissionProbs[gv._ngram])
 	#print "largest prob: ", sortedProbs[0]
 	#print "smallest prob: ",sortedProbs[-1]
 	print "difference b/t largest and smallest: ", sortedProbs[0][1] - sortedProbs[-1][1]
@@ -863,7 +877,7 @@ def default():
 	#print "in default, hiprob:", hiProb
 	set_layout([],bg._prior)
 	saveState()
-	#print gv._emissionProbs[gv._lastTyped]
+	#print gv._emissionProbs[gv._ngram]
 	#print "box1:", gv._box1
 	#print ###
 	#print "box2:", gv._box2
