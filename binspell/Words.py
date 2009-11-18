@@ -16,6 +16,9 @@ import csv
 class Words:
 	def __init__(self):
 		self._unifname = "written-lexicon.txt"
+		#self._bifname = "wordBgrams.txt"
+		self._bifname = "testwords.txt"
+		self._cleanBgrmFile = "cleanWordBgrams.txt"
 		self._alphabet = []
 		self._singleLettWrds = ['a','i']	#acceptable single letter words
 		self._unigrams = {}
@@ -28,30 +31,66 @@ class Words:
 	def _start(self):
 		self._alphabet = map(chr,range(97,123))
 		self._buildUniDict()
+		self._buildBiDict()
+		self._writeCleanBgmFile()
 		#for key in self._tgraph:
 			#self._normalize(self._tgraph[key])
-		self._print(self._unigrams)
-		#print self._tgraph.keys()
+		#self._print(self._bigrams)
 
 
 
-	#generate all possible trigrams and assign frequncy of 1 to each
-	def _initTgraph(self):
-		self._alphabet = map(chr,range(97,123))
-		self._alphabet.append('[SPC]')
-		self._alphabet.append('[DEL]')
-		for symb1 in self._alphabet:
-			for symb2 in self._alphabet:
-				temp = {}
-				for symb3 in self._alphabet:
-					temp[symb3] = 1
-				self._tgraph[symb1+symb2] = temp
+
+	#reads in bigramfile and sends rows of data to be cleaned and added unigram dict
+	def _buildBiDict(self):
+		tgrams = csv.reader(open(self._bifname),delimiter=' ')
+		for row in tgrams:
+			#print row
+			self._cleanAddBi(row)
 		#self._print(self._tgraph)
 
 
 
-	#reads in file, cleans up data and adds data to tree
-	#args: filename
+
+	#strip off extra stuff read in from file, and seperate into word1,word2,count and add to bigram dict
+	#args: list containing one row read in from file
+	def _cleanAddBi(self,row):
+		#print row
+		word1 = row[0].strip(' ')
+		word2 = row[1].strip(' ')
+		val = row[2].strip(' ')
+		wrds = [word1,word2]
+
+		for w in wrds:
+			if w[0].isdigit():
+				return
+			while w[0] not in self._alphabet:
+				#print "old word:",word
+				w = w.strip(w[0])
+				#print "new word:", word
+				#print #
+
+			while w[-1] not in self._alphabet:
+				#print "old word:",word
+				w = w.strip(w[-1])
+				#print "new word:", word
+				#print #
+			if len(w)==1 and w not in self._singleLettWrds:
+				#print word
+				return
+
+		temp = {wrds[1]:float(val)}
+		if wrds[0] in self._bigrams.keys():
+			#print "in if"
+			self._bigrams[wrds[0]].update(temp)
+		else:
+			#print "in else"
+			self._bigrams[wrds[0]] = temp
+
+
+
+
+
+	#reads in unigramfile and sends rows of data to be cleaned and added unigram dict
 	def _buildUniDict(self):
 		tgrams = csv.reader(open(self._unifname),delimiter=' ')
 		for row in tgrams:
@@ -62,7 +101,7 @@ class Words:
 			
 
 
-	#strip off extra stuff read in from file, and seperate into word, count and add to unigram dict
+	#strip off extra stuff read in from file, and seperate into word,count and add to unigram dict
 	#args: list containing one row read in from file
 	def _cleanAddUni(self,row):
 		word = row[0]
@@ -89,6 +128,22 @@ class Words:
 
 
 
+	#write bigram dictionary to a file for easier future reading
+	#writing -- word1,word2-1,val,word2-2,val,etc
+	def _writeCleanBgmFile(self):
+		fd = open(self._cleanBgrmFile,'w')
+		kys = self._bigrams.keys()
+		for k in kys:
+			string = k + ','
+			fd.write(string)
+			for key in self._bigrams[k]:
+				string = key + ',' + str(self._bigrams[k][key]) + ','
+				fd.write(string)
+			fd.write('\n')
+		fd.close
+
+
+
 	#multiplies mplier to every value in dict
 	#args: dictionary{letter,val}
 	#returns: dictionary{letter,val*mplier}
@@ -111,17 +166,6 @@ class Words:
 		mplier = float(1) / float(tot)
 		return self._mult(d, mplier)
 
-
-
-	# assign each '[del]' average of all values in the dict its in
-	def _delsEqlAvg(self):
-		for key in self._tgraph:
-			if '[DEL]' not in key and '[DEL]' in self._tgraph[key].keys():
-				#print key
-				vals = self._tgraph[key].values()
-				self._tgraph[key]['[DEL]'] = sum(vals,0.0) / len(vals)
-				#print self._tgraph[key]['DEL']
-				
 
 
 
