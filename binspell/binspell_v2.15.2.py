@@ -4,7 +4,7 @@
 # delete immediately available
 # up arrow = left   ::  down arrow = right
 #
-# last edit: 11/18
+# last edit: 11/19
 ################ CHANGES ############
 # works with Word class (contains word unigrams and bigrams)
 ########## TODO ##############
@@ -24,7 +24,6 @@
 # delete state object after pop
 ###################### BUGS #######################
 # y and z fall off the screen -- make boxes bigger
-# re-assess behavior of del --- should it be dynamically allocated now?
 ############## CURRENTLY WORKING ON ##########
 # 
 
@@ -187,9 +186,9 @@ def draw_text(cntrx, cntry, h, w, symbolList):
 def saveState():
 	global gv, bg, stack
 	#stateObj = State(gv._box1, gv._box2, gv._currProbs, gv._hiProb, usrChoice)
-	print "in save state"
-	print "last prefix:", gv._prefix
-	print "gv._posInWrd",gv._posInWrd
+	#print "in save state"
+	#print "last prefix:", gv._prefix
+	#print "gv._posInWrd",gv._posInWrd
 	#print "gv._ngram: ", gv._ngram
 	#print "box1"
 	#print "in saveState(): emissionProbs:"
@@ -474,7 +473,7 @@ def update(decision):
 #normalize emission probs so that they sum to 1 - word probs
 #args: dict of most likely words:probs, dict of emission probs of letters
 def updateDist(wrdProbs,eProbs):
-	print "in update dist"
+	#print "in update dist"
 	wtot = sum(wrdProbs[key] for key in wrdProbs)		#sum of probs in top words dict
 	ltot = sum(eProbs[key] for key in eProbs)		#sum of probs in emission probs dict
 
@@ -488,8 +487,8 @@ def updateDist(wrdProbs,eProbs):
 	for key in eProbs:					#normalize
 		eProbs[key] *= mplier
 	eProbs.update(wrdProbs)
-	print "new eprobs"
-	bg._print(eProbs)
+	#print "new eprobs"
+	#bg._print(eProbs)
 
 
 

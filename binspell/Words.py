@@ -46,6 +46,7 @@ class Words:
 
 	#read pickle string into unigram dict
 	def _unpickleUni(self):
+		print "reading in dictionary 1..."
 		fd = open(self._udictFile,'r')
 		self._unigrams = pickle.load(fd)
 		#self._print(self._unigrams)
@@ -54,9 +55,11 @@ class Words:
 
 	#read pickle string into bigram dict
 	def _unpickleBi(self):
+		print "reading in dictionary 2..."
 		fd = open(self._bdictFile,'r')
 		self._bigrams = pickle.load(fd)
 		#self._print(self._bigrams)
+
 
 
 
@@ -65,28 +68,24 @@ class Words:
 	def _closestWords(self,prefx,lastwrd):
 		#get_close_matches(word, possibilities[, n][, cutoff])
 		#n= max num to return (default-3), cutoff=num b/t 0-1, if not at least this num, ignore (default-.6)
-		print "in closest words"
+		#print "in closest words"
 		matches = {}
 		top3 = []
+		norm = 0
 
 		if lastwrd != '' and lastwrd in self._bigrams.keys():		#full word already typed and its in dictionary
+			matches,norm = self._matchBgrams(prefx,lastwrd)
 
-				self._normalize(matches)
+		if len(matches.keys()) < 3:					#either matches = {} or less than 3 matches, then use unigrams
+			matches,norm = self._matchUgrams(matches,prefx,lastwrd)
+		
+		#print "matches found:"
+		#self._print(matches)
 
-
-		if len(matches.keys()) < 3:					#less than 3 matches found so far, then use unigrams
-			if prefx == '' and lastwrd == '':			#no letter typed yet
-				matches = deepcopy(self._unigrams)
-			else:							#some letters typed, but no full word yet
-				print "in 2nd else"
-				for word in self._unigrams:
-					if word.startswith(prefx) and word not in matches.keys():			
-						matches[word] = self._unigrams[word]
-				#print "matches:"
-				#self._print(matches)
-				print #
-				self._normalize(matches)
-
+		if norm == 1:
+			#print "normalizing"
+			#print #
+			self._normalize(matches)
 		
 		srtMatch = self._sortByValue(matches)
 		#for i,(word,prob) in enumerate(srtMatch):
@@ -100,26 +99,52 @@ class Words:
 
 
 
+	#check prefix against bigrams[lastwrd] to find a match
+	#args: prefix, lastwrd
+	#returns: either matches or {}, and 1 or 0 to signal normalization
 	def _matchBgrams(self,prefx,lastwrd):
-		print "last word typed:", lastwrd
-		print "prefx: ", prefx
+		#print "last word typed:", lastwrd
+		#print "prefx: ", prefx
 		#print "-"*10
 		matchs = {}
 		nflag = 0						#signals whether or not to normalize
 		if prefx == '':						#full word just typed, but no new letter selected yet
 			matchs = deepcopy(self._bigrams[lastwrd])
 		else:
-			print "in 1st else"
+			#print "in 1st else, normalize"
 			temp = self._bigrams[lastwrd]
 			for word in temp:
-				if word.startswith(prefx):
+				if word.startswith(prefx) and word != prefx:
 					matchs[word] = temp[word]
 			nflag = 1
-			print "matches:"
-			self._print(matchs)
-			print #
+			#print "matches:"
+			#self._print(matchs)
+			#print #
 		return matchs,nflag
 			
+
+
+	#check prefix against unigrams[lastwrd] to find a match
+	#args: bigram matches(if any), prefix, lastwrd
+	#returns: either matches, and 1 or 0 to signal normalization
+	def _matchUgrams(self,matchs,prefx,lastwrd):
+		#print "in matchUgrams"
+		nflag = 0
+		if prefx == '' and lastwrd == '':			#no letter typed yet
+			matchs = deepcopy(self._unigrams)
+			#print "in if"
+		else:							#some letters typed, but no full word yet
+			#print "in 2nd else, normalize"
+			for word in self._unigrams:
+				if word.startswith(prefx) and word != prefx and word not in matchs.keys():			
+					matchs[word] = self._unigrams[word]
+			nflag = 1
+			#print "matchs:"
+			#self._print(matchs)
+			#print #
+		return matchs,nflag
+
+
 
 
 	#args: unsorted dictionary
