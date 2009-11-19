@@ -23,7 +23,8 @@
 # draw_interface: allow for multiple boxes
 # delete state object after pop
 ###################### BUGS #######################
-# 
+# y and z fall off the screen -- make boxes bigger
+# re-assess behavior of del --- should it be dynamically allocated now?
 ############## CURRENTLY WORKING ON ##########
 # 
 

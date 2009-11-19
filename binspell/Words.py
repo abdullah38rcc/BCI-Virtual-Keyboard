@@ -15,6 +15,7 @@ import csv
 from difflib import *
 import cPickle as pickle
 from operator import itemgetter
+from copy import deepcopy
 
 class Words:
 	def __init__(self):
@@ -69,24 +70,31 @@ class Words:
 		top3 = []
 
 		if lastwrd != '' and lastwrd in self._bigrams.keys():		#full word already typed and its in dictionary
-			temp = self._bigrams[lastwrd]
-			if ngram.startswith('['):				#check for [spc] or [del] at beginning of string to be matched
-				ngram = ngram[-1]
-			for word in temp:
-				if word.startswith(ngram):
-					matches[word] = temp[word]
+			print "last word typed:", lastwrd
+			print "ngram: ", ngram
+			print "-"*10
+			if ngram.endswith(']'):					#full word just typed, but no new letter selected yet
+				matches = deepcopy(self._bigrams[lastwrd])
+			else:
+				temp = self._bigrams[lastwrd]
+				if ngram.startswith('['):			#check for [spc],[del] --> one letter typed of new word
+					ngram = ngram[-1]
+				for word in temp:
+					if word.startswith(ngram):
+						matches[word] = temp[word]
+				self._normalize(matches)
 
-		if len(matches.keys()) < 3:					#no full word typed yet or less than 3 matches found, then use unigrams
-			if ngram.endswith(']') or ngram == '':			#check for [spc],[del] at end of string to be matched, or no letter typed yet
+
+		if len(matches.keys()) < 3:					#less than 3 matches found so far, then use unigrams
+			if ngram == '':						#no letter typed yet
 					matches = deepcopy(self._unigrams)
 					ngram = ''
 			else:
 				for word in self._unigrams:
-					if word.startswith(ngram):			
+					if word.startswith(ngram) and word not in matches.keys():			
 						matches[word] = self._unigrams[word]
-		
-		if ngram != '':
-			self._normalize(matches)				#don't want to normalize twice
+				self._normalize(matches)
+
 		
 		srtMatch = self._sortByValue(matches)
 		#for i,(word,prob) in enumerate(srtMatch):
