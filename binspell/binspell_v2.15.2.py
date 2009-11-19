@@ -232,23 +232,19 @@ def resetConsts(typed):
 	if len(typed) > 1 and '[' not in typed[0]:	#check for selection of a full word, but not [spc] or [del]
 		gv._lastWordTyped = typed
 		gv._posInWrd = 0
+		gv._obsOut.append('[SPC]')		#cuz [spc] automatically inserted after a full word
 		gv._ngram = typed[-1] + '[SPC]'		#reset bigram to last letter of last word typed + spc
-		gv._numTyped = += len(typed)
+		gv._numTyped += len(typed)
+		gv._currCondTable = tg._tgraph
 	else:			
-		gv._ngram = typed
 		gv._numTyped += 1
 		gv._posInWrd += 1
-	#print "typed: ",gv._ngram
-	print "in reset consts: pos in word:", gv._posInWrd
-
-	#check for position in word being typed
-	#if gv._ngram == '[SPC]':
-		#gv._posInWrd = 0
-	if gv._numTyped < 2:				#only one letter typed
-		gv._currCondTable = bg._conditional1
-	else:						#use trigram conditionals
-		gv._ngram = getBgram()
-		gv._currCondTable = tg._tgraph
+		if gv._numTyped < 2:				#only one letter typed
+			gv._currCondTable = bg._conditional1
+			gv._ngram = typed
+		else:						#use trigram conditionals
+			gv._ngram = getBgram()
+			gv._currCondTable = tg._tgraph
 		#print "in reset consts: last typed:", gv._ngram
 		#print "new transition probs:"
 		#print gv._sortByValue(gv._currCondTable[gv._ngram])
@@ -557,8 +553,10 @@ def output(item):
 	elif item == "[DEL]":
 		gv._txtBox.delete("%s-1c" % INSERT,INSERT)
 	elif len(item) > 1:
-		gv._txtBox.delete("%s-1c" % INSERT,INSERT)
+		print "outputtting:", item
+		gv._txtBox.delete("%s-%ic" % (INSERT,gv._posInWrd),INSERT)
 		gv._txtBox.insert(INSERT,item)
+		gv._txtBox.insert(INSERT," ")
 	else:
 		gv._txtBox.insert(INSERT,item)
 	#gv._ngram = item

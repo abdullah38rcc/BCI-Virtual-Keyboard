@@ -68,17 +68,25 @@ class Words:
 		matches = {}
 		top3 = []
 
-		if lastwrd != '' and lastwrd in self._bigrams.keys():
+		if lastwrd != '' and lastwrd in self._bigrams.keys():		#full word already typed and its in dictionary
 			temp = self._bigrams[lastwrd]
+			if ngram.startswith('['):				#check for [spc] or [del] at beginning of string to be matched
+				ngram = ngram[-1]
 			for word in temp:
 				if word.startswith(ngram):
 					matches[word] = temp[word]
 
-		if len(matches.keys()) < 3:
-			for word in self._unigrams:
-				if word.startswith(ngram):
-					matches[word] = self._unigrams[word]
-		self._normalize(matches)
+		if len(matches.keys()) < 3:					#no full word typed yet or less than 3 matches found, then use unigrams
+			if ngram.endswith(']') or ngram == '':			#check for [spc],[del] at end of string to be matched, or no letter typed yet
+					matches = deepcopy(self._unigrams)
+					ngram = ''
+			else:
+				for word in self._unigrams:
+					if word.startswith(ngram):			
+						matches[word] = self._unigrams[word]
+		
+		if ngram != '':
+			self._normalize(matches)				#don't want to normalize twice
 		
 		srtMatch = self._sortByValue(matches)
 		#for i,(word,prob) in enumerate(srtMatch):
