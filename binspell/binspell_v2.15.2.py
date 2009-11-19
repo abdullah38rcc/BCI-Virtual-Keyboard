@@ -254,13 +254,14 @@ def resetConsts(typed):
 		gv._posInWrd = 0
 		gv._obsOut.append('[SPC]')		#cuz [spc] automatically inserted after a full word
 		gv._ngram = typed[-1] + '[SPC]'		#reset bigram to last letter of last word typed + spc
-		gv._numTyped += (len(typed) - len(gv._prefix))
+		gv._numTyped += (len(typed) - len(gv._prefix) + 1)
 		gv._currCondTable = tg._tgraph
 		gv._prefix = ''
 	else:			
 		gv._numTyped += 1
 		
-		if typed == '[SPC]':
+		if typed == '[SPC]':			#word spelled out by user
+			gv._lastWordTyped = gv._prefix
 			gv._prefix = ''
 			gv._posInWrd = 0
 		else:
@@ -576,7 +577,7 @@ def infoTransferRate():
 	print "number of classifier errors:", gv._ttlNumErr
 	print "number of times delete used: ", gv._numDels
 	print "total number of steps taken: ", gv._ttlNumSteps
-	print "information transfer rate: %.5f" %(float(gv._numTyped) / float(gv._ttlNumSteps * gv._trialLen)) + " chars/sec"
+	print "information transfer rate: %.5f" %(float(gv._numTyped) * float(60) / float(gv._ttlNumSteps * gv._trialLen)) + " chars/min"
 	print #
 
 
