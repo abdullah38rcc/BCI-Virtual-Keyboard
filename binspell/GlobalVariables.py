@@ -62,6 +62,7 @@ class GlobalVariables:
 		self._lastTyped = '[SPC]'		#assume start with a space
 		self._ngram = '[SPC]'			#last letter ngram typed, assume start with a space, used for indexing into letter cond tables
 		self._lastWordTyped = ''
+		self._prefix = ''
 
 		self._symbolFreqList = [
 			(0.124167  , 'e'),

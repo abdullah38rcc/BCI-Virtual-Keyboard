@@ -61,8 +61,8 @@ class Words:
 
 
 	#returns dict of top 3 words predicted
-	#args: ngram string of letters, last full word typed
-	def _closestWords(self,ngram,lastwrd):
+	#args: string of letters, last full word typed
+	def _closestWords(self,prefx,lastwrd):
 		#get_close_matches(word, possibilities[, n][, cutoff])
 		#n= max num to return (default-3), cutoff=num b/t 0-1, if not at least this num, ignore (default-.6)
 		print "in closest words"
@@ -71,27 +71,24 @@ class Words:
 
 		if lastwrd != '' and lastwrd in self._bigrams.keys():		#full word already typed and its in dictionary
 			print "last word typed:", lastwrd
-			print "ngram: ", ngram
+			print "prefx: ", prefx
 			print "-"*10
-			if ngram.endswith(']'):					#full word just typed, but no new letter selected yet
+			if prefx == '':					#full word just typed, but no new letter selected yet
 				matches = deepcopy(self._bigrams[lastwrd])
 			else:
 				temp = self._bigrams[lastwrd]
-				if ngram.startswith('['):			#check for [spc],[del] --> one letter typed of new word
-					ngram = ngram[-1]
 				for word in temp:
-					if word.startswith(ngram):
+					if word.startswith(prefx):
 						matches[word] = temp[word]
 				self._normalize(matches)
 
 
 		if len(matches.keys()) < 3:					#less than 3 matches found so far, then use unigrams
-			if ngram == '':						#no letter typed yet
-					matches = deepcopy(self._unigrams)
-					ngram = ''
-			else:
+			if prefx == '' and lastwrd == '':			#no letter typed yet
+				matches = deepcopy(self._unigrams)
+			else:							#some letters typed, but no full word yet
 				for word in self._unigrams:
-					if word.startswith(ngram) and word not in matches.keys():			
+					if word.startswith(prefx) and word not in matches.keys():			
 						matches[word] = self._unigrams[word]
 				self._normalize(matches)
 

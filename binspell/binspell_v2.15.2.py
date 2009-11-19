@@ -192,16 +192,23 @@ def saveState():
 	#print "box1"
 	#print "in saveState(): emissionProbs:"
 	#bg._print(bg._emissionProbs)
-	stateObj = State(gv._ngram, gv._currCondTable, gv._transitionProbs, gv._emissionProbs, gv._lastWordTyped)
+	stateObj = State(gv._ngram, gv._currCondTable, gv._transitionProbs, gv._emissionProbs, gv._lastWordTyped, gv._prefix, gv._posInWrd)
 	stack._push(stateObj)
 
 
-
+#return to state before last error
 def return2PrevState():
 	global gv, bg
 
 	gv._box1 = []
 	gv._box2 = []
+	flag = 0	#indicates whether or not gv._numTyped needs to be further modified
+
+	if gv._prefix == '' and gv._posInWrd == 0:				#whole word needs to be erased
+		gv._numTyped = gv._numTyped - len(gv._lastWordTyped)
+		flag = 1
+	else:
+		gv._numTyped -= 1
 
 	stateObj = stack._pop()
 	gv._ngram = stateObj._ngram
@@ -209,9 +216,16 @@ def return2PrevState():
 	gv._transitionProbs = stateObj._currTrnsProbs
 	gv._emissionProbs = deepcopy(gv._transitionProbs)
 	gv._lastWordTyped = stateObj._lastWord
+	gv._prefix = stateObj._prefix
+	gv._posinwrd = stateObj._posinwrd
+
+	if flag == 1:
+		gv._numTyped += len(gv._prefix)
+		for lett in gv._prefix:					#replace letters user already typed out 
+			output(lett)
 
 	if gv._numTyped > 1:
-		wordProbs = wd._closestWords(gv._ngram,gv._lastWordTyped)		#guess words based on what's been typed
+		wordProbs = wd._closestWords(gv._prefix,gv._lastWordTyped)		#guess words based on what's been typed
 		updateDist(wordProbs,gv._emissionProbs[gv._ngram])
 	
 	set_layout([],gv._transitionProbs[gv._ngram])
@@ -237,9 +251,17 @@ def resetConsts(typed):
 		gv._ngram = typed[-1] + '[SPC]'		#reset bigram to last letter of last word typed + spc
 		gv._numTyped += len(typed)
 		gv._currCondTable = tg._tgraph
+		gv._prefix = ''
 	else:			
 		gv._numTyped += 1
-		gv._posInWrd += 1
+		
+		if typed == '[SPC]':
+			gv._prefix = ''
+			gv._posInWrd = 0
+		else:
+			gv._posInWrd += 1
+			gv._prefix += typed
+
 		if gv._numTyped < 2:				#only one letter typed
 			gv._currCondTable = bg._conditional1
 			gv._ngram = typed
@@ -254,7 +276,7 @@ def resetConsts(typed):
 	gv._transitionProbs = gv._currCondTable
 	gv._emissionProbs = deepcopy(gv._transitionProbs)
 
-	wordProbs = wd._closestWords(gv._ngram,gv._lastWordTyped)		#guess words based on what's been typed
+	wordProbs = wd._closestWords(gv._prefix,gv._lastWordTyped)		#guess words based on what's been typed
 	updateDist(wordProbs,gv._emissionProbs[gv._ngram])
 
 	#print "in resetConsts"
@@ -345,9 +367,8 @@ def shuffle(chosen,Nchosen):
 		if '[DEL]' in hiProb[0]:
 			#print "deleting"
 			#print "in shuffle: ", chosen[0]
-			gv._numTyped = gv._numTyped - 1
-			gv._numDels += 1
 			#print "numDels in shuffle: ", gv._numDels
+			gv._numDels += 1
 			return2PrevState()
 			return
 		else:
@@ -552,12 +573,15 @@ def output(item):
 	if item == "[SPC]":
 		gv._txtBox.insert(INSERT," ")
 	elif item == "[DEL]":
-		gv._txtBox.delete("%s-1c" % INSERT,INSERT)
+		if gv._prefix == '' and gv._lastWordTyped != '':		#deleting a word
+			l = len(gv._lastWordTyped)				
+			gv._txtBox.delete("%s-%ic" % (INSERT,l),INSERT)
+		gv._txtBox.delete("%s-1c" % INSERT,INSERT)			#delete single character or also delete [spc] (referring to above if)
 	elif len(item) > 1:
 		print "outputtting:", item
-		gv._txtBox.delete("%s-%ic" % (INSERT,gv._posInWrd),INSERT)
-		gv._txtBox.insert(INSERT,item)
-		gv._txtBox.insert(INSERT," ")
+		gv._txtBox.delete("%s-%ic" % (INSERT,gv._posInWrd),INSERT)	#delete prefix
+		gv._txtBox.insert(INSERT,item)					#replace prefix with whole word
+		gv._txtBox.insert(INSERT," ")					#insert [spc] after word
 	else:
 		gv._txtBox.insert(INSERT,item)
 	#gv._ngram = item
