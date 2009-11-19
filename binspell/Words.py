@@ -70,20 +70,7 @@ class Words:
 		top3 = []
 
 		if lastwrd != '' and lastwrd in self._bigrams.keys():		#full word already typed and its in dictionary
-			#print "last word typed:", lastwrd
-			#print "prefx: ", prefx
-			#print "-"*10
-			if prefx == '':					#full word just typed, but no new letter selected yet
-				matches = deepcopy(self._bigrams[lastwrd])
-			else:
-				print "in 1st else"
-				temp = self._bigrams[lastwrd]
-				for word in temp:
-					if word.startswith(prefx):
-						matches[word] = temp[word]
-				#print "matches:"
-				#self._print(matches)
-				print #
+
 				self._normalize(matches)
 
 
@@ -109,6 +96,29 @@ class Words:
 		#print "top3:"
 		#self._print(top3)
 		return top3
+
+
+
+
+	def _matchBgrams(self,prefx,lastwrd):
+		print "last word typed:", lastwrd
+		print "prefx: ", prefx
+		#print "-"*10
+		matchs = {}
+		nflag = 0						#signals whether or not to normalize
+		if prefx == '':						#full word just typed, but no new letter selected yet
+			matchs = deepcopy(self._bigrams[lastwrd])
+		else:
+			print "in 1st else"
+			temp = self._bigrams[lastwrd]
+			for word in temp:
+				if word.startswith(prefx):
+					matchs[word] = temp[word]
+			nflag = 1
+			print "matches:"
+			self._print(matchs)
+			print #
+		return matchs,nflag
 			
 
 
