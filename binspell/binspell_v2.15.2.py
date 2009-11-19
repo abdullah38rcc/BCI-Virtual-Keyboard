@@ -187,12 +187,14 @@ def draw_text(cntrx, cntry, h, w, symbolList):
 def saveState():
 	global gv, bg, stack
 	#stateObj = State(gv._box1, gv._box2, gv._currProbs, gv._hiProb, usrChoice)
-	#print "in save state"
+	print "in save state"
+	print "last prefix:", gv._prefix
+	print "gv._posInWrd",gv._posInWrd
 	#print "gv._ngram: ", gv._ngram
 	#print "box1"
 	#print "in saveState(): emissionProbs:"
 	#bg._print(bg._emissionProbs)
-	stateObj = State(gv._ngram, gv._currCondTable, gv._transitionProbs, gv._emissionProbs, gv._lastWordTyped, gv._prefix, gv._posInWrd)
+	stateObj = State(gv._ngram, gv._currCondTable, gv._transitionProbs, gv._emissionProbs, gv._lastWordTyped, gv._prefix, gv._posInWrd, gv._top3words)
 	stack._push(stateObj)
 
 
@@ -217,7 +219,11 @@ def return2PrevState():
 	gv._emissionProbs = deepcopy(gv._transitionProbs)
 	gv._lastWordTyped = stateObj._lastWord
 	gv._prefix = stateObj._prefix
-	gv._posinwrd = stateObj._posinwrd
+	gv._posInWrd = stateObj._posinwrd
+	gv._top3words = stateObj._top3
+
+	print "in return to prev state: pos in word:", gv._posInWrd
+	print #
 
 	if flag == 1:
 		gv._numTyped += len(gv._prefix)
@@ -225,10 +231,9 @@ def return2PrevState():
 			output(lett)
 
 	if gv._numTyped > 1:
-		wordProbs = wd._closestWords(gv._prefix,gv._lastWordTyped)		#guess words based on what's been typed
-		updateDist(wordProbs,gv._emissionProbs[gv._ngram])
+		updateDist(gv._top3words,gv._emissionProbs[gv._ngram])
 	
-	set_layout([],gv._transitionProbs[gv._ngram])
+	set_layout([],gv._emissionProbs[gv._ngram])
 
 	hiProb = getLrgstLeaf(gv._emissionProbs[gv._ngram])
 	gv._hiProb = hiProb[0]				####### HACK ########
@@ -249,7 +254,7 @@ def resetConsts(typed):
 		gv._posInWrd = 0
 		gv._obsOut.append('[SPC]')		#cuz [spc] automatically inserted after a full word
 		gv._ngram = typed[-1] + '[SPC]'		#reset bigram to last letter of last word typed + spc
-		gv._numTyped += len(typed)
+		gv._numTyped += (len(typed) - len(gv._prefix))
 		gv._currCondTable = tg._tgraph
 		gv._prefix = ''
 	else:			
@@ -276,8 +281,8 @@ def resetConsts(typed):
 	gv._transitionProbs = gv._currCondTable
 	gv._emissionProbs = deepcopy(gv._transitionProbs)
 
-	wordProbs = wd._closestWords(gv._prefix,gv._lastWordTyped)		#guess words based on what's been typed
-	updateDist(wordProbs,gv._emissionProbs[gv._ngram])
+	gv._top3words = wd._closestWords(gv._prefix,gv._lastWordTyped)		#guess words based on what's been typed
+	updateDist(gv._top3words,gv._emissionProbs[gv._ngram])
 
 	#print "in resetConsts"
 	#bg._print(gv._currCondTable)		#stub
@@ -468,13 +473,40 @@ def update(decision):
 #normalize emission probs so that they sum to 1 - word probs
 #args: dict of most likely words:probs, dict of emission probs of letters
 def updateDist(wrdProbs,eProbs):
+	print "in update dist"
 	wtot = sum(wrdProbs[key] for key in wrdProbs)		#sum of probs in top words dict
 	ltot = sum(eProbs[key] for key in eProbs)		#sum of probs in emission probs dict
+
+	if '[DEL]' in eProbs.keys():
+		reWeightDel(eProbs,len(wrdProbs),wtot+ltot)	#assign [del] avg of all probs
+		ltot = sum(eProbs[key] for key in eProbs)
+		#print "new eprobs[del]:", eProbs['[DEL]']
+		#print #
+
 	mplier = float(wtot)/float(ltot)
-	for key in eProbs:
+	for key in eProbs:					#normalize
 		eProbs[key] *= mplier
 	eProbs.update(wrdProbs)
+	print "new eprobs"
 	bg._print(eProbs)
+
+
+
+#assign [del] average of emiss probs and word probs
+#subtract n smallest values to make [del] weigh more, where n=number of previous deletes
+#args: emission probs,number of words,sum(emissionprobs + wordprobs)
+def reWeightDel(eprobs,numwrds,tot):
+	if gv._numDels > 0:					#if deletes were previously made, use number of deletes to reweigh
+		ordrEprobs = gv._sortByValue(eprobs)
+		for i in range(0,gv._numDels):
+			temp = ordrEprobs[-i]
+			tot -= temp[1]
+
+	num =  len(eprobs.keys())
+	eprobs['[DEL]'] = tot / (num + numwrds)			#assign [del] average of all values
+	#print "in reweight: eprobs[del]:", eprobs['[DEL]']
+
+	
 	
 
 
@@ -567,7 +599,7 @@ def output(item):
 	global gv
 	#global gv._canvas, gv._txtBox
 
-	##print "in output():"
+	print "in output(): pos in word: ", gv._posInWrd
 	#print item
 	#if False:
 	if item == "[SPC]":
@@ -723,16 +755,16 @@ def init(obs,emiss):
 #####################################################---------- hmm ---------################
 
 def updateEmiss(eProbs,chos):
-	print "in updateemiss: old eprobs:", gv._sortByValue(eProbs)
-	print #
+	#print "in updateemiss: old eprobs:", gv._sortByValue(eProbs)
+	#print #
 	for key in eProbs:
 		if key in chos:
 			eProbs[key] *= float(0.8)
 		else:
 			eProbs[key] *= float(0.2)
 	eProbs = bg._normalize(eProbs)
-	print "in updateemiss: new eprobs:", gv._sortByValue(eProbs)
-	print "-"*10
+	#print "in updateemiss: new eprobs:", gv._sortByValue(eProbs)
+	#print "-"*10
 	return eProbs
 	#return bg._normalize(eProbs)
 
@@ -888,17 +920,19 @@ def layoutHuff(hTree,box):
 
 # start with prior probs
 def default():
-	print "in default()"
+	#print "in default()"
 	global gv, bg
-	print gv._sortByValue(bg._prior)
-	print "-" * 20
+	#print gv._sortByValue(bg._prior)
+	#print "-" * 20
 	gv._currCondTable = bg._conditional1
 	gv._transitionProbs = gv._currCondTable
 	gv._emissionProbs = deepcopy(gv._transitionProbs)
-	hiProb = getLrgstLeaf(bg._prior)
+	gv._top3words = wd._closestWords(gv._prefix,gv._lastWordTyped)		#guess words based on what's been typed
+	updateDist(gv._top3words,gv._emissionProbs[gv._ngram])			#add words to emission probs
+	hiProb = getLrgstLeaf(gv._emissionProbs[gv._ngram])
 	gv._hiProb = hiProb[0]					####### HACK ########
 	#print "in default, hiprob:", hiProb
-	set_layout([],bg._prior)
+	set_layout([],gv._emissionProbs[gv._ngram])
 	saveState()
 	#print gv._emissionProbs[gv._ngram]
 	#print "box1:", gv._box1
@@ -1122,7 +1156,7 @@ tg = Trigraph()
 wd = Words()
 stack = Stack()
 
-canvHeight = 600
+canvHeight = 700
 canvWidth = 900
 gv._canHt = canvHeight
 gv._canWdth = canvWidth

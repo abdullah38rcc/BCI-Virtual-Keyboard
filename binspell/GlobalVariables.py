@@ -52,7 +52,7 @@ class GlobalVariables:
 		self._emissionProbs = {}
 
 		self._classAcc = float(0.8)		#classifier accuracy
-		self._threshold = float(0.90)	#threshold
+		self._threshold = float(0.90)		#threshold
 		self._diffThreshold = float(0.3)	#difference threshold
 		self._trialLen = 3			#trial length
 		#self._nxtProb = 0
@@ -63,6 +63,7 @@ class GlobalVariables:
 		self._ngram = '[SPC]'			#last letter ngram typed, assume start with a space, used for indexing into letter cond tables
 		self._lastWordTyped = ''
 		self._prefix = ''
+		self._top3words = {}			#top 3 words returned from word class based on what's been typed
 
 		self._symbolFreqList = [
 			(0.124167  , 'e'),
@@ -111,7 +112,7 @@ class GlobalVariables:
 
 
 	#args: unsorted dictionary
-	#returns list of dict items sorted from greatest to least
+	#returns list of dict items sorted from greatest to least : [(key,val),(key,val),etc]
 	def _sortByValue(self, unsrtdDict):
 		#print "dict:", unsrtdDict
 		#print ###
