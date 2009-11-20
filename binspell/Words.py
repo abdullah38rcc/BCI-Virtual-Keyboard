@@ -21,7 +21,7 @@ class Words:
 	def __init__(self):
 		self._unifname = "written-lexicon.txt"			#file containing word unigrams and their freqs
 		self._bifname = "wordBgrams.txt"			#file containing word bigrams and their freqs
-		#self._bifname = "testwords.txt"				#test file
+		#self._bifname = "testwords.txt"			#test file
 		self._bdictFile = "bgramPickle.txt"			#file containg pickled bigram dict
 		self._udictFile = "ugramPickle.txt"			#file containg pickled unigram dict
 		self._alphabet = []
@@ -163,14 +163,72 @@ class Words:
 	#reads in bigramfile and sends rows of data to be cleaned and added unigram dict
 	def _buildBiDict(self):
 		tgrams = csv.reader(open(self._bifname),delimiter=' ')
+
 		for row in tgrams:
 			#print row
-			self._cleanAddBi(row)
+			#self._cleanAddBi(row)
+			row = self._stripWhiteSpc(row)
+			row[0] = self._cleanWord(row[0])
+			if row[0] != '':
+				row[1] = self._cleanWord(row[1])
+				if row[1] != '':
+					self._addtoBgrams(row[0],row[1],float(row[2]))
+			
 		for key in self._bigrams:
 			self._normalize(self._bigrams[key])
 		fd = open(self._bdictFile,'w')
 		pickle.dump(self._bigrams,fd)
+		fd.close()
 		#self._print(self._bigrams)
+
+
+
+	#strip off extra whitespace
+	#args: list containing one row read in from file
+	#return: stripped row
+	def _stripWhiteSpc(self,row):
+		#print row
+		row[0] = row[0].strip(' ')
+		row[1] = row[1].strip(' ')
+		row[2] = row[2].strip(' ')
+		return row
+
+
+
+	#args: string containing a word and some junk chars
+	#returns: word string without junk, or ''
+	def _cleanWord(self,word):
+		if word[0].isdigit():
+			return ''
+		while word[0] not in self._alphabet:
+			#print "old word:",word
+			word = word.strip(word[0])
+			#print "new word:", word
+			#print #
+
+		while word[-1] not in self._alphabet:
+			#print "old word:",word
+			word = word.strip(word[-1])
+			#print "new word:", word
+			#print #
+		if len(word)==1 and word not in self._singleLettWrds:
+			#print word
+			return ''
+		return word
+
+
+
+	#add bigrams to bigram dict
+	#args: word bigram, float(frequency)
+	def _addtoBgrams(self,word1,word2,val):
+		temp = {word2:val}
+		if word1 in self._bigrams.keys():
+			#print "in if"
+			self._bigrams[word1].update(temp)
+		else:
+			#print "in else"
+			self._bigrams[word1] = temp
+
 
 
 

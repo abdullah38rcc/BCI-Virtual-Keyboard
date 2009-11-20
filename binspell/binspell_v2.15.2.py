@@ -319,22 +319,18 @@ def split(chosen,Nchosen):
 			return2PrevState()
 			return
 		else:									#output into text box
-			#print "outputting a letter"
 			saveState()
-			#condList = list((gv._currProbs[key],key) for key in gv._currProbs)
-			#printProbs(condList)
-			gv._currProbs = resetConsts(chosen[0])
-			viterbi(gv._obsOut)
+			#viterbi(gv._obsOut)
+			resetConsts(hiProb[0])
 			infoTransferRate()
 			chosen = []
 	else:
 		if gv._numSteps > 1:
 			gv._box2.remove('[BACK]')		#remove BACKSPACE cuz its not in prob tree
 		if chosen != []:
-			gv._currProbs = updateEmiss(chosen)
-			gv._currProbs = bg._normalize(gv._currProbs)
+			gv._emissionProbs[gv._ngram] = updateEmiss(gv._emissionProbs[gv._ngram], chosen)
 
-	hiProb = getLrgstLeaf(gv._currProbs)
+	hiProb = getLrgstLeaf(gv._emissionProbs[gv._ngram])
 	gv._hiProb = hiProb[0]					####### HACK ########
 	#print "in update: hiProb:", gv._hiProb
 	set_layout(chosen,gv._currProbs)
@@ -457,9 +453,9 @@ def update(decision):
 		chosen = gv._box2
 		Nchosen = gv._box1
 
-	#split(chosen,Nchosen)	#split symbols like binary search
-	#shuffle(chosen,Nchosen)	#shuffle symbols
-	shuffle_alternate(chosen,Nchosen)
+	split(chosen,Nchosen)			#split symbols like binary search
+	#shuffle(chosen,Nchosen)		#shuffle symbols
+	#shuffle_alternate(chosen,Nchosen)	#shuffle every 3rd step
 
 	updateCanvas(hilite,norm)
 
@@ -610,6 +606,8 @@ def output(item):
 		gv._txtBox.delete("%s-%ic" % (INSERT,gv._posInWrd),INSERT)	#delete prefix
 		gv._txtBox.insert(INSERT,item)					#replace prefix with whole word
 		gv._txtBox.insert(INSERT," ")					#insert [spc] after word
+	elif item == '[BACK]':							#for bin search version
+		return
 	else:
 		gv._txtBox.insert(INSERT,item)
 	#gv._ngram = item
@@ -840,8 +838,8 @@ def set_layout(symbs,probs):
 
 	#splitLayAlpha(symbs,probs)
 	#splitLaySrtd(symbs,probs)
-	#splitLayHuff(symbs,probs)
-	shuffleHuffLay(probs)
+	splitLayHuff(symbs,probs)
+	#shuffleHuffLay(probs)
 	#shuffleRndmLay(probs)
 
 	#print "box1: ", gv._box1
@@ -947,9 +945,9 @@ def splitLayHuff(symbs,probs):
 		gv._box1 = symbs
 	else:
 		if symbs != []:
-			condList = list((gv._currProbs[key],key) for key in gv._currProbs if key in symbs)
+			condList = list((gv._emissionProbs[gv._ngram][key],key) for key in gv._emissionProbs[gv._ngram] if key in symbs)
 		else:
-			condList = list((gv._currProbs[key],key) for key in gv._currProbs)
+			condList = list((gv._emissionProbs[gv._ngram][key],key) for key in gv._emissionProbs[gv._ngram])
 		#printProbs(condList)
 		if len(condList) > 1:
 			gv._huffTree = makeHuffTree(condList)
