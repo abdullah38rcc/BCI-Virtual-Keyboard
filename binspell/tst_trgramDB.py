@@ -10,6 +10,7 @@ from decimal import Decimal
 #from NGramDB import *
 from Trigraph import *
 from Bigraph import *
+from Words import *
 
 def cleanRow(row):
 	row[0] = row[0][0:-1]	#strip just the last xtra white-space off row[0]
@@ -143,4 +144,6 @@ if False:
 
 
 #bg = Bigraph()
-tg = Trigraph()
+#tg = Trigraph()
+wd = Words()
+#wd._closestWords("thi")

@@ -155,12 +155,12 @@ class Bigraph:
 	#returns dict of prior probs
 	def _getPrior(self):
 		prior = {}
-		print "in prior: joint1: "
-		self._print(self._joint1)
+		#print "in prior: joint1: "
+		#self._print(self._joint1)
 		for key in self._joint1:
 			prior[key] = sum(self._joint1[key][k] for k in self._joint1[key])
-		print "prior b4 normalize:"
-		self._print(prior)
+		#print "prior b4 normalize:"
+		#self._print(prior)
 		return self._normalize(prior)
 
 

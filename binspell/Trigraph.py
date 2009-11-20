@@ -9,9 +9,7 @@
 ##############CURRENTLY WORKING ON##########
 # 
 
-from operator import itemgetter
 import string
-from decimal import Decimal
 import csv
 
 class Trigraph:
