@@ -189,7 +189,7 @@ def saveState():
 	print "in save state"
 	#print "last prefix:", gv._prefix
 	#print "gv._posInWrd",gv._posInWrd
-	print "gv._ngram: ", gv._ngram
+	#print "gv._ngram: ", gv._ngram
 	#print "box1"
 	#print "in saveState(): emissionProbs:"
 	#bg._print(bg._emissionProbs)
@@ -229,10 +229,10 @@ def return2PrevState():
 		for lett in gv._prefix:					#replace letters user already typed out 
 			output(lett)
 
-	if gv._numTyped > 1:
-		updateDist(gv._top3words,gv._emissionProbs[gv._ngram])
+	#if gv._numTyped > 1:
+	updateDist(gv._top3words,gv._emissionProbs[gv._ngram])
 	
-	set_layout([],gv._emissionProbs[gv._ngram])
+	set_layout(gv._emissionProbs[gv._ngram].keys(),gv._emissionProbs[gv._ngram])
 
 	hiProb = getLrgstLeaf(gv._emissionProbs[gv._ngram])
 	gv._hiProb = hiProb[0]				####### HACK ########
@@ -249,40 +249,21 @@ def return2PrevState():
 #return to state b4 splits
 #for [back] fxn in split
 def return2CurrState():
-	global gv, bg
+	global gv
+
+	print "in return2CurrState"
+	print "top3:", gv._top3words
+	print #
 
 	gv._box1 = []
 	gv._box2 = []
-	flag = 0	#indicates whether or not gv._numTyped needs to be further modified
-
-	if gv._prefix == '' and gv._posInWrd == 0:				#whole word needs to be erased
-		gv._numTyped = gv._numTyped - len(gv._lastWordTyped)
-		flag = 1
-	else:
-		gv._numTyped -= 1
-
-	stateObj = stack._pop()
-	gv._ngram = stateObj._ngram
-	gv._currCondTable = stateObj._currCondTree
-	gv._transitionProbs = stateObj._currTrnsProbs
+	
 	gv._emissionProbs = deepcopy(gv._transitionProbs)
-	gv._lastWordTyped = stateObj._lastWord
-	gv._prefix = stateObj._prefix
-	gv._posInWrd = stateObj._posinwrd
-	gv._top3words = stateObj._top3
-
-	print "in return to prev state: pos in word:", gv._posInWrd
-	print #
-
-	if flag == 1:
-		gv._numTyped += len(gv._prefix)
-		for lett in gv._prefix:					#replace letters user already typed out 
-			output(lett)
 
 	if gv._numTyped > 1:
 		updateDist(gv._top3words,gv._emissionProbs[gv._ngram])
 	
-	set_layout([],gv._emissionProbs[gv._ngram])
+	set_layout(gv._emissionProbs[gv._ngram].keys(),gv._emissionProbs[gv._ngram])
 
 	hiProb = getLrgstLeaf(gv._emissionProbs[gv._ngram])
 	gv._hiProb = hiProb[0]				####### HACK ########
@@ -368,7 +349,7 @@ def split(chosen,Nchosen):
 			return
 		elif '[BACK]' in chosen[0]:
 			print "in split: in elif [back]: chosen: ", chosen[0]
-			return2PrevState()
+			return2CurrState()
 			return
 		else:									#output into text box
 			saveState()
@@ -534,6 +515,8 @@ def updateDist(wrdProbs,eProbs):
 	for key in eProbs:					#normalize
 		eProbs[key] *= mplier
 	eProbs.update(wrdProbs)
+	print "in update dist: symbols at end:", eProbs.keys()
+	print #
 	#print "new eprobs"
 	#bg._print(eProbs)
 
@@ -884,7 +867,7 @@ def getLrgstLeaf(tree):
 def set_layout(symbs,probs):
 	#print "in set_layout()"
 	#print "probs: ", probs
-	#print "in set layout:", symbs
+	print "in set layout:", symbs
 	print #
 	global gv
 	gv._box1 = []
@@ -993,7 +976,7 @@ def default():
 #let huffman encoding determine arrangement
 def splitLayHuff(symbs,probs):
 	#print "in splitLayHuff"
-	#print "in splitLayHuff: symbs: ", symbs
+	print "in splitLayHuff: symbs: ", symbs
 	if len(symbs) == 1:
 		#print "length 1"
 		gv._box1 = symbs
@@ -1016,6 +999,11 @@ def splitLayHuff(symbs,probs):
 	if gv._numSteps > 0:
 		#gv._box1.insert(-1,'[BACK]')
 		gv._box2.insert(-1,'[BACK]')
+	if gv._numTyped > 0 and '[DEL]' not in gv._box1 and '[DEL]' not in gv._box2:
+		gv._box2.insert(-1,'[DEL]')
+		#print "in splitlayhuff: in if: [del] in box1:", ('[DEL]' in gv._box1)
+		#print "box2:", gv._box2
+		#print #
 
 
 
@@ -1129,12 +1117,13 @@ def getKeyIn():
 		#simulate misclassification
 		err_var = random.random()		#returns number b/t 0-1
 		
-		#err_var = 1
-		#if err_var <= 0.2: 			#bad case
+		
 
-		bool = random.choice(errArr)
+		#bool = random.choice(errArr)
 		#bool = 1
-		if bool == 0:
+		#if bool == 0:
+		#err_var = 1
+		if err_var <= 0.2: 			#bad case
 			if decision == 1:
 				decision = 2
 			else:
