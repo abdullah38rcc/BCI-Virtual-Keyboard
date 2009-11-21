@@ -186,10 +186,10 @@ def draw_text(cntrx, cntry, h, w, symbolList):
 def saveState():
 	global gv, bg, stack
 	#stateObj = State(gv._box1, gv._box2, gv._currProbs, gv._hiProb, usrChoice)
-	#print "in save state"
+	print "in save state"
 	#print "last prefix:", gv._prefix
 	#print "gv._posInWrd",gv._posInWrd
-	#print "gv._ngram: ", gv._ngram
+	print "gv._ngram: ", gv._ngram
 	#print "box1"
 	#print "in saveState(): emissionProbs:"
 	#bg._print(bg._emissionProbs)
@@ -244,6 +244,57 @@ def return2PrevState():
 
 
 
+
+
+#return to state b4 splits
+#for [back] fxn in split
+def return2CurrState():
+	global gv, bg
+
+	gv._box1 = []
+	gv._box2 = []
+	flag = 0	#indicates whether or not gv._numTyped needs to be further modified
+
+	if gv._prefix == '' and gv._posInWrd == 0:				#whole word needs to be erased
+		gv._numTyped = gv._numTyped - len(gv._lastWordTyped)
+		flag = 1
+	else:
+		gv._numTyped -= 1
+
+	stateObj = stack._pop()
+	gv._ngram = stateObj._ngram
+	gv._currCondTable = stateObj._currCondTree
+	gv._transitionProbs = stateObj._currTrnsProbs
+	gv._emissionProbs = deepcopy(gv._transitionProbs)
+	gv._lastWordTyped = stateObj._lastWord
+	gv._prefix = stateObj._prefix
+	gv._posInWrd = stateObj._posinwrd
+	gv._top3words = stateObj._top3
+
+	print "in return to prev state: pos in word:", gv._posInWrd
+	print #
+
+	if flag == 1:
+		gv._numTyped += len(gv._prefix)
+		for lett in gv._prefix:					#replace letters user already typed out 
+			output(lett)
+
+	if gv._numTyped > 1:
+		updateDist(gv._top3words,gv._emissionProbs[gv._ngram])
+	
+	set_layout([],gv._emissionProbs[gv._ngram])
+
+	hiProb = getLrgstLeaf(gv._emissionProbs[gv._ngram])
+	gv._hiProb = hiProb[0]				####### HACK ########
+
+	hilite = "box1"
+	norm = "box2"
+
+	updateCanvas(hilite,norm)	#process all events in event queue
+
+
+
+
 #reset global constants
 def resetConsts(typed):
 	global gv, bg
@@ -258,6 +309,7 @@ def resetConsts(typed):
 		gv._prefix = ''
 	else:			
 		gv._numTyped += 1
+		print "in reset consts: gv._numTyped:", gv._numTyped
 		
 		if typed == '[SPC]':			#word spelled out by user
 			gv._lastWordTyped = gv._prefix
@@ -320,8 +372,9 @@ def split(chosen,Nchosen):
 			return
 		else:									#output into text box
 			saveState()
+			gv._obsOut.append(chosen[0])
 			#viterbi(gv._obsOut)
-			resetConsts(hiProb[0])
+			resetConsts(chosen[0])
 			infoTransferRate()
 			chosen = []
 	else:
@@ -601,13 +654,14 @@ def output(item):
 			l = len(gv._lastWordTyped)				
 			gv._txtBox.delete("%s-%ic" % (INSERT,l),INSERT)
 		gv._txtBox.delete("%s-1c" % INSERT,INSERT)			#delete single character or also delete [spc] (referring to above if)
+	elif '[BACK]' in item:							#for bin search version
+		return
 	elif len(item) > 1:
-		print "outputtting:", item
+		print "outputing:", item
 		gv._txtBox.delete("%s-%ic" % (INSERT,gv._posInWrd),INSERT)	#delete prefix
 		gv._txtBox.insert(INSERT,item)					#replace prefix with whole word
 		gv._txtBox.insert(INSERT," ")					#insert [spc] after word
-	elif item == '[BACK]':							#for bin search version
-		return
+
 	else:
 		gv._txtBox.insert(INSERT,item)
 	#gv._ngram = item
