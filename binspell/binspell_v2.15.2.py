@@ -186,7 +186,7 @@ def draw_text(cntrx, cntry, h, w, symbolList):
 def saveState():
 	global gv, bg, stack
 	#stateObj = State(gv._box1, gv._box2, gv._currProbs, gv._hiProb, usrChoice)
-	#print "in save state"
+	print "in save state"
 	#print "last prefix:", gv._prefix
 	#print "gv._posInWrd",gv._posInWrd
 	#print "gv._ngram: ", gv._ngram
@@ -229,10 +229,10 @@ def return2PrevState():
 		for lett in gv._prefix:					#replace letters user already typed out 
 			output(lett)
 
-	if gv._numTyped > 1:
-		updateDist(gv._top3words,gv._emissionProbs[gv._ngram])
+	#if gv._numTyped > 1:
+	updateDist(gv._top3words,gv._emissionProbs[gv._ngram])
 	
-	set_layout([],gv._emissionProbs[gv._ngram])
+	set_layout(gv._emissionProbs[gv._ngram].keys(),gv._emissionProbs[gv._ngram])
 
 	hiProb = getLrgstLeaf(gv._emissionProbs[gv._ngram])
 	gv._hiProb = hiProb[0]				####### HACK ########
@@ -241,6 +241,38 @@ def return2PrevState():
 	norm = "box2"
 
 	updateCanvas(hilite,norm)	#process all events in event queue
+
+
+
+
+
+#return to state b4 splits
+#for [back] fxn in split
+def return2CurrState():
+	global gv
+
+	print "in return2CurrState"
+	print "top3:", gv._top3words
+	print #
+
+	gv._box1 = []
+	gv._box2 = []
+	
+	gv._emissionProbs = deepcopy(gv._transitionProbs)
+
+	if gv._numTyped > 1:
+		updateDist(gv._top3words,gv._emissionProbs[gv._ngram])
+	
+	set_layout(gv._emissionProbs[gv._ngram].keys(),gv._emissionProbs[gv._ngram])
+
+	hiProb = getLrgstLeaf(gv._emissionProbs[gv._ngram])
+	gv._hiProb = hiProb[0]				####### HACK ########
+
+	hilite = "box1"
+	norm = "box2"
+
+	updateCanvas(hilite,norm)	#process all events in event queue
+
 
 
 
@@ -258,6 +290,7 @@ def resetConsts(typed):
 		gv._prefix = ''
 	else:			
 		gv._numTyped += 1
+		print "in reset consts: gv._numTyped:", gv._numTyped
 		
 		if typed == '[SPC]':			#word spelled out by user
 			gv._lastWordTyped = gv._prefix
@@ -316,25 +349,22 @@ def split(chosen,Nchosen):
 			return
 		elif '[BACK]' in chosen[0]:
 			print "in split: in elif [back]: chosen: ", chosen[0]
-			return2PrevState()
+			return2CurrState()
 			return
 		else:									#output into text box
-			#print "outputting a letter"
 			saveState()
-			#condList = list((gv._currProbs[key],key) for key in gv._currProbs)
-			#printProbs(condList)
-			gv._currProbs = resetConsts(chosen[0])
-			viterbi(gv._obsOut)
+			gv._obsOut.append(chosen[0])
+			#viterbi(gv._obsOut)
+			resetConsts(chosen[0])
 			infoTransferRate()
 			chosen = []
 	else:
 		if gv._numSteps > 1:
 			gv._box2.remove('[BACK]')		#remove BACKSPACE cuz its not in prob tree
 		if chosen != []:
-			gv._currProbs = updateEmiss(chosen)
-			gv._currProbs = bg._normalize(gv._currProbs)
+			gv._emissionProbs[gv._ngram] = updateEmiss(gv._emissionProbs[gv._ngram], chosen)
 
-	hiProb = getLrgstLeaf(gv._currProbs)
+	hiProb = getLrgstLeaf(gv._emissionProbs[gv._ngram])
 	gv._hiProb = hiProb[0]					####### HACK ########
 	#print "in update: hiProb:", gv._hiProb
 	set_layout(chosen,gv._currProbs)
@@ -389,49 +419,47 @@ def shuffle(chosen,Nchosen):
 			#print gv._sortByValue(gv._emissionProbs[gv._ngram])
 			#print "-" * 10 
 
-
-
 	set_layout(chosen,gv._emissionProbs[gv._ngram])
 
 
 
+
+#exactly like shuffle except symbols are shuffled every 3 times instead of every time
 def shuffle_alternate(chosen,Nchosen):
 	global gv
 
-	if False:
-		if gv._numTyped > 0:					#sumthin already typed so check for delete
-			gv._box2.remove('[DEL]')		#remove delete
+	gv._emissionProbs[gv._ngram] = updateEmiss(gv._emissionProbs[gv._ngram], chosen)
+	#print "in shuffle: gv._ngram:", gv._ngram
+	#print gv._sortByValue(gv._emissionProbs[gv._ngram])
+	#print "-" * 10 
 
-	gv._currProbs = updateEmiss(chosen,Nchosen,gv._currProbs)
-	gv._currProbs = bg._normalize(gv._currProbs)
-	#compareProbs()				#difference between largest and smallest prob
-	hiProb = getLrgstLeaf(gv._currProbs)
+	hiProb = getLrgstLeaf(gv._emissionProbs[gv._ngram])
 	hiProb = hiProb[0]					####### HACK ########
 	gv._hiProb = hiProb
-	#print "in shuffle: hiProb: ", hiProb
-	#if singleSymbInBx(chosen):
-		#print "eureka!"
-	#if hiProb[1] > gv._threshold or singleSymbInBx(chosen) and hiProb[0] in chosen:			#output a symbol
-	if hiProb[1] > gv._threshold:
-		#condList = list((gv._currProbs[key],key) for key in gv._currProbs)
-		#printProbs(condList)
+
+
+	if hiProb[1] > gv._threshold:			#output a symbol
 		output(hiProb[0])
-		if '[DEL]' in chosen[0]:
+		gv._obsOut.append(hiProb[0])
+		#print "in shuffle: obsout:", gv._obsOut
+		#print #
+		if '[DEL]' in hiProb[0]:
 			#print "deleting"
-			gv._numTyped = gv._numTyped - 1
+			#print "in shuffle: ", chosen[0]
+			#print "numDels in shuffle: ", gv._numDels
 			gv._numDels += 1
-			print "numDels in shuffle: ", gv._numDels
 			return2PrevState()
 			return
 		else:
-			viterbi(gv._obsOut)
-			gv._currProbs = resetConsts(hiProb[0])
+			gv._numB4Shuffle = 3			#so that set_layout is called below
 			saveState()
-			set_layout(chosen,gv._currProbs)
+			#viterbi(gv._obsOut)
+			resetConsts(hiProb[0])
 			infoTransferRate()
-						
+
+
 	if gv._numB4Shuffle == 3:
-		set_layout(chosen,gv._currProbs)
+		set_layout(chosen,gv._emissionProbs[gv._ngram])
 		gv._numB4Shuffle = 0
 	else:
 		gv._numB4Shuffle += 1
@@ -459,9 +487,9 @@ def update(decision):
 		chosen = gv._box2
 		Nchosen = gv._box1
 
-	#split(chosen,Nchosen)	#split symbols like binary search
-	shuffle(chosen,Nchosen)	#shuffle symbols
-	#shuffle_alternate(chosen,Nchosen)
+	split(chosen,Nchosen)			#split symbols like binary search
+	#shuffle(chosen,Nchosen)		#shuffle symbols
+	#shuffle_alternate(chosen,Nchosen)	#shuffle every 3rd step
 
 	updateCanvas(hilite,norm)
 
@@ -487,6 +515,8 @@ def updateDist(wrdProbs,eProbs):
 	for key in eProbs:					#normalize
 		eProbs[key] *= mplier
 	eProbs.update(wrdProbs)
+	print "in update dist: symbols at end:", eProbs.keys()
+	print #
 	#print "new eprobs"
 	#bg._print(eProbs)
 
@@ -508,13 +538,11 @@ def reWeightDel(eprobs,numwrds,tot):
 
 	
 	
-
-
 #returns: string containing last 2 letters output
 def getBgram():
 	global gv
 	temp = gv._obsOut[-2:]
-	print "in getBgram: temp:", temp
+	#print "in getBgram: temp:", temp
 	return temp[0]+temp[1]
 
 
@@ -599,7 +627,7 @@ def output(item):
 	global gv
 	#global gv._canvas, gv._txtBox
 
-	print "in output(): pos in word: ", gv._posInWrd
+	#print "in output(): pos in word: ", gv._posInWrd
 	#print item
 	#if False:
 	if item == "[SPC]":
@@ -609,11 +637,14 @@ def output(item):
 			l = len(gv._lastWordTyped)				
 			gv._txtBox.delete("%s-%ic" % (INSERT,l),INSERT)
 		gv._txtBox.delete("%s-1c" % INSERT,INSERT)			#delete single character or also delete [spc] (referring to above if)
+	elif '[BACK]' in item:							#for bin search version
+		return
 	elif len(item) > 1:
-		print "outputtting:", item
+		print "outputing:", item
 		gv._txtBox.delete("%s-%ic" % (INSERT,gv._posInWrd),INSERT)	#delete prefix
 		gv._txtBox.insert(INSERT,item)					#replace prefix with whole word
 		gv._txtBox.insert(INSERT," ")					#insert [spc] after word
+
 	else:
 		gv._txtBox.insert(INSERT,item)
 	#gv._ngram = item
@@ -836,7 +867,7 @@ def getLrgstLeaf(tree):
 def set_layout(symbs,probs):
 	#print "in set_layout()"
 	#print "probs: ", probs
-	#print "in set layout:", symbs
+	print "in set layout:", symbs
 	print #
 	global gv
 	gv._box1 = []
@@ -844,9 +875,9 @@ def set_layout(symbs,probs):
 
 	#splitLayAlpha(symbs,probs)
 	#splitLaySrtd(symbs,probs)
-	#splitLayHuff(symbs,probs)
-	shuffleHuffLay(probs)
-	#~ shuffleRndmLay(probs)
+	splitLayHuff(symbs,probs)
+	#shuffleHuffLay(probs)
+	#shuffleRndmLay(probs)
 
 	#print "box1: ", gv._box1
 	gv._box1.sort()
@@ -945,15 +976,15 @@ def default():
 #let huffman encoding determine arrangement
 def splitLayHuff(symbs,probs):
 	#print "in splitLayHuff"
-	#print "in splitLayHuff: symbs: ", symbs
+	print "in splitLayHuff: symbs: ", symbs
 	if len(symbs) == 1:
 		#print "length 1"
 		gv._box1 = symbs
 	else:
 		if symbs != []:
-			condList = list((gv._currProbs[key],key) for key in gv._currProbs if key in symbs)
+			condList = list((gv._emissionProbs[gv._ngram][key],key) for key in gv._emissionProbs[gv._ngram] if key in symbs)
 		else:
-			condList = list((gv._currProbs[key],key) for key in gv._currProbs)
+			condList = list((gv._emissionProbs[gv._ngram][key],key) for key in gv._emissionProbs[gv._ngram])
 		#printProbs(condList)
 		if len(condList) > 1:
 			gv._huffTree = makeHuffTree(condList)
@@ -968,6 +999,11 @@ def splitLayHuff(symbs,probs):
 	if gv._numSteps > 0:
 		#gv._box1.insert(-1,'[BACK]')
 		gv._box2.insert(-1,'[BACK]')
+	if gv._numTyped > 0 and '[DEL]' not in gv._box1 and '[DEL]' not in gv._box2:
+		gv._box2.insert(-1,'[DEL]')
+		#print "in splitlayhuff: in if: [del] in box1:", ('[DEL]' in gv._box1)
+		#print "box2:", gv._box2
+		#print #
 
 
 
@@ -1081,12 +1117,13 @@ def getKeyIn():
 		#simulate misclassification
 		err_var = random.random()		#returns number b/t 0-1
 		
-		#err_var = 1
-		#if err_var <= 0.2: 			#bad case
+		
 
-		bool = random.choice(errArr)
+		#bool = random.choice(errArr)
 		#bool = 1
-		if bool == 0:
+		#if bool == 0:
+		#err_var = 1
+		if err_var <= 0.2: 			#bad case
 			if decision == 1:
 				decision = 2
 			else:
@@ -1150,20 +1187,22 @@ def start():
 ##################################-------------------main---------------########
 
 root = Tk()
+root.config(width=300,height=500)
 gv = GlobalVariables()
 bg = Bigraph()
 tg = Trigraph()
 wd = Words()
 stack = Stack()
 
-canvHeight = 700
-canvWidth = 900
+canvHeight = 600
+canvWidth = 1200
 gv._canHt = canvHeight
 gv._canWdth = canvWidth
-txtBxWidth = canvWidth / 20
+txtBxWidth = canvWidth / 26
 txtBxHeight = 1
 
 gv._canvas = Canvas(root,height=canvHeight,width=canvWidth,bg='yellow')
+gv._canvas.create_window(100,100)
 gv._canvas.grid(row=2,column=1)
 
 #why doesn't tag work?
