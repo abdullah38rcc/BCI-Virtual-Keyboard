@@ -1,0 +1,19 @@
+both txt files are the results of scans of large bodies of written text.  i'm using them as dictionaries for an implementation of a virtual keyboard (my master's project)
+
+the first document is "written-lexicon.txt", is a list of words and the number of times those words were counted in the scanned texts.  some of the entries and their associated counts, need to be removed.  these include:
+	non-words, or part-of-words
+	hyphenated words
+	2 words seperated by punctuation
+if you find whole words containing punctuation, please just remove the punctuation.
+
+the 2nd doc is "wordBgrams.txt", and is a list of word bigrams and their associated counts.  entries to be removed:
+	entries starting with numbers
+	entries containing non-words
+	entries that seem grammatically incorrect (like "a the" or "the the")
+	entries with names
+again please remove any punctuation in entries that do make sense
+
+you can save both files under their original names.
+
+thanks so much!
+xoxoxo!

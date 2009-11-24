@@ -1,0 +1,2265 @@
+Group Communication in Partitionable Systems: Speciﬁcation and Algorithms
+
+¨ Ozalp Babaoglu ˘
+
+Renzo Davoli
+
+Alberto Montresor
+
+Technical Report UBLCS-98-01 April 1998 (Revised October 1999)
+
+Department of Computer Science University of Bologna Mura Anteo Zamboni 7 40127 Bologna (Italy)
+
+The University of Bologna Department of Computer Science Research Technical Reports are available in gzipped PostScript format via anonymous FTP from the area ftp.cs.unibo.it:/pub/TR/UBLCS or via WWW at URL http://www.cs.unibo.it/. Plain-text abstracts organized by year are available in the directory ABSTRACTS. All local authors can be reached via e-mail at the address last-name@cs.unibo.it. Questions and comments should be addressed to tr-admin@cs.unibo.it.
+
+Recent Titles from the UBLCS Technical Report Series
+99-21 Real-Time Trafﬁc Transmission Over the Internet, Furini, M., Towsley, D., November 1999. 99-22 On the Expressiveness of Event Notiﬁcation in Data-Driven Coordination Languages, Busi, N., Zavattaro, G., December 1999. 2000-1 Compositional Asymmetric Cooperations for Process Algebras with Probabilities, Priorities, and Time, Bravetti, M., Bernardo, M., January 2000 (Revised February 2000). 2000-2 Compact Net Semantics for Process Algebras, Bernardo, M., Busi, N., Ribaudo, M., March 2000 (Revised December 2000). 2000-3 An Asynchronous Calculus for Generative-Reactive Probabilistic Systems, Aldini, A., Bravetti, M., May 2000 (Revised September 2000). 2000-4 On Securing Real-Time Speech Transmission over the Internet, Aldini, Bragadini, Gorrieri, Roccetti, May 2000. 2000-5 On the Expressiveness of Distributed Leasing in Linda-like Coordination Languages, Busi, N., Gorrieri, R., Zavattaro, G., May 2000. 2000-6 A Type System for JVM Threads, Bigliardi, G., Laneve, C., June 2000. 2000-7 Client-centered Load Distribution: a Mechanism for Constructing Responsive Web Services, Ghini, V., Panzieri, F., Roccetti, M., June 2000. 2000-8 Design and Analysis of RT-Ring: a Protocol for Supporting Real-time Communications, Conti, M., Donatiello, L., Furini, M., June 2000. 2000-9 Performance Evaluation of Data Locality Exploitation (PhD Thesis), D’Alberto, P., July 2000. 2000-10 System Support for Programming Object-Oriented Dependable Applications in Partitionable Systems (PhD Thesis), Montresor, A., July 2000. 2000-11 Coordination: An Enabling Technology for the Internet (PhD Thesis), Rossi, D., July 2000. 2000-12 Coordination Models and Languages: Semantics and Expressiveness (PhD Thesis), Zavattaro, G., July 2000. 2000-13 Jgroup Tutorial and Programmer’s Manual, Montresor, A., October 2000. 2000-14 A Declarative Language for Parallel Programming, Gaspari, M., October 2000. 2000-15 An Adaptive Mechanism for Securing Real-time Speech Transmission over the Internet, Aldini, A., Gorrieri, R., Roccetti, M., November 2000. 2000-16 Enhancing Jini with Group Communication, Montresor, A., Babaoglu, O., Davoli, R., December 2000 (Revised January 2001). 2000-17 Online Reconﬁguration in Replicated Databases Based on Group Communication, Bartoli, A., Kemme, B. Babaoglu, O., December 2000. 2001-1 Design and Analysis of Protocols and Resources Allocation Mechanisms for Real-Time Applications (Ph.D. Thesis), Furini, M., January 2001. 2001-2 Formalization, Analysis and Prototyping of Mobile Code Systems (Ph.D. Thesis), Mascolo, C., Janaury 2001. 2001-3 Nature-Inspired Search Techniques for Combinatorial Optimization Problems (Ph.D. Thesis), Rossi, C., Janaury 2001. 2001-4 Desktop 3d Interfaces for Internet Users: Efﬁciency and Usability Issues (Ph.D. Thesis), Pittarello, F., January 2001. 2001-5 An Expert System for the Evaluation of EDSS in Multiple Sclerosis, Gaspari, M., Roveda, G., Scandellari, C., Stecchi, S., February 2001.
+
+Group Communication in Partitionable Systems: Speciﬁcation and Algorithms½
+¨ Ozalp Babaoglu ¾ ˘ Renzo Davoli ¾ Alberto Montresor ¾
+
+Technical Report UBLCS-98-01 April 1998 (Revised October 1999)
+Abstract We give a formal speciﬁcation and an implementation for a partitionable group communication service in asynchronous distributed systems. Our speciﬁcation is motivated by the requirements for building “partition-aware” applications that can continue operating without blocking in multiple concurrent partitions and reconﬁgure themselves dynamically when partitions merge. The speciﬁed service guarantees liveness and excludes trivial solutions; it constitutes a useful basis for building realistic partition-aware applications; and it is implementable in practical asynchronous distributed systems where certain stability conditions hold. Keywords: Group communication, view synchrony, partition awareness, asynchronous systems, fault tolerance.
+
+c ½. ­ 2001 IEEE. Personal use of this material is permitted. However, permission to reprint/republish this material for advertising or promotional purposes or for creating new collective works for resale or redistribution to servers or lists, or to reuse any copyrighted component of this work in other works must be obtained from IEEE. ¾. Department of Computer Science, University of Bologna, Mura Anteo Zamboni 7, I-40127 Bologna (Italy), Tel: +39 051 2094504, Fax: +39 051 2094510, Email: babaoglu,davoli,montresor @CS.UniBO.IT
+
+1
+
+1
+
+Introduction
+
+Functional requirements, which deﬁne how output values are related to input values, are usually sufﬁcient for specifying traditional applications. For modern network applications, however, non-functional requirements can be just as important as their functional counterparts: the services that these applications provide must not only be correct with respect to input-output relations, they must also be delivered with acceptable “quality” levels. Reliability, timeliness and conﬁgurability are examples of non-functional requirements that are of particular interest to network applications. A correct application satisﬁes its functional requirements in all possible operating environments: it just may take more or less time to do so depending on the characteristics of the environment. On the other hand, there may be operating environments in which it is impossible to achieve non-functional properties beyond certain levels. For this reason, non-functional requirements of network applications deﬁne acceptable quality intervals rather than exact values. In order to deliver quality levels that are both feasible and acceptable, network applications need to be environment aware such that they can dynamically modify their behavior depending on the properties of their operating environment. By their nature, network applications for mobile computing, data sharing or collaborative work involve cooperation among multiple sites. For these applications, which are characterized by reliability and conﬁgurability requirements, possible partitionings of the communication network is an extremely important aspect of the environment. In addition to accidental partitionings caused by failures, mobile computing systems typically support “disconnected operation” which is nothing more than a voluntary partitioning caused by deliberately unplugging units from the network. The nature of a partitioning will determine the quality for the application in terms of which of its services are available where, and at what performance levels. In other words, partitionings may result in service reduction or service degradation but need not necessarily render application services completely unavailable. Informally, we deﬁne the class of partition-aware applications as those that are able to make progress in multiple concurrent partitions without blocking. Service reduction and degradation depend heavily on the application semantics; establishing them for arbitrary applications is beyond the scope of this paper. For certain application classes with strong consistency requirements, it may be the case that all services have to be suspended completely in all but one partition. This situation corresponds to the so-called primary-partition model [31, 21] that has traditionally characterized partitioned operation of network applications. In this paper we focus on the speciﬁcation and implementation of system services for supporting partition awareness such that continued operation of network applications is not restricted to a single partition but may span multiple concurrent partitions. Our goal is for the system to provide only the necessary mechanisms without imposing any policies that govern partitioned operation. In this manner, each application itself can decide which of its services will be available in each partition and at what quality levels. Our methodology for partition-aware application development is based on the process group paradigm [21, 7] suitably extended to partitionable systems. In this methodology, processes that cooperate in order to implement a given network application join a named group as members. All events that are relevant for partition awareness (process crashes and recoveries, network partitionings and merges) are uniﬁed in a single abstraction: the group’s current membership. At each process, a partitionable group membership service installs views that correspond to the process’s local perception of the group’s current membership. Partition-aware applications are programmed so as to reconﬁgure themselves and adjust their behavior based on the composition of installed views. In a partitionable system, a group membership service has to guarantee that processes within the same partition install identical views and that their composition corresponds to the partition itself. Otherwise, inconsistencies may compromise functional correctness or may result in quality levels that are lower than what is feasible. Specifying properties for fault-tolerant distributed services in asynchronous systems requires a delicate balance between two conﬂicting goals. The speciﬁcation must be strong enough to
+UBLCS-98-01
+
+2
+
+exclude degenerate or trivial solutions, yet it must be weak enough to be implementable [3]. Formal speciﬁcation of a partitionable group membership service in an asynchronous system has proven to be elusive and numerous prior attempts have been unsatisfactory [28, 1, 13, 14, 15, 16, 5, 32]. Anceaume et al. discuss at length the shortcomings of previous attempts [3]. In summary, existing speciﬁcations admit solutions that suffer from one or all of the following problems: (i) they are informal or ambiguous [32, 5, 15], (ii) they cease to install new views even in cases where the group membership continues to change [16], (iii) they capriciously split the group into several concurrent views, possibly down to singleton sets [28, 1, 13, 14, 16], (iv) they capriciously install views without any justiﬁcation from the operating environment [13, 14]. The lack of a satisfactory formal speciﬁcation also makes it impossible to argue the correctness of various partitionable group membership service implementations that have been proposed. In this paper, we give a formal speciﬁcation for partitionable group membership services that has the following desirable properties: (i) it does not suffer from any of the problems that have been observed for previous solutions, (ii) it is implementable in asynchronous distributed systems that exhibit certain stability conditions which we formally characterize, (iii) it is useful in that it constitutes the basis for system abstractions that can signiﬁcantly simplify the task of developing realistic partition-aware applications. To “prove” the usefulness of a collection of new system abstractions, one would need to program the same set of applications twice: once using the proposed abstractions and a second time without them, and compare their relative difﬁculty and complexity. In another paper, we have pursued this exercise by programming a set of practical partition-aware applications on top of a group communication service based on our group membership speciﬁcation extended with a reliable multicast service with view synchrony semantics [6]. For this reason, the current paper is limited to the speciﬁcation of these services and their implementability. The rest of the paper is organized as follows. In the next Section, we introduce the system model and deﬁne basic properties of communication in the presence of partitions. In Section 3 we give a formal speciﬁcation for partitionable group membership services that guarantees liveness and excludes useless solutions. In Section 4 we extend the failure detector abstraction of Chandra and Toueg [10] to partitionable systems and show how it can be implemented in practical asynchronous systems where certain stability conditions hold. In Section 5 we prove that our speciﬁcation is implementable on top of an unreliable datagram communication service in systems that admit failure detectors. In Section 6 we brieﬂy illustrate how our partitionable group membership service may be extended to a group communication service based on view synchrony. Section 7 relates our speciﬁcation to numerous other proposals for group communication and Section 8 concludes the work.
+
+2
+
+System Model
+
+We adopt notation and terminology similar to that of Chandra and Toueg [10]. The system comprises a set of processes that can communicate by exchanging messages through a network. Processes are associated unique names that they maintain throughout their life. The communication network implements channels connecting pairs of processes and the primitives send and recv for sending and receiving messages over them. The system is asynchronous in the sense that neither communication delays nor relative process speeds can be bounded. Practical distributed systems often have to be considered as being asynchronous since transient failures, unknown scheduling strategies and variable loads on the computing and communication resources make it impossible to bound delays. To simplify the presentation, we make reference to a discrete global clock whose ticks coincide with the natural numbers in some unbounded range Ì . This simpliﬁcation is not in conﬂict with the asynchrony assumption since processes are never allowed to access the global clock.
+
+¥
+
+´µ
+
+´µ
+
+UBLCS-98-01
+
+3
+
+2.1 Global Histories The execution of a distributed program results in each process performing an event (possibly null), chosen from a set Ë , at each clock tick. Set Ë includes at least the events send and recv corresponding to their respective communication primitives. In Section 3 we extend this set with other events related to group membership. The global history of an execution is a function from ¢ Ì to Ë ¯ , where ¯ denotes the null event. If process Ô executes an event ¾ Ë at time Ø, then Ô Ø . Otherwise, Ô Ø ¯ indicating that process Ô performs no event at time Ø. Given some interval Á of Ì , we write ¾ Ô Á if Ô executes event sometime during interval Á of global history (i.e, Ø ¾ Á Ô Ø ).
+
+´µ
+
+´µ
+
+¥
+
+´ µ
+
+´ µ ´ µ
+
+´ µ
+
+2.2
+
+Communication Model
+
+In the absence of failures, the network is logically connected and each process can communicate with every other process. A process Ô sends a message Ñ to a process Õ by executing send Ñ Õ , and receives a message Ñ that has been sent to it by executing recv Ñ . Communication is unreliable (as described below) and sequencing among multiple messages sent to the same destination need not be preserved (i.e., channels are not FIFO). Without loss of generality, we assume that (i) all messages sent are globally unique, and (ii) a message is received only if it has been previously sent. Note that this communication model is extremely faithful to practical distributed systems built on top of typical unreliable datagram transport services such as IP and UDP.
+
+´ µ
+
+´
+
+µ
+
+2.3
+
+Failure Model
+
+Processes may fail by crashing whereby they halt prematurely. For simplicity, we do not consider process recovery after a crash. The evolution of process failures during an execution is captured through the crash pattern function from Ì to ¥ where Ø denotes the set of processes that have crashed by time Ø. Since crashed processes do not recover, we have Ø Ø . With Ô Ø Ô¾ Ø we denote those processes that never crash, and thus, are correct Correct in . A variety of events, including link crashes, buffer overﬂows, incorrect or inconsistent routing tables, may disable communication between processes. We refer to them generically as communication failures. Unlike process crashes, which are permanent, communication failures may be temporary due to subsequent repairs. The evolution of communication failures and repairs during an execution is captured through the unreachability pattern function Í from ¢Ì to ¥ where Í Ô Ø denotes the set of processes with which Ô cannot communicate at time Ø. If Õ ¾ Í Ô Ø , we say that process Õ is unreachable from Ô at time Ø, and write Ô Ø Õ as a shorthand; otherwise we say that process Õ is reachable from Ô at time Ø, and write Ô Ø Õ . As noted above, communication failures are not necessarily permanent but may appear and disappear dynamically. This is may differ arbitrarily. reﬂected by the fact that the sets Í Ô Ø and Í Ô Ø Note that the unreachability pattern is an abstract characterization of the communication state of a system, just as the crash pattern is an abstract characterization of its computational state. Only an omnipotent external observer can construct the unreachability and crash patterns that occur during an execution and neither can be inferred from within an asynchronous system. Nevertheless, they are useful in stating desired properties for a group membership service. Any implementation of the speciﬁed service in an asynchronous system will have to be based on approximations of unreachability and crashes provided by failure detectors [10] as we discuss in Section 4. Reachable/unreachable are attributes of individual communication channels (identiﬁed as ordered process pairs), just as correct/crashed are attributes of individual processes. In the rest of the paper, we also refer to communication failure scenarios called partitionings that involve multiple sets of processes. A partitioning disables communication among different partitions, each containing a set of processes. Processes within a given partition can communicate among themselves, but cannot communicate with processes outside the partition. When communication between several partitions is reestablished, we say that they merge.
+
+¾
+
+´µ
+
+´ µ
+
+´µ
+
+´µ
+
+´ · ½µ
+
+´ µ
+
+¥
+
+¾ ´ µ
+
+´ µ
+
+´ · ½µ
+
+UBLCS-98-01
+
+4
+
+Process and communication failures that occur during an execution are not totally independent, but must satisfy certain constraints that are captured through the notion of a failure history: Í , where is a crash pattern and Í Deﬁnition 2.1 (Failure History)A failure history is a pair is an unreachability pattern, such that (i) a process that has crashed by time Ø is unreachable from every other process at time Ø, and (ii) a process that has not crashed by time Ø is reachable from itself at time Ø. Formally,¿
+
+´
+
+µ
+
+´µ ´ µ
+
+Ô
+
+¾ ´Øµ µ Ô ¾ ´Øµ µ
+
+Õ Ô
+
+ØÔ ØÔ
+
+By deﬁnition, the unreachability pattern subsumes the crash pattern in every failure history. We nevertheless choose to model crash and unreachability patterns separately so that speciﬁcations can be made in terms of properties that need to hold for correct processes only. Finally, we need to relate crash and unreachability patterns to the events of the execution itself. In other words, we need to formalize notions such as “crashed processes halt prematurely” and “unreachable processes cannot communicate directly”. We do this by requiring that the global and failure histories of the same execution conform to constraints deﬁning a run. Deﬁnition 2.2 (Run)A run Ê is a pair , where is a global history and Í is the corresponding failure history, such that (i) a crashed process stops executing events, and (ii) a message that is sent will be received if and only if its destination is reachable from the sender at the time of sending. Formally,
+
+´
+
+µ
+
+´
+
+µ
+
+´ µ Ô ¾ ´Øµ µ Ø¼ Ø ´Ô Ø¼ µ ¯ ´ µ ´Ô Øµ send´Ñ Õµ µ ´ recv´Ñµ ¾ ´Õ Ì µ ¸ Ô
+
+ØÕ
+
+µ
+
+Note that by Deﬁnition 2.1(ii), the reachable relation for correct processes is perpetually reﬂexive — a correct process is always reachable from itself. Transitivity of reachability, on the other hand, need not hold in general. We make this choice so as to render our model realistic by admitting scenarios that are common in wide-area networks, including the Internet, where a site may be reachable from site , and site reachable from , at a time when is unreachable from directly. Yet the three sites , and should be considered as belonging to the same partition since they can communicate with each other (perhaps indirectly) using communication services more sophisticated than the send/receive primitives offered by the network. As we shall see in Section 5.1, such services can indeed be built in our system model so that two processes will be able to communicate with each other whenever it is possible. And our notion of a partition as the set of processes that can mutually communicate will be based on these services. We do not assume perpetual symmetry for the reachable relation. In other words, at a given time, it is possible that some process Ô be reachable from process Õ but not vice versa. This is again motivated by observed behavior in real wide-area networks. Yet, to make the model tractable, we require a form eventual symmetry as stated below: Property 2.1 (Eventual Symmetry)If, after some initial period, process Õ becomes and remains reachable (unreachable) from Ô, then eventually Ô will become and remain reachable (unreachable) from Õ as well. Formally,
+Ø¼ Ø Ø Ø¼ Ø¼ Ô Ô
+
+ØÕ ØÕ
+
+Ø¼
+
+µ µ
+
+Ø½ Ø½
+
+Ø Ø
+
+Ø½ Ø½
+
+Õ Õ
+
+ØÔ ØÔ
+
+This is a reasonable behavior to expect of practical asynchronous distributed systems. Typically, communication channels are bidirectional and rely on the same physical and logical resources
+¿. In these formulas and all others that follow, free variables are assumed to be universally quantiﬁed over their respective domains (process events, time, messages, views, etc.), which can be inferred from context.
+
+UBLCS-98-01
+
+5
+
+in both directions. As a result, the ability or inability to communicate in one direction usually implies that a similar property will eventually be observed also in the other direction. To conclude the system model, we impose a fairness condition on the communication network so as to exclude degenerate scenarios where two processes are unable to communicate despite the fact that they become reachable inﬁnitely often. In other words, the communication system cannot behave maliciously such that two processes that are normally reachable become unreachable precisely at those times when they attempt to communicate. Property 2.2 (Fair Channels)Let Ô and Õ be two processes that are not permanently unreachable from each other. If Ô sends an unbounded number of messages to Õ , then Õ will receive an unbounded number of these messages. Formally,
+
+´
+
+Ø
+
+´
+
+Ø½ Ø
+
+Ø Ø¿
+
+Ô Ø
+
+Ø½ Õ
+
+µ ´ ´Õ Ø¿ µ
+
+Ø
+
+´Ô Ø¾ µ send´Ñ Õµµ µ recv´ µ send´Ñ¼ Õ µ ¾ ´Ô Ì µµ
+Ø¾ Ø Ñ¼
+
+3
+
+Partitionable Group Membership Service: Speciﬁcation
+
+Our methodology for partition-aware application development is based on the process group paradigm with suitable extensions to partitionable systems. In this methodology, processes cooperate towards a given network application by joining a group as members. Later on, a process may decide to terminate its collaboration by explicitly leaving the group. In the absence of failures, the membership of a group comprises those processes that have joined but have not left the group. In addition to these voluntary events, membership of a group may also change due to involuntary events corresponding to process and communication failures or repairs. At each process, a partitionable group membership service (PGMS) tracks the changes in the events. Installed views corregroup’s membership and installs them as views through Ú
+ spond to the process’s local perception of the group’s current membership. Partition-aware applications are programmed so as to reconﬁgure themselves and adjust their behavior based on the composition of installed views. In the absence of partitionings, every correct process should install the same view, and this view should include exactly those members that have not crashed. This goal is clearly not feasible in a partitionable system, where processes in different partitions will have different perceptions of the membership for a given group. For these reasons, a partitionable group membership service should guarantee that under certain stability conditions, correct processes within the same partition install identical views and that their composition correspond to the composition of the partition itself. In the next section, we translate these informal ideas in a formal speciﬁcation for our partitionable group membership service. The speciﬁcation is given as a set of properties on view compositions and view installations, stated in terms of the unreachability pattern that occurs during an execution. The speciﬁcation we give below has beneﬁted from extensive reﬂection based on actual experience with programming realistic applications and has gone through numerous reﬁnements over the last several years. We believe that it represents a minimal set of properties for a service that is both useful and implementable.
+
+´µ
+
+3.1
+
+Formal Speciﬁcation
+
+For sake of brevity, we assume a single process group and do not consider changes to its membership due to voluntary join and leave events. Thus, the group’s membership will vary only due to failures and repairs. We start out by deﬁning some terms and introducing notation. Views are labeled in order to be globally unique. Given a view Ú , we write Ú to denote its composition as a set of process names. The set of possible events for an execution, Ë , is augmented to include vchg Ú denoting a view change that installs view Ú . The current view of process Ô at time Ø is Ú , denoted view Ô Ø Ú , if Ú is the last view to have been installed at Ô before time Ø. Events are said to occur in the view that is current. View Û is called immediate successor of Ú at Ô, denoted Ú Ô Û, if Ô installs Û in view Ú . View Û is called immediate successor of Ú , denoted Ú Û, if there exists
+
+´µ
+
+´ µ
+
+UBLCS-98-01
+
+6
+
+some process Ô such that Ú Ô Û. The successor relation £ denotes the transitive closure of . Two views that are not related through £ are called concurrent. Given two immediate successor views Ú Û, we say that a process survives the view change if it belongs to both Ú and Û. The composition of installed views cannot be arbitrary but should reﬂect reality through the unreachability pattern that occurs during an execution. In other words, processes should be aware of other processes with which they can and cannot communicate directly in order to adapt their behaviors consistently. Informally, each process should install views that include all processes reachable from it and exclude those that are unreachable from it. Requiring that the current view of a process perpetually reﬂect the actual unreachability pattern would be impossible to achieve in an asynchronous system. Thus, we state the requirement as two eventual properties that must hold in stable conditions where reachability and unreachability relations are persistent. GM1 (View Accuracy) If there is a time after which process Õ remains reachable from some correct process Ô, then eventually the current view of Ô will always include Õ . Formally,
+Ø¼ Ø Ø¼ Ô
+
+¾ Correct´ µ
+
+Ô
+
+ØÕ
+
+µ
+
+Ø½
+
+Ø
+
+Ø½
+
+Õ
+
+¾ view´Ô Øµ
+
+GM2 (View Completeness) If there is a time after which all processes in some partition remain unreachable from the rest of the group, then eventually the current view of every correct process not in will never include any process in . Formally,
+Ø¼ Ø Ø¼ Õ
+
+¢
+
+¾¢
+
+Ô
+
+¾¢
+
+¢
+Ô
+
+¢
+
+ØÕ
+
+µ
+
+Ø½
+
+Ø
+
+Ø½
+
+Ö
+
+¾ Correct´ µ   ¢
+
+view Ö Ø
+
+´ µ ¢
+
+View Accuracy and View Completeness are of fundamental importance for every PGMS. They state that the composition of installed views cannot be arbitrary but must be a function of the actual unreachability pattern occurring during a run. Any speciﬁcation that lacked a property similar to View Accuracy could be trivially satisﬁed by installing at every process either an empty view or a singleton view consisting of the process itself. The resulting service would exhibit what has been called capricious view splitting [3] and would not be very useful. View Accuracy prevents capricious view splitting by requiring that eventually, all views installed by two permanently-reachable processes contain each other. On the other hand, the absence of View Completeness would admit implementations in which processes always install views containing the entire group, again rendering the service not very useful. Note that View Accuracy and View Completeness are stated slightly differently. This is because the reachable relation between processes is not transitive. While Õ being reachable directly from Ô is justiﬁcation for requiring Ô to include Õ in its view, the converse is not necessarily true. The fact that a process Ô cannot communicate directly with another process Õ does not imply that Ô cannot communicate indirectly with Õ through a sequence of pairwise-reachable intermediate processes. For this reason, View Completeness has to be stated in terms of complementary sets of processes rather than process pairs. Doing so assures that a process is excluded from a view only if communication is impossible because there exists no path, directly or indirectly, for reaching it. View Accuracy and View Completeness state requirements for views installed by individual processes. A group membership service that is to be useful must also place constraints on views installed by different processes. Without such coherency guarantees for views, two processes could behave differently even though they belong to the same partition but have different perceptions of its composition. For example, consider a system with two processes Ô and Õ that are permanently reachable from each other. By View Accuracy, after some time Ø, both Ô and Õ will install the same view Ú containing themselves. Now suppose that at some time after Ø, a third process Ö becomes and remains reachable from Õ alone. Again by View Accuracy, Õ will eventually install a new view Û that includes Ö in addition to itself and Ô. Presence of process Ö is unknown to Ô since they are not directly reachable. Thus, Ô continues believing that it shares the same view with Õ since its current view Ú continues to include Õ , when in fact process Õ has gone on to install view Û different from Ú . The resulting differences in perception of the environment could lead processes Ô and Õ to behave differently even though they belong to the same partition. The following property has been formulated to avoid such undesirable scenarios.
+UBLCS-98-01
+
+7
+
+GM3 (View Coherency) (i) If a correct process Ô installs view Ú , then either all processes in Ú also install Ú , or Ô eventually installs an immediate successor to Ú . Formally,
+Ô
+
+¾
+
+ÓÖÖ 
+Ø
+
+´ µ
+
+vchg Ú
+
+´ µ ¾ ´Ô Ì µ ´ µ ¾ ´Õ Ì µ
+Ú
+
+Õ
+
+¾ Ú µ ´vchg´Úµ ¾ ´Õ Ì µµ ´
+Ú
+
+Û
+
+Ú
+
+ÔÛ
+
+µ
+
+(ii) If two processes Ô and Õ initially install the same view Ú and Ô later on installs an immediate successor to Ú , then eventually either Õ also installs an immediate successor to Ú , or Õ crashes. Formally, vchg Ú
+
+´ µ ¾ ´Ô Ì µ ´Ô Ø¼ µ
+
+vchg Ú
+
+Ô Û½
+
+Õ
+
+¾ Correct´ µ µ
+vchg Ú
+
+Û¾
+
+Ú
+
+Õ Û¾
+
+(iii) When process Ô installs a view Û as the immediate successor to view Ú , all processes that survive from view Ú to Û along with Ô have previously installed Ú . Formally, vchg Û
+
+´ µ
+
+ÔÛ
+
+Õ
+
+¾Ú
+
+Û
+
+µ
+
+´ µ ¾ ´Õ ¼ Ø¼ µ
+
+Returning to the above example, the current view of process Ô cannot remain Ú indeﬁnitely as GM3(ii) requires Ô to eventually install a new view. By assumption, Õ never installs another view after Û. Thus, by GM3(i), the new installed by Ô must be Û as well and include Ö. As a result, processes Ô and Õ that belong to the same partition return to sharing the same view. In fact, we can generalize the above example to argue that View Coherency together with View Accuracy guarantee that every view installed by a correct process is also installed by all other processes that are permanently reachable from it. Note that the composition of the ﬁnal view installed by Ô and Õ includes process Ö as belonging to their partition. This is reasonable since Ô and Ö can communicate (using Õ as a relay) even though they are not reachable directly. View Coherency is important even when reachability and unreachability relations are not persistent. In these situations where View Accuracy and View Completeness are not applicable, View Coherency serves to inform a process that it no longer shares the same view with another process. Consider two processes Ô and Õ that are initially mutually reachable. Suppose that Ô has installed a view Ú containing the two of them by some time Ø. The current view of process Õ could be different from Ú at time Ø either because it never installs Ú (e.g., it crashes) or because it installs another view after having installed Ú (e.g., there is a network partitioning or merge). In both cases, GM3(i) and GM3(ii), respectively, ensure that process Ô will eventually become aware of this fact because it will install a new view after Ú . When a process installs a new view, it cannot be sure which other processes have also installed the same view. This is an inherent limitation due to asynchrony and possibility of failures. GM3(iii) allows a process to reason a posteriori about other processes: At the time when process Ô installs view Û as the immediate successor of view Ú , it can deduced which other processes have also installed view Ú . And if some process Õ belonging to view Ú never installs it, we can be sure that Õ cannot belong to view Û. Note that these conclusions are based entirely on local information (successive pairs of installed views) yet they allow a process to reason globally about the actions of other processes. The next property for group membership places restrictions on the order in which views are installed. In systems where partitionings are impossible, it is reasonable to require that all correct processes install views according to some total order. In a partitionable system, this is not feasible due to the possibility of concurrent partitions. Yet, for a partitionable group membership service to be useful, the set of views must be consistently ordered by those processes that do install them. In other words, if two views are installed by a process in a given order, the same two views cannot be installed in the opposite order by some other process. GM4 (View Order) The order in which processes install views is such that the successor relation is a partial order. Formally, Ú £ Û µ Û £ Ú When combined with View Accuracy and View Coherency, View Order allows us to conclude that there is a time after which permanently reachable processes not only install the same set of views, they install them in the same order.
+UBLCS-98-01
+
+8
+
+The ﬁnal property of our speciﬁcation places a simple integrity restriction on the composition of the views installed by a process. By Deﬁnition 2.1(ii), every correct process is always reachable from itself. Thus, Property GM1 ensures that eventually, all views installed by a process will include itself. However, it is desirable that self-inclusion be a perpetual, and not only eventual, property of installed views. GM5 (View Integrity) Every view installed by a process includes the process itself. Formally, vchg Ú
+
+´ µ ¾ ´Ô Ì µ µ Ô ¾ Ú
+
+Properties GM1–GM5 taken together deﬁne a partitionable group membership service (PGMS). 3.2 Discussion
+
+Note that Properties GM1, GM2 and GM3 place constraints on the composition of the current of a process in relation to characteristics of the operating environment or actions of other processes. As such, they can be satisﬁed only by installing a new view whenever the current view of a process does not conform to the speciﬁcation. In an asynchronous system, it is impossible to put a time bound on this action. Thus, the properties are stated so as to hold eventually. This is sufﬁcient to guarantee that our speciﬁcation of PGMS is live since it excludes implementations where installation of justiﬁed views are arbitrarily delayed. Recall that Properties GM1 and GM2 are stated in terms of runs where reachability and unreachability relations are persistent. They are, however, sufﬁcient to exclude trivial solutions to PGMS also in runs where reachability and unreachability among processes are continually changing due to transient failures. As an example, consider a system composed of two processes Ô and Õ and a run Ê¼ where they are permanently mutually reachable. By View Accuracy and View Coherency, we know there is a time Ø¼ by which both Ô and Õ will have installed a view composed of themselves alone. Now, consider run Ê½ identical to Ê¼ up to time Ø½ Ø¼ when Ô and Õ become unreachable. The behavior of processes Ô and Õ under runs Ê¼ and Ê½ must be identical up to time Ø½ since they cannot distinguish between the two runs. Thus, if they install views composed of Ô and Õ by time Ø¼ under run Ê¼ , they must install the same views also under run Ê½ where reachability relations are not persistent but transient. This example can be generalized to conclude that any implementation satisfying our speciﬁcation cannot delay arbitrarily installation of a new view including processes that remain reachable for sufﬁciently long periods. Nor can it delay arbitrarily installation of a new view excluding processes that remain unreachable for sufﬁciently long periods. Asynchronous distributed systems present fundamental limitations for the solvability of certain problems in the presence of failures. Consensus [18] and primary-partition group membership [9] are among them. Partitionable group membership service, as we have deﬁned it, happens to be not solvable in an asynchronous system as well. Here we give a proof sketch of this impossibility. Consider a system consisting of two processes Ô and Õ . Let Ê be the set of all runs in which Ô and Õ are correct and are permanently reachable from each other. Any implementation of our speciﬁcation must guarantee that for all runs in Ê, there exists a time after which the current view of Ô always contains Õ . For contradiction, we will show that there is at least one run in Ê for which such a time does not exist. Let Ê¼ be a run in Ê, and let Ø¼ be a time value. There are two possibilities: if the current view of Ô never contains Õ after Ø¼ in Ê¼ , our claim is trivially proven. Thus, suppose the current view of Ô contains Õ at time Ø¼ in run Ê¼ . Now con¼ sider another run Ê¼ , identical to Ê¼ up to Ø¼ at which time process Õ crashes. By Property GM2, ¼ there must be a time Ø¼ ¼ Ø¼ by which Ô installs a view Ú in Ê¼ that excludes Õ . Now, consider ¼ run Ê½ ¾ Ê such that (i) the global and failure histories of Ê½ are identical to those of Ê¼ up to ¼ time Ø¼ ; (ii) the global and failure histories of Ê½ restricted to Ô are identical to those of Ê¼ up to ¼ , and (iii) all messages sent by Õ after Ø are received by Ô after Ø¼ . At time Ø¼ , process Ô time Ø¼ ¼ ¼ ¼ ¼ cannot distinguish run Ê½ from Ê¼ . Thus, Ô installs view Ú at time Ø¼ in run Ê½ just as it does in ¼ ¼ run Ê¼ . Again, there are two possibilities. If the current view of Ô never contains Õ after Ø¼ in Ê½ , ¼ our claim is proven. Otherwise, let Ø½ Ø¼ be a time such that the current view of Ô contains Õ ¼
+UBLCS-98-01
+
+9
+
+in Ê½ at time Ø½ . We repeat this construction now starting from run Ê½ and time Ø½ , obtaining a run Ê¾ ¾ Ê in which Ô installs a view excluding Õ at time Ø¼ ½ Ø½ . By iterating the construction, we obtain a run Ê ¾ Ê in which the current view of Ô never contains Õ after a certain time, or Ô installs an unbounded number of views that exclude Õ . This impossibility result for PGMS can be circumvented by requiring certain stability conditions to hold in an asynchronous system. In the next section we formulate these conditions as abstract properties of an unreliable failure detector [10]. Then in Section 5 we show how the speciﬁed PGMS can be implemented in systems that admit the necessary failure detector.
+
+4
+
+Failure Detectors for Partitionable Systems
+
+In this Section, we formalize the stability conditions that are necessary for solving our speciﬁcation of partitionable group membership in asynchronous systems. We do so indirectly by stating a set of abstract properties that need to hold for failure detectors that have been suitably extended to partitionable systems. Similar failure detector deﬁnitions extended for partitionable systems have appeared in other contexts [24, 11]. The failure detector abstraction originally proposed by Chandra and Toueg [10] is for systems with perfectly-reliable communication. In partitionable systems, speciﬁcation of failure detector properties has to be based on reachability between pairs of processes rather than individual processes being correct or crashed. For example, it will be acceptable (and desirable) for the failure detector of Ô to suspect Õ that happens to be correct but is unreachable from Ô. Informally, a failure detector is a distributed oracle that tries to estimate the unreachability pattern Í that occurs in an execution. Each process has access to a local module of the failure detector that monitors a subset of the processes and outputs those that it currently suspects as being unreachable from itself. A failure detector history À is a function from ¢ Ì to ¥ that describes the outputs of the local modules at each process. If Õ ¾ À Ô Ø , we say that Ô suspects Õ at time Ø in À . Formally, a failure detector is a function that associates with each failure history Í a set denoting failure detector histories that could occur in executions with failure history . In asynchronous systems, failure detectors are inherently unreliable in that the information they provide may be incorrect. Despite this limitation, failure detectors satisfying certain completeness and accuracy properties have proven to be useful abstractions for solving practical problems in such systems [10]. Informally, completeness and accuracy state, respectively, the conditions under which a process should and should not be suspected for À Ô Ø to be a meaningful estimate of Í Ô Ø . We consider the following adaptations of completeness and accuracy to partitionable systems, maintaining the same names used by Chandra and Toueg for compatibility reasons [10]: FD1 (Strong Completeness) If some process Õ remains unreachable from correct process Ô, then eventually Ô will always suspect Õ . Formally, given a failure history Í , a failure detector satisﬁes are such that: Strong Completeness if all failure detector histories À ¾
+
+´ µ
+
+¥
+
+¾
+
+´
+
+µ
+
+´ µ
+
+´ µ
+
+´ µ
+
+´ µ
+
+´
+
+µ
+
+Ø¼
+
+Ø
+
+Ø¼
+
+Ô
+
+¾ Correct´ µ
+
+Ô
+
+ØÕ
+
+µ
+
+Ø½
+
+Ø
+
+Ø½
+
+Õ
+
+¾ À ´Ô Øµ
+
+FD2 (Eventual Strong Accuracy) If some process Õ remains reachable from correct process Ô, then eventually Ô will no longer suspect Õ . Formally, given a failure history Í , a failure detector satisﬁes Eventual Strong Accuracy if all failure detector histories À ¾ are such that:
+
+´ µ
+
+´
+
+µ
+
+Ø¼
+
+Ø
+
+Ø¼
+
+Ô
+
+¾ Correct´ µ
+
+Ô
+
+ØÕ
+
+µ
+
+Ø½
+
+Ø
+
+Ø½
+
+Õ
+
+¾ À ´Ô Øµ
+
+Borrowing from Chandra and Toueg [10], failure detectors satisfying Strong Completeness and Eventual Strong Accuracy are called eventually perfect, and their class denoted ¥È . In addition to the properties stated above, we can also formulate their weak and perpetual counterparts,
+UBLCS-98-01
+
+10
+
+thus generating a hierarchy of failure detector classes similar to those of Chandra and Toueg [10]. Informally, weak completeness and accuracy require the corresponding property to hold only for some pair of processes (rather than all pairs), while their perpetual versions require the corresponding property to hold from the very beginning (rather than eventually). While a detailed discussion of failure detector hierarchy for partitionable systems and reductions between them is beyond the scope of this paper, we make a few brief observations. In absence of partitionings, failure detector classes with the weak version of Completeness happen to be equivalent to those with the strong version. In such systems, it sufﬁces for one correct process to suspect a crashed process since it can (reliably) communicate this information to all other correct processes. In partitionable systems, this is not possible and failure detector classes with weak completeness are strictly weaker than those with strong completeness. ¾ ¥È in partitionable asynIn principle, it is impossible to implement a failure detector chronous systems, just as it is impossible to implement a failure detector belonging to any of the classes ¥È , ¥É, ¥Ë and ¥Ï in asynchronous systems with perfectly-reliable communication [10]. In practice, however, asynchronous systems are expected to exhibit reasonable behavior and failure detectors for ¥È can indeed be implemented. For example, consider the following algorithm, which is similar to that of Chandra and Toueg [10], but is based on round-trip rather than one-way message time-outs. Each process Ô periodically sends a Ô-ping message to every other process in . When a process Õ receives a Ô-ping, it sends back to Ô a Õ -ack message. If process Ô does not receive a Õ -ack within Ô Õ local time units, Ô adds Õ to its list of suspects. If Ô receives a Õ -ack message from some process Õ that it already suspects, Ô removes Õ from the suspect list and increments its time-out period Ô Õ for the channel Ô Õ . Note that since processes send ack messages only in response to ping messages, a process Ô will continually time-out on every other process Õ that is unreachable from it. Thus, the above algorithm trivially satisﬁes the Strong Completeness property of ¥È in partitionable asynchronous systems. On the other hand, in an asynchronous system, it is possible for some process Ô to observe an unbounded number of premature time-outs for some other process Õ even though Õ remains reachable from Ô. In this case, Ô would repeatedly add and remove Õ from its list of suspects, thus violating the Eventual Strong Accuracy property of ¥È . In many practical systems, increasing the time-out period for each communication channel after each mistake will ensure that eventually there are no premature time-outs on any of the communication channels, thus ensuring Eventual Strong Accuracy. The only other scenario in which the algorithm could fail to achieve Eventual Strong Accuracy occurs when process Õ is reachable from process Ô and continues to receive Ô-ping messages but its Õ -ack messages sent to Ô are systematically lost. In a system satisfying Eventual Symmetry, this scenario cannot last forever and eventually Ô will start receiving Õ -ack messages, causing it to permanently remove Õ from its suspect list and thus satisfy Eventual Strong Accuracy. Given that perfectly reliable failure detectors are impossible to implement in asynchronous systems, it is reasonable to ask: what are the consequences of mistakenly suspecting a process that is actually reachable? As we shall see in the next section, our use of failure detectors in solving PGMS is such that incorrect suspicions may cause installation of views smaller than what are actually feasible. In other words, they may compromise View Accuracy but cannot invalidate any of the other properties. As a consequence, processes that are either very slow or have very slow communication links may be temporarily excluded from the current view of other processes to be merged back in when their delays become smaller. This type of “view splitting” is reasonable since including such processes in views would only force the entire computation to slow down to their pace. Obviously, the notion of “slow” is completely application dependent and can only be established on a per-group basis.
+
+¥
+
+¡´µ ¡´µ
+
+´ µ
+
+. These are the È
+
+É, Ë
+
+Ï , ¥È
+
+¥É and ¥Ë
+
+¥Ï results of Chandra and Toueg [10].
+
+UBLCS-98-01
+
+11
+
+Application
+vchg join leave
+
+VML
+mrecv msuspect msend
+
+MSL
+recv send
+
+FD
+
+Network
+Figure 1. Overall structure of the partitionable group membership service.
+
+5
+
+Partitionable Group Membership Service: Implementation
+
+In this section we present an algorithm that implements the service speciﬁed in Section 3 in partitionable asynchronous systems augmented with a failure detector of class ¥È . Our goal is to show the implementability of the proposed speciﬁcation for PGMS; consequently, the algorithm is designed for simplicity rather than efﬁciency. The overall structure of our solution is shown in Figure 1 and consists of two components called the Multi-Send Layer (MSL) and View Management Layer (VML) at each process. In the Figure, FD denotes any failure detector module satisfying the abstract properties for class ¥È as deﬁned in Section 4. All interactions with the communication network and the failure detector are limited to MSL which uses the unreliable, unsequenced datagram transport service of the network through the primitives send and recv . Each MSL can also read the suspect list of the corresponding failure detector module FD. MSL implements the primitives Ñ× Ò , ÑÖ 
+Ú and Ñ×Ù×Ô 
+Ø as described below, which in turn are used by VML. Recall that we consider group membership changes due to failures and repairs only. Thus, the implementation we give includes only the for voluntarily view change notiﬁcation event vchg but not the primitives Ó Ò and Ð Ú joining and leaving the group. In order to distinguish between the various layers in our discussion, we say that a process mand sends and m-receives messages when it communicates through the MSL primitives Ñ× Ò ÑÖ 
+Ú , respectively. We reserve send and receive to denote communication directly through the network services without going through MSL. Similarly, we say that a process m-suspects those processes that are notiﬁed through a Ñ×Ù×Ô 
+Ø event while suspect is reserved for describing the failure detector itself. The following notation is used in the presentation of our algorithms. We use italic font for variable and procedure names. Tags denoting message types are written in SMALLCAPS. The wait-for construct is used to block a process until a ÑÖ 
+Ú or a Ñ×Ù×Ô 
+Ø event is generated by MSL. The generate construct produces an upcall of the speciﬁed type to the next layer in the architecture.
+
+´µ
+
+´µ
+
+´µ
+
+´µ
+
+´µ
+
+´µ
+
+´µ
+
+´µ
+
+´µ
+
+´µ
+
+´µ
+
+´µ
+
+´µ
+
+5.1
+
+The Multi-Send Layer
+
+Implementing a group membership service directly on top of a point-to-point unreliable, unsequenced datagram transport service provided by the network would be difﬁcult. The difﬁculty is aggravated by the lack of transitivity of the reachability relation as provided by the failure detector. The task of MSL is to hide this complexity by transforming the unreliable, point-to-point network communication primitives to their best-effort, one-to-many counterparts. Informally, MSL tries to deliver m-sent messages to all processes in some destination set. MSL also “ﬁlters” the raw failure detector suspect list by eliminating from it those processes that can be reached
+UBLCS-98-01
+
+12
+
+indirectly. In other words, the notion of reachability above the MSL corresponds to the transitive closure of reachability at the failure detector layer. What distinguishes MSL from a typical network routing or reliable multicast service is the integration of message delivery semantics with the reachability information. In that sense, MSL is much closer to the dynamic routing layer of Phoenix [23] and the MUTS layer of Horus [33]. Informally, properties that MSL must satisfy are: Property 5.1 (a) if a process Õ is continuously unreachable from Ô, then eventually Ô will continuously msuspect Õ ; (b) if a process Õ is continuously reachable from Ô, then eventually every process that m-suspects Õ also m-suspects Ô; (c) each process m-receives a message at most once and only if some process actually m-sent it earlier; (d) messages from the same sender are m-received in FIFO order; (e) a message that is m-sent by a correct process is eventually m-received by all processes in the destination set that are not m-suspected; (f) a process never m-suspects itself; (g) the reachability relation deﬁned by the Ñ×Ù×Ô 
+Ø events is eventually symmetric.
+
+´µ
+
+Properties (a) and (b) are the non-triviality conditions of our communication service. Properties (c) and (d) place simple integrity and order requirements on m-receiving messages. Property (e) deﬁnes a liveness condition on the m-sending of messages. Finally, property (f) prevents processes from m-suspecting themselves, while property (g) requires that if a correct process Ô stops m-suspecting another correct process Õ , then eventually Õ will stop m-suspecting Ô. It is important to note that from the combination of properties (b) and (f) we conclude that if Õ is continuously reachable from Ô, then Ô eventually stops m-suspecting Õ . Moreover, from properties (b) and (e) we conclude that if Õ is continuously reachable from Ô, then every message m-sent by Õ to Ô is eventually m-received. A formal description of these properties, along with an algorithm to achieve them can be found in Appendix A. The proposed algorithm is based on the integration of a routing algorithm and a failure detector of class ¥È . 5.2 The View Management Layer VML uses the services provided by MSL in order to construct and install views as deﬁned by the PGMS speciﬁcation. At each process, let the reachable set correspond to those processes that are not currently m-suspected. These reachable sets form a good basis for constructing views since part of the PGMS speciﬁcation follows immediately from the properties of MSL that produce them. In particular, Property GM2 is satisﬁed by Property A.1(a) requiring that if a process Õ is continuously unreachable from Ô, then eventually Ô will continuously m-suspect Õ . Property GM1 is satisﬁed by Properties A.1(b) and A.1(f), as discussed above. Finally, Property GM5 is satisﬁed by Property A.1(f). The main difference between reachable sets as constructed by MSL and views as deﬁned by PGMS is with respect to coherency. While reachable sets are completely individualistic and lack any coordination, views of different processes need to be coherent among themselves as deﬁned by Property GM3. VML achieves this property by using reachable sets as initial estimates for new views but installs them only after having reached agreement on their composition among mutually-reachable processes. To guarantee liveness of our solution, each execution of the agreement algorithm must terminate by actually installing a new view. Yet the composition of installed views cannot invalidate any of the properties that are inherited from MSL as described above. The main algorithm for VML, illustrated in Figure 2, alternates between an idle phase and an agreement phase. A process remains idle until either it is informed by MSL that there is a change in its perception of the reachable set (through a Ñ×Ù×Ô 
+Ø event), or it m-receives a message from another process that has observed such a change. Both of these events cause the process to enter agreement phase. The agreement protocol, illustrated in Figure 3, is organized as two subphases called synchronization phase and estimate exchange phase (for short, s-phase and ee-phase, respectively). At the beginning of s-phase, each process m-sends a synchronization message containing a
+
+´µ
+
+UBLCS-98-01
+
+13
+
+1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 23 24 25 26 27
+
+thread Î
+
+ÛÅ Ò Ñ ÒØ Ö 
+ Ð Ô Ú Ö× ÓÒ ´¼ ¼µ ×ÝÑ× Ø ´ Ô Ô Ú Û ´ ÍÒ ÕÙ Á ´µ 
+Ú Û Ú Û generate Ú
+ ´Ú Û µ)
+while true do wait-for Ú ÒØ case Ú ÒØ of
+
+µ
+Ô
+
+µ
+
+% Set of unsuspected processes % Vector clock % Symmetry set % Current view id and composition % Corresponding complete view
+
+% Remain idle until some event occurs
+
+Ñ×Ù×Ô 
+Ø ´È µ:
+
+Ð do ×ÝÑ× Ø Ö℄ Ö 
+ Ð foreach Ö ¾ ´¥   È µ   Ö 
+ Ñ× Ò ´ SYMMETRY Ú Ö× ÓÒ Ö 
+ Ð ´¥   È µ   Ö 
+ Ð Ö 
+ Ð ¥ È Ö Ñ ÒØÈ × ´µ
+Õ
+
+µ
+
+ÑÖ 
+Ú ´ SYNCHRONIZE ÎÔ ÎÕ È if ´Ú Ö× ÓÒ Õ ℄ Î Õ ℄µ then Ú Ö× ÓÒ Õ ℄ Î Õ ℄ if ´Õ ¾ Ö 
+ Ð µ then Ö Ñ ÒØÈ × ´µ
+ﬁ esac od
+
+µ:
+
+Figure 2. The main algorithm for process Ô.
+
+version number to those processes it perceives as being reachable, and then waits for responses. This message acts to “wake-up” processes that have not yet entered s-phase. Furthermore, version numbers exchanged in the s-phase are used in subsequent ee-phases to distinguish between messages of different agreement protocol invocations. A process leaves s-phase to enter ee-phase either when it m-receives a response to its synchronization message from every process that has not been m-suspected during the s-phase, or when it m-receives a message from a process that has already entered ee-phase. Each process enters ee-phase (Figures 4 and 5) with its own estimate for the composition of the next view. During this phase, a process can modify its estimate to reﬂect changes in the approximation for reachability that is being reported to it by MSL. In order to guarantee liveness, the algorithm constructs estimate sets that are always monotone decreasing so that the agreement condition is certain to hold eventually. Whenever the estimate changes, the process m-sends a message containing the new estimate to every process belonging to the estimate itself. When a process m-receives estimate messages, it removes from its own estimate those processes that are excluded from the estimate of the sender. At the same time, each change in the estimate causes a process to m-send an agreement proposal to a process selected among the current estimate to act as a coordinator. Note that while estimates are evolving, different processes may select different coordinators. Or, the coordinator may crash or become unreachable before the agreement condition has been veriﬁed. In all these situations, the current agreement attempt will fail and new estimates will evolve causing a new coordinator to be selected. When the coordinator eventually observes that proposals m-received from some set Ë of processes are all equal to Ë , agreement is achieved and the coordinator m-sends to the members of Ë a message containing a new view identiﬁer and composition equal to Ë . When a process mreceives such a message, there are two possibilities: it can either install a complete view, containing all processes indicated in the message, or it can install a partial view, containing a subset of the
+UBLCS-98-01
+
+14
+
+1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 23 24 25 26 27 28 29 30 31 32 33 34 35 36 37 38 39 40 41 42 43 44 45 46 47 48 49
+
+procedure repeat
+
+Ö Ñ ÒØÈ ×
+
+´µ
+% Next view estimation % Generate new version number
+
+×Ø Ñ Ø Ö 
+ Ð Ú Ö× ÓÒ Ô℄ Ú Ö× ÓÒ Ô℄ · ½ ËÝÒ
+ ÖÓÒ Þ Ø ÓÒÈ × ´µ ×Ø Ñ Ø Ü
+ Ò È × ´µ until ×Ø Ð ÖÓÒ Þ Ø ÓÒÈ ×
+Ô Ô
+
+% Exit when the view is stable
+
+procedure ËÝÒ
+
+×ÝÒ
+ ÖÓÒ Þ
+foreach Ö
+
+´µ
+Ö Ô
+
+Ñ× Ò
+
+¾ ×Ø Ñ Ø   do ´ SYNCHRONIZE Ú Ö× ÓÒ ℄ Ú Ö× ÓÒ ℄ ×ÝÑ× Ø ℄
+Ö
+
+% Processes with which Ô is syncronized
+Ö
+
+µ
+
+while ´ ×Ø Ñ Ø wait-for Ú ÒØ case Ú ÒØ of
+
+×ÝÒ
+ ÖÓÒ Þ
+
+µ do
+
+% Remain idle until some event occurs
+
+Ñ×Ù×Ô 
+Ø ´È µ:
+
+foreach Ö ¾ ´¥   È µ   Ö 
+ Ð µ do ×ÝÑ× Ø Ö℄ Ö 
+ Ð Ñ× Ò ´ SYMMETRY Ú Ö× ÓÒ Ö 
+ Ð ´¥   È µ   Ö 
+ Ð Ö 
+ Ð ¥ È ×Ø Ñ Ø ×Ø Ñ Ø Ö 
+ Ð
+
+µ
+
+ÑÖ 
+Ú ´ SYMMETRY Î È Õ µ: if ´Ú Ö× ÓÒ Ô℄ Î Ô℄µ and ´Õ ¾ ×Ø Ñ Ø ×Ø Ñ Ø ×Ø Ñ Ø   È
+
+µ then
+
+ÑÖ 
+Ú ´ SYNCHRONIZE ÎÔ ÎÕ È Õ µ: if ´Ú Ö× ÓÒ Ô℄ ÎÔ µ then ×ÝÒ
+ ÖÓÒ Þ ×ÝÒ
+ ÖÓÒ Þ Õ if ´Ú Ö× ÓÒ Õ ℄ ÎÕ µ then Ú Ö× ÓÒ Õ ℄ ÎÕ Ö Õ ℄ ÎÕ Ñ× Ò ´ SYNCHRONIZE Ú Ö× ÓÒ Õ ℄ Ú Ö× ÓÒ Ô℄ ×ÝÑ× Ø
+ﬁ
+
+Õ
+
+℄
+
+Õ
+
+µ
+
+ÑÖ 
+Ú ´ ESTIMATE Î È Õ µ Ú Ö× ÓÒ Õ ℄ Î Õ ℄ if ´Õ ¾ ×Ø Ñ Ø µ then Ñ× Ò ´ SYMMETRY Ú Ö× ÓÒ ×Ø Ñ Ø elseif ´Ú Ö× ÓÒ Ô℄ Î Ô℄µ and ´Ô ¾ È µ then ×Ø Ñ Ø ×Ø Ñ Ø È ×ÝÒ
+ ÖÓÒ Þ È Ö Î
+ﬁ esac od
+
+Õ
+
+Figure 3. Agreement and synchronization phases for process Ô.
+
+UBLCS-98-01
+
+15
+
+processes indicated in the message. Partial views are necessary whenever the installation of a complete view would violate Property GM3(iii). This condition is checked by verifying whether the current views of processes composing the new view intersect . If they do, this could mean that a process in the intersection has never installed one of the intersecting views, thus violating Property GM3(iii). For this reason, the m-received view is broken in to a set of non-intersecting partial views, each of them satisfying Property GM3(iii). If, on the other hand, current views do not intersect, each process can install the new complete view as m-received from the coordinator. Note that classiﬁcation of views as being complete or partial is completely internal to the implementation. An application programmer using the provided service in unaware of the distinction and deals with a single notion of view. Although each invocation of the agreement protocol terminates with the installation of a new view, it is possible that the new view does not correspond to the current set of processes perceived as being reachable, or that a new synchronization message has been m-received during the previous ee-phase. In both cases a new agreement phase is started. In Appendix D, we give a proof that our algorithm satisﬁes the properties of PGMS. Here, we discuss in high-level terms the techniques used by the algorithm in order to satisfy the speciﬁcation. Leaving out the more trivial properties such as View Completeness, View Integrity and View Order, we focus our attention on View Coherency, View Accuracy and liveness of the solution. Property GM3 consists of three parts. GM3(iii) is satisﬁed through the installation of partial views, as explained above. As for GM3(i) and GM3(ii), each process is eventually informed if another process belonging to its current view has not installed it, or if it has changed views after having installed it, respectively. The process is kept informed either through a message, or through an m-suspect event. In both cases, it reenters the agreement phase. As for liveness, each invocation of the agreement protocol terminates with the installation of a new view, even in situations where the reachability relation is highly unstable. This is guaranteed by the fact that successive estimates of each process for the composition of the next view are monotone decreasing sets. This is achieved through two actions. First, new m-suspect lists reported by MSL never result in a process being added to the initial estimate. Second, processes exchange their estimates with each other and remove those processes that have been removed by others. In this manner, each process continues to reduce its estimate until it coincides exactly with those processes that agree on the composition of the next view. In the limit, the estimate set will eventually reduce to the process itself and a singleton view will be installed. This approach may seem in conﬂict with View Accuracy: if process Ô m-receives from process Ö a message inviting it to remove a process Õ , it cannot refuse it. But if Ô and Õ are permanently reachable, non-triviality properties of MSL guarantee that after some time, Ö cannot remove Õ from its view estimate without removing Ô as well. So, after some time, Ö cannot m-send a message to Ô inviting it to exclude Õ , because Ô cannot belong to the current estimate of Ö. Furthermore, s-phase of view agreement constitutes a “barrier” against the propagation of old “remove Õ ” messages. In this way, it is possible to show that there is a time after which all views installed by Ô contain Õ . A more detailed description of the VML algorithm can be found in Appendix B. 5.3 Discussion The main property of our algorithm is that the agreement protocol is guaranteed to terminate at correct processes, independent of the failure scenario. In particular, the algorithm has been designed to tolerate any number of failures and repairs that occur before and during the execution of the agreement protocol. This capability, however, implies degraded performance in case of complex failure scenarios. To illustrate the point, recall that processes can be added to a view estimate only at the beginning of an agreement phase. This implies that when a set of processes initiate agreement towards a new view, this view may be already obsolete since some processes may cease to be m-suspected in the meantime. This in turn implies that a new agreement phase has to be started immediately after the termination of the current agreement one. Furthermore,
+. This condition can be checked locally since current views of processes composing the new view are included in the message from the coordinator.
+
+UBLCS-98-01
+
+16
+
+1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 23 24 25 26 27 28 29 30 31 32 33 34 35 36 37 38 39 40 41 42 43 44 45 46 47 48
+
+procedure
+
+×Ø Ñ Ø Ü
+ Ò È × Ò×Ø ÐÐ Ð× ÁÒ Ø Ð Þ ×Ø Ñ Ø È × ´µ
+repeat wait-for Ú ÒØ case Ú ÒØ of
+
+´µ
+
+% True when a new view is installed
+
+% Remain idle until some event occurs
+
+Ñ×Ù×Ô 
+Ø ´È µ:
+
+foreach Ö ¾ ´¥   È µ   Ö 
+ Ð do ×ÝÑ× Ø Ö℄ Ö 
+ Ð Ñ× Ò ´ SYMMETRY Ú Ö× ÓÒ Ö 
+ Ð ´¥   È µ   Ö 
+ Ð Ñ× Ò ´ ESTIMATE Ö ×Ø Ñ Ø ´¥   È µ   Ö 
+ Ð µ Ö 
+ Ð ¥ È if ´ ×Ø Ñ Ø È µ then Ë Ò ×Ø Ñ Ø ´ ×Ø Ñ Ø È µ
+
+µ
+
+ÑÖ 
+Ú ´
+if ´
+
+Ö Ô℄ Î Ë Ò ×Ø Ñ Ø
+
+SYMMETRY
+
+Î È Ô
+
+´ ×Ø Ñ Ø
+
+µ: ℄ or Ö
+Õ
+
+Õ
+
+È
+
+℄ µ
+
+Î Õ
+
+℄µ and ´ ¾ ×Ø Ñ Ø µ then
+Õ
+
+ÑÖ 
+Ú ´ SYNCHRONIZE ÎÔ ÎÕ È Õ µ: Ú Ö× ÓÒ Õ ℄ ÎÕ if ´ Ö Õ℄ ÎÕ µ and ´Õ ¾ ×Ø Ñ Ø Ë Ò ×Ø Ñ Ø ´ ×Ø Ñ Ø È µ ÑÖ 
+Ú ´ ×Ø if ´Õ if ´Ô
+ESTIMATE
+
+µ then
+
+¾
+
+elseif ´Ô
+
+ËÒ ËÒ
+
+¾
+
+Ñ Ø
+È
+
+ﬁ
+
+µ: µ then µ and ´ Ö ℄ ℄ or Ö ×Ø Ñ Ø ´ ×Ø Ñ Ø µ ¾ µ and ´ ¾ ×Ø Ñ Ø ×Ø Ñ Ø ´ ×Ø Ñ Ø   µ
+Î È Õ Ô Î Ô È È Ö È È Ë Õ
+
+Õ
+
+℄
+
+Î Õ
+
+℄µ then
+Î Ö
+
+Ö
+
+Ö
+
+℄
+
+℄µ then
+
+ÑÖ 
+Ú ´ 
+Ø Ð
+
+µ: ℄ if ´ ¾ ×Ø Ñ Ø µ and 
+ Ö Ñ ÒØ ´
+Ø Ð µ then ÁÒ×Ø ÐÐÎ Û ´ÍÒ ÕÙ Á ´µ 
+Ø Ð µ
+PROPOSE
+Ë Õ Õ
+
+Ò×Ø ÐÐ
+VIEW
+Ô
+
+ØÖÙ
+Õ
+
+ﬁ
+
+ÑÖ 
+Ú ´
+if ´
+
+ÁÒ×Ø ÐÐÎ Û ´Û Ò×Ø ÐÐ ØÖÙ
+
+℄ 
+Ú Û
+
+Û
+
+µ:
+
+
+Ú Û
+
+µ
+
+µ and ´ ¾ ×Ø Ñ Ø µµ then
+Õ
+
+ﬁ esac until Ò×Ø
+
+ÐÐ
+Figure 4. Estimate exchange phase for process Ô: Part (a).
+
+UBLCS-98-01
+
+17
+
+1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21
+
+procedure ÁÒ procedure Ë
+
+Ø Ð Þ ×Ø Ñ Ø È × Ë Ò ×Ø Ñ Ø ´ µ ×Ø Ñ Ø Ñ× Ò ´ Ñ× Ò ´ Ò ×Ø Ñ Ø ×Ø Ñ Ø
+
+´µ
+
+´ µ  
+È
+
+ESTIMATE PROPOSE
+
+´
+Ú Û
+
+Ö
+
+È
+
+×Ø Ñ Ø Ö 
+ Ö ×Ø Ñ Ø
+
+Ð   µ µ Å Ò ´ ×Ø Ñ Ø µµ
+Ô Õ Ö
+
+function return
+
+
+
+´ ¾ and ´
+Õ Ô
+
+Ö Ñ ÒØ ´ µ Ô℄ ×Ø Ñ Ø
+Õ Ö
+
+¾
+
+Ô
+
+℄ ×Ø Ñ Ø
+Ö
+
+Ô
+
+℄ ×Ø Ñ Ø ℄ Ö
+Ô Ô
+
+℄ ×Ø Ñ Ø µ ℄ ℄ Ö
+Õ
+
+Ö
+
+℄µ µ then
+
+procedure ÁÒ×Ø
+
+Ñ× Ò
+else
+
+ÐÐÎ Û ´ µ ´ VIEW ℄ ×Ø Ñ Ø   µ if ´ ¾ ℄ ×Ø Ñ Ø ¾ ℄ 
+Ú Û 
+ÓÑÔ Ú Û ´´ Ú Û µ ¾ ℄ ×Ø Ñ Ø
+Û Û Ô Õ Ö Õ Û Ö Ö Ô
+
+Õ
+
+Ö
+
+℄ 
+Ú Û ℄ 
+Ú Û
+
+Ö ℄ 
+Ú Û 
+Ú Û µ
+
+
+Ú Û ×Ø Ð
+
+generate Ú
+
+Ú Û
+
+µ ℄ ×Ø Ñ Ø µ ´Ú Û µ ´ ℄ ×Ø Ñ Ø µ ´Ú Û 
+ÓÑÔ Ö 
+ Ð µ and ´
+Û Ô Û Ô
+
+´´
+
+Õ Ö
+
+¾
+
+Ô
+
+℄ ×Ø Ñ Ø
+
+Ô
+
+℄ Ö
+
+Ö
+
+℄
+
+Ö
+
+Ö
+
+℄µ
+
+Figure 5. Estimate exchange phase for process Ô: Part (b).
+
+the designated coordinator may change several times during an agreement due to some process m-suspecting the coordinator. Every time the coordinator changes, each process has to m-send its proposal to the new coordinator and wait for a reply. Finally, the installation of partial views, needed to satisfy Property GM3, may cause further invocations of the agreement protocol. Although many optimizations are possible (for example, we could add a sub-protocol to handle the installation of a complete view after the installations of partial views without exiting eephase and thus saving the costs of repeated executions of the agreement protocol), we argue that in common failure scenarios the performance of our algorithm is reasonable. In particular, consider the scenario in which a single process Õ crashes. Eventually, every process will m-suspect Õ and enter s-phase. At the beginning of s-phase, each process m-sends a SYNCHRONIZE message and waits for a reply. Then, each process m-sends a proposal to the designated coordinator, and a ESTIMATE messages to every other process. In this scenario, ESTIMATE messages m-received from others will be ignored since all processes have the same view estimate (current view minus Õ , the crashed process). When the coordinator observes agreement on the m-received proposals, it m-sends a VIEW message to all. Hence, four end-to-end message delays are in general sufﬁcient to exclude a crashed process from a view. The same delay analysis also characterizes partition merges or partitionings that result in the formation of disjoint partitions.
+
+6
+
+Reliable Multicast Service: Speciﬁcation
+
+The class of partition-aware applications that can be programmed using group membership alone is limited [6]. In general, network applications require closer cooperation that is facilitated through communication among group members. In this Section, we brieﬂy illustrate how the group membership service of Section 3 may constitute the basis of more complex group communication services. The proposed extension is based on a reliable multicast service with view synchrony semantics that governs the delivery of multicast messages with respect to installation of views. After having introduced the reliable multicast speciﬁcation, we illustrate how our solution for PGMS may be easily extended in order to implement view synchrony. Group members communicate through reliable multicasts by invoking the primitive Ñ
+ ×Ø Ñ that attempts to deliver message Ñ to each of the processes in the current view through a ÐÚÖ
+UBLCS-98-01
+
+´ µ ´µ
+18
+
+v2 p v1 p q r (a) v3 p q v1 p q r p
+
+v2 v3 p q
+
+v4 q (b)
+
+Figure 6. Merging scenarios. Ovals depict view compositions as sets of process names. Directed edges depict immediate successor relations between views.
+
+upcall. Multicast messages are labeled in order to be globally unique. To simplify the presenÚ tation, we use ÅÔ to denote the set of messages that have been delivered by process Ô in view Ú. Ideally, all correct processes belonging to a given view should deliver the same set of messages in that view. In partitionable systems, this requirement could result in a multicast to block if at least one process belonging to the view becomes unreachable before having had a chance to deliver the message. In that case, the multicast would terminate only upon the repair of the communication failures. Thus, we relax this condition on the delivery of messages as follows: a process Õ may be exempt from delivering the same set of messages as some other correct process Ô in a view Ú if Õ crashes or if it becomes unreachable from Ô. In other words, agreement on the set of delivered messages in a view Ú is limited to those processes that survive a view change from view Ú to the same next view. RM1 (Message Agreement)Given two views Ú and Û such that Û is an immediate successor of Ú , all processes belonging to both views deliver the same set of multicast messages in view Ú . Formally,
+Ú
+
+ÔÛ
+
+Õ
+
+¾Ú
+
+Û
+
+µ
+
+ÅÔ
+
+Ú
+
+ÅÕ
+
+Ú
+
+The importance of Message Agreement can be better understood when considered together the properties offered by the group membership service speciﬁed in Section 3. Given two permanently reachable processes, there is a time after which they install the same sequence of views and deliver the same set of messages between every pair of successive views. Note that Property RM1 places no restrictions on the set of messages delivered by a process Õ that belonged to view Ú along with Ô but that subsequently ends up in a different partition and is excluded from Û. In this case, process Õ may or may not deliver some message Ñ that was delivered by Ô in view Ú . If, however, Õ indeed delivers message Ñ, it must do it in the same view Ú as Ô. This observation leads to the next property. RM2 (Uniqueness)Each multicast message, if delivered at all, is delivered in exactly one view. Formally,
+
+´Ñ ¾ ÅÔÚ µ ´Ñ ¾ ÅÕÛ µ µ
+
+Ú
+
+Û
+
+Properties RM1 and RM2 together deﬁne what has been called view synchrony in group communication systems. In distributed application development, view synchrony is extremely valuable since it admits global reasoning using local information only: Process Ô knows that all other processes surviving a view change along with it have delivered the same set of messages in the same view as Ô itself. And if two processes share some global state in a view and this state depends only on the set of delivered messages regardless of their order, then they will continue to share the same state in the next view if they both survive the view change .
+. For applications where the shared state is sensitive to the order in which messages are delivered, speciﬁc order properties can be enforced by additional system layers.
+
+UBLCS-98-01
+
+19
+
+Unfortunately, the group communication service speciﬁed so far does not allow global reasoning based on local information in partitionable systems. Consider the scenario depicted in Figure 6(a) where three processes Ô Õ Ö have all installed view Ú½ . At some point process Ö crashes and Ô becomes temporarily unreachable from Õ . Process Ô reacts to both events by installing view Ú¾ containing only itself before merging back with Õ and installing view Ú¿ . Process Õ , on other hand, reacts only to the crash of Ö and installs view Ú¿ excluding Ö. Suppose that Ô and Õ share the same state in view Ú½ and that Ô modiﬁes its state during Ú¾ . When Ô and Õ install Ú¿ , Ô knows immediately that their states may have diverged, while Õ cannot infer this fact based on local information alone. Therefore, Õ could behave inconsistently with respect to Ô. In an effort to avoid this situation, Ô could collaborate by sending Õ a warning message as soon as it installs view Ú¿ , but Õ could perform inconsistent operations before receiving such a message. The problem stems from the fact that views Ú½ and Ú¾ , that merge to form view Ú¿ , have at least one common member (Ô). The scenario of the above example can be easily generalized to any run where two overlapping views merge to form a common view. We rule out these runs with the following property. RM3 (Merging Rule)Two views merging into a common view must have disjoint compositions. Formally,
+
+´Ú
+
+Ù
+
+µ ´Û
+
+Ù
+
+µ ´Ú
+
+Û
+
+µµ
+
+Ú
+
+Û
+
+The sequence of view installations in a run respecting this property is shown in Figure 6(b): Before installing Ú¿ , process Õ has to ﬁrst install view Ú . Thus the two views that merge to form Ú¿ have empty intersection. As a result, when Ô and Õ install view Ú¿ , they both knows immediately that their states could have diverged during the partitioning. Note that Property RM3 may appear to be part of the group membership speciﬁcation since it is concerned with view installations alone. Nevertheless, we choose to include it as part of the reliable multicast service speciﬁcation since RM3 becomes relevant only in the context of multicast message deliveries. In other words, applications that need no guarantees for multicast messages but rely on PGMS alone would not be interested in RM3. The next property places simple integrity requirements on delivery of messages to prevent the same message from being delivered multiple times by the same process or a message from being delivered “out of thin air” without ﬁrst being multicast. RM4 (Message Integrity) Each process delivers a message at most once and only if some process actually multicast it earlier. Formally,
+
+´Ô Øµ
+
+dlvr Ñ
+
+´ µ µ ´dlvr´Ñµ ¾ ´Ô Ì   Ø µµ ´
+
+Õ
+
+Ø¼
+
+Ø
+
+´Õ Ø¼ µ
+
+mcast Ñ
+
+´ µµ
+
+Note that a speciﬁcation consisting of Properties RM1–RM4 alone can be trivially satisﬁed by not delivering any messages at all. We exclude such useless solutions by including the following property. RM5 (Liveness) (i) A correct process always delivers its own multicast messages. Formally,
+Ô
+
+¾ Correct´ µ
+
+´Ô Øµ
+dlvr Ñ
+Ø¼ Ø
+
+mcast Ñ
+
+´ µµ´
+
+Ø
+
+¼
+
+Ø
+
+´Ô Ø¼ µ
+Ú
+
+dlvr Ñ
+
+´ µµ
+
+(ii) Let Ô be a correct process that delivers message Ñ in view Ú that includes some other process Õ . If Õ never delivers Ñ, then Ô will eventually install a new view Û as the immediate successor to Ú . Formally,
+Ô
+
+¾ Correct´ µ
+
+´Ô Øµ
+
+´ µ
+
+´ µ ´ µ vchg´Ûµ
+Õ Ô Ø¼
+
+¾Ú
+
+view Ô Ø
+
+dlvr Ñ
+
+´ µ ¾ ´Õ Ì µ µ
+
+The second part of Property RM5 is the liveness counterpart of Property RM1: If a process Ô delivers a message Ñ in view Ú containing some other process Õ , then either Õ also delivers Ñ, or Ô eventually excludes Õ from its current view.
+UBLCS-98-01
+
+20
+
+Properties RM1–RM5 that deﬁne our Reliable Multicast Service can be combined with Properties GM1–GM5 of group membership to obtain what we call a Partitionable Group Communication Service with view synchrony semantics. In Appendix C we show how our solution to PGMS can be extended to satisfy this speciﬁcation.
+
+7
+
+Related Work and Discussion
+
+The process group paradigm has been the focus of extensive experimental work in recent years and group communication services are gradually ﬁnding their way into systems for supporting fault-tolerant distributed applications. Examples of experimental group communication services include Isis [8], Transis [12], Totem [27], Newtop [16], Horus [34], Ensemble [20], Spread [2], Moshe [4] and Jgroup [26]. There have also been several speciﬁcations for group membership and group communication not related to any speciﬁc experimental system [29, 17, 30]. Despite this intense activity, the distributed systems community has yet to agree on a formal deﬁnition of the group membership problem, especially for partitionable systems. The fact that many attempts have been show to either admit trivial solutions or to exhibit undesirable behavior is partially responsible for this situation [3]. Since the work of Anceaume et al., several other group membership speciﬁcations have appeared [19, 17, 4]. Friedman and Van Renesse [19] give a speciﬁcation for the Horus group communication system that has many similarities to our proposal, particularly with respect to safety properties such as View Coherency and Message Agreement. There are, however, important differences with respect to non-triviality properties: The Horus speciﬁcation is conditional on the outputs produced by a failure detector present in the system. This approach is also suggested by Anceaume et al. [3] and adopted in the work of Neiger [29]. We feel that a speciﬁcation for group membership should be formulated based on properties of runs characterizing actual executions and not in terms of suspicions that a failure detector produces. Otherwise, the validity of the speciﬁcation itself would be conditional on the properties of the failure detector producing the suspicions. For example, referring to a failure that never suspects anyone or one that always suspects everyone would lead to speciﬁcations that are useless. Thus, it is reasonable for the correctness of a group membership service implementation, but not its speciﬁcation, to rely on the properties of the failure detector that it is based on. Congress and Moshe [4] are two membership protocols that have been designed by the Transis group. Congress provides a simple group membership protocol, while Moshe extends Congress to provide a full group communication service. The speciﬁcation of Moshe has many similarities with our proposal and includes properties such as View Identiﬁer Local Monotony, Self Inclusion and View Synchrony, that can be compared to GM4, GM5 and RM1 of our proposal. Property RM5 is implied by Properties Self Delivery and Termination of Delivery of Moshe. On the other hand, the speciﬁcation of Moshe does not guarantee Properties RM3 and RM4, thus undesirable scenarios similar to those described in Section 6 are possible. The main differences between Moshe and our proposal are with respect to non-triviality requirements. Moshe includes a property called Agreement on Views that may be compared to our Properties GM1, GM2 and GM3. The Agreement on Views property forces a set of processes, say Ë , to install the same sequence of views only if there is a time after which every process in Ë (i) is correct, (ii) is mutually reachable from all other processes in Ë , (iii) is mutually unreachable from all processes not in Ë , and (iv) is not suspected by any process in Ë . As in our proposal, this requirement may be relaxed by requiring that the condition hold only for a sufﬁciently long period of time, and not forever. Despite these similarities, the non-triviality requirements of Moshe and our proposal have rather different implications. For example, Moshe does not guarantee that two processes will install a common sequence of views even if they are mutually and permanently reachable but there are other processes in the system that become alternately reachable and unreachable from them. In our proposal, however, processes that are mutually and permanently reachable always install the same sequence of views, regardless of the state of the rest of the system. And this is desirable since a common sequence of installed views which is the basis for consistent collaboration in our
+UBLCS-98-01
+
+21
+
+partition-aware application development methodology. Fekete et al. present a formal speciﬁcation for a partitionable group communication service [17]. In the same work, the service is used to construct an ordered broadcast application and, in a subsequent work, to construct replicated data services [22]. The speciﬁcation separates safety requirements from performance and fault-tolerance requirements, which are shown to hold in executions that stabilize to a situation where the failure status stops changing. The basic premise of Fekete et al. is that existing speciﬁcations for partitionable group communication services are too complex, thus, unusable by application programmers. And they set out to devise a much simpler formal speciﬁcation, crafted to support the speciﬁc application they have in mind. Quoting the authors: Our speciﬁcation VS does not describe all the potentially-useful properties of any particular implementation. Rather, it includes only the properties that are needed for the ordered-broadcast application. Simple speciﬁcations for partitionable group communication are possible only if services based on them are to support simple applications. Unfortunately, system services that are indeed useful for a wide range of applications are inherently more complex and do not admit simple speciﬁcations. Our experience in developing actual realistic partition-aware applications supports this claim [6]. The speciﬁcation and implementation presented in this work form the basis of Jgroup [26], a group-enhanced extension to the Java RMI distributed object model. Jgroup enables the creation of object groups that collaborate using the facilities offered by our partitionable group communication service. Clients access an object group using the standard Java remote method invocation semantics and remotely invoking its methods as if it were a single, non-replicated remote object. The Jgroup system includes a dependable registry service, which itself is a partition-aware application built using Jgroup services [25]. The dependable registry is a distributed object repository used by object groups to advertise their services under a symbolic name (register operation), and by clients to locate object groups by name (lookup operation). Each registry replica maintains a database of bindings from symbolic group names to group object composition. Replicas are kept consistent using group communication primitives offered by Jgroup. During a partitioning, different replicas of the dependable registry may diverge. Register operations from within a partition can be serviced as long as at least one replica is included inside the partition. A lookup, on the other hand, will not be able to retrieve bindings that have been registered outside the current partition. Nevertheless, all replicas contained within a given partition are kept consistent in the sense that they maintain the same set of bindings and behave as a non-replicated object. When partitions merge, a reconciliation protocol is executed to bring replicas that may have been updated in different partitions back to a consistent state. This behavior of the dependable registry is perfectly reasonable in a partitionable system where clients asking for remote services would be interested only in servers running in the same partition as themselves.
+
+8
+
+Conclusions
+
+Partition-aware applications are characterized by their ability to continue operating in multiple concurrent partitions as long as they can reconﬁgure themselves consistently [6]. A group membership service provides the necessary properties so that this reconﬁguration is possible and applications can dynamically establish which services and at what performance levels they can offer in each of the partitions. The primary partition version of group membership is not suitable for supporting partition-aware applications since progress would be limited to at most one network partition. In this paper we have given a formal speciﬁcation for a partitionable group communication service that is suitable for supporting partition-aware applications. Our speciﬁcation excludes trivial solutions and is free from undesirable behaviors exhibited by previous attempts. Moreover, it requires services based on it to be live in the sense that view installations and message deliveries cannot be delayed arbitrarily when conditions require them.
+UBLCS-98-01
+
+22
+
+We have shown that our speciﬁcation can be implemented in any asynchronous distributed system that admits a failure detector satisfying Strong Completeness and Eventual Strong Accuracy properties. The correctness of the implementation depends solely on these abstract properties of the failure detector and not on the operating characteristics of the system. Any practical failure detector implementation presents a trade-off between accuracy and responsiveness to failures. By increasing acceptable message delays after each false suspicion, accuracy can be improved but responsiveness will suffer. In practice, to guarantee reasonable responsiveness, ﬁnite bounds will have to be placed on acceptable message delays, perhaps established dynamically on a per channel or per application basis. Doing so will guarantee that new views will be installed within bounded delays after failures. This in turn may cause some reachable processes to be excluded from installed views. Such processes, however, have to be either very slow themselves or have very slow communication links, and thus, it is reasonable to exclude them from views until their delays return to acceptable levels. Each property included in our speciﬁcation has been carefully studied and its contribution evaluated. We have argued that excluding any one of the properties makes the resulting service either trivial, or subject to undesirable behaviors, or less useful as a basis for developing large classes of partition-aware applications. Speciﬁcation of new system services is mostly a social process and “proving” the usefulness of any of the included properties is impossible. The best one can do is program a wide range of applications twice: once using a service with the proposed property, and a second time without it, and compare their relative difﬁculty and complexity. We have pursued this exercise for our speciﬁcation by programming a set of practical partitionaware applications [6]. In fact, the speciﬁcation was developed by iterating the exercise after modifying properties based on feedback from the development step. As additional empirical evidence in support of our speciﬁcation, we point to the Jgroup system based entirely on the speciﬁcation and implementation given in this paper. As discussed in Section 7, the dependable registry service that is an integral part of Jgroup has been programmed using services offered by Jgroup itself. Work is currently underway in using Jgroup to develop other partition-aware ﬁnancial applications and a partitionable distributed version of the Sun tuple space system called Javaspaces.
+
+References
+[1] Y. Amir et al., “The Totem Single-Ring Ordering and Membership Protocol”, ACM Trans. Computer Systems, Vol. 13, No. 4, Nov. 1995, pp. 311–342. [2] Y. Amir and J. Stanton, “The Spread Wide-Aread Group Communication System”, tech. report, Center of Networking and Distributed Systems, Johns Hopkins Univ., Baltimore, Apr. 1998. [3] E. Anceaume et al., “On the Formal Speciﬁcation of Group Membership Services”, Tech. Report TR95-1534, Computer Science Dept., Cornell Univ., Ithaca, N.Y., Aug. 1995. [4] T. Anker et al., “Scalable Group Membership Services for Novel Applications”, Proc. DIMACS Workshop on Networks in Distributed Computing, American Math. Soc., 1998, pp. 23–42. ¨ [5] O. Babaoglu et al., “RELACS: A Communications Infrastructure for Constructing Reliable ˘ Applications in Large-Scale Distributed Systems”, Proc. Hawaii Int’l Conf. System Sciences, Maui, Hawaii, Jan. 1995, pp. 612–621. ¨ [6] O. Babaoglu et al., “System Support for Partition-Aware Network Applications”, Proc. Int’l ˘ Conf. on Distributed Computing Systems, Amsterdam, May 1998, pp. 184–191. [7] K. Birman, “The Process Group Approach to Reliable Distributed Computing”, Comm. ACM, Vol. 36, No. 12, Dec. 1993, pp. 36–53. [8] K. Birman and R. van Renesse, Reliable Distributed Computing with the ISIS Toolkit, IEEE Computer Soc. Press, Los Alamitos, Calif., 1994. [9] T. Chandra et al., “On the Impossibility of Group Membership”, Proc. ACM Symp. on Principles of Distributed Computing, May 1996, pp. 322–330.
+UBLCS-98-01
+
+23
+
+[10] T.D. Chandra and S. Toueg, “Unreliable Failure Detectors for Reliable Distributed Systems”, Journal of the ACM, 43(1):225–267, Mar. 1996. [11] D. Dolev et al., “Failure Detectors in Omission Failure Environments”, Proc. ACM Symp. on Principles of Distributed Computing, Santa Barbara, Calif., Aug. 1997. [12] D. Dolev and D. Malki. “The Transis Approach to High Availability Cluster Communication”, Comm. ACM, Vol. 39, No. 4, Apr. 1996. [13] D. Dolev, D. Malki, and R. Strong, “An Asynchronous Membership Protocol that Tolerates Partitions”, Tech. Report CS94-6, Inst. of Computer Science, The Hebrew Univ. of Jerusalem, Mar. 1994. [14] D. Dolev, D. Malki, and R. Strong, “A Framework for Partitionable Membership Service”, Tech. Report CS95-4, Inst. of Computer Science, The Hebrew Univ. of Jerusalem, 1995. [15] D. Dolev, D. Malki, and R. Strong, “A Framework for Partitionable Membership Service”, Proc. ACM Symp. on Principles of Distributed Computing, May 1996. [16] P.E. Ezhilchelvan, R.A. Macˆ do, and S.K. Shrivastava, “Newtop: A Fault-Tolerant Group e Communication Protocol”, Proc. Int’l Conf. on Distributed Computing Systems, Vancouver, BC, Canada, June 1995. [17] A. Fekete, N. Lynch, and A. Shvartsman, “Specifying and Using a Partitionable Group Communication Service”, Proc. ACM Symp. on Principles of Distributed Computing, Santa Barbara, Calif., Aug. 1997. [18] M.J. Fischer, N.A. Lynch, and M.S. Patterson, “Impossibility of Distributed Consensus with one Faulty Process”, Journal of the ACM, Vol. 32, No. 2, Apr. 1985, pp. 374–382. [19] R. Friedman and R. Van Renesse, “Strong and Weak Virtual Synchrony in Horus”, Tech. Report TR95-1537, Dept. of Computer Science, Cornell Univ., Ithaca, N.Y., Mar. 1995. [20] M. Hayden, The Ensenble System, doctoral dissertation, Computer Science Dept., Cornell Univ., Ithaca, N.Y., Jan. 1998. [21] F. Kaashoek and A. Tanenbaum, “Group Communication in the Amoeba Distributed Operating System”, Proc. IEEE Symp. on Reliable Distributed Systems, Arlington, Texas, May 1991, pp. 222–230. [22] R. Khazan, A. Fekete, and N. Lynch, “Multicast Group Communication as a Base for a Load-Balancing Replicated Data Service”, Proc. Int’l Symp. on Distributed Computing, Andros, Greece, Sep. 1998. [23] C. Malloth, Conception and Implementation of a Toolkit for Building Fault-Tolerant Distributed Applications in Large-Scale Networks, doctoral dissertation, Ecole Polytechnique F´ d´ rale de e e Lausanne, Lausanne, Switzerland, 1996. [24] C. Malloth and A. Schiper, “View Synchronous Communication in Large Scale Networks”, Proc. Open Workshop of the ESPRIT Project Broadcast, Grenoble, France, July 1995. [25] A. Montresor, “A Dependable Registry Service for the Jgroup Distributed Object Model”, Proc. European Reasearch Seminar on Advances in Distributed Systems (ERSADS ’99), Madeira, Portugal, Apr. 1999. [26] A. Montresor, “The Jgroup Reliable Distributed Object Model”, Proc. IFIP Int’l Working Conf. on Distributed Applications and Systems, Helsinki, Finland, June 1999. [27] L. Moser et al., “Totem: A Fault-Tolerant Group Communication System”, Communications of the ACM, Vol. 39, No. 4, Apr. 1996. [28] L.E. Moser et al., “Extended Virtual Synchrony”, Proc. Int’l Conf. on Distributed Computing Systems, Poznan, Poland, June 1994. [29] G. Neiger, “A New Look at Membership Services”, Proc. ACM Symp. on Principles of Distributed Computing, May 1996. [30] R. De Prisco et al., “A Dynamic View-Oriented Group Communication Service”, Proc. ACM Symp. on Principles of Distributed Computing, June 1998. [31] A. Ricciardi and K. Birman, “Using Process Groups to Implement Failure Detection in Asynchronous Environments”, Proc. ACM Symp. on Principles of Distributed Computing, Aug. 1991, pp. 341–352. [32] A. Schiper and A. Ricciardi, “Virtually-synchronous Communication Based on a Weak Failure Suspector”, Proc. Int’l Symp. on Fault-Tolerant Computing, June 1993, pp. 534–543.
+UBLCS-98-01
+
+24
+
+[33] R. van Renesse et al., “The Horus System”, Reliable Distributed Computing with the Isis Toolkit, K. Birman and R. van Renesse, ed., IEEE Computer Soc. Press, Los Alamitos, Calif., 1993, pp. 133–147. [34] R. van Renesse, K.P. Birman, and S. Maffeis, “Horus: A Flexible Group Communication System”, Communications of the ACM, Vol. 39, No. 4, Apr. 1996, pp. 76–83.
+
+UBLCS-98-01
+
+25
+
+Appendices A Multi-Send Layer: Speciﬁcation and Implementation
+In this Appendix we give a formal speciﬁcation for MSL and an algorithm satisfying it. Recall that VML invokes the primitive Ñ× Ò Ñ of MSL for m-sending a message Ñ to a destination set . Messages are globally unique such that each message is m-sent at most once. MSL exports events ÑÖ 
+Ú Ñ Õ and Ñ×Ù×Ô 
+Ø È up to VML for m-receiving a message Ñ from process Õ and for m-suspecting processes in the set È , respectively. Note that Ñ×Ù×Ô 
+Ø events are produced spontaneously by MSL and are not solicited explicitly by VML. Let Ê Ô Ø denote the reachable set function deﬁned as those processes that are not m-suspected by Ô at Ø. In other words, Õ ¾ Ê Ô Ø if and only if the last Ñ×Ù×Ô 
+Ø È event generated at process Ô by time Ø is such that Õ ¾ È . Properties of MSL that are needed by the group membership algorithm are as follows. Property A.1 (MSL Guarantees)The Multi-Send Layer (MSL) satisﬁes the following properties: (a) if a process Õ is continuously unreachable from Ô, then eventually Ô will continuously m-suspect Õ ; (b) if process Õ is continuously reachable from Ô, then eventually each process will m-suspect both or none of Ô and Õ ; (c) each process m-receives a message at most once and only if some process actually m-sent it earlier; (d) messages from the same sender are m-received in FIFO order; (e) a message that is m-sent by a correct process is eventually m-received by all processes in the destination set that are not m-suspected; (f) function Ê is perpetually reﬂexive; (g) function Ê is eventually symmetric. Formally,
+
+´
+
+µ
+
+´
+
+µ
+
+´ µ
+
+´ µ
+
+´ µ
+
+´ µ
+
+´ µ Ø¼ Ô ¾ ¢ Õ ¾ ¢ Ø Ø¼ Ô Ø Õ µ Ø½ Ö ¾ Correct´ µ ¢ Ø Ø½ Ê´Ö Øµ   ¢ ´ µ Ø¼ Ø Ø¼ Ô Ø Õ µ Ø½ Ø Ø½ Ö Ô ¾ Ê´Ö Øµ ¸ Õ ¾ Ê´Ö Øµ ´
+µ ´Ô Øµ ÑÖ 
+Ú ´Ñ Õµ µ ÑÖ 
+Ú ´Ñ Õµ ¾ ´Ô Ì   Ø µ Ñ× Ò ´Ñ Ô µ ¾ ´Õ ¼ Ø µ ´ µ ´Ô Ø½ µ ÑÖ 
+Ú ´Ñ½ Õµ ´Ô Ø¾µ ÑÖ 
+Ú ´Ñ¾ Õµ Ø½ Ø¾ µ ¼ ¼ ¼ ¼ Ø½ Ø ¾ Ø½ Ø¾ ´Õ Ø¼½ µ Ñ× Ò ´Ñ ½ µ ´Õ Ø¼¾ µ Ñ× Ò ´Ñ ¾µ ¼ ´ µ ´Ô Øµ Ñ× Ò ´Ñ Õ µ µ Ø Ø ´Õ Ø¼ µ ÑÖ 
+Ú ´Ñ Ôµ Õ ¾ Ê´Ô Ø¼ µ Ô ¾ ´Ø¼ µ ´ µ Ô ¾ Ê´Ô Øµ ´ µ Ô Õ ¾ Correct´ µ Ø¼ Ø Ø¼ Õ ¾ Ê´Ô Øµ µ Ø½ Ø Ø½ Ô ¾ Ê´Õ Øµ
+In Figure 7 we illustrate an algorithm for implementing MSL. Recall that our goal is simply to prove the implementability of the speciﬁcation and not be concerned about efﬁciency. Thus, the algorithm uses a simple ﬂooding strategy based on the forwarding of every received message on each output channel. At each process Ô, MSL maintains a local state deﬁned by the variables Ö 
+ Ð , × Õ , , 
+ and Ñ× . Ö 
+ Ð is the set of processes that are believed to be reachable through direct or indirect paths. This set is constructed from the outputs of the failure detector modules, including remote ones, as they are learned through incoming messages. × Õ is a vector indexed by , where × Õ Õ represents the number of messages m-sent by Ô to Õ ; it is used to generate the sequence numbers associated to messages. , 
+ and Ñ× are three vectors indexed by ; for every process Õ ¾ , Õ is set of processes, 
+ Õ is a vector (indexed by ) of sequence numbers, while Ñ× Õ is a vector (indexed by ) of sets of messages. The variables , 
+ and Ñ× may be seen as partitioned in two sections: the local section refers to process Ô ( Ô , 
+ Ô and Ñ× Ô ); the remote section refers to all other processes ( Õ , 
+ Õ and Ñ× Õ , for each Õ Ô). Process Ô modiﬁes its local section in response to local events (for example, a Ñ× Ò request from PGMS, the receipt of a message from the network, or a change in the output of the local failure detector module). In particular, Ô records Ô’s last reading of the failure detector; 
+ Ô Õ is the sequence number of the last message from Õ m-received by Ô; Ñ× Ô Õ is the set of messages m-sent by Ô to Õ for which Ô has not yet m-received an acknowledgement. For each process Õ Ô, Õ , 
+ Õ and Ñ× Õ contain Ô’s local perception of the corresponding variables of Õ . The algorithm is driven by recv events from below (network), Ñ× Ò events from above
+
+¥
+
+¥
+
+℄
+
+℄ ¥
+
+℄
+
+¥
+
+℄
+
+¥
+
+℄
+
+℄
+
+℄
+
+℄
+
+℄
+
+℄
+
+℄ ℄
+
+℄
+
+℄ ℄
+
+℄
+
+℄
+
+℄ ´µ
+
+UBLCS-98-01
+
+26
+
+1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 23 24 25 26 27 28 29 30 31 32 33 34 35 36 37 38 39 40 41 42 43 44 45 46 47 48 49
+
+thread ÅÙÐØ
+
+×Õ 
+ Ñ×
+
+Ö 
+
+´
+
+´¼ ´´¼ ´´
+Ð
+
+ËÒ
+
+¼µ ¼µ µ
+Ô
+
+µ
+
+´¼ ´
+
+¼µµ µµ
+
+% Sequence number array % Acknowledged messages % Messages to deliver % Failure Detector readings % Reachable processes (directly or indirectly)
+
+while true do wait-for Ú ÒØ case Ú ÒØ of tick:
+
+% Remain idle until some event occurs
+
+Ô
+
+foreach Õ
+
+℄
+
+¾ ¥ do send´ Ñ×
+Õ
+
+Ô
+
+
+Ô
+
+Õ
+
+µ
+
+% Read the local failure detector output
+
+Ñ× Ò
+
+foreach Õ
+Õ
+
+´
+
+od if ´Ô
+
+µ: ¾ ´ Ö 
+ Ð µ   do × Õ ℄ × Õ ℄·½ Ñ× ℄ ℄ Ñ× ℄ ℄ ´MSEND
+Ñ Ô Õ Ô Õ
+
+Ñ
+
+×Õ
+
+Õ
+
+℄µ
+
+¾ µ then generate ÑÖ 
+Ú ´
+Õ
+
+Ñ Ô
+
+µ
+Õ Õ Õ Õ
+
+recv´ Å foreach Õ
+
+Ñ×
+
+if ´´SUSPECT
+
+µ: ¾¥  ℄ ℄;
+Ô Å Õ Ô Õ
+
+
+Ò
+
+ÍÔÌÓ
+Õ
+
+generate Ñ×Ù×Ô generate Ñ×Ù×Ô ﬁ foreach ´ ´MSEND generate ÑÖ
+
+
+
+℄ ℄
+
+Ò
+
+µ¾
+
+℄
+
+Å Õ
+
+´ ℄ ℄ ℄µ do ℄; ℄ ℄ ℄ ℄µ and ´ ¾ Ö 
+ Ð µ then
+Ø
+Å Õ Õ Ô Õ
+
+
+Ø ´¥   ´Ö 
+ Ð   
+Ø ´¥   Ö 
+ Ð µ
+
+µµ
+
+Ô Õ
+
+
+
+Ô Õ
+
+℄ ℄
+
+Ñ Ò
+
+µ¾ µ
+
+Å Õ
+
+℄ ℄
+Ô
+
+Ò
+
+℄ ℄ · ½ µ do
+Ô Õ
+
+Ò
+
+Ñ×
+od
+È Ô
+
+od
+
+
+Ú ´Ñ
+Ô Õ
+
+Õ
+
+Ô Õ
+
+℄ ℄
+È
+¼
+
+Ñ×
+
+℄ ℄   ´MSEND   µ
+Ò Õ
+
+Ò
+
+
+
+℄ ℄
+
+while ´È
+È
+¼
+
+; È¼
+È
+
+foreach Õ
+Õ
+
+Ö 
+esac od
+
+od if ´È Ö 
+ Ð µ then generate Ñ×Ù×Ô 
+Ø ´¥
+
+℄µ Õ È ¼ ´¥   ´SUSPECT    µ ¾ Ñ× ℄ ℄ do × Õ ℄ × Õ ℄·½ Ñ× ℄ ℄ ´SUSPECT × Õ ℄ µ
+
+¾
+
+;È
+È
+
+µ do Ë
+Õ
+
+% Compute the transitive closure % of reachability
+Ô Õ
+
+¾
+
+Ô Õ
+
+Õ
+
+È
+
+Ð
+
+  µ;
+È
+
+È
+
+Figure 7. Algorithm for implementing MSL using failure detector
+
+¾ ¥È .
+
+UBLCS-98-01
+
+27
+
+(PGMS) and local tick events that are produced periodically. It exports ÑÖ 
+Ú and Ñ×Ù×Ô 
+Ø events to PGMS. At each tick event (lines 12-14), process Ô reads the output of the local failure detector module as Ô and sends a message containing the value of Ñ× , 
+ and to all other processes. (lines 23-46), it veriﬁes whether, for each When Ô receives a message with contents Å process Õ , the data regarding Õ contained in the message are more recent than the ones saved in the local variables Ñ× Õ , 
+ Õ and Õ . The check is done through the predeﬁned function ÍÔÌÓ Ø . If so, Ô updates its local variables. If the set of messages sent by Õ to Ô as contained in Å includes tuples of the form SUSPECT Ò that have not yet been handled, then Ô temporary m-suspects Õ and the processes in by generating two Ñ×Ù×Ô 
+Ø events, the ﬁrst one m-suspecting the processes in and the second one immediately removing the processes in from the list of m-suspected processes. Then, Ô copies the value Ò in 
+ Ô Õ , to indicate that the messages m-sent by Õ before m-suspecting Ô can be discarded. The SUSPECT tuples addressed to Ô by Õ are created to avoid persistent asymmetric scenarios. The set is chosen so that it guarantees property A.1(a). Then, Ô m-receives (in FIFO order) those messages that it has not yet done so. Finally, Ô modiﬁes Ñ× Ô by removing all messages that have been acknowledged by Õ . At this point, Ô computes the transitive closure of the individual reachability sets. The resulting set È contains all the processes reachable from Ô through a direct or an indirect path. Finally, Ô creates the SUSPECT tuples needed to guarantee the eventual symmetry of function Ê. If È differs from Ö 
+ Ð , Ô generates the corresponding Ñ×Ù×Ô 
+Ø event and updates the set Ö 
+ Ð . To complete the algorithm explanation, a request to m-send message Ñ to destination set is handled in lines 16-21. For each Õ in the destination set , the tuple MSEND Ñ Ò is inserted into Ñ× Ô Õ so that it will be sent to all processes at the next tick event. The value Ò represents the current sequence number. If Ô belongs to the destination set, then Ñ is locally m-received. The MSEND tag is used to distinguish between messages sent on behalf of the upper layer and those sent internally which have SUSPECT tags. We now prove that the algorithm of Figure 7 is correct. Since we need to refer to several processes, we index variable names with process names they are local to (for example, Ö 
+ Ð Ô ). Moreover, we denote variables as functions of time so as to refer to their value at a particular time (for example, Ö 
+ Ð Ô Ø ). Theorem A.1 (MSL Guarantees) The algorithm of Figure 7 satisﬁes MSL as speciﬁed in Property A.1. P ROOF. (a) We must show that if a process Õ is continuously unreachable from Ô, then eventually Ô will continuously m-suspect Õ . Let and   be two sets of processes such that there is a time Ø¼ after which the processes in are permanently unreachable from processes in . We must show that there is a time after which every event Ñ×Ù×Ô 
+Ø È generated by correct process Ô ¾ are such that È . By Strong Completeness, there is a time Ø½ after which every correct process Ô¾ will permanently suspect the processes in . It follows that every message Å sent by each Ô ¾ after Ø½ is such that Õ . The proof is by induction on . If , after Ø½ the set Ð Ô ) is permanently equal to Ô ; thus, the claim trivially holds. Ô Ô (and so Ö 
+ ¼ , then there is a If Ò, let ¼ denote the set Õ Õ ¾ Ø Ø Ø Ô Õ Ø . If time after which Ö 
+ Ð Ô . If, on the other end, ¼ , none of the messages sent by processes in   ¼ after Ø½ is received by processes in ¼ ; by Eventual Symmetry, there is a time Ø¾ after which ¼ and ¼   ¼ are deﬁnitely unreachable. Since ¼ , the proof is concluded by induction. (b) Let Õ be a process always reachable from Ô after time Ø¼ ; we must show that there is a time after which given a process Ö, for each event Ñ×Ù×Ô 
+Ø È generated by Ö, Õ ¾ È if and only if Ô ¾ È . Let denote the set of processes such that there is a time Ø½ after which every message Å sent by a process in is such that Õ ¾ Ô . By Eventual Strong Accuracy, at least Ô and Õ belong to . We claim that none of the processes not in receives any message from processes sent in sent after Ø½ . By contradiction, suppose a process Ö ¾ receives a message Å by a process in after Ø½ . Thus, Õ ¾ Ô and Ö removes Õ from Ö Ô after Ø½ . Since Õ cannot be inserted again in Ö Ô , there is a time after which all messages Å sent by Ö are such that Õ ¾ Ô , and thus Ö ¾ , a contradiction. By the Eventual Symmetry and Fair Channels properties, and   are permanently unreachable after Ø½ . If Ö ¾ , from (a) it follows that
+
+´µ
+
+℄
+
+℄
+
+℄
+
+´
+
+µ
+
+℄ ℄
+
+℄
+
+℄ ℄
+
+´
+
+µ
+
+´µ
+
+¢ © ¥ ¢ ©
+
+¢
+
+¢
+
+© ¢ © ℄ ℄ ¢ ¢ © ¢ ¢ ¢ © © ´¢ ¢ µ ¢
+
+´ µ
+
+¢
+
+¢
+
+©
+
+¢
+
+¢
+
+½
+
+© ¢ ¢ ´ µ
+
+℄´ µ ¢
+
+¢ ¢ ¢
+
+¢
+
+¢
+
+¢ ¢
+
+℄
+
+¢
+
+¢
+
+℄ ¢
+
+℄
+
+℄
+
+¢
+
+℄
+
+¥ ¢
+
+¢
+
+¢
+
+UBLCS-98-01
+
+28
+
+there is a time after which every event Ñ×Ù×Ô 
+Ø È generated by Ö is such that Ô Õ ¾ È . If Ö ¾ , there are two possibilities. If Ö generates an event Ñ×Ù×Ô 
+Ø È for Õ after Ø½ due to a change in Ö 
+ Ð Ö , È must contains also Ô (by Ö 
+ Ð Ö construction). If Ö generates a Ñ×Ù×Ô 
+Ø event tuple, it is easy to see that Ô Õ ¾ and so Ö for Õ after Ø½ due to the receipt of a SUSPECT   generates a Ñ×Ù×Ô 
+Ø event for both. (c) We must show that a process generates a ÑÖ 
+Ú event for a message Ñ at most once and only if some process Õ actually m-sent it earlier to a set of processes containing Ô. Before generating a ÑÖ 
+Ú event for a message Ñ m-sent by a process Õ , Ô checks that Ñ has not been delivered yet, by verifying that the sequence number of Ñ immediately follows the value stored in 
+ Ô Ô Õ ; since after the ﬁrst ÑÖ 
+Ú event, 
+ Ô Ô Õ is set equal to the sequence number of Ñ, Ô generates a ÑÖ 
+Ú event for Ñ at most once. As regards the second part, Ô generates an event ÑÖ 
+Ú Ñ Õ at time Ø¼ only after executing an event Ñ× Ò Ñ such that Ô ¾ , or after the receipt of a message Å such that MSEND Ñ   ¾ Å Õ Ô . The ﬁrst case is trivial; in the second case, there is a time Ø½ Ø¼ at which Ñ× Õ Õ Ô contained MSEND Ñ   ; this implies that Õ has executed an event Ñ× Ò Ñ at time Ø¾ Ø½ such that Ô ¾ . (d) We must show that messages from the same sender are m-received in FIFO order. Let Ñ be a message m-sent by a process Õ . When Ô has m-received Ñ, it has set 
+ Ô Ô Õ equal to the sequence number associated to it. By construction, all the messages from Õ m-received by Ô after Ñ have a sequence number greater than the number associated to Ñ and thus, have been m-sent after Ñ. (e) Let Ô be a correct process that m-sends at time Ø¼ a message Ñ to a set of processes containing Õ ; we must show that either (i) Õ will eventually generate a ÑÖ 
+Ú event for Ñ, or (ii) Ô will eventually generate a Ñ×Ù×Ô 
+Ø event for Õ . By contradiction, suppose the claim is false. This implies that Ñ will never be removed from Ñ× Ô Ô Õ after Ø¼ . Let denote the set of processes that never receive a message Å such that MSEND Ñ Ò ¾ Å Ô Õ . By deﬁnition, such that MSEND Ñ Ò ¾ Å Ô Õ . all processes not in receive at least one message Å Since Õ never performs an ÑÖ 
+Ú event for Ñ, Õ never generates an acknowledgement for Ñ, Ø¼ after which all messages Å sent by processes not in , and thus there is a time Ø½ MSEND Ñ Ò ¾ Å Ô Õ holds. By the Fair Channels property, processes in are permanently unreachable from processes not in after Ø½ . By deﬁnition, Ô is not in . There are two possibilities: if Õ ¾ , by (a) it follows that there is a time after which every event Ñ×Ù×Ô 
+Ø È generated by Ô is such that Õ ¾ È , a contradiction. Thus, suppose Õ ¾ . By hypothesis, Ô never m-suspects Õ after having m-sent Ñ. Thus, Ô never inserts a SUSPECT Ò¼ È tuple in Ñ× Ô Ô Õ such that Ò¼ Ò. The proof continues by induction on Ò. If Ò , Õ must m-receive Ñ (a contradiction), since Õ cannot receive a tuple SUSPECT with a value greater than Ò. Then, suppose Ò . This implies that Õ cannot m-receive the message since its variable 
+ Õ Õ Ô is blocked on a value Ò¼ Ò   . There are two possibilities: the value Ò¼ is associated either to a regular message Ñ¼ , or to a tuple SUSPECT . In the ﬁrst case, by inductive hypothesis Õ will m-receive Ñ¼ or Ô will m-suspect Õ after having m-sent Ñ¼ (and thus Õ will m-receive a SUSPECT tuple with a value greater than Ò¼ ); this implies that the value of 
+ Õ Õ Ô will eventually increase, a contradiction. In the second case, Õ will m-receive a SUSPECT tuple containing Ò¼ , and the proof terminates as in the previous case. (f) We must show that no process generates Ñ×Ù×Ô 
+Ø events for itself. There are two cases in which a process Ô generates a Ñ×Ù×Ô 
+Ø event: when a change occurs in the Ö 
+ Ð Ô set, in which case Ô generates a Ñ×Ù×Ô 
+Ø event for the set   Ö 
+ Ð , which cannot contain Ô, or after receiving a message Å where SUSPECT   ¾ Å Õ Ô for some process Õ. Since Õ has inserted the SUSPECT tuple in Ñ× Õ Ô immediately after having excluded Ô from Ö 
+ Ð Õ and is equal to Ö 
+ Ð Õ , does not contains Ô. So, Ô never generates a Ñ×Ù×Ô 
+Ø event for itself. (g) Let Ô be a process that never generates a Ñ×Ù×Ô 
+Ø event for Õ after time Ø¼ ; we must show that there is a time after which Õ never generates a Ñ×Ù×Ô 
+Ø event for Ô. By contradiction, suppose this is false. By the algorithm, there is a time Ø½ Ø¼ at which Ñ× Õ Õ Ô contains a SUSPECT Ò   tuple not yet received by Ô. Let be the set of processes Ö such that there is a time at which SUSPECT Ò   ¾ Ñ× Ö Ô Õ . If Ô ¾ , then Ô eventually generates a Ñ×Ù×Ô 
+Ø event for Õ after Ø¼ as a result of the receipt of SUSPECT Ò   . If, on the other end, Ô ¾ , since the sets and  
+
+´ µ
+
+´ µ
+
+¢
+
+´
+
+µ
+
+℄ ℄ ´ µ
+
+℄ ℄
+
+´
+
+´
+
+µ
+
+℄ ℄
+
+µ
+
+´
+
+µ ℄ ℄ ´
+
+µ
+
+℄ ℄
+
+¢
+
+℄ ℄ ´
+
+µ
+
+¢
+
+´
+
+℄ ℄
+
+µ
+
+℄ ℄
+
+¢
+
+¢
+
+¢
+
+¢
+
+℄ ℄ ¢
+
+´
+
+¢
+
+½
+
+µ
+
+´ µ ℄ ℄
+
+½
+
+·½
+
+℄ ℄
+
+½
+
+·½
+
+℄ ℄
+
+·½
+
+´ ℄ ℄
+
+¥
+
+µ
+
+℄ ℄
+
+´
+
+µ
+
+℄ ℄ ´
+
+¢
+
+℄ ℄ ¢
+
+´
+
+µ
+
+¢
+
+µ
+
+¢
+
+¥ ¢
+29
+
+UBLCS-98-01
+
+are permanently unreachable and Õ Õ after time Ø¼ .
+
+¾ ¢, from (a) it follows that Ô generates a Ñ×Ù×Ô 
+Ø event for
+
+B
+
+View Management Layer: Detailed Description
+
+In this Appendix we present a detailed description of VML illustrated in Figures 2–5. B.1 Variables and Messages The local state of each process Ô is deﬁned by the global variables Ú Û , 
+Ú Û , Ö 
+ Ð , Ú Ö× ÓÒ , Ö , ×Ø Ñ Ø , ×ÝÑ× Ø , ×Ø Ð and 
+Ø Ð . Variable Ú Û is composed of the ﬁelds Ú Û and Ú Û 
+ÓÑÔ that represent, respectively, the identiﬁer and the composition of the last view passed up to the application. Variable 
+Ú Û has the same ﬁelds as Ú Û , but contains the complete view that has been m-received with the last VIEW message. When the current view of Ô is a complete view, Ú Û and 
+Ú Û are equal. Ö 
+ Ð corresponds to the set of processes perceived to be reachable (i.e., not m-suspected by MSL). During idle phase, Ö 
+ Ð and Ú Û 
+ÓÑÔ coincide. A new agreement phase is started whenever Ö 
+ Ð changes due to a Ñ×Ù×Ô 
+Ø event, or when Ö 
+ Ð is different from the composition of the last installed view. Ú Ö× ÓÒ is an array indexed by ; for each Õ ¾ , Ú Ö× ÓÒ Õ contains the last version number of Õ known by Ô. Ú Ö× ÓÒ Ô is the current version number of Ô. Version numbers are generated by processes whenever they enter a new agreement phase. When a process enters ee-phase, it creates a new array of version numbers, called Ö . While Ú Ö× ÓÒ can continually change during an ee-phase, Ö is ﬁxed and is used to identify the messages related to this particular ee-phase. ×Ø Ñ Ø is a set of processes and represents the proposal for the composition of the next view. ×ÝÑ× Ø is an array indexed by ; for each Õ ¾ , ×ÝÑ× Ø Õ contains the last value stored in variable Ö 
+ Ð such that Õ ¾ Ö 
+ Ð . This information, communicated by Ô to Õ through SYNCHRONIZE messages, is used by the algorithm to satisfy Property GM1. ×Ø Ð is a boolean variable indicating whether the last installed view corresponds to the approximation of reachability supplied by the MSL, or the process has to enter agreement phase again. 
+Ø Ð is the coordinator table and contains all information needed by a process when it assumes the role of coordinator. In particular, 
+Ø Ð is an and ×Ø Ñ Ø . array of records indexed by , where each record contains the entries 
+Ú Û , Ö For each Õ , 
+Ø Ð Õ represent Ô’s perception of the value of those variables at process Õ . Finally, there are three variables that have only local scope: Ú ÒØ is used with the wait-for construct and contains the last event that occurred at Ô; ×ÝÒ
+ ÖÓÒ Þ is used in the s-phase and contains the set of processes from which Ô has m-received an answer to its synchronize request; Ò×Ø ÐÐ is a boolean variable used in procedure ×Ø Ñ Ø Ü
+ Ò È × , whose value become true when the agreement protocol can terminate. All messages that are m-sent contain a tag indicating the message type plus other ﬁelds relevant for that type. Five message types are used by the algorithm. SYNCHRONIZE ÎÔ ÎÕ È messages are used during the s-phase. Fields ÎÔ and ÎÕ represent the version numbers of the sender and the destination as known by the sender at the time of m-sending, and È represents the last ×ÝÑ× Ø associated to the destination process. When a process enters s-phase, it m-sends a SYNCHRONIZE message to each reachable process, that respond with another SYNCHRONIZE message. SYMMETRY Î È messages are used in both s- and ee-phases to handle situations where approximations of reachability obtained by the MSL are temporarily asymmetric. Here, Î is a version number array, while È is the approximation of the set of reachable processes known by Ô at the time of m-sending. ESTIMATE Î È , PROPOSE Ë and VIEW Û messages are used during the ee-phase. A ESTIMATE message is m-sent to processes belonging to the current estimate whenever this estimate changes. Once again, Î is a version number array, while È is the set of processes in the current estimate of the sender. PROPOSE messages are m-sent by the processes to the coordinator each time the next view estimate changes; the ﬁeld Ë contains the status of the sender, that corresponds to a 
+Ø Ð entry. Finally, VIEW messages are m-sent by the coordinator to processes when agreement is reached; ﬁeld Û is the the new complete view identiﬁer, while is the value of the coordinator table when agreement has been reached and contains the
+
+¥
+
+¥
+
+℄
+
+℄
+
+¥
+
+¥
+
+℄
+
+℄
+
+¥
+
+´µ
+
+UBLCS-98-01
+
+30
+
+composition of the view and other information used to construct partial views (if necessary). We say that a process accepts an m-received message if it modiﬁes its status according to the contents of the message. B.2 Algorithm Description
+
+Instead of giving an exhaustive description of the entire algorithm, we illustrate some of its peculiarities in order to simplify the understanding of the overall structure. Figure 2 contains the main body of the algorithm. During the ﬁrst part of procedure Î ÛÅ Ò Ñ ÒØ , process Ô initializes some variables and installs a view containing only itself. In this way, every process can independently create its initial view without having to reach agreement with any other process. This view will last until the ﬁrst Ñ×Ù×Ô 
+Ø event that occurs. Variables Ú Û and 
+Ú Û are updated in order to simulate the m-receipt of a VIEW message generated by Ô itself. ÍÒ ÕÙ Á is a predeﬁned function used to create new identiﬁers. After initialization, the process remains idle until an even occurs causing it to enter agreement phase. There are two conditions under which a process enters agreement phase: the execution of a Ñ×Ù×Ô 
+Ø È event, or the m-receipt of a SYNCHRONIZE message. The second case is straightforward: Ô enters agreement phase if the message is not obsolete and the sender is believed reachable (remember that a process may m-receive messages from unreachable processes due to fact that MSL guarantees only eventual, and not perpetual, symmetry between processes). As for the ﬁrst case, the code associated with this event must be described carefully, since it is related both to the agreement protocol termination and to View Accuracy. Furthermore, similar code is repeated in other parts of the algorithm. First of all, Ô updates the ×ÝÑ× Ø array entries of all processes that have become reachable since the previous Ñ×Ù×Ô 
+Ø event and m-sends a SYMMETRY message to them. The aim of this code is to reestablish symmetry on view estimates whenever the approximation obtained by the MSL is temporarily asymmetric. To see this point, consider the following scenario. Let Õ be a process engaged in agreement phase, waiting for agreement to be reached with Ô. Suppose Ô temporarily m-suspects Õ before the agreement can be reached. As we noted in the introduction, Ô removes Õ from its view estimate and the exclusion is permanent during this agreement phase. Note that Ô may reinsert Õ into the view estimate in the next view agreement. Process Õ , however, cannot participate in the new agreement phase of Ô until it has terminated its previous agreement phase in order to prevent propagation of obsolete exclusions. Thus, Õ cannot install a new view, since it waits forever for the participation of Ô in its current agreement phase. The SYMMETRY message forces Õ to remove Ô from its view estimate and allows Õ to reach an agreement on a new view. Furthermore, note that each SYMMETRY message carries also a set of processes corresponding to the value of variable Ö 
+ Ð of the sender. This set is necessary to satisfy Property GM1: when a process m-receives a SYMMETRY message, it excludes from its view estimate all processes believed reachable by the sender. In this manner, if Ô m-receives a SYMMETRY message from Õ , and Õ and Ö are permanently reachable, Ô removes Ö as well and it will not m-send a ESTIMATE message to Ö inviting it to remove Õ . The value Ö 
+ Ð is stored in array ×ÝÑ× Ø to be used in the same way with SYNCHRONIZE messages. After these steps, Ô updates variable Ö 
+ Ð and calls procedure Ö Ñ ÒØÈ × . Procedure Ö Ñ ÒØÈ × , illustrated in Figure 3, implements the agreement phase. After having initialized the next view estimate and having generated a new version number, process Ô calls procedure ËÝÒ
+ ÖÓÒ Þ Ø ÓÒÈ × and then ×Ø Ñ Ø Ü
+ Ò È × . These actions are repeated until the current view is “stable” meaning that the view composition coincides with the set of reachable processes and no new agreements have been initiated (see procedure ÁÒ×Ø ÐÐÎ Û for details). As the ﬁrst step in procedure ËÝÒ
+ ÖÓÒ Þ Ø ÓÒÈ × , process Ô initializes variable ×ÝÒ
+ ÖÓÒ Þ (which contains processes that know Ô’s new version number) to be equal to the singleton set Ô , and m-sends SYNCHRONIZE messages announcing its new version number. Note that if Ô has entered s-phase due to a SYNCHRONIZE message Ñ from a process Õ , the message msent by Ô acts also as a reply to Ñ. S-phase lasts until all processes in the view estimate have replied to the SYNCHRONIZE message of Ô, or when Ô m-receives a message from a process in its view estimate that has already entered ee-phase. In the while loop, this condition is en-
+
+´µ
+
+´µ
+
+´ µ
+
+´µ
+
+´µ
+
+´µ
+
+´µ
+
+´µ
+
+´µ
+
+UBLCS-98-01
+
+31
+
+coded as ×ÝÒ
+ ÖÓÒ Þ ×Ø Ñ Ø . To guarantee the termination of this phase, every time Ô m-suspects a process Õ , or m-receives a SYMMETRY message from Õ , Ô removes Õ from its view estimate. This exclusion cannot be revoked during the current view. On the contrary, when Ô m-receives a SYNCHRONIZE message containing its last version number from a process Õ , it adds Õ to ×ÝÒ
+ ÖÓÒ Þ . In this manner, ×ÝÒ
+ ÖÓÒ Þ will eventually contain ×Ø Ñ Ø . Another method for Ô to enter ee-phase is to m-receive a message ESTIMATE Î È from a process Õ that knows Ô’s current version number and has not be removed from Ô’s view estimate. If so, Ô modiﬁes ×ÝÒ
+ ÖÓÒ Þ and ×Ø Ñ Ø in order to guarantee the exit from the s-phase. In any case, during the s-phase Ô constructs the version number array Ö , that will be used in the ee-phase to discard obsolete messages. Figure 5 illustrates the three procedures used during ee-phase. Procedure Ë Ò ×Ø Ñ Ø È is used to modify the view estimate and to inform the other processes of the change. At the same time, during this procedure Ô m-sends a PROPOSE message carrying its current status to a coordinator selected from its view estimate through function Å Ò . Function 
+ Ö Ñ ÒØ is used when a process m-receives PROPOSE messages. It veriﬁes whether the proposals stored in the coordinator table are in agreement, by checking if all of the view estimates are equal and if all processes know the same version number arrays (restricted to processes in the view estimate itself). Finally, procedure ÁÒ×Ø ÐÐÎ Û is used to install a new view. First of all, Ô forwards a VIEW message containing the new complete view identiﬁer Û and the coordinator table to all processes with which have reached the agreement. This operation is necessary, since the coordinator may crash before m-sending the VIEW message to all its recipients. Then, Ô checks whether a partial view is needed or not. Suppose there exists a process Õ whose last view Ú contains a process Ö, but the last view installed by Ö is different from Ú . If Ô installed the complete view, this would violate Property GM3. For this reason, the complete view is split into a set of partial views. Each partial view is composed of the set of processes that have m-received the same previous complete view, and is identiﬁed through a pair Û Ú composed of the identiﬁers of the new complete view and the previous view. Note that all processes in each partial view compute, starting from , the same identiﬁer and composition. Otherwise, if there is no need of partial views, Ô will install the complete view, identiﬁed by the pair Û , where means that Û is a complete view. Finally, Figure 4 contains the main body of the ee-phase. During the ee-phase initialization in order to guarantee (procedure ÁÒ Ø Ð Þ ×Ø Ñ Ø È × ), Ô calls procedure Ë Ò ×Ø Ñ Ø the m-sending of at least one ESTIMATE and one PROPOSE message. Then, Ô enters a loop from which it will exit only when Ò×Ø ÐÐ becomes true. During the ee-phase, processes exchanges ESTIMATE messages to promote the reaching of an agreement. A message ESTIMATE Î È is accepted if, for each Ö in the intersection between the estimate of Ô and the estimate of Õ , the Ö known by Ô is equal to Î Ö known by Õ . This check is needed to version number Ö guarantee that Ô never accepts a ESTIMATE message containing an estimate generated before the start of the previous s-phase that could cause exclusion of reachable processes. If the message is accepted, Ô calls procedure Ë Ò ×Ø Ñ Ø , removing processes not in È . Note that in case Ô ¾ È , the ESTIMATE message is interpreted as a SYMMETRY message. Apart from ESTIMATE and SYMMETRY messages and direct Ñ×Ù×Ô 
+Ø events, during ee-phase a process Ô may exclude a process from its view estimate also through SYNCHRONIZE messages. When a process m-receives Õ , Ô is a message SYNCHRONIZE ÎÔ ÎÕ È from a process Õ such that ÎÕ is greater than Ö informed that Õ has completed the agreement phase identiﬁed by Ö Õ and has installed a new view. There are two possibilities: Ô does not belong to the view installed by Õ , and thus Ô can exclude Õ from its view estimate; or Ô belongs to the view installed by Õ , but the VIEW message m-sent by Õ to Ô has been lost (by the FIFO order condition of MSL). This is another good reason for Ô to exclude Õ from its view estimate. In order to not violate View Accuracy, Ô removes all processes contained in È .
+
+´ µ
+
+´µ
+
+´ µ
+
+´
+
+µ
+
+´
+
+µ
+
+´µ
+
+´µ
+
+℄
+
+℄
+
+´µ
+
+´µ
+
+℄
+
+℄
+
+UBLCS-98-01
+
+32
+
+1 2 3 4 5 6 7 8 9 10
+
+Ñ
+ ×Ø ´Ñµ: ÐÚÖ ´Ñµ Ù« Ö Ù« Ö Ñ Ñ× Ò ´ MULTICAST Ú Û ÑÖ 
+Ú ´ MULTICAST Û Ñ Û µ then if ´Ú Û ÐÚÖ ´Ñµ Ù« Ö Ù« Ö
+ﬁ
+Õ
+
+Ñ
+
+Ú Û 
+ÓÑÔ  
+
+Ô
+
+µ
+
+µ:
+
+Ñ
+
+Figure 8. Reliable multicast service extension to idle phase and s-phases for process Ô.
+
+C
+
+Reliable Multicast Service: Implementation
+
+In this Appendix we show how to extend our solution for PGMS to provide the reliable multicast service speciﬁed in Section 6. Both the idle and the agreement phases of the algorithm have to be modiﬁed: The idle phase must handle mcast events, while the agreement function must verify that Property RM1 is satisﬁed before declaring agreement has been reached. Figures 8, 9 and 10 contain the changes to the original algorithm of Section 5.1. The code of Figure 8 contains two new event handling procedures that have to be inserted in the case statement of both the idle phase (Figure 2) and the s-phase (Figure 3). The code of Figure 9 contains three new event handling procedures that have to be added to the case statement of the ee-phase (Figure 4). Finally, the code in Figure 10 substitutes the corresponding functions of Figure 5 used during ee-phase. We introduce two new global variables that are used to implement view synchrony. The ﬁrst, called Ù« Ö , contains the set of messages delivered by the process during its current view and is used to allow the coordinator to verify agreement on messages. The second is called ×Ù×Ô Ò and contains a set of pairs Ú Ñ , where Ñ is a message whose delivery cannot be performed in the current view, but has to be postponed to view Ú in order to satisfy Property RM1. If Ú is equal to the special value , then Ñ has to be postponed to the next view. Both sets are initialized to be empty. Furthermore, two new message types are needed. A MULTICAST Ú Ñ message is used to inform the other processes that Ñ has to be delivered during view Ú ; a DELIVERED Ú is used to inform that during Ú , the sender has delivered the set of messages contained in . MULTICAST messages are accepted only during idle phase or s-phase, while DELIVERED messages are accepted only during an ee-phase. DELIVERED messages are needed to allow processes to reach agreement on the set of messages to be delivered during the last installed view. Some changes are needed also for existing variables and messages. Variable 
+Ø Ð , the coordinator table describing the current status of each process participating in an agreement is extended to contain a ﬁeld called Ù« Ö to be used for agreement on the set of delivered messages. For the same reason, PROPOSE messages must contain the Ù« Ö ﬁeld as well. Whenever a process Ô wants to multicast a message Ñ, it invokes the primitive Ñ
+ ×Ø Ñ . The actions of the algorithm are different depending to the current phase. Let Ú be the current view of process Ô. During idle and s-phases (Figure 8), Ô m-sends a MULTICAST Ú Ñ message to all processes in Ú (excluding Ô itself); then, Ô locally delivers the message and adds it to Ù« Ö . If the multicast request occurs in the ee-phase that was started during view Û (Figure 9), the pair Ñ is added to ×Ù×Ô Ò , where the place holder means that Ñ has to be multicast at the beginning of the next view. We use variable ×Ù×Ô Ò to avoid that a process delivers new messages during ee-phase after having m-sent a PROPOSE message that can lead to an agreement. Otherwise, let Ú be the current view of Ô and suppose Ô delivers a message Ñ during ee-phase and then m-receives a VIEW message from a process Õ ¾ Ú that has installed the next view Û but that has not delivered Ñ. If Ô installs the view, then Ô and Õ will not have delivered the same set of messages during Ú ; otherwise, by GM3, Õ must install a new view excluding Ô. Obviously, this may violate GM1 if Ô and Õ are permanently reachable. The behavior of the algorithm depends on the current phase even when a process m-receives
+
+´µ
+
+´
+
+µ
+
+´ µ
+
+´
+
+µ
+
+UBLCS-98-01
+
+33
+
+1 2 3 4 5 6 7 8 9 10 11 12 13 14
+
+Ñ
+ ×Ø ´Ñµ: ×Ù×Ô Ò
+
+×Ù×Ô Ò
+Õ
+
+´ µ: ´
+
+Ñ
+
+µ
+
+ÑÖ 
+Ú ´ MULTICAST Û Ñ ×Ù×Ô Ò ×Ù×Ô Ò
+
+Û Ñ
+
+µ µ then
+
+ÑÖ 
+Ú ´ DELIVERED Û Õ µ: if ´Ú Û Û µ and ´Õ ¾ ×Ø Ñ Ø foreach´Ñ ¾   Ù« Ö µ do ÐÚÖ ´Ñµ Ñ× Ò ´ DELIVERED Ú Û Ù« Ö Ù« Ö Ñ× Ò ´ PROPOSE ´
+Ú Û Ö
+ﬁ
+
+ 
+
+Ù« Ö
+
+µ
+Ù« Ö µ Å Ò ´ ×Ø Ñ Ø
+
+×Ø Ñ Ø
+
+µµ
+
+Figure 9. Reliable multicast service extension to ee-phase for process Ô: part (a).
+
+a MULTICAST Û Ñ message. Let Ú be the current view of Ô. If the message is m-received during the idle phase or the s-phase (Figure 8), Ô delivers the message and adds it to Ù« Ö if and only if Ú is equal to Û. If the message is m-received during ee-phase (Figure 9), the pair Û Ñ is inserted , because the MULTICAST message may have been generated by a process Õ that has in ×Ù×Ô Ò already installed the next view. Finally, a few changes are necessary in other parts of the ee-phase. During the ee-phase iniÚ mestialization (procedure ÁÒ Ø Ð Þ ×Ø Ñ Ø È × ), each process m-sends a DELIVERED sage to processes in its view estimate, where is equal to Ù« Ö . When a process m-receives a DELIVERED message from a process not excluded from its view estimate (Figure 9), it delivers all undelivered messages contained in and adds them to Ù« Ö . Moreover, it m-sends a new ¼ Ú message, where ¼ contains the subset of messages not yet delivered before DELIVERED the receiving of . This additional message is necessary since Ô could accept DELIVERED messages from processes included in its current view estimate, but excluded from the estimate of other processes participating in the agreement. Finally, process Ô m-sends a PROPOSE message to 
+ Ö Ñ ÒØ (Figure 10) will return true only if all prothe current coordinator. Function cesses that will survive from a view in the next one (partial or complete) have delivered the same set of messages. Finally, after having installed the new view Û, function ÁÒ×Ø ÐÐÎ Û (Figure 10) must deliver all message whose delivery in the previous view had to be postponed. Property RM1 is guaranteed by the fact that during ee-phase, each process can deliver only messages previously delivered by processes in the current view estimate. Moreover, agreement on a new view may be observed only when the proposals m-sent by processes surviving from a view to the same successor view contain the same set of messages. Property RM2 is guaranteed by the fact that each message is associated the view in which it must be delivered. Property RM3 is guaranteed by the creation of partial views. Property RM4 is straightforward, while Property RM5 follows from the liveness condition of MSL and from GM3. Once again, the aim of the algorithm we have presented is to show the implementability of our speciﬁcations. Many possible optimizations have been neglected for sake of simplicity. For example, acknowledgement information can be piggybacked in mcast messages to decrease the size of Ù« Ö .
+
+´
+
+µ
+
+´µ
+
+´µ
+
+´µ
+
+D
+
+Partitionable Group Membership Algorithm: Correctness Proof
+
+In this Appendix we illustrate the correctness of the PGMS algorithm presented in Section 5. As in Appendix A, variable names are indexed with process names. Furthermore, we refer to the s-phase (ee-phase) of a view Ú to denote the s-phase (ee-phase, respectively) started during view Ú . Finally, we say that a message VIEW Û contains a view Ú if Ú is either equal to Û or Ú is a
+UBLCS-98-01
+
+34
+
+1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 23 24 25 26 27 28
+
+procedure ÁÒ
+
+Ø Ð Þ ×Ø Ñ Ø È × ´µ Ë Ò ×Ø Ñ Ø ´ µ Ñ× Ò ´ DELIVERED Ú Û Ù« Ö ×Ø Ñ Ø Ñ× Ò ´ Ñ× Ò ´ Ò ×Ø Ñ Ø ×Ø Ñ Ø
+
+µ
+Ð   Ô µ Ù« Ö µ Å Ò ´ ×Ø Ñ Ø
+Õ Ö
+
+procedure Ë
+
+´ µ  
+È
+
+ESTIMATE PROPOSE
+
+´
+Ú Û
+
+Ö
+
+È
+
+×Ø Ñ Ø Ö 
+ Ö ×Ø Ñ Ø
+
+µµ
+Ô Ö
+
+function return
+
+
+
+´ ¾ and ´
+Õ Ô
+
+Ö Ñ ÒØ ´ µ Ô℄ ×Ø Ñ Ø
+Õ Ö
+
+¾
+
+Ô
+
+℄ ×Ø Ñ Ø
+Ö
+
+Ô
+
+℄ ×Ø Ñ Ø ℄ Ö
+Ô Ô
+
+℄ ×Ø Ñ Ø ℄ ℄ Ö
+Õ
+
+℄ Ù« Ö ℄µ
+
+Õ
+
+℄ Ù« Ö µ
+
+procedure ÁÒ×Ø
+
+Ñ× Ò
+else
+
+ÐÐÎ Û ´ µ ´ VIEW ℄ ×Ø Ñ Ø   µ if ´ ¾ ℄ ×Ø Ñ Ø ¾ ℄ 
+Ú Û 
+ÓÑÔ Ú Û ´´ Ú Û µ ¾ ℄ ×Ø Ñ Ø
+Û Û Ô Õ Ö Õ Û Ö Ö Ô
+
+Õ
+
+Ö
+
+℄ 
+Ú Û ℄ 
+Ú Û
+
+Ö ℄ 
+Ú Û 
+Ú Û µ
+
+µ then
+
+µ ℄ ×Ø Ñ Ø µ ´Ú Û µ 
+Ú Û ´ ℄ ×Ø Ñ Ø µ ×Ø Ð ´Ú Û 
+ÓÑÔ Ö 
+ Ð µ and ´ ¾ ℄ ×Ø Ñ Ø Ù« Ö ´ µ ¾ ×Ù×Ô Ò ´Ú Û µ ¾ ×Ù×Ô Ò foreach ¾ Ù« Ö do ÐÚÖ ´ µ foreach ´ µ ¾ ×Ù×Ô Ò do Ñ× Ò ´ MULTICAST Ú Û Ú Û 
+ÓÑÔ   µ
+generate Ú
+
+Ú Û
+
+´´
+
+Û
+
+Ô
+
+Û
+
+Ô
+
+Õ Ö
+
+Ô
+
+Ô
+
+℄ Ö
+
+Ö
+
+℄
+
+Ö
+
+Ö
+
+℄µ
+
+Ñ
+
+Ñ
+
+Ñ
+
+Ñ
+
+Ñ
+
+Ñ
+
+×Ù×Ô Ò
+
+Ñ
+
+Ô
+
+Figure 10. Reliable multicast service extension to ee-phase for process Ô: part (b).
+
+partial view obtained from Û and . First of all, we must prove that any correct process that invokes the agreement protocol will eventually install a new view. This termination property is fundamental, since will be used in the proofs of Properties GM1, GM2 and GM3. The proof is divided in two parts: (i) if a correct process enters s-phase of a view Ú , it will eventually enter ee-phase of Ú itself; (ii) if a correct process enters ee-phase of a view Ú , it will eventually install a view after Ú . Since the second part is needed in the proof of the ﬁrst one, we ﬁrst prove (ii) and then (i). Lemma D.1 The number of PROPOSE messages m-sent by a process during a view is bounded. P ROOF. Apart from the PROPOSE message m-sent by Ô immediately after entering ee-phase of a view, a process m-sends a PROPOSE message only when it modiﬁes its variable ×Ø Ñ Ø . By construction, no process may be added to ×Ø Ñ Ø during a view after its initialization. Since the starting cardinality is bounded, the number of PROPOSE messages m-sent by a process during a view is bounded as well. Lemma D.2 If a correct process Ô enters ee-phase of a view Ú , then Ô will eventually install a new view after Ú . P ROOF. By contradiction, suppose Ô installs a bounded number of views and Ú is the last view installed by Ô. Let ÎÔ denote the value of Ö Ô when Ô entered ee-phase of Ú . By Lemma D.1, the number of different PROPOSE messages m-sent by Ô during Ú is bounded. Let PROPOSE ×Ô be the last PROPOSE message m-sent by Ô (such message exists, since Ô m-sends at least one PROPOSE message at the beginning of the ee-phase). Let ÈÔ denote the set ×Ô ×Ø Ñ Ø . By Property A.1(f) and since only m-suspected processes may be removed from variable ×Ø Ñ Ø , ÈÔ is not empty. Since no process in ÈÔ can be m-suspected from Ô during Ú , by Property A.1(a) every process in
+UBLCS-98-01
+
+35
+
+is correct; moreover, every message m-sent by Ô during Ú to a process in ÈÔ will eventually be m-received. For each process Ö ¾ ÈÔ , the version number ÎÔ Ö is generated at the beginning of the s-phase of a view ÚÖ . First of all, we must prove that: Claim: Each process Ö ¾ ÈÔ will eventually enter ee-phase during ÚÖ . By contradiction, suppose the claim is false. Thus, Ö is blocked in s-phase of ÚÖ . At the beginning of ee-phase of view Ú , Ô has m-sent to Ö a message ESTIMATE ÎÔ   . When Ö m-receives it, there are two possibilities: – If Ö has excluded Ô from its view estimate, it m-sends a SYMMETRY message to Ô containing ÎÔ Ô ; by Property A.1(g) and (e), Ô will eventually m-receive such a message and exclude Ö from its view estimate, a contradiction. – Otherwise, Ö accepts the ESTIMATE message and enters ee-phase. This concludes the claim. The next step consists on showing that all processes in ÈÔ are blocked in ee-phase: Claim: Each process Ö ¾ ÈÔ is blocked in the ee-phase of its view ÚÖ . By contradiction, suppose the claim is false. Thus, Ö installs another view after ÚÖ . Note that Ô cannot m-receive a SYNCHRONIZE or a SYMMETRY message from Ö containing a version number array Î such that Î Ö ÎÔ Ö ; otherwise, Ô would exclude Ö from its view estimate, a contradiction. By Property A.1(g), there is a time Ø½ after which Ö stops m-suspecting Ô. There are two possibilities: – If Ö installs an unbounded number of views, Ô will m-receive an unbounded number of different SYNCHRONIZE messages containing increasing version numbers for Ö, a contradiction. ¼ – If Ö installs a bounded number of views, let ÚÖ be the last view installed by Ö. First of all, we ¼ ¼ must show that Ö will enter agreement phase during ÚÖ . If ÚÖ does not contain Ô, Ö enters ¼ , or when it stops m-suspecting Ô. If agreement phase immediately after having installed ÚÖ ¼ ¼ ÚÖ contains Ô, Ö forwards the VIEW message containing ÚÖ to Ô. There are two possibilities: ¼ – If this message is lost, by Property A.1(e) Ö will m-suspect Ô during ÚÖ and enter agreement phase; – if Ô m-receives the message, by hypothesis Ô discards it; but this implies that the agree¼ ment on ÚÖ has been reached with a PROPOSE message of Ô m-sent before the installation of Ú . Thus, Ö will eventually enter agreement phase. At the beginning of the new agreement phase, Ö generates a new version number ÒÖ greater than ÎÔ Ö . If this happens before Ø½ , Ô will m-receive from Ö a SYMMETRY message containing ÒÖ ; otherwise, if this happens after Ø½ , Ô will m-receive from Ö a SYNCHRONIZE message containing ÒÖ . In both cases, we have obtained a contradiction that concludes the claim. Given that all processes in ÈÔ are blocked in ee-phase, by Lemma D.1 the number of different PROPOSE messages m-sent by each process Ö ¾ ÈÔ during ÚÖ is bounded. Let PROPOSE ×Ö be the last PROPOSE message m-sent by Ö, and let ÈÖ denote the set ×Ö ×Ø Ñ Ø . Claim: For each process Ö ¾ ÈÔ , Ô belongs to ÈÖ . By contradiction, suppose the claim is false. By Property A.1(g), there is a time after which Ö stops m-suspecting Ô; thus, Ô will m-receive a message ESTIMATE Î È such that Î Ö ÎÔ Ö and Ô ¾ È ; so, Ô will remove Ö from its view estimate, a contradiction. Note that the claims we have developed so far can be applied to each of the processes in ÈÔ . Given a process Ö, we can show that: – each process × ¾ ÈÖ installs a bounded number of views and is blocked in ee-phase of its last view Ú× – Ö knows the last version number of each process in ÈÖ . Thus, all processes in ÈÔ know the same version number for each of the processes in ÈÔ . By Property A.1(g), each process Ö ¾ ÈÔ will accept at least one message ESTIMATE   ÈÔ from Ô and Ô will m-receive and accept at least one message ESTIMATE   ÈÖ . Since we have supposed that for each process Ö ¾ ÈÔ , ÈÖ is the last view estimate, then for each process Ö ¾ ÈÔ we have that ÈÖ ÈÔ and ÈÔ ÈÖ . Thus, all values ÈÖ are equal to ÈÔ . This implies that all processes in ÈÔ maintain the same view estimate ÈÔ and know the same agreed version number array (restricted to the processes in ÈÔ ). By construction, they m-send
+
+ÈÔ
+
+℄
+
+℄
+
+℄
+
+℄
+
+℄
+
+℄
+
+℄
+
+UBLCS-98-01
+
+36
+
+their last PROPOSE messages to the same coordinator; since no process in ÈÔ can m-suspect another process in ÈÔ , the coordinator will m-receive all these messages and observe an agreement. Thus, the coordinator will m-send a VIEW message to Ô, that m-receives it and installs a new view, a contradiction that concludes the proof. Lemma D.3 If a correct process Ô enters s-phase of a view Ú , then Ô will eventually enter ee-phase of Ú . P ROOF. By contradiction, suppose Ô never enters ee-phase of Ú . Under this assumption, during the s-phase no process can be added to ×Ø Ñ Ø or removed from ×ÝÒ
+ ÖÓÒ Þ (note that processes may be added to ×Ø Ñ Ø or removed from ×ÝÒ
+ ÖÓÒ Þ during a s-phase, but only just before entering ee-phase of Ú ). Thus, there is a time Ø½ after which Ô never modiﬁes its variables ×Ø Ñ Ø Ô and ×ÝÒ
+ ÖÓÒ Þ Ô . Let ÒÔ denote the ﬁnal value of Ú Ö× ÓÒ Ô Ô (recall that a process generates new version numbers only when enters a new agreement phase), and let Õ be a process contained in ×Ø Ñ Ø Ô Ø½ , but not in ×ÝÒ
+ ÖÓÒ Þ Ô Ø½ (such process must exist, otherwise Ô will enter ee-phase of Ú ). By hypothesis, Ô cannot m-suspect Õ after having entered s-phase of Ú . By Property A.1(a), Õ is correct; by Property A.1(e), Õ will eventually m-receive the SYNCHRONIZE message containing ÒÔ m-sent by Ô at the beginning of the s-phase of Ú and it will store ÒÔ in Ú Ö× ÓÒ Õ Ô at time Ø¾ . If Õ m-suspects Ô after Ø¾ , by Property A.1(g) and (e) Ô will eventually mÒÔ and it will remove Õ from ×Ø Ñ Ø Ô , a receive a message SYMMETRY Î   such that Î Ô contradiction. Thus, suppose Õ never m-suspects Ô after Ø¾ . There are two possibilities: – If Õ is either in idle phase or in s-phase at time Ø¾ , by construction and by Property A.1(e) Ô will eventually m-receive a message SYNCHRONIZE ÒÔ     ; thus, Ô will insert Õ in ×ÝÒ
+ ÖÓÒ Þ Ô , a contradiction. – Otherwise, suppose Õ is in ee-phase at time Ø¾ . By Lemma D.3, Õ will eventually install a new view Û after Ø¾ , due to the m-receipt of a message VIEW Û . There are two possibilities. – If Û does not contains Ô, the new view does not correspond to the current estimate of the reachability set of Õ (Ô is not m-suspected). Thus, after the installation of Û, variable ×Ø Ð is set to false. – If Û contains Ô, Õ Ú Ö× ÓÒ Ô is different from Ú Ö× ÓÒ Õ Ô ÒÔ (since Ô has never m-sent a PROPOSE message containing ÒÔ ). Thus, after the installation of Û, variable ×Ø Ð is set to false. In both cases, Õ enters again agreement phase and m-sends a SYNCHRONIZE message containing ÒÔ to Ô; by Property A.1(e), Ô will m-receive it and add Õ to ×ÝÒ
+ ÖÓÒ Þ Ô , a contradiction.
+
+℄
+
+´ µ
+
+´ µ
+
+℄
+
+℄
+
+℄
+
+℄
+
+℄
+
+Corollary D.1 If a correct process Ô enters agreement phase during a view Ú , then it will eventually install a new view after Ú . P ROOF. From Lemmas D.2 and D.3. The next property to prove is View Accuracy. In the following, we say that a process Ö excludes a process × from its view estimate indirectly if the exclusion follows the m-receipt of a ESTIMATE   È message such that Ö ¾ È and × ¾ È . Otherwise, we say that Ö excludes a process × from its view estimate directly (for example, due to a m-suspect or a SYMMETRY message). Lemma D.4 Let Ú be a view installed by a process Ô, and let Ø be the time at which Ô entered s-phase of Ú . Let Õ be a process from which Ô accepts a message ESTIMATE   È such that Ô ¾ È , m-sent by Õ during a view ÚÕ . Then, Õ has entered ee-phase of ÚÕ after Ø. P ROOF. At the beginning of the s-phase of Ú , Ô m-sends a SYNCHRONIZE message containing its current version number ÒÔ . By Lemma D.3, Ô will eventually enter ee-phase of Ú . There are two possibilities: – Ô enters ee-phase of Ú after having m-received a SYNCHRONIZE message containing ÒÔ from each process not m-suspected after the beginning of the s-phase of Ú . By construction, all processes in ×Ø Ñ Ø Ô were in s-phase when they m-sent the SYNCHRONIZE reply containing ÒÔ . Thus, they enter ee-phase of their view after Ø.
+UBLCS-98-01
+
+37
+
+– Ô enters ee-phase of Ú after having m-received a ESTIMATE message containing ÒÔ m-sent by a process Õ½ that has entered ee-phase after storing ÒÔ in its array Ú Ö× ÓÒ Õ½ . In this case, we have again two possibilities: Õ½ has entered ee-phase either after having m-received a SYNCHRONIZE message from each process not m-suspected during s-phase, or after having m-received a ESTIMATE message m-sent by a process Õ¾ that has entered ee-phase. By iterating the reasoning, we obtain a ﬁnite chain Ô Õ½ ÕÒ such that each process has entered ee-phase after having m-received a ESTIMATE message from the following one, apart from ÕÒ that has m-received a SYNCHRONIZE message from each process not m-suspected during s-phase. Let Ø denote the time at which Õ m-sends the ESTIMATE message; by construction, Ò   . Thus, we have that ×Ø Ñ Ø Õ Ø is contained in ×Ø Ñ Ø Õ ·½ Ø ·½ , for each Ô ¾ ×Ø Ñ Ø Õ Ø , for each Ò. Moreover, we have that Ú Ö× ÓÒ Õ Ô Ø is equal to Ú Ö× ÓÒ Õ ·½ Ô Ø ·½ , for each Ò   . This implies that Ú Ö× ÓÒ ÕÒ Ô is equal to ÒÔ , and that ÕÒ has entered ee-phase of its view after Ø. Theorem D.1 (View Accuracy) The PGMS algorithm satisﬁes Property GM1. P ROOF. Let Ô be a correct process and let Õ be always reachable from Ô after time Ø¼ . We must prove that there is a time after which the current view of Ô always contains Õ . Suppose Ô installs a bounded number of views; in this case, the last view installed by Ô must contain Õ (since otherwise Ô would enter again agreement phase and by Corollary D.1 would install a new view, impossible by hypothesis). Thus, suppose Ô installs an unbounded sequence of views. Claim: There is a time ØÔ after which no process distinct from Ô can directly exclude Õ from its view estimate without excluding Ô at the same time. By Property A.1(b), there is a time Ø½ after which each process Ö m-suspects both or none of Ô and Õ . Since each message SYMMETRY   È m-sent by a process × at time Ø is such that È is equal to Ö 
+ Ð × Ø , it follows that there is a time Ø¾ after which all messages SYMMETRY   È mreceived by a process Ö are such that È contains both or none of Ô and Õ . Moreover, we must prove that there is a time Ø¿ after which if a process Ö excludes Õ from its view estimate due the m-receipt of a SYNCHRONIZE message, it excludes Ô as well. Recall that Ö may exclude Õ due the m-receipt Î× ; by Property of a message SYNCHRONIZE ÎÔ Î×   from a process × only if Ö Ö × A.1(d) and by algorithm construction, this can happen only if Ö never m-receives an ESTIMATE or VIEW message m-sent by × before the SYNCHRONIZE message. Suppose there exists a process × from which Ö m-receives an unbounded number of messages SYNCHRONIZE ÎÔ Î× È inviting Ö to exclude Õ from ×Ø Ñ Ø Ö (otherwise the claim is trivially concluded). By Property A.1(e), × will m-suspect Ö an unbounded number of times. Obviously, × will stop m-suspecting Ö an unbounded number of times as well. Thus, × will modify its variable ×ÝÑ× Ø × Ö after time Ø½ . This implies that there is a time Ø¿ after which all messages SYNCHRONIZE     È m-sent by × to Õ are such that Ô, Õ belong both or none to È . This concludes the claim. By Eventual Symmetry, there is a time after which Ô is always reachable from Õ . By repeating the reasoning of the previous claim, we obtain that there is a time ØÕ after which no process different from Õ can directly exclude Ô from its view estimate without excluding Õ as well. The next step consists on showing that Ô and Õ eventually stop directly excluding each other: Claim: There exists a time Ø ØÔ ØÕ after which Ô cannot directly exclude Õ (and vice versa). By Property A.1(f) and (b) there is a time after which Ô cannot m-suspect Õ and Õ cannot m-suspect Ô. This implies that there is a time after which (i) Ô cannot m-receive and accept a SYMMETRY or a SYNCHRONIZE message from a process distinct from Õ inviting Ô to exclude Õ (such messages cannot be m-sent to Ô); (ii) Ô cannot m-receive a SYMMETRY message from Õ (since they stop m-suspecting themselves); and (iii) Ô cannot m-receive a SYNCHRONIZE message from Õ with a version number for Õ greater than Ö Ô Õ (by Property A.1(e), this is possible only if some messages from Õ to Ô have been lost; but we know that there is a time after which Ô is permanently reachable from Õ ). In a symmetric way, we can prove that Õ cannot directly exclude Ô after Ø . This concludes the claim. By hypothesis, Ô will install an unbounded number of views after Ø . In order to conclude the proof, we must show that: m-received and accepted by Ô are Claim: There is a time Ø 
+
+ after which all messages VIEW   such that Õ belongs to Ô ×Ø Ñ Ø (and vice versa).
+
+℄´
+
+´ µ
+
+´ µ
+
+µ
+
+½ ½
+
+´
+
+µ
+
+½
+
+½
+
+℄
+
+℄´ µ
+
+½
+
+´µ
+
+℄
+
+℄
+
+℄
+
+℄
+
+UBLCS-98-01
+
+38
+
+Let ÈÔ be the set of processes that participate with Ô in the agreement of an unbounded number of views. This implies that all processes in ÈÔ are correct and invoke the agreement protocol an unbounded number of times. By deﬁnition, there is a time Ø after which Ô does not participate to the agreement of a view with a process not included in ÈÔ . Consider a time Ø at which all processes in ÈÔ have installed at least one view after time Å Ü Ø Ø . Let Ú be a view installed by Ô after Ø . By Lemma D.4, all processes that participate with Ô in the agreement of the next view enter ee-phase of their view after Ø . By construction, all these processes have entered sphase of their views after Ø . Thus, all messages ESTIMATE   È m-received by Ô during Ú are such that È contains both or none of Ô and Õ . This implies that Ô never removes Õ (directly or indirectly) from its view estimate during Ú . All PROPOSE × messages m-sent by Ô during Ú are such that Õ ¾ × ×Ø Ñ Ø . Thus, the next message VIEW Û m-received by Ô is such that Õ ¾ Ô ×Ø Ñ Ø . This concludes the ﬁrst part of the claim. In a symmetric way, we can prove that all messages VIEW   m-received and accepted by Õ after Ø 
+
+ are such that Õ belongs to Õ ×Ø Ñ Ø . To conclude the proof, we must show that eventually each partial view installed by Ô contains Õ . Consider a message VIEW Ú m-received and accepted by Ô; let ÚÔ and ÚÕ denote the values Ô Ú Û , and let ÚÔ and ÚÕ denote the values Ô 
+Ú Û 
+ÓÑÔ and Õ 
+Ú Û 
+ÓÑÔ . Suppose the VIEW messages containing ÚÔ and ÚÕ have been m-received by Ô and Õ after Ø 
+
+ , respectively. By contradiction, suppose ÚÔ is different from ÚÕ ; since Ô Õ belong to both ÚÔ and ÚÕ , at the m-receipt of VIEW Ú Ô will install a partial view not containing Õ . Ô and Õ must have participated in the agreement of both ÚÔ and ÚÕ , but the corresponding VIEW messages must have been generated from two distinct coordinators 
+Ô and 
+Õ , respectively. Suppose Ô has m-sent the PROPOSE message for the agreement on ÚÔ before the PROPOSE message for ÚÕ ; by monotony of variable ×Ø Ñ Ø Ô and by the use of function Å Ò to select the coordinator, 
+Ô cannot belong to ÚÕ . Thus, Ô has not m-received the VIEW ÚÔ   message directly from 
+Ô , but from a process Ô½ ¾ ÚÔ . Since the VIEW ÚÔ   message has been m-received after the m-sending of the PROPOSE message for the agreement on ÚÕ , by monotony of ×Ø Ñ Ø process Ô½ must belong to ÚÕ . Thus, Ô½ has participated in the construction of both ÚÔ and ÚÕ by m-sending two PROPOSE messages to 
+Ô and 
+Õ in this order, and has m-received a VIEW message containing ÚÔ after the m-sending of the PROPOSE message for the agreement on ÚÕ . By iterating the reasoning, we obtain an unbounded ÔÒ of processes belonging to ÚÔ . This is a contradiction, since the cardinality of chain Ô½ ÚÔ is ﬁnite and all these processes are different (each process m-sends the same VIEW message at most once). Now, suppose Ô has m-sent the PROPOSE message to 
+Õ before the PROPOSE message to 
+Ô ; by monotony of ×Ø Ñ Ø , Õ must have m-sent the PROPOSE messages to 
+Ô and 
+Õ in the same order. But this leads to a contradiction as in the previous case and concludes the proof of the theorem.
+
+´
+
+µ
+
+℄
+
+℄
+
+℄
+
+℄
+
+℄
+
+The next property to prove is View Completeness. As the reader can note, its proof is simpler than the previous one, since if a process Ô m-suspects another process Õ , Ô will permanently remove Õ from its view estimate and no process can force Ô to insert Õ again. Theorem D.2 (View Completeness) The PGMS algorithm satisﬁes Property GM2. P ROOF. Let be a set of processes such that there is a time after which all processes in are unreachable from   . Let Ô be a correct process in and let Õ be a process in   ; we must prove that there is a time after which the current view of Ô never contains Õ . Suppose Ô installs a bounded number of views; the last view installed by Ô cannot contain Õ , otherwise Ô will enter again agreement phase and by Corollary D.1 it will install a new view after the last. Thus, suppose Ô installs an unbounded sequence of views. By Property A.1(a), there is a time Ø½ after which Ô permanently m-suspects Õ ; this implies that after Ø½ , Õ is permanently excluded from Ö 
+ Ð Ô . This implies that there is a time Ø¾ Ø½ after which all messages PROPOSE ×Ô m-sent by Ô during a view are such that Õ ¾ ×Ô ×Ø Ñ Ø . Thus, all views installed by Ô after Ø¾ cannot contain Õ .
+
+¢
+
+¥ ¢
+
+¢
+
+¢ ¥ ¢
+
+Now, we must prove that our algorithm satisﬁes View Order and View Integrity. Theorem D.3 (View Order) The PGMS algorithm satisﬁes Property GM4. P ROOF. Let Ú Û be two views. We must prove that if Ú £ Û, then Û £ Ú . By contradiction,
+UBLCS-98-01
+
+39
+
+ÚÒ·¾ VIEW
+
+Û and Û suppose there exist two chains of views, Ú Ú½ Ô½ Ú¾ Ô¾ ÚÒ·½ ÔÒ·½ ÔÒ ½ ÚÒ Ú . Let Ø denote the time at which the coordinator 
+ generated the ÔÑ ½ ÚÑ ÔÒ·¾ message containing Ú , and let Ø¼ be the time at which Ô installed Ú ; obviously, Ø Ø¼ . When Ô m-receives the VIEW message that contains Ú ·½ , it veriﬁes that the agreement on Ú ·½ has been reached with information m-sent by Ô in Ú and therefore Ø¼ Ø ·½ ; thus, Ø Ø ·½ . By transitivity, we can state that Ø½ ØÒ and ØÒ ØÑ Ø½ , a contradiction that concludes the proof. Theorem D.4 (View Integrity) The PGMS algorithm satisﬁes Property GM5. P ROOF. Let Ô be a process. We must prove that each view installed by Ô contains Ô itself. The ﬁrst view installed by Ô is equal to Ô . Before installing any other view Ú , Ô must m-receive a mes. By Property A.1(a), Ô belongs to the destination set of the VIEW message; by sage VIEW Û construction, this set coincides with Ô ×Ø Ñ Ø . Since Ú contains all processes in Ô ×Ø Ñ Ø that have m-received the VIEW message containing the predecessor of Ú at Ô, then Ô belongs to Ú .
+
+℄
+
+℄
+
+Finally, we must prove that our algorithm satisﬁes the View Coherency property. First of all, we prove that a process will eventually enter agreement phase if a process in its current view Ú never installs Ú . Then, we use this lemma to show that our algorithm satisﬁes the three parts of View Coherency. Lemma D.5 If a correct process Ô installs a view Ú , then for every process Õ ¾ Ú either (i) Õ also install Ú , or (ii) Ô will eventually enter agreement phase during Ú . P ROOF. By contradiction, suppose Õ never installs Ú and Ô never enters agreement phase during Ú . Thus, Ô never m-suspects Õ after the installation of Ú . By Property A.1(a), Õ is correct; by Property A.1(e), Õ will eventually m-receive the VIEW message forwarded by Ô before installing Ú . Since Õ does not install Ú , there are two possibilities: Õ discards the VIEW message containing Ú either because it has installed a new view, or because Ô does not belong to ×Ø Ñ Ø Õ . In both cases, Õ must have excluded Ô from ×Ø Ñ Ø Õ after m-sending the PROPOSE message with which the agreement on Ú was reached; after the exclusion, Õ has installed a view Û not containing Ô. By Property A.1(g), there is a time after which Õ stops m-suspecting Ô; so, Õ will eventually enter agreement phase and m-send a SYNCHRONIZE message to Ô. By Property A.1(e), Ô will eventually m-receive the message and enter agreement phase during Ú , a contradiction that concludes the proof. Theorem D.5 (View Coherency) The PGMS algorithm satisﬁes Property GM3. P ROOF. (i) Let Ú be a view installed by a correct process Ô and let Õ be a process in Ú that never installs Ú . The proof follows from Lemma D.5 and Corollary D.1. (ii) Let Ú be a view installed by two processes Ô and Õ , and suppose Ô changes view after having installed Ú . If Õ is correct, we must prove that Õ will eventually install an immediate successor to Ú . By Corollary D.1, it is sufﬁcient to prove that Ô will eventually enter agreement phase during Ú . Suppose Õ stops m-suspecting Ô after having installed Ú (otherwise the proof is trivial). By Property A.1(a), Ô is correct; by Property A.1(g), there is a time Ø½ after which Ô stops m-suspecting Õ . There are two possibilities: – If Ô installs a bounded number of views, let Û be the last view installed by Ô. By hypothesis, Ú £ Û. Process Õ must belong to Û, since otherwise Ô would enter again agreement phase and install a new view. By Lemma D.5 and Theorem D.3, Õ will install Û after Ú (since by hypothesis Ô does not install other views after Û) and the lemma is proved. – If Ô installs an unbounded number of views, Õ will m-receive an unbounded number of SYNCHRONIZE messages m-sent by Ô after Ø½ ; this implies that Õ enters agreement phase during Ú . (iii) Let Ô be a process that installs a view Ú as well as its immediate successor Û, both containing Õ . We must prove that Ô installs Û only after Õ has installed Ú . Note that Û is obtained from the last VIEW message by excluding all processes in Ú whose last view is different from Ú . Since Õ belongs to both Ú and Û , the last view of Õ must be equal to Ú .
+
+UBLCS-98-01
+
+40
+
+Biography
+
+¯
+
+¯
+
+¯
+
+¨ Ozalp Babaoglu is Professor of Computer Science at the University of Bologna, Italy. He ˘ received a Ph.D. in 1981 from the University of California at Berkeley where he was one of the principal designers of BSD Unix. Before moving to Bologna in 1988, Babaoglu was ˘ an Associate Professor in the Department of Computer Science at Cornell University. He is active in several European research projects exploring issues related to fault tolerance and scale in distributed systems. Babaoglu serves on the editorial boards for ACM Transactions ˘ on Computer Systems and ACM Springer-Verlag Distributed Computing. Renzo Davoli (M.’91) received his degree in Mathematics from the University of Bologna (Italy) in 1986. In 1991 he joined the Department of Mathematics of the same University as a Research Associate. He has been a member of the Computer Science Department since its founding in 1995 where he currently teaches Operating Systems. His research interests include large-scale distributed systems, real-time systems, nomadic computing, wireless systems and neural networks. Dr. Davoli is a member of IEEE Computer Society, ACM, and AICA. Alberto Montresor received the M.S. degree in Computer Science from the University of Bologna in 1995. He is currently a Ph.D. student at the University of Bologna. His research interests include distributed computing, fault tolerance and distributed object frameworks.
+
+UBLCS-98-01
+
+41
+
+

@@ -367,7 +367,7 @@ def split(chosen,Nchosen):
 	hiProb = getLrgstLeaf(gv._emissionProbs[gv._ngram])
 	gv._hiProb = hiProb[0]					####### HACK ########
 	#print "in update: hiProb:", gv._hiProb
-	set_layout(chosen,gv._currProbs)
+	set_layout(chosen,gv._emissionProbs[gv._ngram])
 
 
 
@@ -515,8 +515,8 @@ def updateDist(wrdProbs,eProbs):
 	for key in eProbs:					#normalize
 		eProbs[key] *= mplier
 	eProbs.update(wrdProbs)
-	print "in update dist: symbols at end:", eProbs.keys()
-	print #
+	#print "in update dist: symbols at end:", eProbs.keys()
+	#print #
 	#print "new eprobs"
 	#bg._print(eProbs)
 
@@ -868,6 +868,7 @@ def set_layout(symbs,probs):
 	#print "in set_layout()"
 	#print "probs: ", probs
 	print "in set layout:", symbs
+	print "probs: ", probs
 	print #
 	global gv
 	gv._box1 = []
@@ -1017,6 +1018,10 @@ def splitLaySrtd(symbs,probs):
 			probs = dict((key,probs[key]) for key in probs if key in symbs)
 
 		srtdProbs = gv._sortByValue(probs)
+		print "in splitlaysorted: sorted probs:", srtdProbs
+		print "symbs:",symbs
+		print "probs: ",probs
+		print #
 
 		if symbs == []:
 			if gv._numTyped > 0:
@@ -1122,8 +1127,8 @@ def getKeyIn():
 		#bool = random.choice(errArr)
 		#bool = 1
 		#if bool == 0:
-		#err_var = 1
-		if err_var <= 0.2: 			#bad case
+		err_var = 1
+		if err_var <= 0.1: 			#bad case
 			if decision == 1:
 				decision = 2
 			else:
