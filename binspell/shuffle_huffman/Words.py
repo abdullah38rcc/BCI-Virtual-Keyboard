@@ -46,7 +46,7 @@ class Words:
 
 	#read pickle string into unigram dict
 	def _unpickleUni(self):
-		print "reading in dictionary 1..."
+		print "reading in unigram dictionary..."
 		fd = open(self._udictFile,'r')
 		self._unigrams = pickle.load(fd)
 		#self._print(self._unigrams)
@@ -55,7 +55,7 @@ class Words:
 
 	#read pickle string into bigram dict
 	def _unpickleBi(self):
-		print "reading in dictionary 2..."
+		print "reading in bigram dictionary..."
 		fd = open(self._bdictFile,'r')
 		self._bigrams = pickle.load(fd)
 		#self._print(self._bigrams)

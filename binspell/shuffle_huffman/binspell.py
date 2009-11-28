@@ -52,7 +52,7 @@ def updateCanvas(hilite,norm):
 	#gv._canvas.itemconfigure(hilite,width=3)
 	#gv._canvas.itemconfigure(norm,width=1)
 	gv._canvas.update()		#process all events in event queue
-	time.sleep(0.4)
+	time.sleep(0.3)
 	gv._canvas.delete('text')
 	#set_layout(gv._box1)
 	draw_interface(gv._canHt,gv._canWdth)
@@ -604,7 +604,8 @@ def infoTransferRate():
 	print "number of classifier errors:", gv._ttlNumErr
 	print "number of times delete used: ", gv._numDels
 	print "total number of steps taken: ", gv._ttlNumSteps
-	print "information transfer rate: %.5f" %(float(gv._numTyped) * float(60) / float(gv._ttlNumSteps * gv._trialLen)) + " chars/min"
+	print "simulation information transfer rate: %.5f" %(float(gv._numTyped) * float(60) / float(time.time() - gv._startTime))
+	print "projected BCI-controlled information transfer rate: %.5f" %(float(gv._numTyped) * float(60) / float(gv._ttlNumSteps * gv._trialLen)) + " chars/min"
 	print #
 
 
@@ -1104,6 +1105,8 @@ def getKeyIn():
 
 	def keyCtrl(event):
 		##print "in keyCtrl()"
+		if gv._startTime == 0:
+			gv._startTime = time.time()
 
 		#simulate 80% classifier accuracy
 		errArr = [1,0,1,1,1,0,1,1,1,1]
