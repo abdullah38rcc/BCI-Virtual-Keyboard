@@ -1112,7 +1112,7 @@ def getKeyIn():
 			gv._startTime = time.time()
 
 		#simulate 80% classifier accuracy
-		errArr = [1,0,1,1,1,0,1,1,1,1]
+		#errArr = [1,0,1,1,1,0,1,1,1,1]
 
 		decision = 3
 
@@ -1132,7 +1132,7 @@ def getKeyIn():
 		#bool = 1
 		#if bool == 0:
 
-		err_var = 1				#100% accuracy
+		#err_var = 1				#100% accuracy
 		if err_var <= 0.1: 			#bad case
 			if decision == 1:
 				decision = 2
