@@ -52,7 +52,7 @@ def updateCanvas(hilite,norm):
 	#gv._canvas.itemconfigure(hilite,width=3)
 	#gv._canvas.itemconfigure(norm,width=1)
 	gv._canvas.update()		#process all events in event queue
-	time.sleep(0.1)
+	time.sleep(0.05)
 	gv._canvas.delete('text')
 	#set_layout(gv._box1)
 	draw_interface(gv._canHt,gv._canWdth)
