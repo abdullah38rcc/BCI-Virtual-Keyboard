@@ -52,7 +52,7 @@ def updateCanvas(hilite,norm):
 	#gv._canvas.itemconfigure(hilite,width=3)
 	#gv._canvas.itemconfigure(norm,width=1)
 	gv._canvas.update()		#process all events in event queue
-	time.sleep(0.3)
+	time.sleep(0.2)
 	gv._canvas.delete('text')
 	#set_layout(gv._box1)
 	draw_interface(gv._canHt,gv._canWdth)
@@ -186,7 +186,7 @@ def draw_text(cntrx, cntry, h, w, symbolList):
 def saveState():
 	global gv, bg, stack
 	#stateObj = State(gv._box1, gv._box2, gv._currProbs, gv._hiProb, usrChoice)
-	print "in save state"
+	#print "in save state"
 	#print "last prefix:", gv._prefix
 	#print "gv._posInWrd",gv._posInWrd
 	#print "gv._ngram: ", gv._ngram
@@ -221,8 +221,8 @@ def return2PrevState():
 	gv._posInWrd = stateObj._posinwrd
 	gv._top3words = stateObj._top3
 
-	print "in return to prev state: pos in word:", gv._posInWrd
-	print #
+	#print "in return to prev state: pos in word:", gv._posInWrd
+	#print #
 
 	if flag == 1:
 		gv._numTyped += len(gv._prefix)
@@ -251,9 +251,9 @@ def return2PrevState():
 def return2CurrState():
 	global gv
 
-	print "in return2CurrState"
-	print "top3:", gv._top3words
-	print #
+	#print "in return2CurrState"
+	#print "top3:", gv._top3words
+	#print #
 
 	gv._box1 = []
 	gv._box2 = []
@@ -290,7 +290,7 @@ def resetConsts(typed):
 		gv._prefix = ''
 	else:			
 		gv._numTyped += 1
-		print "in reset consts: gv._numTyped:", gv._numTyped
+		#print "in reset consts: gv._numTyped:", gv._numTyped
 		
 		if typed == '[SPC]':			#word spelled out by user
 			gv._lastWordTyped = gv._prefix
@@ -397,6 +397,9 @@ def shuffle(chosen,Nchosen):
 	if hiProb[1] > gv._threshold:			#output a symbol
 		output(hiProb[0])
 		gv._obsOut.append(hiProb[0])
+		print #
+		print hiProb[0] + " selected."
+		print #
 		#print "in shuffle: obsout:", gv._obsOut
 		#print #
 		if '[DEL]' in hiProb[0]:
