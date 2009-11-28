@@ -408,6 +408,7 @@ def shuffle(chosen,Nchosen):
 			#print "numDels in shuffle: ", gv._numDels
 			gv._numDels += 1
 			return2PrevState()
+			infoTransferRate()
 			return
 		else:
 			#print "in shuffle: begin else: bg._emissionProbs:",

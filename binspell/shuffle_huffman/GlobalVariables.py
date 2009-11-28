@@ -33,7 +33,7 @@ class GlobalVariables:
 		self._numDels = 0			#number of times delete was used
 
 		self._posInWrd = 0			#number of characters typed b4 a space
-		self._numTyped = 0			#number of characters typed in total
+		self._numTyped = 0			#number of characters typed in total (including [del] and [spc])
 		self._numTimesLargest = 0	#number of times largest chosen consecutively
 		self._obsOut = []			#list of symbols typed thus far
 		self._numB4Shuffle	= 0		#for shuffle_alternate()
@@ -52,7 +52,7 @@ class GlobalVariables:
 		self._emissionProbs = {}
 
 		self._classAcc = float(0.8)		#classifier accuracy
-		self._threshold = float(0.75)		#threshold
+		self._threshold = float(0.80)		#threshold
 		self._diffThreshold = float(0.3)	#difference threshold
 		self._trialLen = 3			#trial length
 		self._startTime = 0			#for testing itr for simulation
