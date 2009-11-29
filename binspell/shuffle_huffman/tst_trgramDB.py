@@ -144,6 +144,6 @@ if False:
 
 
 #bg = Bigraph()
-#tg = Trigraph()
-wd = Words()
+tg = Trigraph()
+#wd = Words()
 #wd._closestWords("thi")

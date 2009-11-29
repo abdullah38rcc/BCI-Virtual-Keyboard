@@ -315,7 +315,8 @@ def resetConsts(typed):
 	gv._emissionProbs = deepcopy(gv._transitionProbs)
 
 	gv._top3words = wd._closestWords(gv._prefix,gv._lastWordTyped)		#guess words based on what's been typed
-	updateDist(gv._top3words,gv._emissionProbs[gv._ngram])
+	if gv._top3words != {}:
+		updateDist(gv._top3words,gv._emissionProbs[gv._ngram])
 
 	#print "in resetConsts"
 	#bg._print(gv._currCondTable)		#stub
@@ -379,10 +380,10 @@ def shuffle(chosen,Nchosen):
 	#print "in shuffle"
 	#print "in shuffle: chosen:", chosen
 	#print "-" * 10
-
-	if False:
-		if gv._numTyped > 0:					#sumthin already typed so check for delete
-			gv._box2.remove('[DEL]')		#remove delete
+	#print "ngram:", gv._ngram
+	#print "-" * 10
+	#print gv._emissionProbs[gv._ngram]
+	#print #
 
 	gv._emissionProbs[gv._ngram] = updateEmiss(gv._emissionProbs[gv._ngram], chosen)
 	#print "in shuffle: gv._ngram:", gv._ngram
@@ -506,8 +507,13 @@ def update(decision):
 #args: dict of most likely words:probs, dict of emission probs of letters
 def updateDist(wrdProbs,eProbs):
 	#print "in update dist"
+	#print "old eprobs"
+	#bg._print(eProbs)
+
 	wtot = sum(wrdProbs[key] for key in wrdProbs)		#sum of probs in top words dict
 	ltot = sum(eProbs[key] for key in eProbs)		#sum of probs in emission probs dict
+
+	#print "in updatedist: wtot:", wtot
 
 	if '[DEL]' in eProbs.keys():
 		reWeightDel(eProbs,len(wrdProbs),wtot+ltot)	#assign [del] avg of all probs
@@ -518,6 +524,7 @@ def updateDist(wrdProbs,eProbs):
 	mplier = float(wtot)/float(ltot)
 	for key in eProbs:					#normalize
 		eProbs[key] *= mplier
+	
 	eProbs.update(wrdProbs)
 	#print "in update dist: symbols at end:", eProbs.keys()
 	#print #
@@ -645,7 +652,7 @@ def output(item):
 	elif '[BACK]' in item:							#for bin search version
 		return
 	elif len(item) > 1:
-		print "outputing:", item
+		#print "outputing:", item
 		gv._txtBox.delete("%s-%ic" % (INSERT,gv._posInWrd),INSERT)	#delete prefix
 		gv._txtBox.insert(INSERT,item)					#replace prefix with whole word
 		gv._txtBox.insert(INSERT," ")					#insert [spc] after word
@@ -1134,7 +1141,7 @@ def getKeyIn():
 		#if bool == 0:
 
 		#err_var = 1				#100% accuracy
-		if err_var <= 0.2: 			#bad case
+		if err_var <= 0.2: 	#bad case
 			if decision == 1:
 				decision = 2
 			else:

@@ -125,20 +125,22 @@ class Words:
 
 
 	#check prefix against unigrams[lastwrd] to find a match
-	#args: bigram matches(if any), prefix, lastwrd
+	#args: dict of bigram matches(if any), prefix string, lastwrd string
 	#returns: either matches, and 1 or 0 to signal normalization
 	def _matchUgrams(self,matchs,prefx,lastwrd):
 		#print "in matchUgrams"
 		nflag = 0
-		if prefx == '' and lastwrd == '':			#no letter typed yet
-			matchs = deepcopy(self._unigrams)
+		if prefx == '':
+			if lastwrd == '':				#nuthin typed yet
+				matchs = deepcopy(self._unigrams)
 			#print "in if"
 		else:							#some letters typed, but no full word yet
 			#print "in 2nd else, normalize"
 			for word in self._unigrams:
 				if word.startswith(prefx) and word != prefx and word not in matchs.keys():			
 					matchs[word] = self._unigrams[word]
-			nflag = 1
+			if matchs != {}:
+				nflag = 1
 			#print "matchs:"
 			#self._print(matchs)
 			#print #
