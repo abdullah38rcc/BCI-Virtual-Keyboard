@@ -426,8 +426,8 @@ def shuffle(chosen,Nchosen):
 			#print "in shuffle: new emission probs:"
 			#print gv._sortByValue(gv._emissionProbs[gv._ngram])
 			#print "-" * 10 
-		print "in shuffle: num typed:", gv._numTyped
-		print #
+		#print "in shuffle: num typed:", gv._numTyped
+		#print #
 
 	set_layout(chosen,gv._emissionProbs[gv._ngram])
 
