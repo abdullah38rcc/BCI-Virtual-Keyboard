@@ -47,12 +47,13 @@ from Words import *
 ######################################---------------------- gui -----------#############
 
 def updateCanvas(hilite,norm):
-	gv._canvas.itemconfigure(hilite,fill='orange')
+	gv._canvas.itemconfigure(hilite,fill='orange',width=3)
 	gv._canvas.itemconfigure(norm,fill='white')
 	#gv._canvas.itemconfigure(hilite,width=3)
 	#gv._canvas.itemconfigure(norm,width=1)
 	gv._canvas.update()		#process all events in event queue
 	time.sleep(0.05)
+	gv._canvas.itemconfigure(hilite,width=1)
 	gv._canvas.delete('text')
 	#set_layout(gv._box1)
 	draw_interface(gv._canHt,gv._canWdth)
@@ -241,6 +242,8 @@ def return2PrevState():
 	norm = "box2"
 
 	updateCanvas(hilite,norm)	#process all events in event queue
+	print "in return to prev: num typed:", gv._numTyped
+	print #
 
 
 
@@ -396,11 +399,11 @@ def shuffle(chosen,Nchosen):
 
 
 	if hiProb[1] > gv._threshold:			#output a symbol
-		output(hiProb[0])
-		gv._obsOut.append(hiProb[0])
 		print #
 		print hiProb[0] + " selected."
 		print #
+		output(hiProb[0])
+		gv._obsOut.append(hiProb[0])
 		#print "in shuffle: obsout:", gv._obsOut
 		#print #
 		if '[DEL]' in hiProb[0]:
@@ -423,6 +426,8 @@ def shuffle(chosen,Nchosen):
 			#print "in shuffle: new emission probs:"
 			#print gv._sortByValue(gv._emissionProbs[gv._ngram])
 			#print "-" * 10 
+		print "num typed:", gv._numTyped
+		print #
 
 	set_layout(chosen,gv._emissionProbs[gv._ngram])
 
