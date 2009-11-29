@@ -207,7 +207,7 @@ def return2PrevState():
 	flag = 0	#indicates whether or not gv._numTyped needs to be further modified
 
 	if gv._prefix == '' and gv._posInWrd == 0:				#whole word needs to be erased
-		gv._numTyped = gv._numTyped - len(gv._lastWordTyped)
+		gv._numTyped = gv._numTyped - len(gv._lastWordTyped) - 1	# -1 for [spc] automatically added after whole word selection
 		flag = 1
 	else:
 		gv._numTyped -= 1
@@ -426,7 +426,7 @@ def shuffle(chosen,Nchosen):
 			#print "in shuffle: new emission probs:"
 			#print gv._sortByValue(gv._emissionProbs[gv._ngram])
 			#print "-" * 10 
-		print "num typed:", gv._numTyped
+		print "in shuffle: num typed:", gv._numTyped
 		print #
 
 	set_layout(chosen,gv._emissionProbs[gv._ngram])
