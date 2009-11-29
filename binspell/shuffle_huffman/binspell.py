@@ -1134,7 +1134,7 @@ def getKeyIn():
 		#if bool == 0:
 
 		#err_var = 1				#100% accuracy
-		if err_var <= 0.1: 			#bad case
+		if err_var <= 0.2: 			#bad case
 			if decision == 1:
 				decision = 2
 			else:
