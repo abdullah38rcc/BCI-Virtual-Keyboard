@@ -396,7 +396,8 @@ def shuffle(chosen,Nchosen):
 	hiProb = getLrgstLeaf(gv._emissionProbs[gv._ngram])
 	hiProb = hiProb[0]					####### HACK ########
 	gv._hiProb = hiProb
-
+	print "in shuffle: highest prob: ", gv._hiProb
+	print #
 
 	if hiProb[1] > gv._threshold:			#output a symbol
 		print #
