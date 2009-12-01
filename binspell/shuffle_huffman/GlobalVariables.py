@@ -52,7 +52,7 @@ class GlobalVariables:
 		self._emissionProbs = {}
 
 		self._classAcc = float(0.8)		#classifier accuracy
-		self._threshold = float(0.80)		#threshold
+		self._threshold = float(0.85)		#threshold
 		self._diffThreshold = float(0.3)	#difference threshold
 		self._trialLen = 3			#trial length
 		self._startTime = 0			#for testing itr for simulation

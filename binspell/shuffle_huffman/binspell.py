@@ -543,14 +543,12 @@ def updateDist(wrdProbs,eProbs):
 #subtract n smallest values to make [del] weigh more, where n=number of previous deletes
 #args: emission probs,number of words,sum(emissionprobs + wordprobs)
 def reWeightDel(eprobs,numwrds,tot):
-	if gv._numDels > 0:					#if deletes were previously made, use number of deletes to reweigh
-		ordrEprobs = gv._sortByValue(eprobs)
-		for i in range(0,gv._numDels):
-			temp = ordrEprobs[-i]
-			tot -= temp[1]
-
-	num =  len(eprobs.keys())
-	eprobs['[DEL]'] = tot / (num + numwrds)			#assign [del] average of all values
+	ordrEprobs = gv._sortByValue(eprobs)
+	sm = 0
+	num =  3
+	for i in range(0,num):
+		sm += ordrEprobs[i][1]
+	eprobs['[DEL]'] = sm / num		#assign [del] average of top 3 values
 	#print "in reweight: eprobs[del]:", eprobs['[DEL]']
 
 	
@@ -1147,7 +1145,7 @@ def getKeyIn():
 		#if bool == 0:
 
 		#err_var = 1				#100% accuracy
-		if err_var <= 0.2: 	#bad case
+		if err_var <= float(1 - gv._classAcc): 	#bad case
 			if decision == 1:
 				decision = 2
 			else:
