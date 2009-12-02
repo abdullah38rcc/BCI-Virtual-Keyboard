@@ -602,7 +602,7 @@ def getRelFntSz(symb,max, min):
 	global gv
 	sortdProbs = gv._sortByValue(gv._emissionProbs[gv._ngram])		#sort current probs in order greatest to least
 	for item in sortdProbs:
-		if symb in item:
+		if symb in item:						#most probable, so max font size
 			return max
 		max = max - 2
 		if max < min:
