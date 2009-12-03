@@ -1205,17 +1205,25 @@ def test_interface():
 
 
 def test_itr():
-	phrases = ['i dream of a world founded upon']
-
+	#phrases = ['i dream of a world founded upon']
+	phrases = ['hello world']
 	for item in phrases:
 		print item
-		for i, symb in enumerate(item):
+		#for i, symb in enumerate(item):
+		typed = ''
+		while len(typed) != len(item):
+			print "typed:", typed
+			print "len typed:", len(typed)
+			symb = item[len(typed)]
 			if symb == ' ':
 				symb = '[SPC]'
 			print "symb:", symb
-			print "num:", i
-			print #
+			#print "num:", i
+			#print #
 			tryOutput(symb)
+			typed = gv._txtBox.get(1.1,END)
+			#typed.rstrip()
+			#print "typed:", typed
 			
 
 def tryOutput(symb):

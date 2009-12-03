@@ -65,6 +65,7 @@ class GlobalVariables:
 		self._lastWordTyped = ''
 		self._prefix = ''
 		self._top3words = {}			#top 3 words returned from word class based on what's been typed
+		self._typed = ''			#string typed into textbox
 
 		self._symbolFreqList = [
 			(0.124167  , 'e'),
