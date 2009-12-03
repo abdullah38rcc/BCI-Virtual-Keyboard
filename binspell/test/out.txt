@@ -1,47 +1,8 @@
 reading in unigram dictionary...
 reading in bigram dictionary...
-iris schimandler
+i dream of a world founded upon
 symb: i
 num: 0
-
-i  attempted
-
-k selected.
-
-
-number of characters typed: 1
-number of classifier errors: 4
-number of times delete used:  0
-total number of steps taken:  13
-simulation information transfer rate: 0.00000
-projected BCI-controlled information transfer rate: 1.53846 chars/min
-
-in checkOutPut: symbol: i
-last typed: k
-returning: False
-
-in del error
-in checkOutPut: symbol: [DEL]
-last typed: k
-returning: False
-
-[DEL]  attempted
-
-[DEL] selected.
-
-in return to prev: num typed: 0
-
-
-number of characters typed: 0
-number of classifier errors: 8
-number of times delete used:  1
-total number of steps taken:  13
-simulation information transfer rate: 0.00000
-projected BCI-controlled information transfer rate: 0.00000 chars/min
-
-in checkOutPut: symbol: [DEL]
-last typed: [DEL]
-returning: True
 
 i  attempted
 
@@ -49,191 +10,172 @@ i selected.
 
 
 number of characters typed: 1
-number of classifier errors: 10
-number of times delete used:  1
-total number of steps taken:  47
+number of classifier errors: 1
+number of times delete used:  0
+total number of steps taken:  14
 simulation information transfer rate: 0.00000
-projected BCI-controlled information transfer rate: 0.42553 chars/min
+projected BCI-controlled information transfer rate: 1.42857 chars/min
 
 in checkOutPut: symbol: i
 last typed: i
 returning: True
 
-symb: r
+symb: [SPC]
 num: 1
+
+[SPC]  attempted
+
+is selected.
+
+
+number of characters typed: 3
+number of classifier errors: 4
+number of times delete used:  0
+total number of steps taken:  21
+simulation information transfer rate: 0.00000
+projected BCI-controlled information transfer rate: 2.85714 chars/min
+
+in checkOutPut: symbol: [SPC]
+last typed: [SPC]
+returning: True
+
+symb: d
+num: 2
+
+d  attempted
+
+d selected.
+
+
+number of characters typed: 4
+number of classifier errors: 4
+number of times delete used:  0
+total number of steps taken:  29
+simulation information transfer rate: 0.00000
+projected BCI-controlled information transfer rate: 2.75862 chars/min
+
+in checkOutPut: symbol: d
+last typed: d
+returning: True
+
+symb: r
+num: 3
+
+r  attempted
+
+e selected.
+
+
+number of characters typed: 5
+number of classifier errors: 7
+number of times delete used:  0
+total number of steps taken:  36
+simulation information transfer rate: 0.00000
+projected BCI-controlled information transfer rate: 2.77778 chars/min
+
+in checkOutPut: symbol: r
+last typed: e
+returning: False
+
+in del error
+in checkOutPut: symbol: [DEL]
+last typed: e
+returning: False
+
+[DEL]  attempted
+
+[DEL] selected.
+
+in return to prev: num typed: 4
+
+
+number of characters typed: 4
+number of classifier errors: 8
+number of times delete used:  1
+total number of steps taken:  36
+simulation information transfer rate: 0.00000
+projected BCI-controlled information transfer rate: 2.22222 chars/min
+
+in checkOutPut: symbol: [DEL]
+last typed: [DEL]
+returning: True
 
 r  attempted
 
 r selected.
 
 
-number of characters typed: 2
-number of classifier errors: 13
+number of characters typed: 5
+number of classifier errors: 8
 number of times delete used:  1
-total number of steps taken:  65
+total number of steps taken:  55
 simulation information transfer rate: 0.00000
-projected BCI-controlled information transfer rate: 0.61538 chars/min
+projected BCI-controlled information transfer rate: 1.81818 chars/min
 
 in checkOutPut: symbol: r
 last typed: r
 returning: True
 
-symb: i
-num: 2
-
-i  attempted
-
-i selected.
-
-
-number of characters typed: 3
-number of classifier errors: 16
-number of times delete used:  1
-total number of steps taken:  80
-simulation information transfer rate: 0.00000
-projected BCI-controlled information transfer rate: 0.75000 chars/min
-
-in checkOutPut: symbol: i
-last typed: i
-returning: True
-
-symb: s
-num: 3
-
-s  attempted
-
-s selected.
-
-
-number of characters typed: 4
-number of classifier errors: 25
-number of times delete used:  1
-total number of steps taken:  111
-simulation information transfer rate: 0.00000
-projected BCI-controlled information transfer rate: 0.72072 chars/min
-
-in checkOutPut: symbol: s
-last typed: s
-returning: True
-
-symb: [SPC]
+symb: e
 num: 4
 
-[SPC]  attempted
+e  attempted
 
-[SPC] selected.
-
-
-number of characters typed: 5
-number of classifier errors: 25
-number of times delete used:  1
-total number of steps taken:  115
-simulation information transfer rate: 0.00000
-projected BCI-controlled information transfer rate: 0.86957 chars/min
-
-in checkOutPut: symbol: [SPC]
-last typed: [SPC]
-returning: True
-
-symb: s
-num: 5
-
-s  attempted
-
-dement selected.
-
-
-number of characters typed: 12
-number of classifier errors: 30
-number of times delete used:  1
-total number of steps taken:  124
-simulation information transfer rate: 0.00000
-projected BCI-controlled information transfer rate: 1.93548 chars/min
-
-in checkOutPut: symbol: s
-last typed: [SPC]
-returning: False
-
-in del error
-in checkOutPut: symbol: [DEL]
-last typed: [SPC]
-returning: False
-
-[DEL]  attempted
-
-[DEL] selected.
-
-in return to prev: num typed: 5
-
-
-number of characters typed: 5
-number of classifier errors: 30
-number of times delete used:  2
-total number of steps taken:  124
-simulation information transfer rate: 0.00000
-projected BCI-controlled information transfer rate: 0.80645 chars/min
-
-in checkOutPut: symbol: [DEL]
-last typed: [DEL]
-returning: True
-
-s  attempted
-
-s selected.
+e selected.
 
 
 number of characters typed: 6
-number of classifier errors: 36
-number of times delete used:  2
-total number of steps taken:  157
+number of classifier errors: 14
+number of times delete used:  1
+total number of steps taken:  82
 simulation information transfer rate: 0.00000
-projected BCI-controlled information transfer rate: 0.76433 chars/min
+projected BCI-controlled information transfer rate: 1.46341 chars/min
 
-in checkOutPut: symbol: s
-last typed: s
+in checkOutPut: symbol: e
+last typed: e
 returning: True
 
-symb: c
-num: 6
+symb: a
+num: 5
 
-c  attempted
+a  attempted
 
-c selected.
+a selected.
 
 
 number of characters typed: 7
-number of classifier errors: 36
-number of times delete used:  2
-total number of steps taken:  167
+number of classifier errors: 14
+number of times delete used:  1
+total number of steps taken:  88
 simulation information transfer rate: 0.00000
-projected BCI-controlled information transfer rate: 0.83832 chars/min
+projected BCI-controlled information transfer rate: 1.59091 chars/min
 
-in checkOutPut: symbol: c
-last typed: c
+in checkOutPut: symbol: a
+last typed: a
 returning: True
 
-symb: h
-num: 7
+symb: m
+num: 6
 
-h  attempted
+m  attempted
 
-i selected.
+dream selected.
 
 
-number of characters typed: 8
-number of classifier errors: 41
-number of times delete used:  2
-total number of steps taken:  178
+number of characters typed: 9
+number of classifier errors: 20
+number of times delete used:  1
+total number of steps taken:  103
 simulation information transfer rate: 0.00000
-projected BCI-controlled information transfer rate: 0.89888 chars/min
+projected BCI-controlled information transfer rate: 1.74757 chars/min
 
-in checkOutPut: symbol: h
-last typed: i
+in checkOutPut: symbol: m
+last typed: [SPC]
 returning: False
 
 in del error
 in checkOutPut: symbol: [DEL]
-last typed: i
+last typed: [SPC]
 returning: False
 
 [DEL]  attempted
@@ -244,163 +186,322 @@ in return to prev: num typed: 7
 
 
 number of characters typed: 7
-number of classifier errors: 47
-number of times delete used:  3
-total number of steps taken:  178
+number of classifier errors: 22
+number of times delete used:  2
+total number of steps taken:  103
 simulation information transfer rate: 0.00000
-projected BCI-controlled information transfer rate: 0.78652 chars/min
+projected BCI-controlled information transfer rate: 1.35922 chars/min
 
 in checkOutPut: symbol: [DEL]
 last typed: [DEL]
 returning: True
-
-h  attempted
-
-h selected.
-
-
-number of characters typed: 8
-number of classifier errors: 49
-number of times delete used:  3
-total number of steps taken:  214
-simulation information transfer rate: 0.00000
-projected BCI-controlled information transfer rate: 0.74766 chars/min
-
-in checkOutPut: symbol: h
-last typed: h
-returning: True
-
-symb: i
-num: 8
-
-i  attempted
-
-i selected.
-
-
-number of characters typed: 9
-number of classifier errors: 58
-number of times delete used:  3
-total number of steps taken:  250
-simulation information transfer rate: 0.00000
-projected BCI-controlled information transfer rate: 0.72000 chars/min
-
-in checkOutPut: symbol: i
-last typed: i
-returning: True
-
-symb: m
-num: 9
 
 m  attempted
 
 m selected.
 
 
-number of characters typed: 10
-number of classifier errors: 60
-number of times delete used:  3
-total number of steps taken:  265
+number of characters typed: 8
+number of classifier errors: 27
+number of times delete used:  2
+total number of steps taken:  142
 simulation information transfer rate: 0.00000
-projected BCI-controlled information transfer rate: 0.75472 chars/min
+projected BCI-controlled information transfer rate: 1.12676 chars/min
 
 in checkOutPut: symbol: m
 last typed: m
 returning: True
 
-symb: a
+symb: [SPC]
+num: 7
+
+[SPC]  attempted
+
+[SPC] selected.
+
+
+number of characters typed: 9
+number of classifier errors: 32
+number of times delete used:  2
+total number of steps taken:  164
+simulation information transfer rate: 0.00000
+projected BCI-controlled information transfer rate: 1.09756 chars/min
+
+in checkOutPut: symbol: [SPC]
+last typed: [SPC]
+returning: True
+
+symb: o
+num: 8
+
+o  attempted
+
+o selected.
+
+
+number of characters typed: 10
+number of classifier errors: 34
+number of times delete used:  2
+total number of steps taken:  176
+simulation information transfer rate: 0.00000
+projected BCI-controlled information transfer rate: 1.13636 chars/min
+
+in checkOutPut: symbol: o
+last typed: o
+returning: True
+
+symb: f
+num: 9
+
+f  attempted
+
+of selected.
+
+
+number of characters typed: 12
+number of classifier errors: 36
+number of times delete used:  2
+total number of steps taken:  178
+simulation information transfer rate: 0.00000
+projected BCI-controlled information transfer rate: 1.34831 chars/min
+
+in checkOutPut: symbol: f
+last typed: [SPC]
+returning: False
+
+in del error
+in checkOutPut: symbol: [DEL]
+last typed: [SPC]
+returning: False
+
+[DEL]  attempted
+
+[DEL] selected.
+
+in return to prev: num typed: 10
+
+
+number of characters typed: 10
+number of classifier errors: 36
+number of times delete used:  3
+total number of steps taken:  178
+simulation information transfer rate: 0.00000
+projected BCI-controlled information transfer rate: 1.12360 chars/min
+
+in checkOutPut: symbol: [DEL]
+last typed: [DEL]
+returning: True
+
+f  attempted
+
+f selected.
+
+
+number of characters typed: 11
+number of classifier errors: 38
+number of times delete used:  3
+total number of steps taken:  197
+simulation information transfer rate: 0.00000
+projected BCI-controlled information transfer rate: 1.11675 chars/min
+
+in checkOutPut: symbol: f
+last typed: f
+returning: True
+
+symb: [SPC]
 num: 10
+
+[SPC]  attempted
+
+[SPC] selected.
+
+
+number of characters typed: 12
+number of classifier errors: 44
+number of times delete used:  3
+total number of steps taken:  222
+simulation information transfer rate: 0.00000
+projected BCI-controlled information transfer rate: 1.08108 chars/min
+
+in checkOutPut: symbol: [SPC]
+last typed: [SPC]
+returning: True
+
+symb: a
+num: 11
 
 a  attempted
 
 a selected.
 
 
-number of characters typed: 11
-number of classifier errors: 66
+number of characters typed: 13
+number of classifier errors: 45
 number of times delete used:  3
-total number of steps taken:  286
+total number of steps taken:  233
 simulation information transfer rate: 0.00000
-projected BCI-controlled information transfer rate: 0.76923 chars/min
+projected BCI-controlled information transfer rate: 1.11588 chars/min
 
 in checkOutPut: symbol: a
 last typed: a
 returning: True
 
-symb: n
-num: 11
-
-n  attempted
-
-n selected.
-
-
-number of characters typed: 12
-number of classifier errors: 66
-number of times delete used:  3
-total number of steps taken:  289
-simulation information transfer rate: 0.00000
-projected BCI-controlled information transfer rate: 0.83045 chars/min
-
-in checkOutPut: symbol: n
-last typed: n
-returning: True
-
-symb: d
+symb: [SPC]
 num: 12
 
-d  attempted
+[SPC]  attempted
 
-d selected.
+r selected.
+
+
+number of characters typed: 14
+number of classifier errors: 51
+number of times delete used:  3
+total number of steps taken:  249
+simulation information transfer rate: 0.00000
+projected BCI-controlled information transfer rate: 1.12450 chars/min
+
+in checkOutPut: symbol: [SPC]
+last typed: r
+returning: False
+
+in del error
+in checkOutPut: symbol: [DEL]
+last typed: r
+returning: False
+
+[DEL]  attempted
+
+[DEL] selected.
+
+in return to prev: num typed: 13
+
+
+number of characters typed: 13
+number of classifier errors: 58
+number of times delete used:  4
+total number of steps taken:  249
+simulation information transfer rate: 0.00000
+projected BCI-controlled information transfer rate: 1.04418 chars/min
+
+in checkOutPut: symbol: [DEL]
+last typed: [DEL]
+returning: True
+
+[SPC]  attempted
+
+[SPC] selected.
+
+
+number of characters typed: 14
+number of classifier errors: 61
+number of times delete used:  4
+total number of steps taken:  294
+simulation information transfer rate: 0.00000
+projected BCI-controlled information transfer rate: 0.95238 chars/min
+
+in checkOutPut: symbol: [SPC]
+last typed: [SPC]
+returning: True
+
+symb: w
+num: 13
+
+w  attempted
+
+[DEL] selected.
+
+in return to prev: num typed: 13
 
 
 number of characters typed: 13
 number of classifier errors: 66
-number of times delete used:  3
-total number of steps taken:  292
+number of times delete used:  5
+total number of steps taken:  294
 simulation information transfer rate: 0.00000
-projected BCI-controlled information transfer rate: 0.89041 chars/min
+projected BCI-controlled information transfer rate: 0.88435 chars/min
 
-in checkOutPut: symbol: d
-last typed: d
+in checkOutPut: symbol: w
+last typed: [DEL]
+returning: False
+
+in del error
+in checkOutPut: symbol: [DEL]
+last typed: [DEL]
 returning: True
 
-symb: l
-num: 13
+w  attempted
 
-l  attempted
-
-l selected.
-
-
-number of characters typed: 14
-number of classifier errors: 68
-number of times delete used:  3
-total number of steps taken:  308
-simulation information transfer rate: 0.00000
-projected BCI-controlled information transfer rate: 0.90909 chars/min
-
-in checkOutPut: symbol: l
-last typed: l
-returning: True
-
-symb: e
-num: 14
-
-e  attempted
-
-e selected.
+an selected.
 
 
 number of characters typed: 15
-number of classifier errors: 68
-number of times delete used:  3
-total number of steps taken:  311
+number of classifier errors: 70
+number of times delete used:  5
+total number of steps taken:  314
 simulation information transfer rate: 0.00000
-projected BCI-controlled information transfer rate: 0.96463 chars/min
+projected BCI-controlled information transfer rate: 0.95541 chars/min
 
-in checkOutPut: symbol: e
-last typed: e
+in checkOutPut: symbol: w
+last typed: [SPC]
+returning: False
+
+in del error
+in checkOutPut: symbol: [DEL]
+last typed: [SPC]
+returning: False
+
+[DEL]  attempted
+
+[DEL] selected.
+
+in return to prev: num typed: 13
+
+
+number of characters typed: 13
+number of classifier errors: 73
+number of times delete used:  6
+total number of steps taken:  314
+simulation information transfer rate: 0.00000
+projected BCI-controlled information transfer rate: 0.82803 chars/min
+
+in checkOutPut: symbol: [DEL]
+last typed: [DEL]
+returning: True
+
+w  attempted
+
+w selected.
+
+
+number of characters typed: 14
+number of classifier errors: 81
+number of times delete used:  6
+total number of steps taken:  367
+simulation information transfer rate: 0.00000
+projected BCI-controlled information transfer rate: 0.76294 chars/min
+
+in checkOutPut: symbol: w
+last typed: w
+returning: True
+
+symb: o
+num: 14
+
+o  attempted
+
+o selected.
+
+
+number of characters typed: 15
+number of classifier errors: 85
+number of times delete used:  6
+total number of steps taken:  388
+simulation information transfer rate: 0.00000
+projected BCI-controlled information transfer rate: 0.77320 chars/min
+
+in checkOutPut: symbol: o
+last typed: o
 returning: True
 
 symb: r
@@ -408,41 +509,419 @@ num: 15
 
 r  attempted
 
-n selected.
+r selected.
 
 
 number of characters typed: 16
-number of classifier errors: 73
-number of times delete used:  3
-total number of steps taken:  321
+number of classifier errors: 86
+number of times delete used:  6
+total number of steps taken:  394
 simulation information transfer rate: 0.00000
-projected BCI-controlled information transfer rate: 0.99688 chars/min
+projected BCI-controlled information transfer rate: 0.81218 chars/min
 
 in checkOutPut: symbol: r
-last typed: n
+last typed: r
+returning: True
+
+symb: l
+num: 16
+
+l  attempted
+
+l selected.
+
+
+number of characters typed: 17
+number of classifier errors: 89
+number of times delete used:  6
+total number of steps taken:  411
+simulation information transfer rate: 0.00000
+projected BCI-controlled information transfer rate: 0.82725 chars/min
+
+in checkOutPut: symbol: l
+last typed: l
+returning: True
+
+symb: d
+num: 17
+
+d  attempted
+
+d selected.
+
+
+number of characters typed: 18
+number of classifier errors: 89
+number of times delete used:  6
+total number of steps taken:  416
+simulation information transfer rate: 0.00000
+projected BCI-controlled information transfer rate: 0.86538 chars/min
+
+in checkOutPut: symbol: d
+last typed: d
+returning: True
+
+symb: [SPC]
+num: 18
+
+[SPC]  attempted
+
+[SPC] selected.
+
+
+number of characters typed: 19
+number of classifier errors: 89
+number of times delete used:  6
+total number of steps taken:  417
+simulation information transfer rate: 0.00000
+projected BCI-controlled information transfer rate: 0.91127 chars/min
+
+in checkOutPut: symbol: [SPC]
+last typed: [SPC]
+returning: True
+
+symb: f
+num: 19
+
+f  attempted
+
+f selected.
+
+
+number of characters typed: 20
+number of classifier errors: 92
+number of times delete used:  6
+total number of steps taken:  435
+simulation information transfer rate: 0.00000
+projected BCI-controlled information transfer rate: 0.91954 chars/min
+
+in checkOutPut: symbol: f
+last typed: f
+returning: True
+
+symb: o
+num: 20
+
+o  attempted
+
+o selected.
+
+
+number of characters typed: 21
+number of classifier errors: 93
+number of times delete used:  6
+total number of steps taken:  442
+simulation information transfer rate: 0.00000
+projected BCI-controlled information transfer rate: 0.95023 chars/min
+
+in checkOutPut: symbol: o
+last typed: o
+returning: True
+
+symb: u
+num: 21
+
+u  attempted
+
+former selected.
+
+
+number of characters typed: 26
+number of classifier errors: 100
+number of times delete used:  6
+total number of steps taken:  456
+simulation information transfer rate: 0.00000
+projected BCI-controlled information transfer rate: 1.14035 chars/min
+
+in checkOutPut: symbol: u
+last typed: [SPC]
 returning: False
 
 in del error
 in checkOutPut: symbol: [DEL]
-last typed: n
+last typed: [SPC]
 returning: False
 
 [DEL]  attempted
 
 [DEL] selected.
 
-in return to prev: num typed: 15
+in return to prev: num typed: 21
 
 
-number of characters typed: 15
-number of classifier errors: 78
-number of times delete used:  4
-total number of steps taken:  321
+number of characters typed: 21
+number of classifier errors: 112
+number of times delete used:  7
+total number of steps taken:  456
 simulation information transfer rate: 0.00000
-projected BCI-controlled information transfer rate: 0.93458 chars/min
+projected BCI-controlled information transfer rate: 0.92105 chars/min
 
 in checkOutPut: symbol: [DEL]
 last typed: [DEL]
 returning: True
 
-r  attempted
+u  attempted
+
+u selected.
+
+
+number of characters typed: 22
+number of classifier errors: 115
+number of times delete used:  7
+total number of steps taken:  512
+simulation information transfer rate: 0.00000
+projected BCI-controlled information transfer rate: 0.85938 chars/min
+
+in checkOutPut: symbol: u
+last typed: u
+returning: True
+
+symb: n
+num: 22
+
+n  attempted
+
+n selected.
+
+
+number of characters typed: 23
+number of classifier errors: 118
+number of times delete used:  7
+total number of steps taken:  527
+simulation information transfer rate: 0.00000
+projected BCI-controlled information transfer rate: 0.87287 chars/min
+
+in checkOutPut: symbol: n
+last typed: n
+returning: True
+
+symb: d
+num: 23
+
+d  attempted
+
+d selected.
+
+
+number of characters typed: 24
+number of classifier errors: 126
+number of times delete used:  7
+total number of steps taken:  556
+simulation information transfer rate: 0.00000
+projected BCI-controlled information transfer rate: 0.86331 chars/min
+
+in checkOutPut: symbol: d
+last typed: d
+returning: True
+
+symb: e
+num: 24
+
+e  attempted
+
+e selected.
+
+
+number of characters typed: 25
+number of classifier errors: 127
+number of times delete used:  7
+total number of steps taken:  564
+simulation information transfer rate: 0.00000
+projected BCI-controlled information transfer rate: 0.88652 chars/min
+
+in checkOutPut: symbol: e
+last typed: e
+returning: True
+
+symb: d
+num: 25
+
+d  attempted
+
+d selected.
+
+
+number of characters typed: 26
+number of classifier errors: 133
+number of times delete used:  7
+total number of steps taken:  587
+simulation information transfer rate: 0.00000
+projected BCI-controlled information transfer rate: 0.88586 chars/min
+
+in checkOutPut: symbol: d
+last typed: d
+returning: True
+
+symb: [SPC]
+num: 26
+
+[SPC]  attempted
+
+[SPC] selected.
+
+
+number of characters typed: 27
+number of classifier errors: 134
+number of times delete used:  7
+total number of steps taken:  590
+simulation information transfer rate: 0.00000
+projected BCI-controlled information transfer rate: 0.91525 chars/min
+
+in checkOutPut: symbol: [SPC]
+last typed: [SPC]
+returning: True
+
+symb: u
+num: 27
+
+u  attempted
+
+e selected.
+
+
+number of characters typed: 28
+number of classifier errors: 137
+number of times delete used:  7
+total number of steps taken:  601
+simulation information transfer rate: 0.00000
+projected BCI-controlled information transfer rate: 0.93178 chars/min
+
+in checkOutPut: symbol: u
+last typed: e
+returning: False
+
+in del error
+in checkOutPut: symbol: [DEL]
+last typed: e
+returning: False
+
+[DEL]  attempted
+
+l selected.
+
+
+number of characters typed: 29
+number of classifier errors: 139
+number of times delete used:  7
+total number of steps taken:  608
+simulation information transfer rate: 0.00000
+projected BCI-controlled information transfer rate: 0.95395 chars/min
+
+in checkOutPut: symbol: [DEL]
+last typed: l
+returning: False
+
+in del error
+in checkOutPut: symbol: [DEL]
+last typed: l
+returning: False
+
+[DEL]  attempted
+
+[DEL] selected.
+
+in return to prev: num typed: 28
+
+
+number of characters typed: 28
+number of classifier errors: 139
+number of times delete used:  8
+total number of steps taken:  608
+simulation information transfer rate: 0.00000
+projected BCI-controlled information transfer rate: 0.92105 chars/min
+
+in checkOutPut: symbol: [DEL]
+last typed: [DEL]
+returning: True
+
+[DEL]  attempted
+
+[DEL] selected.
+
+in return to prev: num typed: 27
+
+
+number of characters typed: 27
+number of classifier errors: 148
+number of times delete used:  9
+total number of steps taken:  608
+simulation information transfer rate: 0.00000
+projected BCI-controlled information transfer rate: 0.88816 chars/min
+
+in checkOutPut: symbol: [DEL]
+last typed: [DEL]
+returning: True
+
+u  attempted
+
+u selected.
+
+
+number of characters typed: 28
+number of classifier errors: 150
+number of times delete used:  9
+total number of steps taken:  666
+simulation information transfer rate: 0.00000
+projected BCI-controlled information transfer rate: 0.84084 chars/min
+
+in checkOutPut: symbol: u
+last typed: u
+returning: True
+
+symb: p
+num: 28
+
+p  attempted
+
+p selected.
+
+
+number of characters typed: 29
+number of classifier errors: 150
+number of times delete used:  9
+total number of steps taken:  675
+simulation information transfer rate: 0.00000
+projected BCI-controlled information transfer rate: 0.85926 chars/min
+
+in checkOutPut: symbol: p
+last typed: p
+returning: True
+
+symb: o
+num: 29
+
+o  attempted
+
+o selected.
+
+
+number of characters typed: 30
+number of classifier errors: 150
+number of times delete used:  9
+total number of steps taken:  684
+simulation information transfer rate: 0.00000
+projected BCI-controlled information transfer rate: 0.87719 chars/min
+
+in checkOutPut: symbol: o
+last typed: o
+returning: True
+
+symb: n
+num: 30
+
+n  attempted
+
+n selected.
+
+
+number of characters typed: 31
+number of classifier errors: 150
+number of times delete used:  9
+total number of steps taken:  691
+simulation information transfer rate: 0.00000
+projected BCI-controlled information transfer rate: 0.89725 chars/min
+
+in checkOutPut: symbol: n
+last typed: n
+returning: True
+

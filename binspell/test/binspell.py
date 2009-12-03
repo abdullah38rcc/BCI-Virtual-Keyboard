@@ -231,7 +231,8 @@ def return2PrevState():
 			output(lett)
 
 	#if gv._numTyped > 1:
-	updateDist(gv._top3words,gv._emissionProbs[gv._ngram])
+	if gv._top3words != {}:
+		updateDist(gv._top3words,gv._emissionProbs[gv._ngram])
 	
 	set_layout(gv._emissionProbs[gv._ngram].keys(),gv._emissionProbs[gv._ngram])
 
@@ -1204,7 +1205,7 @@ def test_interface():
 
 
 def test_itr():
-	phrases = ['iris schimandler']
+	phrases = ['i dream of a world founded upon']
 
 	for item in phrases:
 		print item
