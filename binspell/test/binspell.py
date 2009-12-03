@@ -415,7 +415,7 @@ def shuffle(chosen,Nchosen,inTextBx):
 			gv._numDels += 1
 			return2PrevState()
 			infoTransferRate()
-			return
+			return inTextBx
 		else:
 			#print "in shuffle: begin else: bg._emissionProbs:",
 			#bg._print(bg._emissionProbs)
@@ -1204,7 +1204,7 @@ def test_interface():
 
 
 def test_itr():
-	phrases = ['hello']
+	phrases = ['iris schimandler']
 
 	for item in phrases:
 		print item
@@ -1215,51 +1215,55 @@ def test_itr():
 			print "num:", i
 			print #
 			tryOutput(symb)
-			if False:
-				wrongOutput, accidentDel = checkOutPut(symb)
-				while wrongOutput:
-					tryOutput('[DEL]')
-					wrongOutput,accidentDel = checkOutPut('[DEL]')
-					if wrongOutput == False and accidentDel == False:
-						tryOutput(symb)
-						wrongOutput,accidentDel = checkOutPut(symb)
-					while accidentDel:
-						tryOutput(item[i-1])
-						wrongOutput, accidentDel = checkOutPut(item[i-1])					
-				while accidentDel:
-					tryOutput(item[i-1])
-					wrongOutput, accidentDel = checkOutPut(item[i-1])
-
-
-def tryOutput(sym):
-	inTxtBox = False
-	#simulate misclassification
-	err_var = random.random()		#returns number b/t 0-1
-	while not inTxtBox:
-		if sym in gv._box1:
-			decision = 1
-		else:
-			decision = 2
-
-		if err_var <= float(1 - gv._classAcc):
-			if decision == 1:
-				decision = 2
-			else:
-				decision = 1
-			gv._ttlNumErr = gv._ttlNumErr + 1
 			
+
+def tryOutput(symb):
+	inTxtBox = False
+	print symb," attempted"
+	while not inTxtBox:
+		decision = getDecision(symb)			
 		inTxtBox = update(decision,inTxtBox)
+	correctOutPut = checkOutPut(symb)
+	if not correctOutPut:
+		if delError():
+			tryOutput(symb)
+		else:
+			tryOutput('[DEL]')
+			tryOutput(symb)
 	#print "in tryoutput:", inTxtBox
 
 
+def delError():
+	print "in del error"
+	return checkOutPut('[DEL]')
+
+
+
+def getDecision(sym):
+	#simulate misclassification
+	err_var = random.random()		#returns number b/t 0-1
+	if sym in gv._box1:
+		decision = 1
+	else:
+		decision = 2
+
+	if err_var <= float(.2):
+		if decision == 1:
+			decision = 2
+		else:
+			decision = 1
+		gv._ttlNumErr = gv._ttlNumErr + 1
+	return decision
+
+
+
+
 def checkOutPut(symbl):
-	if symbl not in gv._obsOut[-1]:
-		if '[DEL]' in gv._obsOut[-1]:
-			return (True, True)
-		return (True, False)
-	return (False, False)
-				
-				
+	print "in checkOutPut: symbol:",symbl
+	print "last typed:",gv._obsOut[-1]
+	print "returning:",symbl in gv._obsOut[-1]
+	print #
+	return symbl in gv._obsOut[-1]
 
 
 
