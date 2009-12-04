@@ -806,9 +806,9 @@ def updateEmiss(eProbs,chos):
 	#print #
 	for key in eProbs:
 		if key in chos:
-			eProbs[key] *= float(0.8)
+			eProbs[key] *= float(0.9)
 		else:
-			eProbs[key] *= float(0.2)
+			eProbs[key] *= float(0.1)
 	eProbs = bg._normalize(eProbs)
 	#print "in updateemiss: new eprobs:", gv._sortByValue(eProbs)
 	#print "-"*10
