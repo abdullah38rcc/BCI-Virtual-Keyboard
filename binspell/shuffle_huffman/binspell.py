@@ -231,7 +231,8 @@ def return2PrevState():
 			output(lett)
 
 	#if gv._numTyped > 1:
-	updateDist(gv._top3words,gv._emissionProbs[gv._ngram])
+	if gv._top3words != {}:
+		updateDist(gv._top3words,gv._emissionProbs[gv._ngram])
 	
 	set_layout(gv._emissionProbs[gv._ngram].keys(),gv._emissionProbs[gv._ngram])
 
@@ -413,7 +414,7 @@ def shuffle(chosen,Nchosen):
 			#print "numDels in shuffle: ", gv._numDels
 			gv._numDels += 1
 			return2PrevState()
-			infoTransferRate()
+			#infoTransferRate()
 			return
 		else:
 			#print "in shuffle: begin else: bg._emissionProbs:",
@@ -422,7 +423,7 @@ def shuffle(chosen,Nchosen):
 			#gv._obsOut.append(hiProb[0])
 			#viterbi(gv._obsOut)
 			resetConsts(hiProb[0])
-			infoTransferRate()
+			#infoTransferRate()
 			#print "in shuffle: new last typed: ", gv._ngram
 			#print "in shuffle: new emission probs:"
 			#print gv._sortByValue(gv._emissionProbs[gv._ngram])
