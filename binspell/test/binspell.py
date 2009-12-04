@@ -415,7 +415,7 @@ def shuffle(chosen,Nchosen,inTextBx):
 			#print "numDels in shuffle: ", gv._numDels
 			gv._numDels += 1
 			return2PrevState()
-			infoTransferRate()
+			#infoTransferRate()
 			return inTextBx
 		else:
 			#print "in shuffle: begin else: bg._emissionProbs:",
@@ -424,7 +424,7 @@ def shuffle(chosen,Nchosen,inTextBx):
 			#gv._obsOut.append(hiProb[0])
 			#viterbi(gv._obsOut)
 			resetConsts(hiProb[0])
-			infoTransferRate()
+			#infoTransferRate()
 			#print "in shuffle: new last typed: ", gv._ngram
 			#print "in shuffle: new emission probs:"
 			#print gv._sortByValue(gv._emissionProbs[gv._ngram])
@@ -1206,24 +1206,41 @@ def test_interface():
 
 def test_itr():
 	#phrases = ['i dream of a world founded upon']
-	phrases = ['hello world']
+	phrases = ['what drives edward phase']
 	for item in phrases:
 		print item
 		#for i, symb in enumerate(item):
 		typed = ''
-		while len(typed) != len(item):
-			print "typed:", typed
-			print "len typed:", len(typed)
-			symb = item[len(typed)]
-			if symb == ' ':
-				symb = '[SPC]'
-			print "symb:", symb
-			#print "num:", i
+		correct = False
+		symb = ''
+		while len(typed) != len(item) and not correct:
+			#print "typed:", typed
+			#print "len typed:", len(typed)
+			#for i,itm in enumerate(typed):
+				#print str(i) + ":" + itm 
+			#print #
+			#print item[2]
+			correct = item.startswith(typed)
+			if not correct:
+				print "in if: typed", typed
+				print "item:", item
+				print # 
+				symb = '[DEL]'
+			else:
+				symb = item[len(typed)]
+				if symb == ' ':
+					symb = '[SPC]'
+
+			#print "symb:", symb
 			#print #
 			tryOutput(symb)
-			typed = gv._txtBox.get(1.1,END)
+			typed = gv._txtBox.get(1.0,END)
+			typed = typed[0:-1]
+			correct = False				#reset for next one
+			
 			#typed.rstrip()
 			#print "typed:", typed
+		infoTransferRate()
 			
 
 def tryOutput(symb):
@@ -1233,12 +1250,13 @@ def tryOutput(symb):
 		decision = getDecision(symb)			
 		inTxtBox = update(decision,inTxtBox)
 	correctOutPut = checkOutPut(symb)
-	if not correctOutPut:
-		if delError():
-			tryOutput(symb)
-		else:
-			tryOutput('[DEL]')
-			tryOutput(symb)
+	if False:
+		if not correctOutPut:
+			if delError():
+				tryOutput(symb)
+			else:
+				tryOutput('[DEL]')
+				tryOutput(symb)
 	#print "in tryoutput:", inTxtBox
 
 

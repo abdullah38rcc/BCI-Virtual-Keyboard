@@ -414,7 +414,7 @@ def shuffle(chosen,Nchosen):
 			#print "numDels in shuffle: ", gv._numDels
 			gv._numDels += 1
 			return2PrevState()
-			#infoTransferRate()
+			infoTransferRate()
 			return
 		else:
 			#print "in shuffle: begin else: bg._emissionProbs:",
@@ -423,7 +423,7 @@ def shuffle(chosen,Nchosen):
 			#gv._obsOut.append(hiProb[0])
 			#viterbi(gv._obsOut)
 			resetConsts(hiProb[0])
-			#infoTransferRate()
+			infoTransferRate()
 			#print "in shuffle: new last typed: ", gv._ngram
 			#print "in shuffle: new emission probs:"
 			#print gv._sortByValue(gv._emissionProbs[gv._ngram])
@@ -803,16 +803,16 @@ def init(obs,emiss):
 #####################################################---------- hmm ---------################
 
 def updateEmiss(eProbs,chos):
-	#print "in updateemiss: old eprobs:", gv._sortByValue(eProbs)
-	#print #
+	print "in updateemiss: old eprobs:", gv._sortByValue(eProbs)
+	print #
 	for key in eProbs:
 		if key in chos:
-			eProbs[key] *= float(0.8)
+			eProbs[key] *= float(0.85)
 		else:
-			eProbs[key] *= float(0.2)
+			eProbs[key] *= float(0.25)
 	eProbs = bg._normalize(eProbs)
-	#print "in updateemiss: new eprobs:", gv._sortByValue(eProbs)
-	#print "-"*10
+	print "in updateemiss: new eprobs:", gv._sortByValue(eProbs)
+	print "-"*10
 	return eProbs
 	#return bg._normalize(eProbs)
 

@@ -1,289 +1,104 @@
 reading in unigram dictionary...
 reading in bigram dictionary...
-hello world
-typed: 
-len typed: 0
-symb: h
-h  attempted
-
-h selected.
-
-
-number of characters typed: 1
-number of classifier errors: 4
-number of times delete used:  0
-total number of steps taken:  20
-simulation information transfer rate: 0.00000
-projected BCI-controlled information transfer rate: 1.00000 chars/min
-
-in checkOutPut: symbol: h
-last typed: h
-returning: True
-
-typed: 
-
-len typed: 1
-symb: e
-e  attempted
-
-e selected.
-
-
-number of characters typed: 2
-number of classifier errors: 5
-number of times delete used:  0
-total number of steps taken:  31
-simulation information transfer rate: 0.00000
-projected BCI-controlled information transfer rate: 1.29032 chars/min
-
-in checkOutPut: symbol: e
-last typed: e
-returning: True
-
-typed: e
-
-len typed: 2
-symb: l
-l  attempted
-
-l selected.
-
-
-number of characters typed: 3
-number of classifier errors: 8
-number of times delete used:  0
-total number of steps taken:  50
-simulation information transfer rate: 0.00000
-projected BCI-controlled information transfer rate: 1.20000 chars/min
-
-in checkOutPut: symbol: l
-last typed: l
-returning: True
-
-typed: el
-
-len typed: 3
-symb: l
-l  attempted
-
-l selected.
-
-
-number of characters typed: 4
-number of classifier errors: 8
-number of times delete used:  0
-total number of steps taken:  57
-simulation information transfer rate: 0.00000
-projected BCI-controlled information transfer rate: 1.40351 chars/min
-
-in checkOutPut: symbol: l
-last typed: l
-returning: True
-
-typed: ell
-
-len typed: 4
-symb: o
-o  attempted
-
-o selected.
-
-
-number of characters typed: 5
-number of classifier errors: 12
-number of times delete used:  0
-total number of steps taken:  76
-simulation information transfer rate: 0.00000
-projected BCI-controlled information transfer rate: 1.31579 chars/min
-
-in checkOutPut: symbol: o
-last typed: o
-returning: True
-
-typed: ello
-
-len typed: 5
-symb: [SPC]
-[SPC]  attempted
-
-[SPC] selected.
-
-
-number of characters typed: 6
-number of classifier errors: 12
-number of times delete used:  0
-total number of steps taken:  85
-simulation information transfer rate: 0.00000
-projected BCI-controlled information transfer rate: 1.41176 chars/min
-
-in checkOutPut: symbol: [SPC]
-last typed: [SPC]
-returning: True
-
-typed: ello 
-
-len typed: 6
-symb: w
+what drives edward phase
 w  attempted
 
 w selected.
-
-
-number of characters typed: 7
-number of classifier errors: 12
-number of times delete used:  0
-total number of steps taken:  93
-simulation information transfer rate: 0.00000
-projected BCI-controlled information transfer rate: 1.50538 chars/min
 
 in checkOutPut: symbol: w
 last typed: w
 returning: True
 
-typed: ello w
+h  attempted
 
-len typed: 7
-symb: o
-o  attempted
+h selected.
 
-o selected.
-
-
-number of characters typed: 8
-number of classifier errors: 13
-number of times delete used:  0
-total number of steps taken:  101
-simulation information transfer rate: 0.00000
-projected BCI-controlled information transfer rate: 1.58416 chars/min
-
-in checkOutPut: symbol: o
-last typed: o
+in checkOutPut: symbol: h
+last typed: h
 returning: True
 
-typed: ello wo
+a  attempted
 
-len typed: 8
-symb: r
+a selected.
+
+in checkOutPut: symbol: a
+last typed: a
+returning: True
+
+t  attempted
+
+t selected.
+
+in checkOutPut: symbol: t
+last typed: t
+returning: True
+
+[SPC]  attempted
+
+[SPC] selected.
+
+in checkOutPut: symbol: [SPC]
+last typed: [SPC]
+returning: True
+
+d  attempted
+
+d selected.
+
+in checkOutPut: symbol: d
+last typed: d
+returning: True
+
 r  attempted
 
 r selected.
-
-
-number of characters typed: 9
-number of classifier errors: 13
-number of times delete used:  0
-total number of steps taken:  104
-simulation information transfer rate: 0.00000
-projected BCI-controlled information transfer rate: 1.73077 chars/min
 
 in checkOutPut: symbol: r
 last typed: r
 returning: True
 
-typed: ello wor
-
-len typed: 9
-symb: l
-l  attempted
-
-l selected.
-
-
-number of characters typed: 10
-number of classifier errors: 18
-number of times delete used:  0
-total number of steps taken:  131
-simulation information transfer rate: 0.00000
-projected BCI-controlled information transfer rate: 1.52672 chars/min
-
-in checkOutPut: symbol: l
-last typed: l
-returning: True
-
-typed: ello worl
-
-len typed: 10
-symb: d
-d  attempted
+i  attempted
 
 i selected.
 
-
-number of characters typed: 11
-number of classifier errors: 21
-number of times delete used:  0
-total number of steps taken:  139
-simulation information transfer rate: 0.00000
-projected BCI-controlled information transfer rate: 1.58273 chars/min
-
-in checkOutPut: symbol: d
+in checkOutPut: symbol: i
 last typed: i
-returning: False
-
-in del error
-in checkOutPut: symbol: [DEL]
-last typed: i
-returning: False
-
-[DEL]  attempted
-
-f selected.
-
-
-number of characters typed: 12
-number of classifier errors: 27
-number of times delete used:  0
-total number of steps taken:  157
-simulation information transfer rate: 0.00000
-projected BCI-controlled information transfer rate: 1.52866 chars/min
-
-in checkOutPut: symbol: [DEL]
-last typed: f
-returning: False
-
-in del error
-in checkOutPut: symbol: [DEL]
-last typed: f
-returning: False
-
-[DEL]  attempted
-
-t selected.
-
-
-number of characters typed: 13
-number of classifier errors: 33
-number of times delete used:  0
-total number of steps taken:  171
-simulation information transfer rate: 0.00000
-projected BCI-controlled information transfer rate: 1.52047 chars/min
-
-in checkOutPut: symbol: [DEL]
-last typed: t
-returning: False
-
-in del error
-in checkOutPut: symbol: [DEL]
-last typed: t
-returning: False
-
-[DEL]  attempted
-
-[DEL] selected.
-
-in return to prev: num typed: 12
-
-
-number of characters typed: 12
-number of classifier errors: 37
-number of times delete used:  1
-total number of steps taken:  171
-simulation information transfer rate: 0.00000
-projected BCI-controlled information transfer rate: 1.40351 chars/min
-
-in checkOutPut: symbol: [DEL]
-last typed: [DEL]
 returning: True
+
+v  attempted
+
+v selected.
+
+in checkOutPut: symbol: v
+last typed: v
+returning: True
+
+e  attempted
+
+e selected.
+
+in checkOutPut: symbol: e
+last typed: e
+returning: True
+
+s  attempted
+
+s selected.
+
+in checkOutPut: symbol: s
+last typed: s
+returning: True
+
+[SPC]  attempted
+
+s selected.
+
+in checkOutPut: symbol: [SPC]
+last typed: s
+returning: False
+
+in if: typed what drivess
+item: what drives edward phase
 
 [DEL]  attempted
 
@@ -291,49 +106,203 @@ returning: True
 
 in return to prev: num typed: 11
 
-
-number of characters typed: 11
-number of classifier errors: 39
-number of times delete used:  2
-total number of steps taken:  171
-simulation information transfer rate: 0.00000
-projected BCI-controlled information transfer rate: 1.28655 chars/min
-
 in checkOutPut: symbol: [DEL]
 last typed: [DEL]
 returning: True
+
+[SPC]  attempted
+
+[SPC] selected.
+
+in checkOutPut: symbol: [SPC]
+last typed: [SPC]
+returning: True
+
+e  attempted
+
+the selected.
+
+in checkOutPut: symbol: e
+last typed: [SPC]
+returning: False
+
+in if: typed what drives the 
+item: what drives edward phase
 
 [DEL]  attempted
 
 [DEL] selected.
 
-in return to prev: num typed: 10
-
-
-number of characters typed: 10
-number of classifier errors: 41
-number of times delete used:  3
-total number of steps taken:  171
-simulation information transfer rate: 0.00000
-projected BCI-controlled information transfer rate: 1.16959 chars/min
+in return to prev: num typed: 12
 
 in checkOutPut: symbol: [DEL]
 last typed: [DEL]
+returning: True
+
+e  attempted
+
+d selected.
+
+in checkOutPut: symbol: e
+last typed: d
+returning: False
+
+in if: typed what drives d
+item: what drives edward phase
+
+[DEL]  attempted
+
+[DEL] selected.
+
+in return to prev: num typed: 12
+
+in checkOutPut: symbol: [DEL]
+last typed: [DEL]
+returning: True
+
+e  attempted
+
+and selected.
+
+in checkOutPut: symbol: e
+last typed: [SPC]
+returning: False
+
+in if: typed what drives and 
+item: what drives edward phase
+
+[DEL]  attempted
+
+[DEL] selected.
+
+in return to prev: num typed: 12
+
+in checkOutPut: symbol: [DEL]
+last typed: [DEL]
+returning: True
+
+e  attempted
+
+and selected.
+
+in checkOutPut: symbol: e
+last typed: [SPC]
+returning: False
+
+in if: typed what drives and 
+item: what drives edward phase
+
+[DEL]  attempted
+
+[DEL] selected.
+
+in return to prev: num typed: 12
+
+in checkOutPut: symbol: [DEL]
+last typed: [DEL]
+returning: True
+
+e  attempted
+
+e selected.
+
+in checkOutPut: symbol: e
+last typed: e
 returning: True
 
 d  attempted
 
 d selected.
 
+in checkOutPut: symbol: d
+last typed: d
+returning: True
 
-number of characters typed: 11
-number of classifier errors: 41
-number of times delete used:  3
-total number of steps taken:  225
-simulation information transfer rate: 0.00000
-projected BCI-controlled information transfer rate: 0.97778 chars/min
+w  attempted
+
+w selected.
+
+in checkOutPut: symbol: w
+last typed: w
+returning: True
+
+a  attempted
+
+a selected.
+
+in checkOutPut: symbol: a
+last typed: a
+returning: True
+
+r  attempted
+
+r selected.
+
+in checkOutPut: symbol: r
+last typed: r
+returning: True
+
+d  attempted
+
+d selected.
 
 in checkOutPut: symbol: d
 last typed: d
 returning: True
+
+[SPC]  attempted
+
+[SPC] selected.
+
+in checkOutPut: symbol: [SPC]
+last typed: [SPC]
+returning: True
+
+p  attempted
+
+p selected.
+
+in checkOutPut: symbol: p
+last typed: p
+returning: True
+
+h  attempted
+
+h selected.
+
+in checkOutPut: symbol: h
+last typed: h
+returning: True
+
+a  attempted
+
+a selected.
+
+in checkOutPut: symbol: a
+last typed: a
+returning: True
+
+s  attempted
+
+s selected.
+
+in checkOutPut: symbol: s
+last typed: s
+returning: True
+
+e  attempted
+
+e selected.
+
+in checkOutPut: symbol: e
+last typed: e
+returning: True
+
+
+number of characters typed: 24
+number of classifier errors: 96
+number of times delete used:  5
+total number of steps taken:  460
+simulation information transfer rate: 0.00000
+projected BCI-controlled information transfer rate: 1.04348 chars/min
 
