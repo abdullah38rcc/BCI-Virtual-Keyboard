@@ -34,7 +34,7 @@ from Tkinter import *
 from math import *
 from socket import *
 from tkFont import *
-import random, time, heapq
+import random, time, heapq, string
 from GlobalVariables import *
 from Bigraph import *
 from Stack import *
@@ -1207,13 +1207,20 @@ def test_interface():
 def test_itr():
 	#phrases = ['i dream of a world founded upon']
 	phrases = ['what drives edward phase']
+	#phrases = ['hello world']
 	for item in phrases:
 		print item
 		#for i, symb in enumerate(item):
 		typed = ''
 		correct = False
 		symb = ''
-		while len(typed) != len(item) and not correct:
+
+		word = string.split(item,' ')
+		wrdNum = 0
+		#print "words:", words
+		#print #
+
+		while len(typed) < len(item) and not correct:
 			#print "typed:", typed
 			#print "len typed:", len(typed)
 			#for i,itm in enumerate(typed):
@@ -1227,13 +1234,18 @@ def test_itr():
 				print # 
 				symb = '[DEL]'
 			else:
+				if word[wrdNum] in typed:
+					print "in if: word:",word[wrdNum]
+					wrdNum +=1
 				symb = item[len(typed)]
 				if symb == ' ':
 					symb = '[SPC]'
 
 			#print "symb:", symb
-			#print #
-			tryOutput(symb)
+			print "wordnum:", wrdNum
+			print "word:", word[wrdNum]
+			print #
+			tryOutput(symb,word[wrdNum])
 			typed = gv._txtBox.get(1.0,END)
 			typed = typed[0:-1]
 			correct = False				#reset for next one
@@ -1243,11 +1255,11 @@ def test_itr():
 		infoTransferRate()
 			
 
-def tryOutput(symb):
+def tryOutput(symb,wrd):
 	inTxtBox = False
 	print symb," attempted"
 	while not inTxtBox:
-		decision = getDecision(symb)			
+		decision = getDecision(symb,wrd)			
 		inTxtBox = update(decision,inTxtBox)
 	correctOutPut = checkOutPut(symb)
 	if False:
@@ -1266,10 +1278,14 @@ def delError():
 
 
 
-def getDecision(sym):
+def getDecision(sym,wd):
 	#simulate misclassification
 	err_var = random.random()		#returns number b/t 0-1
-	if sym in gv._box1:
+	if wd in gv._box1:
+		decision = 1
+	elif wd in gv._box2:
+		decision = 2
+	elif sym in gv._box1:
 		decision = 1
 	else:
 		decision = 2

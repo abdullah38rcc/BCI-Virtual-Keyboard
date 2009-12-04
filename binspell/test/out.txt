@@ -1,13 +1,8 @@
 reading in unigram dictionary...
 reading in bigram dictionary...
-what drives edward phase
-w  attempted
-
-w selected.
-
-in checkOutPut: symbol: w
-last typed: w
-returning: True
+hello world
+wordnum: 0
+word: hello
 
 h  attempted
 
@@ -17,61 +12,8 @@ in checkOutPut: symbol: h
 last typed: h
 returning: True
 
-a  attempted
-
-a selected.
-
-in checkOutPut: symbol: a
-last typed: a
-returning: True
-
-t  attempted
-
-t selected.
-
-in checkOutPut: symbol: t
-last typed: t
-returning: True
-
-[SPC]  attempted
-
-[SPC] selected.
-
-in checkOutPut: symbol: [SPC]
-last typed: [SPC]
-returning: True
-
-d  attempted
-
-d selected.
-
-in checkOutPut: symbol: d
-last typed: d
-returning: True
-
-r  attempted
-
-r selected.
-
-in checkOutPut: symbol: r
-last typed: r
-returning: True
-
-i  attempted
-
-i selected.
-
-in checkOutPut: symbol: i
-last typed: i
-returning: True
-
-v  attempted
-
-v selected.
-
-in checkOutPut: symbol: v
-last typed: v
-returning: True
+wordnum: 0
+word: hello
 
 e  attempted
 
@@ -81,142 +23,42 @@ in checkOutPut: symbol: e
 last typed: e
 returning: True
 
-s  attempted
+wordnum: 0
+word: hello
 
-s selected.
+l  attempted
 
-in checkOutPut: symbol: s
-last typed: s
+l selected.
+
+in checkOutPut: symbol: l
+last typed: l
 returning: True
 
-[SPC]  attempted
+wordnum: 0
+word: hello
 
-s selected.
+l  attempted
 
-in checkOutPut: symbol: [SPC]
-last typed: s
-returning: False
+l selected.
 
-in if: typed what drivess
-item: what drives edward phase
-
-[DEL]  attempted
-
-[DEL] selected.
-
-in return to prev: num typed: 11
-
-in checkOutPut: symbol: [DEL]
-last typed: [DEL]
+in checkOutPut: symbol: l
+last typed: l
 returning: True
 
-[SPC]  attempted
+wordnum: 0
+word: hello
 
-[SPC] selected.
+o  attempted
 
-in checkOutPut: symbol: [SPC]
-last typed: [SPC]
-returning: True
+hello selected.
 
-e  attempted
-
-the selected.
-
-in checkOutPut: symbol: e
+in checkOutPut: symbol: o
 last typed: [SPC]
 returning: False
 
-in if: typed what drives the 
-item: what drives edward phase
-
-[DEL]  attempted
-
-[DEL] selected.
-
-in return to prev: num typed: 12
-
-in checkOutPut: symbol: [DEL]
-last typed: [DEL]
-returning: True
-
-e  attempted
-
-d selected.
-
-in checkOutPut: symbol: e
-last typed: d
-returning: False
-
-in if: typed what drives d
-item: what drives edward phase
-
-[DEL]  attempted
-
-[DEL] selected.
-
-in return to prev: num typed: 12
-
-in checkOutPut: symbol: [DEL]
-last typed: [DEL]
-returning: True
-
-e  attempted
-
-and selected.
-
-in checkOutPut: symbol: e
-last typed: [SPC]
-returning: False
-
-in if: typed what drives and 
-item: what drives edward phase
-
-[DEL]  attempted
-
-[DEL] selected.
-
-in return to prev: num typed: 12
-
-in checkOutPut: symbol: [DEL]
-last typed: [DEL]
-returning: True
-
-e  attempted
-
-and selected.
-
-in checkOutPut: symbol: e
-last typed: [SPC]
-returning: False
-
-in if: typed what drives and 
-item: what drives edward phase
-
-[DEL]  attempted
-
-[DEL] selected.
-
-in return to prev: num typed: 12
-
-in checkOutPut: symbol: [DEL]
-last typed: [DEL]
-returning: True
-
-e  attempted
-
-e selected.
-
-in checkOutPut: symbol: e
-last typed: e
-returning: True
-
-d  attempted
-
-d selected.
-
-in checkOutPut: symbol: d
-last typed: d
-returning: True
+in if: word: hello
+wordnum: 1
+word: world
 
 w  attempted
 
@@ -226,83 +68,33 @@ in checkOutPut: symbol: w
 last typed: w
 returning: True
 
-a  attempted
+wordnum: 1
+word: world
 
-a selected.
+o  attempted
 
-in checkOutPut: symbol: a
-last typed: a
+o selected.
+
+in checkOutPut: symbol: o
+last typed: o
 returning: True
+
+wordnum: 1
+word: world
 
 r  attempted
 
-r selected.
+world selected.
 
 in checkOutPut: symbol: r
-last typed: r
-returning: True
-
-d  attempted
-
-d selected.
-
-in checkOutPut: symbol: d
-last typed: d
-returning: True
-
-[SPC]  attempted
-
-[SPC] selected.
-
-in checkOutPut: symbol: [SPC]
 last typed: [SPC]
-returning: True
-
-p  attempted
-
-p selected.
-
-in checkOutPut: symbol: p
-last typed: p
-returning: True
-
-h  attempted
-
-h selected.
-
-in checkOutPut: symbol: h
-last typed: h
-returning: True
-
-a  attempted
-
-a selected.
-
-in checkOutPut: symbol: a
-last typed: a
-returning: True
-
-s  attempted
-
-s selected.
-
-in checkOutPut: symbol: s
-last typed: s
-returning: True
-
-e  attempted
-
-e selected.
-
-in checkOutPut: symbol: e
-last typed: e
-returning: True
+returning: False
 
 
-number of characters typed: 24
-number of classifier errors: 96
-number of times delete used:  5
-total number of steps taken:  460
+number of characters typed: 12
+number of classifier errors: 16
+number of times delete used:  0
+total number of steps taken:  97
 simulation information transfer rate: 0.00000
-projected BCI-controlled information transfer rate: 1.04348 chars/min
+projected BCI-controlled information transfer rate: 2.47423 chars/min
 
