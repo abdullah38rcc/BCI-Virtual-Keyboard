@@ -1,100 +1,123 @@
 reading in unigram dictionary...
 reading in bigram dictionary...
-hello world
-wordnum: 0
-word: hello
+i dream of a world founded upon
+i  attempted
 
-h  attempted
+a selected.
 
-h selected.
+[DEL]  attempted
 
-in checkOutPut: symbol: h
-last typed: h
-returning: True
+[DEL] selected.
 
-wordnum: 0
-word: hello
+in return to prev: num typed: 0
+
+i  attempted
+
+i selected.
+
+[SPC]  attempted
+
+[SPC] selected.
+
+d  attempted
+
+d selected.
+
+r  attempted
+
+r selected.
 
 e  attempted
 
 e selected.
 
-in checkOutPut: symbol: e
-last typed: e
-returning: True
+a  attempted
 
-wordnum: 0
-word: hello
+dreamed selected.
 
-l  attempted
+[DEL]  attempted
 
-l selected.
+[DEL] selected.
 
-in checkOutPut: symbol: l
-last typed: l
-returning: True
+in return to prev: num typed: 5
 
-wordnum: 0
-word: hello
+a  attempted
 
-l  attempted
-
-l selected.
-
-in checkOutPut: symbol: l
-last typed: l
-returning: True
-
-wordnum: 0
-word: hello
+dream selected.
 
 o  attempted
 
-hello selected.
+of selected.
 
-in checkOutPut: symbol: o
-last typed: [SPC]
-returning: False
+a  attempted
 
-in if: word: hello
-wordnum: 1
-word: world
+a selected.
+
+[SPC]  attempted
+
+[SPC] selected.
 
 w  attempted
 
 w selected.
 
-in checkOutPut: symbol: w
-last typed: w
-returning: True
+o  attempted
 
-wordnum: 1
-word: world
+woman selected.
+
+[DEL]  attempted
+
+[DEL] selected.
+
+in return to prev: num typed: 14
 
 o  attempted
 
 o selected.
 
-in checkOutPut: symbol: o
-last typed: o
-returning: True
+r  attempted
 
-wordnum: 1
-word: world
+woman selected.
+
+[DEL]  attempted
+
+[DEL] selected.
+
+in return to prev: num typed: 15
 
 r  attempted
 
 world selected.
 
-in checkOutPut: symbol: r
-last typed: [SPC]
-returning: False
+f  attempted
+
+f selected.
+
+o  attempted
+
+o selected.
+
+u  attempted
+
+u selected.
+
+n  attempted
+
+founded selected.
+
+u  attempted
+
+u selected.
+
+p  attempted
+
+upon selected.
 
 
-number of characters typed: 12
-number of classifier errors: 16
-number of times delete used:  0
-total number of steps taken:  97
+number of characters typed: 32
+number of classifier errors: 75
+number of times delete used:  4
+total number of steps taken:  345
 simulation information transfer rate: 0.00000
-projected BCI-controlled information transfer rate: 2.47423 chars/min
+projected BCI-controlled information transfer rate: 1.85507 chars/min
 

@@ -811,9 +811,9 @@ def updateEmiss(eProbs,chos):
 	#print #
 	for key in eProbs:
 		if key in chos:
-			eProbs[key] *= gv._classAcc
+			eProbs[key] *= float(.75)
 		else:
-			eProbs[key] *= float(1 - gv._classAcc)
+			eProbs[key] *= float(.25)
 	eProbs = bg._normalize(eProbs)
 	#print "in updateemiss: new eprobs:", gv._sortByValue(eProbs)
 	#print "-"*10
@@ -1205,8 +1205,8 @@ def test_interface():
 
 
 def test_itr():
-	#phrases = ['i dream of a world founded upon']
-	phrases = ['what drives edward phase']
+	phrases = ['i dream of a world founded upon']
+	#phrases = ['what drives edward phase']
 	#phrases = ['hello world']
 	for item in phrases:
 		print item
@@ -1220,7 +1220,7 @@ def test_itr():
 		#print "words:", words
 		#print #
 
-		while len(typed) < len(item) and not correct:
+		while not typed.startswith(item):
 			#print "typed:", typed
 			#print "len typed:", len(typed)
 			#for i,itm in enumerate(typed):
@@ -1228,26 +1228,29 @@ def test_itr():
 			#print #
 			#print item[2]
 			correct = item.startswith(typed)
+			#print "last typed correct:", correct
 			if not correct:
-				print "in if: typed", typed
-				print "item:", item
-				print # 
+				#print "incorrect: typed", typed
+				#print "correct:", item
+				#print # 
 				symb = '[DEL]'
 			else:
 				if word[wrdNum] in typed:
-					print "in if: word:",word[wrdNum]
+					#print "in if: old word:",word[wrdNum]
 					wrdNum +=1
+					#print "in if: new word:",word[wrdNum]
 				symb = item[len(typed)]
 				if symb == ' ':
 					symb = '[SPC]'
 
 			#print "symb:", symb
-			print "wordnum:", wrdNum
-			print "word:", word[wrdNum]
-			print #
+			#print "wordnum:", wrdNum
+			#print "word:", word[wrdNum]
+			#print #
 			tryOutput(symb,word[wrdNum])
 			typed = gv._txtBox.get(1.0,END)
 			typed = typed[0:-1]
+			#print "typed at end of while:", typed
 			correct = False				#reset for next one
 			
 			#typed.rstrip()
@@ -1261,7 +1264,7 @@ def tryOutput(symb,wrd):
 	while not inTxtBox:
 		decision = getDecision(symb,wrd)			
 		inTxtBox = update(decision,inTxtBox)
-	correctOutPut = checkOutPut(symb)
+	#correctOutPut = checkOutPut(symb)
 	if False:
 		if not correctOutPut:
 			if delError():
@@ -1281,9 +1284,11 @@ def delError():
 def getDecision(sym,wd):
 	#simulate misclassification
 	err_var = random.random()		#returns number b/t 0-1
-	if wd in gv._box1:
+	notdel = '[DEL]' not in sym
+
+	if notdel and wd in gv._box1:
 		decision = 1
-	elif wd in gv._box2:
+	elif notdel and wd in gv._box2:
 		decision = 2
 	elif sym in gv._box1:
 		decision = 1
