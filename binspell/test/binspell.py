@@ -1361,7 +1361,8 @@ wd = Words()
 stack = Stack()
 gv = 0
 
-for i in range(1,5):
+for i in range(1,3):
+	#print i
 	gv = GlobalVariables()
 	start()
 #testing
