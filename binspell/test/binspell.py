@@ -1260,7 +1260,7 @@ def test_itr():
 
 def tryOutput(symb,wrd):
 	inTxtBox = False
-	print symb," attempted"
+	#print symb," attempted"
 	while not inTxtBox:
 		decision = getDecision(symb,wrd)			
 		inTxtBox = update(decision,inTxtBox)
@@ -1314,44 +1314,54 @@ def checkOutPut(symbl):
 	return symbl in gv._obsOut[-1]
 
 
+def createChildWindow():
+	global root, gv
+	newWin = Toplevel(root)
+	newWin.focus_set()
+	canvHeight = 600
+	canvWidth = 1200
+	gv._canHt = canvHeight
+	gv._canWdth = canvWidth
+	txtBxWidth = canvWidth / 26
+	txtBxHeight = 1
+
+	gv._canvas = Canvas(newWin,height=canvHeight,width=canvWidth,bg='yellow')
+	gv._canvas.create_window(100,100)
+	gv._canvas.grid(row=2,column=1)
+
+	#why doesn't tag work?
+	#gv._txtBox = Text(root,width=txtBxWidth,height=txtBxHeight,padx=5,pady=5,insertofftime=250,takefocus=1,tags='txtBox')
+	gv._txtBox = Text(newWin,width=txtBxWidth,height=txtBxHeight,padx=5,pady=5,insertofftime=250,takefocus=1, font='Courier 32 bold')
+
+	gv._txtBox.grid(row=1,column=1)
+	gv._txtBox.focus()
+	return newWin
+
+
+
 
 def start():
+	global root, gv
+	nw = createChildWindow()
 	default()		#display entire alphabet
 	#grab keyboard input
 	#getKeyIn()
 	test_itr()
+	nw.destroy()
 
 
 
 ##################################-------------------main---------------########
 
 root = Tk()
-root.config(width=300,height=500)
+root.config(width=0,height=0)
 gv = GlobalVariables()
 bg = Bigraph()
 tg = Trigraph()
 wd = Words()
 stack = Stack()
-
-canvHeight = 600
-canvWidth = 1200
-gv._canHt = canvHeight
-gv._canWdth = canvWidth
-txtBxWidth = canvWidth / 26
-txtBxHeight = 1
-
-gv._canvas = Canvas(root,height=canvHeight,width=canvWidth,bg='yellow')
-gv._canvas.create_window(100,100)
-gv._canvas.grid(row=2,column=1)
-
-#why doesn't tag work?
-#gv._txtBox = Text(root,width=txtBxWidth,height=txtBxHeight,padx=5,pady=5,insertofftime=250,takefocus=1,tags='txtBox')
-gv._txtBox = Text(root,width=txtBxWidth,height=txtBxHeight,padx=5,pady=5,insertofftime=250,takefocus=1, font='Courier 32 bold')
-
-gv._txtBox.grid(row=1,column=1)
-gv._txtBox.focus()
-
-start()
+for i in range(1:100):
+	start()
 #testing
 #test_interface()
 

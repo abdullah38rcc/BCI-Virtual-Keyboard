@@ -1,123 +1,73 @@
 reading in unigram dictionary...
 reading in bigram dictionary...
 i dream of a world founded upon
-i  attempted
-
-a selected.
-
-[DEL]  attempted
-
-[DEL] selected.
-
-in return to prev: num typed: 0
-
-i  attempted
 
 i selected.
 
-[SPC]  attempted
 
 [SPC] selected.
 
-d  attempted
 
 d selected.
 
-r  attempted
 
 r selected.
 
-e  attempted
 
 e selected.
 
-a  attempted
-
-dreamed selected.
-
-[DEL]  attempted
-
-[DEL] selected.
-
-in return to prev: num typed: 5
-
-a  attempted
 
 dream selected.
 
-o  attempted
 
 of selected.
 
-a  attempted
 
 a selected.
 
-[SPC]  attempted
 
 [SPC] selected.
 
-w  attempted
 
 w selected.
 
-o  attempted
-
-woman selected.
-
-[DEL]  attempted
-
-[DEL] selected.
-
-in return to prev: num typed: 14
-
-o  attempted
 
 o selected.
 
-r  attempted
-
-woman selected.
-
-[DEL]  attempted
-
-[DEL] selected.
-
-in return to prev: num typed: 15
-
-r  attempted
 
 world selected.
 
-f  attempted
 
 f selected.
 
-o  attempted
 
 o selected.
 
-u  attempted
+
+r selected.
+
+
+[DEL] selected.
+
+in return to prev: num typed: 21
+
 
 u selected.
 
-n  attempted
 
 founded selected.
 
-u  attempted
 
 u selected.
 
-p  attempted
 
 upon selected.
 
 
 number of characters typed: 32
-number of classifier errors: 75
-number of times delete used:  4
-total number of steps taken:  345
+number of classifier errors: 56
+number of times delete used:  1
+total number of steps taken:  283
 simulation information transfer rate: 0.00000
-projected BCI-controlled information transfer rate: 1.85507 chars/min
+projected BCI-controlled information transfer rate: 2.26148 chars/min
 
