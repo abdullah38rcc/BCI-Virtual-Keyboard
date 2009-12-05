@@ -1355,12 +1355,14 @@ def start():
 
 root = Tk()
 root.config(width=0,height=0)
-gv = GlobalVariables()
 bg = Bigraph()
 tg = Trigraph()
 wd = Words()
 stack = Stack()
-for i in range(1:100):
+gv = 0
+
+for i in range(1,5):
+	gv = GlobalVariables()
 	start()
 #testing
 #test_interface()
