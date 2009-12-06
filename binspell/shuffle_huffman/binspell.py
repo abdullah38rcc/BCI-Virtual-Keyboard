@@ -807,15 +807,9 @@ def updateEmiss(eProbs,chos):
 	print #
 	for key in eProbs:
 		if key in chos:
-<<<<<<< HEAD:binspell/shuffle_huffman/binspell.py
 			eProbs[key] *= float(0.85)
 		else:
-			eProbs[key] *= float(0.25)
-=======
-			eProbs[key] *= float(0.9)
-		else:
-			eProbs[key] *= float(0.1)
->>>>>>> 3b2302e3729057ab1eba6aac90e8d1b6a7d130eb:binspell/shuffle_huffman/binspell.py
+			eProbs[key] *= float(0.15)
 	eProbs = bg._normalize(eProbs)
 	print "in updateemiss: new eprobs:", gv._sortByValue(eProbs)
 	print "-"*10

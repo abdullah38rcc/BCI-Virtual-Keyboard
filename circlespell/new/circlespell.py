@@ -327,7 +327,7 @@ def infoTransferRate():
 	global gv
 	#print "number of characters typed:", gv._charNum
 	print "total number of steps taken: ", gv._ttlNumSteps
-	print "information transfer rate: %.5f" %(float(gv._charNum) / (gv._ttlNumSteps * gv._trialLen)) + " chars/sec"
+	print "information transfer rate: %.5f" %(float(gv._charNum * 60) / (gv._ttlNumSteps * gv._trialLen)) + " chars/min"
 	print #
 
 
@@ -348,8 +348,11 @@ def getKeyIn():
 		#global gv._circleList, gv._highlighted, gv._txtBox
 		
 		decision = 2
-		errArr = [1,0,1,1,1,0,1,1,1,1]
+		#errArr = [1,0,1,1,1,0,1,1,1,1]
 		##print "key pressed:",event.keysym
+
+		#simulate misclassification
+		err_var = random.random()		#returns number b/t 0-1
 		
 		if event.keysym == 'Up':
 			##print "key up"
@@ -359,9 +362,10 @@ def getKeyIn():
 			decision = 0	#rotate
 			
 		#simulate misclassification
-		bool = random.choice(errArr)
-		bool = 1
-		if bool == 0:
+		#bool = random.choice(errArr)
+		#bool = 1
+		#if bool == 0:
+		if err_var <= float(.2): 	#bad case			
 			if decision == 1:
 				decision = 0
 			else:
