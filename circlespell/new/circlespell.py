@@ -306,14 +306,14 @@ def pop():
 def output(item):
 	#global gv._canvas, gv._txtBox
 	#print #
-	#print "in output():"
-	#print item[0]
+	#print "in output(): item:", item
+	#print len(item)
 	#print 'DEL' == item[0]
 	#print #
 		
 	if item[0] == 'SPC':
 		gv._txtBox.insert(INSERT," ")
-	elif item[0] == 'DEL':
+	elif item[0] == 'DEL' or len(item) > 1:
 		gv._txtBox.delete("%s-1c" % INSERT,INSERT)
 	else:
 		gv._txtBox.insert(INSERT,item[0])
@@ -365,6 +365,7 @@ def getKeyIn():
 		#bool = random.choice(errArr)
 		#bool = 1
 		#if bool == 0:
+		err_var = 1
 		if err_var <= float(.2): 	#bad case			
 			if decision == 1:
 				decision = 0
