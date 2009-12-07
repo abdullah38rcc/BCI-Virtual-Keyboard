@@ -23,6 +23,8 @@
 # 
 ##############CURRENTLY WORKING ON##########
 # in inner circle: place delete right next to circ with highest prob
+# remove delete from top layer circle
+# move spc to right before least common chars
 
 
 
