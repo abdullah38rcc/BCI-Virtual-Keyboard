@@ -15,11 +15,12 @@ class GlobalVariables:
 
 		self._numSteps = 0			#number of choices made to select a letter
 		self._numErrors = 0			#number of classifier errors during selection of a letter
-		self._ttlNumSteps = 0		#total number of choices made
+		self._ttlNumSteps = 0			#total number of choices made
 		self._ttlNumErr = 0			#total number of classifier errors
 
 		self._charNum = 0			#number of characters typed b4 a space
-		self._numTimesLargest = 0	#number of times largest chosen consecutively
+		self._numTimesLargest = 0		#number of times largest chosen consecutively
+		self._typed = []
 		#self._currSymbList = []
 
 		self._huffTree = []						#huffman tree of conditional probs

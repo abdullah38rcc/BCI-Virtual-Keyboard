@@ -3,7 +3,7 @@
 #
 # last edit: 9/9
 ################CHANGES############
-# like v.8 but using morse code
+# letters arranged according to frequency
 ##########TODO##############
 # tcp/ip socket
 # scan text and calculate freq
@@ -20,7 +20,7 @@
 # put del b4 spc in training version, then switch
 # last rotation = selection
 ######################BUGS#######################
-# last few circles missing back
+# 
 ##############CURRENTLY WORKING ON##########
 # 
 
@@ -118,17 +118,31 @@ def draw_interface(x, y, r1, max_r2):
 
 #set state vars to new vals
 def reset():
-	if gv._circleList == 'DEL':
+	#print "inreset: circlelist:",gv._circleList
+	#print #
+	if gv._circleList == 'DEL' or gv._circleList[0] == 'DEL':
+		#print "deleting char num:", gv._charNum
+		#print #
 		gv._charNum -= 1
-	elif gv._circleList == 'SPC':
+		#print "new num: ", gv._charNum
+		#print #
+		gv._typed = gv._typed[0:-1]
+		if len(gv._typed) > 0:
+			gv._lastTyped = gv._typed[-1]
+		else:
+			gv._lastTyped = ''
+		setCurrProbs()
+	elif gv._circleList[0] == 'SPC':
+		print "in spc"
+		gv._typed.append(' ')
 		gv._lastTyped = ''
-		gv._charNum = 0
-	else:
-		gv._lastTyped = gv._circleList	
 		gv._charNum += 1
-
-	setCurrProbs()
+	else:
+		gv._lastTyped = gv._circleList[0]		#character typed out
+		gv._typed.append(gv._lastTyped)
+		gv._charNum += 1
 	gv._circleList = []
+	setCurrProbs()
 
 
 
@@ -153,29 +167,33 @@ def update_circs(decision,x,y,r1,max_r2):
 				go_back = ['BACK']
 
 				if decision == select:
-					if gv._circleList[gv._highlighted] == go_back:
+					if gv._circleList[gv._highlighted] == go_back:			#go back to all symbols
 						gv._circleList=[]
-						gv._circleList = pop()
-					else:
-						push(gv._circleList)
+						s = pop()
+						gv._highlighted = s[0]
+						gv._circleList = []
+					else:								#go into a circle set
+						temp = [gv._highlighted]
+						#print "pushing:", temp
+						#print #
+						push(temp)
 						gv._circleList = gv._circleList[gv._highlighted]
-					if gv._circleList == 'DEL' or gv._circleList == 'SPC':
+					if gv._circleList == 'DEL' or gv._circleList == 'SPC':		#select space or del
 						num_circles = 1
 					else:
 						num_circles = len(gv._circleList)
 
 					gv._canvas.delete('all')
 
-					if num_circles == 1:   #single option left, must be user's choice
+					if num_circles == 1:   						#single option left, must be user's choice
 						output(gv._circleList)
 						reset()
-						gv._canvas.delete('all') #clear gv._canvas
+						gv._canvas.delete('all') 				#clear gv._canvas
 						infoTransferRate()
 
-					set_layout()	#arrange items in circles determine next default highlighing
-					#gv._canvas.update()
+					set_layout()							#arrange items in circles determine next default highlighing
 					draw_interface(x,y,r1,max_r2)
-				else:	#decision = rotate
+				else:									#decision = rotate
 					item = "circ%s" %gv._highlighted
 					gv._canvas.itemconfigure(item,width=1)
 					gv._highlighted = (gv._highlighted + 1) % len(gv._circleList)
@@ -190,17 +208,23 @@ def update_circs(decision,x,y,r1,max_r2):
 def setCurrProbs():
 	global gv, bg
 	#print "in setCurrProbs"
-	if gv._lastTyped in bg._conditional1.keys():
+	#print "char num", gv._charNum
+	#print "last typed:", gv._lastTyped
+	#print "-" * 10
+	#if gv._lastTyped in bg._conditional1.keys():
+	if gv._lastTyped.isalpha():
 		if gv._charNum > 1:		#more than one symbol typed b4 a space
-			#print "more than one symbol typed"
-			gv._currProbs = bg._conditional2[gv._lastTyped]
+				#print "more than one symbol typed"
+				gv._currProbs = bg._conditional2[gv._lastTyped]
 		elif gv._charNum > 0:	#single symbol typed b4 a space
-			#print "single symbol typed:", gv._lastTyped
-			gv._currProbs = bg._conditional1[gv._lastTyped]
+				#print "single symbol typed:", gv._lastTyped
+				gv._currProbs = bg._conditional1[gv._lastTyped]
 	else:					#none typed yet b4 a space
 		#print "nuthin typed yet"
 		gv._currProbs = bg._prior
-
+	tmpLst = gv._sortByValue(gv._currProbs)
+	#print "new probs:",tmpLst
+	#print #
 
 
 ###########################################-----------------layout--------------##########################
@@ -214,7 +238,8 @@ def set_layout():
 			num_circles = 0
 			#morseCode = [['SPC'],['DEL','e'],['i','t'],['s','a','n'],['h','u','r','d','m'],['w','g','v','l','f','b','k'],['o','p','j','x','c','z'],['y','q']]
 			#spread out version of morse code
-			morseCode2 = [['SPC'],['DEL','e'],['i','t','s'],['a','n','h','u'],['r','d','m','w'],['g','v','l','f'],['b','k','o','p','j'],['x','c','z','y','q']]
+			#morseCode2 = [['SPC'],['DEL','e'],['i','t','s'],['a','n','h','u'],['r','d','m','w'],['g','v','l','f'],['b','k','o','p','j'],['x','c','z','y','q']]
+			freqOrder = [['SPC'],['DEL','e'],['t','a','o'],['i','n','h','s'],['r','d','l','u'],['m','c','w','f'],['y','g','p','b','v'],['k','x','j','q','z']]
 						
 			num_items = len(gv._circleList)		#number objects to be distributed among circles
 			undo = ['BACK']
@@ -223,7 +248,7 @@ def set_layout():
 			#default screen
 			if num_items == 0:
 				#setCircs()
-				gv._circleList = morseCode2
+				gv._circleList = freqOrder
 			#elif gv._circleList[-1] != undo:
 			elif num_items <= 6:
 				#print "in setLayout: num_items:", num_items
@@ -265,7 +290,9 @@ def set_highlighted():
 	global gv
 	tmpLst = gv._sortByValue(gv._currProbs)
 	#print "in set_highlighted"
+	#print "probs:", tmpLst
 	#print "highest prob: ", tmpLst[0][0]
+	#print #
 	#print gv._circleList
 	for item in tmpLst:
 		for symbSet in gv._circleList:
@@ -325,7 +352,7 @@ def output(item):
 #print out itr
 def infoTransferRate():
 	global gv
-	#print "number of characters typed:", gv._charNum
+	print "number of characters typed:", gv._charNum
 	print "total number of steps taken: ", gv._ttlNumSteps
 	print "information transfer rate: %.5f" %(float(gv._charNum * 60) / (gv._ttlNumSteps * gv._trialLen)) + " chars/min"
 	print #
