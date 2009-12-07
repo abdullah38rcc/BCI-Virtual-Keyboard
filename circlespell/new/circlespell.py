@@ -4,6 +4,7 @@
 # last edit: 9/9
 ################CHANGES############
 # letters arranged according to frequency
+# removed 'del' from top layer
 ##########TODO##############
 # tcp/ip socket
 # scan text and calculate freq
@@ -23,7 +24,6 @@
 # 
 ##############CURRENTLY WORKING ON##########
 # in inner circle: place delete right next to circ with highest prob
-# remove delete from top layer circle
 # move spc to right before least common chars
 
 
@@ -241,7 +241,7 @@ def set_layout():
 			#morseCode = [['SPC'],['DEL','e'],['i','t'],['s','a','n'],['h','u','r','d','m'],['w','g','v','l','f','b','k'],['o','p','j','x','c','z'],['y','q']]
 			#spread out version of morse code
 			#morseCode2 = [['SPC'],['DEL','e'],['i','t','s'],['a','n','h','u'],['r','d','m','w'],['g','v','l','f'],['b','k','o','p','j'],['x','c','z','y','q']]
-			freqOrder = [['SPC'],['DEL','e'],['t','a','o'],['i','n','h','s'],['r','d','l','u'],['m','c','w','f'],['y','g','p','b','v'],['k','x','j','q','z']]
+			freqOrder = [['SPC'],['e','t'],['a','o','i'],['n','h','s','r'],['d','l','u','m'],['c','w','f','y'],['g','p','b','v'],['k','x','j','q','z']]
 						
 			num_items = len(gv._circleList)		#number objects to be distributed among circles
 			undo = ['BACK']
@@ -394,8 +394,8 @@ def getKeyIn():
 		#bool = random.choice(errArr)
 		#bool = 1
 		#if bool == 0:
-		err_var = 1
-		if err_var <= float(.2): 	#bad case			
+		#err_var = 1
+		if err_var <= float(.1): 	#bad case			
 			if decision == 1:
 				decision = 0
 			else:
