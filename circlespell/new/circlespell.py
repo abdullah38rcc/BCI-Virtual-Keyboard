@@ -22,7 +22,7 @@
 ######################BUGS#######################
 # 
 ##############CURRENTLY WORKING ON##########
-# 
+# in inner circle: place delete right next to circ with highest prob
 
 
 
