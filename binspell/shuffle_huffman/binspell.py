@@ -1145,7 +1145,7 @@ def getKeyIn():
 		#bool = 1
 		#if bool == 0:
 
-		#err_var = 1				#100% accuracy
+		err_var = 1				#100% accuracy
 		if err_var <= float(1 - gv._classAcc): 	#bad case
 			if decision == 1:
 				decision = 2
