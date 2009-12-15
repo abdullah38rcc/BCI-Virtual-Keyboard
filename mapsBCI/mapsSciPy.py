@@ -69,7 +69,7 @@ def randRoboLoc(sz,rm):
 	if rm[y,x]:
 		#print "in wall: coord:", [x,y]
 		return randRoboLoc(sz,rm)
-	print "not in wall: coord:", [x,y]
+	#print "not in wall: coord:", [x,y]
 	return [x,y]
 
 
@@ -100,6 +100,7 @@ def sampleUniform(dims,num):
 # rtns: [normal(locx,sigma),normal(locy,sigma)]
 def GPS(loc,sigma,ns):
 	#print "in gps:"
+	print "gps reading:", loc
 	nx = normal(loc[0],sigma,ns)
 	ny = normal(loc[1],sigma,ns)
 	#print "std dev y:", std(ny)
@@ -137,12 +138,13 @@ def calcExp(smpl,ev):
 def filter(evidence,num,sz):
 	new = []							#new samples
 	weights = []							#weights
-	sm = 0								#sum of weights
-	x =0
+	smx = 0								#sum of weights
+	smy = 0
+	n =0								#num times to replicate new particles
 	while new == []:
-	#while x < 4:
 		print "sampling"
 		samples = sampleUniform(sz,num)				#location samples
+		#print "old samples:", samples
 		samples = array(samples)
 		for i in range(0,num):
 			sample = samples[:,i]
@@ -150,20 +152,32 @@ def filter(evidence,num,sz):
 			exp = calcExp(sample,evidence)
 			#print exp
 			if exp != []:
-				print "close enough", sample
+				#print "close enough", sample
 				#print "weight", exp
 				#print #
 				new.append(sample)
 				weights.append(exp)
-		x += 1
 		if weights != []:
 			weights = array(weights)
-			sm = sum(weights[:,0],axis=0)
-			print "sum along x", sm
-		print "samples",new
-		print "weights",weights
-		print "sum", sm
+			smx = sum(weights[:,0],axis=0)
+			smy = sum(weights[:,1],axis=0)
+		print "close enough",new
+		#print #
+		#print "weights",weights
+		#print "sum", smy
 
+		if smx > smy:	
+			n = floor(weights[:,0] * num * (1/smx))
+		else:
+			n = floor(weights[:,0] * num * (1/smy))
+
+		#print "n",n
+
+		#for i in range(0,len(new)):
+			#for i in range[1,n[i]]:
+				#new.append(new[i])
+		#print new
+		#print "n:",n
 
 
 
