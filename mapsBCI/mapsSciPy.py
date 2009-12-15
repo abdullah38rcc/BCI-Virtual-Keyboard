@@ -1,19 +1,19 @@
 # particle filter simulation
 # last edit: 12/14
 ##########################################----------QUESTIONS----------------############
-# x,y scales being drawn correctly?  
+# 
 ########################################----------BUGS------------------------###############
-# prob with robo ending up in walls
+# 
 #########################################---------CURRENTLY WORKING ON--------###############
 # gps(),filter()
 
 import time
 
 # create room map
-# args: room size as sz[[]]
+# args: room size as array(height,width)
 # rtn: figure, room grid
 def createRoom(sz):
-	room = zeros( (sz[0,0], sz[0,1]),bool)
+	room = zeros( (sz[0], sz[1]),bool)
 	room[:,0]=1
 	room[:,-1]=1
 	room[0,:]=1
@@ -64,13 +64,12 @@ def test():
 # args: room size, room grid
 # rtns: robo coords
 def randRoboLoc(sz,rm):
-	tmp = sz[0]
-	x = randint(1,tmp[0])
-	y = randint(1,tmp[1])
-	if rm[x,y] == 1:
+	x = randint(1,sz[1])
+	y = randint(1,sz[0])
+	if rm[y,x]:
 		#print "in wall: coord:", [x,y]
-		randRoboLoc(sz,rm)
-	print "not in wall: coord:", [x,y]
+		return randRoboLoc(sz,rm)
+	#print "not in wall: coord:", [x,y]
 	return [x,y]
 
 
@@ -82,7 +81,7 @@ def createRobo(sz,fig,room):
 	clf()
 	imshow(room, interpolation="nearest")
 	plot([roboLoc[0]],[roboLoc[1]],'sr')
-	axis([0,sz[0,1],0,sz[0,0]])
+	axis([0,sz[1],0,sz[0]])
 	fig.set_visible(1)
 	draw()
 	#print room.size
@@ -96,21 +95,29 @@ def sampleUniform(dims,num):
 	locx = uniform(0,tmp[0],num)				#samples from a uniform distribution (low,high,size)
 	locy = uniform(0,tmp[1],num)			
 	return [locx,locy]
+
+
+# args: location[x,y], error, num samples
+# rtns: [normal(locx,sigma),normal(locy,sigma)]
+def GPS(loc,sigma,N):
+	nx = normal(loc[0],sigma,N)
+	ny = normal(loc[1],sigma,N)
+	return [nx,ny]
 	
 
 
 def start():
 	#test()
 	N = 50							#number of particles
-	sz = array([[30,40]])					#room dimensions
+	sz = array([30,40])					#room dimensions
 	sigmaGps = 0.2						#gps noise
 
 	fig,room = createRoom(sz)
 	rloc = createRobo(sz,fig,room)
-	belState = sampleUniform(sz,N)				#belief state
+	#belState = sampleUniform(sz,N)				#belief state
 	#print belState
-	gps = normal(rloc[0],sigmaGps,N)			#distribution of gps readings
-	print mean(gps)
+	#gps = normal(rloc[0],sigmaGps,N)			#distribution of gps readings
+	#print mean(gps)
 	
 
 
