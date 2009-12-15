@@ -3,7 +3,7 @@
 ##########################################----------QUESTIONS----------------############
 # 
 ########################################----------BUGS------------------------###############
-# 
+# infinite loop?
 #########################################---------CURRENTLY WORKING ON--------###############
 # filter()
 
@@ -91,8 +91,8 @@ def createRobo(sz,fig,room):
 # args: room dims[width,height], number of samples
 # rtns: numsamples x 2 array of uniformly drawn samples from 0-width and 0-height
 def sampleUniform(dims,num):
-	locx = uniform(0,dims[0],num)				#samples from a uniform distribution (low,high,size)
-	locy = uniform(0,dims[1],num)			
+	locx = uniform(1,dims[0],num)				#samples from a uniform distribution (low,high,size)
+	locy = uniform(1,dims[1],num)			
 	return [locx,locy]
 
 
@@ -110,6 +110,9 @@ def GPS(loc,sigma,ns):
 
 
 def calcExp(smpl,ev):
+	#print "in calcexp: sample:", smpl[0] 
+	#print "in calcexp: sample:", smpl[1]
+	print #
 	mnx = mean(ev[0])
 	mny = mean(ev[1])
 	sdx = std(ev[0])
@@ -121,28 +124,45 @@ def calcExp(smpl,ev):
 	exp_y = ynum / sdy**2
 	
 	if exp_x > 3 or exp_y > 3:
-		#print "too far: ", smpl
-		return 0 
+		print "too far: ", smpl
+		return []
 	else:
 		#print "close enough:", smpl
-		return [(0 - exp_x),(0 - exp_y)]
+		return exp(1)**[(0 - exp_x),(0 - exp_y)]
 	
 	
 
 
 
 def filter(evidence,num,sz):
-	new = []
+	new = []							#new samples
+	weights = []							#weights
+	sm = 0								#sum of weights
+	x =0
 	while new == []:
+	#while x < 4:
 		print "sampling"
 		samples = sampleUniform(sz,num)				#location samples
+		samples = array(samples)
 		for i in range(0,num):
-			sample = [samples[0][i],samples[1][i]]
-			#print sample
+			sample = samples[:,i]
+			#print "sample",sample
 			exp = calcExp(sample,evidence)
-			if exp:
+			#print exp
+			if exp != []:
 				print "close enough", sample
+				#print "weight", exp
+				#print #
 				new.append(sample)
+				weights.append(exp)
+		x += 1
+		if weights != []:
+			weights = array(weights)
+			sm = sum(weights[:,0],axis=0)
+			print "sum along x", sm
+		print "samples",new
+		print "weights",weights
+		print "sum", sm
 
 
 
