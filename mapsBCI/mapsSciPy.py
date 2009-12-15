@@ -1,5 +1,11 @@
+#################----------questions----------------############
+#why is graph being drawn that way?  prob with robo ending up in walls...
+##################################################################
 import time
 
+# create room map
+# args: room size as sz[[]]
+# rtn: figure, room grid
 def createRoom(sz):
 	room = zeros( (sz[0,0], sz[0,1]),bool)
 	room[:,0]=1
@@ -49,16 +55,23 @@ def test():
 	  pt %= sz
 
 
-def randRoboLoc(sz):
+# args: room size, room grid
+# rtns: robo coords
+def randRoboLoc(sz,rm):
 	tmp = sz[0]
 	x = randint(1,tmp[0])
 	y = randint(1,tmp[1])
+	if rm[x,y] == 1:
+		#print "in wall: coord:", [x,y]
+		randRoboLoc(sz,rm)
+	#print "not in wall: coord:", [x,y]
 	return [x,y]
 
 
-
+# args: room size, figure number, room coords
+# rtns: robot locat
 def createRobo(sz,fig,room):
-	roboLoc = randRoboLoc(sz)
+	roboLoc = randRoboLoc(sz,room)
 	fig.set_visible(0)
 	clf()
 	imshow(room, interpolation="nearest")
@@ -73,9 +86,11 @@ def createRobo(sz,fig,room):
 
 def start():
 	#test()
+	N = 50				#number of particles
 	sz = array([[30,40]])		#room dimensions
-	fig,room = createRoom(sz)
+	rofig,room = createRoom(sz)
 	rloc = createRobo(sz,fig,room)
+	samples = startSamples()
 	
 	
 
