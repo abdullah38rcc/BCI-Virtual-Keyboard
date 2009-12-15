@@ -5,7 +5,7 @@
 ########################################----------BUGS------------------------###############
 # 
 #########################################---------CURRENTLY WORKING ON--------###############
-# gps(),filter()
+# filter()
 
 import time
 
@@ -91,34 +91,42 @@ def createRobo(sz,fig,room):
 # args: room dims[width,height], number of samples
 # rtns: numsamples x 2 array of uniformly drawn samples from 0-width and 0-height
 def sampleUniform(dims,num):
-	tmp = dims[0]
-	locx = uniform(0,tmp[0],num)				#samples from a uniform distribution (low,high,size)
-	locy = uniform(0,tmp[1],num)			
+	locx = uniform(0,dims[0],num)				#samples from a uniform distribution (low,high,size)
+	locy = uniform(0,dims[1],num)			
 	return [locx,locy]
 
 
 # args: location[x,y], error, num samples
 # rtns: [normal(locx,sigma),normal(locy,sigma)]
-def GPS(loc,sigma,N):
-	nx = normal(loc[0],sigma,N)
-	ny = normal(loc[1],sigma,N)
+def GPS(loc,sigma,ns):
+	nx = normal(loc[0],sigma,ns)
+	ny = normal(loc[1],sigma,ns)
 	return [nx,ny]
+
+
+
+def filter(evidence,samples,num):
+	for i in range(0,num):
+		sample = [samples[0][i],samples[1][i]]
+		#print sample
+		exp = calcExp()
 	
 
 
 def start():
 	#test()
-	N = 50							#number of particles
+	N = 10							#number of particles
 	sz = array([30,40])					#room dimensions
 	sigmaGps = 0.2						#gps noise
 
 	fig,room = createRoom(sz)
 	rloc = createRobo(sz,fig,room)
-	#belState = sampleUniform(sz,N)				#belief state
-	#print belState
-	#gps = normal(rloc[0],sigmaGps,N)			#distribution of gps readings
-	#print mean(gps)
-	
+	particles = sampleUniform(sz,N)				#location samples
+	#print particles
+	#print #
+	gps = GPS(rloc,sigmaGps,N)				#distribution of gps readings
+	#print mean(gps[1])
+	filter(gps,particles,N)
 
 
 ##########################------------main----------------############
