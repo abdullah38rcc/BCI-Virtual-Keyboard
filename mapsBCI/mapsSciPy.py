@@ -1,6 +1,12 @@
-#################----------questions----------------############
-#why is graph being drawn that way?  prob with robo ending up in walls...
-##################################################################
+# particle filter simulation
+# last edit: 12/14
+##########################################----------QUESTIONS----------------############
+# x,y scales being drawn correctly?  
+########################################----------BUGS------------------------###############
+# prob with robo ending up in walls
+#########################################---------CURRENTLY WORKING ON--------###############
+# gps(),filter()
+
 import time
 
 # create room map
@@ -64,12 +70,12 @@ def randRoboLoc(sz,rm):
 	if rm[x,y] == 1:
 		#print "in wall: coord:", [x,y]
 		randRoboLoc(sz,rm)
-	#print "not in wall: coord:", [x,y]
+	print "not in wall: coord:", [x,y]
 	return [x,y]
 
 
-# args: room size, figure number, room coords
-# rtns: robot locat
+# args: room dims[width,height], figure number, room coords (width x height array)
+# rtns: [x,y] coords
 def createRobo(sz,fig,room):
 	roboLoc = randRoboLoc(sz,room)
 	fig.set_visible(0)
@@ -81,17 +87,30 @@ def createRobo(sz,fig,room):
 	draw()
 	#print room.size
 	return roboLoc
+
+
+# args: room dims[width,height], number of samples
+# rtns: numsamples x 2 array of uniformly drawn samples from 0-width and 0-height
+def sampleUniform(dims,num):
+	tmp = dims[0]
+	locx = uniform(0,tmp[0],num)				#samples from a uniform distribution (low,high,size)
+	locy = uniform(0,tmp[1],num)			
+	return [locx,locy]
 	
 
 
 def start():
 	#test()
-	N = 50				#number of particles
-	sz = array([[30,40]])		#room dimensions
-	rofig,room = createRoom(sz)
+	N = 50							#number of particles
+	sz = array([[30,40]])					#room dimensions
+	sigmaGps = 0.2						#gps noise
+
+	fig,room = createRoom(sz)
 	rloc = createRobo(sz,fig,room)
-	samples = startSamples()
-	
+	belState = sampleUniform(sz,N)				#belief state
+	#print belState
+	gps = normal(rloc[0],sigmaGps,N)			#distribution of gps readings
+	print mean(gps)
 	
 
 
