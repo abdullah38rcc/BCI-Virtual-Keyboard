@@ -69,7 +69,7 @@ def randRoboLoc(sz,rm):
 	if rm[y,x]:
 		#print "in wall: coord:", [x,y]
 		return randRoboLoc(sz,rm)
-	#print "not in wall: coord:", [x,y]
+	print "not in wall: coord:", [x,y]
 	return [x,y]
 
 
@@ -99,34 +99,68 @@ def sampleUniform(dims,num):
 # args: location[x,y], error, num samples
 # rtns: [normal(locx,sigma),normal(locy,sigma)]
 def GPS(loc,sigma,ns):
+	#print "in gps:"
 	nx = normal(loc[0],sigma,ns)
 	ny = normal(loc[1],sigma,ns)
+	#print "std dev y:", std(ny)
+	#print "std dev x:", std(nx)
+	#print #
 	return [nx,ny]
 
 
 
-def filter(evidence,samples,num):
-	for i in range(0,num):
-		sample = [samples[0][i],samples[1][i]]
-		#print sample
-		exp = calcExp()
+def calcExp(smpl,ev):
+	mnx = mean(ev[0])
+	mny = mean(ev[1])
+	sdx = std(ev[0])
+	sdy = std(ev[1])
+	#print sd
+	xnum = (smpl[0] - mnx)**2				#numerators
+	ynum = (smpl[1] - mny)**2
+	exp_x = xnum / sdx**2
+	exp_y = ynum / sdy**2
 	
+	if exp_x > 3 or exp_y > 3:
+		#print "too far: ", smpl
+		return 0 
+	else:
+		#print "close enough:", smpl
+		return [(0 - exp_x),(0 - exp_y)]
+	
+	
+
+
+
+def filter(evidence,num,sz):
+	new = []
+	while new == []:
+		print "sampling"
+		samples = sampleUniform(sz,num)				#location samples
+		for i in range(0,num):
+			sample = [samples[0][i],samples[1][i]]
+			#print sample
+			exp = calcExp(sample,evidence)
+			if exp:
+				print "close enough", sample
+				new.append(sample)
+
+
 
 
 def start():
 	#test()
-	N = 10							#number of particles
+	N = 100							#number of particles
 	sz = array([30,40])					#room dimensions
-	sigmaGps = 0.2						#gps noise
+	sigmaGps = 2						#gps noise
 
 	fig,room = createRoom(sz)
 	rloc = createRobo(sz,fig,room)
-	particles = sampleUniform(sz,N)				#location samples
 	#print particles
 	#print #
 	gps = GPS(rloc,sigmaGps,N)				#distribution of gps readings
 	#print mean(gps[1])
-	filter(gps,particles,N)
+	#print std(gps[1])
+	filter(gps,N,sz)
 
 
 ##########################------------main----------------############
