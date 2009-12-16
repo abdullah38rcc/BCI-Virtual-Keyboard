@@ -1,0 +1,43 @@
+reading in unigram dictionary...
+reading in bigram dictionary...
+item: hello world
+
+h selected.
+
+typed at end of while: h
+
+e selected.
+
+typed at end of while: he
+
+l selected.
+
+typed at end of while: hel
+
+l selected.
+
+typed at end of while: hell
+
+hello selected.
+
+typed at end of while: hello 
+
+w selected.
+
+typed at end of while: hello w
+
+o selected.
+
+typed at end of while: hello wo
+
+world selected.
+
+typed at end of while: hello world 
+
+number of characters typed: 12
+number of classifier errors: 18
+number of times delete used:  0
+total number of steps taken:  109
+simulation information transfer rate: 0.00000
+projected BCI-controlled information transfer rate: 2.20183 chars/min
+

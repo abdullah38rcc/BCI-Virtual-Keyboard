@@ -1,0 +1,22 @@
+number of characters typed: 32
+number of classifier errors: 75
+number of times delete used:  4
+total number of steps taken:  345
+simulation information transfer rate: 0.00000
+projected BCI-controlled information transfer rate: 1.85507 chars/min
+
+number of characters typed: 32
+number of classifier errors: 63
+number of times delete used:  2
+total number of steps taken:  318
+simulation information transfer rate: 0.00000
+projected BCI-controlled information transfer rate: 2.01258 chars/min
+
+number of characters typed: 32
+number of classifier errors: 56
+number of times delete used:  1
+total number of steps taken:  283
+simulation information transfer rate: 0.00000
+projected BCI-controlled information transfer rate: 2.26148 chars/min
+
+

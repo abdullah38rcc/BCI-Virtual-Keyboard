@@ -346,12 +346,12 @@ def shuffle(chosen,Nchosen):
 			#print "deleting"
 			gv._numTyped = gv._numTyped - 1
 			gv._numDels += 1
-			print "numDels in shuffle: ", gv._numDels
+			#print "numDels in shuffle: ", gv._numDels
 			return2PrevState()
 			return
 		else:
 			gv._currProbs = resetConsts(hiProb[0])
-			viterbi(gv._obsOut)
+			#viterbi(gv._obsOut)
 			saveState()
 			infoTransferRate()
 
@@ -422,8 +422,8 @@ def update(decision):
 		Nchosen = gv._box1
 
 	#split(chosen,Nchosen)	#split symbols like binary search
-	#shuffle(chosen,Nchosen)	#shuffle symbols
-	shuffle_alternate(chosen,Nchosen)
+	shuffle(chosen,Nchosen)	#shuffle symbols
+	#shuffle_alternate(chosen,Nchosen)
 
 	updateCanvas(hilite,norm)
 
@@ -963,8 +963,8 @@ def getKeyIn():
 		#simulate misclassification
 		err_var = random.random()		#returns number b/t 0-1
 		
-		#err_var = 1
-		if err_var <= 0.2: 			#bad case
+		err_var = 1
+		if err_var <= 1 - gv._classAcc: 			#bad case
 			if decision == 1:
 				decision = 2
 			else:

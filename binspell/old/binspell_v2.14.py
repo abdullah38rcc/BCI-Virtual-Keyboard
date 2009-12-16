@@ -259,7 +259,7 @@ def resetConsts(typed):
 	#check for position in word being typed
 	if gv._lastTyped == '[SPC]':
 		#print "space ttyped"
-		gv._currCondTree = bg._prior2
+		gv._currCondTree = bg._prior
 		gv._posInWrd = 0
 	elif gv._posInWrd > 1:
 		gv._currCondTree = bg._conditional2[gv._lastTyped]
@@ -351,7 +351,7 @@ def shuffle(chosen,Nchosen):
 			return
 		else:
 			gv._currProbs = resetConsts(hiProb[0])
-			viterbi(gv._obsOut)
+			#viterbi(gv._obsOut)
 			saveState()
 			infoTransferRate()
 
@@ -421,12 +421,12 @@ def update(decision):
 		chosen = gv._box2
 		Nchosen = gv._box1
 
-	if gv._posInWrd = 0:
-		bg._calcPriorEmiss(gv._currProbs,chosen,Nchosen)
+	#if gv._posInWrd == 0:
+		#bg._calcPriorEmiss(gv._currProbs,chosen,Nchosen)
 
 	#split(chosen,Nchosen)	#split symbols like binary search
-	#shuffle(chosen,Nchosen)	#shuffle symbols
-	shuffle_alternate(chosen,Nchosen)
+	shuffle(chosen,Nchosen)	#shuffle symbols
+	#shuffle_alternate(chosen,Nchosen)
 
 	updateCanvas(hilite,norm)
 
@@ -966,8 +966,8 @@ def getKeyIn():
 		#simulate misclassification
 		err_var = random.random()		#returns number b/t 0-1
 		
-		#err_var = 1
-		if err_var <= 0.2: 			#bad case
+		err_var = 1
+		if err_var <= 1 - gv._classAcc: 			#bad case
 			if decision == 1:
 				decision = 2
 			else:
