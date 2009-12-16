@@ -51,7 +51,7 @@ class GlobalVariables:
 		self._transitionProbs = {}
 		self._emissionProbs = {}
 
-		self._classAcc = float(0.9)		#classifier accuracy
+		self._classAcc = float(0.8)		#classifier accuracy
 		self._threshold = float(0.85)		#threshold
 		self._diffThreshold = float(0.3)	#difference threshold
 		self._trialLen = 3			#trial length
