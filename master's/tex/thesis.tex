@@ -19,33 +19,20 @@ This master's report addresses the problem of making effective BCI-controlled co
 
 Brain computer interfaces (BCI) afford individuals with severe neuro-muscular impairments, direct neural control of external devices, with those enabling communication being among the most critical.  There are a variety approaches to the recording of brain activity, which can also serve as direct control and communication pathways from the brain to external devices.  We choose here to focus on electroencephalography (EEG)-controlled BCI.
 
-Control of external devices requires that the BCI system be able to differentiate between different patterns in continuous brain signals \cite{lotte_review_2007}.  But currently, there remains a significant imbalance in bandwidths between a BCI system and its user.  Very little useful information is successfully extracted from an acquired neural signal, while feedback to the user can present a 
-great deal of information.  Typically, the bit-rate of EEG-based BCI has been limited to around 0.5 bit/s \cite{millan2004}.
-
 Muscle contraction, eye movement, and even the heartbeat are a few sources of artifacts which lend to a noise in a scalp recorded EEG signal \cite{nunez_electric_2005}.  Amplitudes of EEG scalp recorded data are often on the order of microvolts, where amplitudes of artifacts such as those caused by eye movements, for example, can be on the order of millivolts \cite{tatum2007handbook}.  Thus, EEG signals are difficult to distinguish from artifacts \cite{nunez_electric_2005}.  In addition, EEG has fairly poor spatial resolution, and the tissue which makes up the brain conducts electrical signals from many 
 different neuronal sources.  Add the fact that the desired signals are only a small sub scale of all 
 brain activity, and the result is a very low signal to noise ratio.
 
+Control of external devices requires that the BCI system be able to differentiate between different patterns in continuous brain signals \cite{lotte_review_2007}.  But currently, there remains a significant imbalance in bandwidths between a BCI system and its user.  Very little useful information is successfully extracted from an acquired neural signal, while feedback to the user can present a 
+great deal of information.  Typically, the bit-rate of EEG-based BCI has been limited to around 0.5 bit/s \cite{millan2004}.  We consider a BCI system with the limitations imposed by an information transfer rate of $1$ bit $/$ $3$s (0.33bit/s).
+
 The number of distinguishable patterns---\emph{brain states}---partially hinges upon classification 
-accuracy [5].  Because BCI bandwidth is already so low, low classification error is critical for 
-acceptable performance of BCI-controlled communication devices.  Information transfer rates 
-decrease as accuracy decreases, increasing the user's frustration and  undermining the viability 
-of BCI as a communication modality.   We consider a BCI system with the additional 
-limitations imposed by an information transfer rate of $1$ bit $/$ $3$s.
+accuracy \cite{lotte_review_2007}.  Information transfer rates (bit rates) decrease as accuracy decreases, potentially increasing the user's frustration and  undermining the viability of BCI as a widely used communication modality.  Therefore, low classification error is critical to the performance of BCI-controlled communication devices.  In order to enable effective communication in high error-rate environment, communication aids have to include ways of handling error, while optimizing the use of the available bandwidth.
 
-Thus in order to enable effective communication in such a noisy, low-bandwidth environment, 
-communication aids designed for this environment have to include ways of handling noise and 
-error, while optimizing the use of the available bandwidth.
-
-We present a virtual keyboard, BinSpell, which is designed for low-accuracy binary classifiers 
-whose bandwidth is additionally reduced by very noisy channels.  We use Huffman encoding 
-techniques to efficiently represent the user's intent as a series of binary choices.  We implement 
-a language model based on a trigram character model, and a bigram word model in order to 
-increase the accuracy of predictions by inferring the user's intended output. Redundancy is used 
-to counter the error rate of the classifier, thus also improving the accuracy of the predictions.
+We present a virtual keyboard, BinSpell, which is designed for noisy EEG signals leading to low-accuracy binary classifiers.  We use Huffman encoding techniques to more efficiently represent the user's intent as a series of binary choices.  We implement a language model to exploit the dependancies in language and infer intended symbols, in order to increase the rate of communication. Redundancy is used to counter the error rate of the classifier, and also help increase the communication rate.
 
 The addition of redundancy to an already low-bandwidth environment, greatly reduced our rate 
-of information. But we use a language model to predict away as much of the redundancy 
+of communication. But we use a language model to predict away as much of the redundancy 
 inherent in language as we can, so that each choice the user makes provides the maximal 
 amount of additional information.
 \end{abstract}
@@ -65,15 +52,13 @@ devices, or virtual keyboards, to these individuals.
 Control of external devices requires that the BCI system be able to differentiate between 
 different patterns in continuous brain signals \cite{lotte_review_2007}.  Muscle contraction, eye movement, and even the heartbeat are a few sources of artifacts which lend to a noise in a scalp recorded EEG signal \cite{nunez_electric_2005}.  Amplitudes of EEG scalp recorded data are often on the order of microvolts, where amplitudes of artifacts such as those caused by eye movements, for example, can be on the order of millivolts \cite{tatum2007handbook}.  Thus, EEG signals are difficult to distinguish from artifacts \cite{nunez_electric_2005}.  In addition, EEG has fairly poor spatial resolution, and the tissue which makes up the brain conducts electrical signals from many different neuronal sources.  Add the fact that the desired signals are only a small sub scale of all brain activity, and the result is a very low signal to noise ratio.
 
-The number of distinguishable patterns---\emph{brain states}---partially hinges upon classification 
-accuracy \cite{lotte_review_2007}.  Information transfer rates (bit rates) decrease as accuracy decreases, potentially increasing the user's frustration and  undermining the viability of BCI as a widely used communication modality.  Figure \ref{fig:itrvsacc} displays the relationship between bit rate and accuracy.  Hence, low classification error is critical to the performance of BCI-controlled communication devices.  Information transfer rates decrease as accuracy decreases, increasing the user's frustration and  undermining the viability of BCI as a communication modality.   We consider a BCI system with the limitations imposed by a bit rate of 1 bit /3s.
-
 Currently, there remains a significant imbalance in bandwidths between a BCI system and its 
 user. Very little useful information is successfully extracted from an acquired neural signal (for 
 reasons explained briefly above), while feedback to the user can present a great deal of 
-information.  Typically, the bit-rate of EEG-based BCI has been limited to around 0.5 bit/s \cite{millan2004}.  Thus in order to enable effective communication in such a noisy, low-bandwidth 
-environment, communication aids designed for this environment have to include ways of 
-handling noise and error, while optimizing the use of the available bandwidth.
+information.  Typically, the bit-rate of EEG-based BCI has been limited to around 0.5 bit/s \cite{millan2004}.  We consider a BCI system with the limitations imposed by a bit rate of 1 bit/3s (0.33bit/s).
+
+The number of distinguishable patterns---\emph{brain states}---partially hinges upon classification 
+accuracy \cite{lotte_review_2007}.  Information transfer rates (bit rates) decrease as accuracy decreases, potentially increasing the user's frustration and  undermining the viability of BCI as a widely used communication modality.  Figure \ref{fig:itrvsacc} displays the relationship between bit rate and accuracy.  Hence, low classification error is critical to the performance of BCI-controlled communication devices.  In order to enable effective communication in high error-rate environment, communication aids have to include ways of handling error, while optimizing the use of the available bandwidth.
 
 One important design consideration is the compression of the maximal amount of information 
 from the user, into the minimal number of bits.  Statistical properties of language can aid in this 
