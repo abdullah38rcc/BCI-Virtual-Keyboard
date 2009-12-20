@@ -94,8 +94,7 @@ and communication pathways from the brain to external devices.  Among them are
 electroencephalography (EEG), magnetoencepholography (MEG), positron emission tomography 
 (PET), functional magnetic resonance imaging (fMRI), and near infrared spectroscopy (NIRS) [14].  EEG 
 appears to be the most practical, commercially viable option thus far, due to its portability, and 
-comparatively reasonable cost [15].  The limitations of the remaining approaches are due mostly to the fact 
-that they are technically demanding and expensive [16].
+comparatively reasonable cost \cite{_next_????}.  The limitations of the remaining approaches are due mostly to the fact that they are technically demanding and expensive \cite{wolpaw_braincomputer_2002}.
 
 \subsubsection{EEG}
 
@@ -104,17 +103,16 @@ in the brain.  The number of sensors used can range from 25 to 128 sensors.  Typ
 the scalp is lightly abraded right before the application of a sensor.  This is done to reduce the 
 impedance caused by dead skin cells.  A conductive gel is applied with each sensor, and each sensor is 
 connected to a wire which feeds into an amplifier.  Scalp EEG is widely used in diagnosing many 
-medical conditions such as epilepsy, strokes, and sleep disorders [17].  But translating those signals into 
-meaningful information is very difficult.  One of the largest obstacles is the noise.
+medical conditions such as epilepsy, strokes, and sleep disorders \cite{nunez_electric_2005}.  But translating those signals into meaningful information is very difficult.  One of the largest obstacles is the noise.
 
 Single neurons are more complex than even the most sophisticated neural networks, and brain 
-processes often involve their interactions at multiple scales [18].   EEG has inherently low spatial 
-resolution, so the signals picked up from EEG  sensors reflect the activity of millions of neurons [19].  In 
+processes often involve their interactions at multiple scales \cite{nunez_electric_2005}.   EEG has inherently low spatial 
+resolution, so the signals picked up from EEG  sensors reflect the activity of millions of neurons \cite{nunez_electric_2005}.  In 
 addition to brain activity, electrical signals from the scalp can also come from sources such as eye 
-blinks or tongue movement [20].  Electrical impulses from the heart can actually produce scalp potentials 
-greater than EEG amplitudes [21], thus making recorded signals even more difficult to discriminate. 
+blinks or tongue movement \cite{nunez_electric_2005}.  Electrical impulses from the heart can actually produce scalp potentials 
+greater than EEG amplitudes \cite{nunez_electric_2005}, thus making recorded signals even more difficult to discriminate. 
 Additionally, the electrical and geometrical properties of the brain itself, as well as the skull and scalp, 
-all lend to the quality of recorded signals [22].  All of these factors contribute to the extremely low signal 
+all lend to the quality of recorded signals \cite{nunez_electric_2005}.  All of these factors contribute to the extremely low signal 
 to noise ratios in recorded signals.
 
 
@@ -142,20 +140,19 @@ Achieved spelling & \multirow{2}{*}{$2.3$--$7.6$} & $2.8$--$7.8$ & \multirow{2}{
 A brain computer interface (BCI) is a communication channel between the brain and a 
 computer (figure~\ref{fig:BCI}). It records changes in electrical activity in the brain, and translates them into 
 control signals.  Acquired signals are first amplified, then digitized for analysis.  Unwanted 
-artifacts, such as those produced by a heartbeat, and noise, are filtered out, and the target signal
-feature is extracted.   Built-in classifiers characterize brain state by correlating specific mental 
-activities with the target features.  The interpreted brain state is commuted into control signals, and sent 
-to the device being operated.
+artifacts, such as those produced by a heartbeat, and eye blinks, are filtered out, and the target signal
+feature is extracted \cite{lotte_review_2007}.   Built-in classifiers characterize brain state by correlating specific mental 
+activities with the target features \cite{lotte_review_2007}.  The interpreted brain state is commuted into control signals (a single bit in our case), and sent to the device being operated.
 
 BCI's can be either invasive, such as single-unit recording or electrocorticography (EcoG), or 
 non-invasive, such as EEG or MEG.  Invasive techniques provide the most information per 
 channel, but carry the greatest risk, as they require surgery to provide openings in the skull. 
-Most BCI systems are non-invasive, and use EEG signals recorded from the scalp [23].
+Most BCI systems are non-invasive, and use EEG signals recorded from the scalp \cite{guger_design_1999}.
 
 \subsection{Virtual Keyboards} % Incomplete
 
 Generally, virtual keyboards are devices or software, which emulate physical keyboards, but do 
-not have physical sensing buttons.  They can be controlled by pointing devices, such as mice, 
+not have physical sensing buttons \cite{kolsch2002keyboards}.  They can be controlled by pointing devices, such as mice, 
 touch pads, photo-electric sensing devices, or active finger tracking methods [24].  Virtual 
 keyboard key layout can be dynamic, and can readily include words, phrases, or pictures. 
 
