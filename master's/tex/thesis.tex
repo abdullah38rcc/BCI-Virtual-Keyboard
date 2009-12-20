@@ -66,13 +66,7 @@ Control of external devices requires that the BCI system be able to differentiat
 different patterns in continuous brain signals \cite{lotte_review_2007}.  Muscle contraction, eye movement, and even the heartbeat are a few sources of artifacts which lend to a noise in a scalp recorded EEG signal \cite{nunez_electric_2005}.  Amplitudes of EEG scalp recorded data are often on the order of microvolts, where amplitudes of artifacts such as those caused by eye movements, for example, can be on the order of millivolts \cite{tatum2007handbook}.  Thus, EEG signals are difficult to distinguish from artifacts \cite{nunez_electric_2005}.  In addition, EEG has fairly poor spatial resolution, and the tissue which makes up the brain conducts electrical signals from many different neuronal sources.  Add the fact that the desired signals are only a small sub scale of all brain activity, and the result is a very low signal to noise ratio.
 
 The number of distinguishable patterns---\emph{brain states}---partially hinges upon classification 
-accuracy [11].  BCIs using binary classifiers in general reach an accuracy of around 90\% [12], 
-although there are classifiers who perform well below this value.  Because BCI bandwidth is 
-already so low, low classification error is critical for acceptable performance of BCI-controlled 
-communication devices.  Information transfer rates decrease as accuracy decreases, increasing 
-the user's frustration and  undermining the viability of BCI as a communication modality. We 
-consider a BCI system with the additional limitations imposed by an information transfer rate 
-of 1 bit /3s.
+accuracy \cite{lotte_review_2007}.  Information transfer rates (bit rates) decrease as accuracy decreases, potentially increasing the user's frustration and  undermining the viability of BCI as a widely used communication modality.  Figure \ref{fig:itrvsacc} displays the relationship between bit rate and accuracy.  Hence, low classification error is critical to the performance of BCI-controlled communication devices.  Information transfer rates decrease as accuracy decreases, increasing the user's frustration and  undermining the viability of BCI as a communication modality.   We consider a BCI system with the limitations imposed by a bit rate of 1 bit /3s.
 
 Currently, there remains a significant imbalance in bandwidths between a BCI system and its 
 user. Very little useful information is successfully extracted from an acquired neural signal (for 
@@ -88,20 +82,15 @@ into the improvement of classification methods, if one properly exploits the sta
 properties of language, then one should be able to greatly improve effective rates of BCI 
 enabled communication. 
 
-We present a virtual keyboard, BinSpell, which is designed for low-accuracy binary classifiers 
-whose bandwidth is additionally reduced by very noisy channels.  We use Huffman encoding 
-techniques to efficiently represent the user's intent as a series of binary choices.  We implement 
-a language model based on a trigram character model, and a bigram word model in order to 
-increase the accuracy of predictions by inferring the user's intended output. Redundancy is used
-to counter the error rate of the classifier, thus also improving the accuracy of the predictions.
+Figure \ref{fig:BCI} illustrates how BCIs work with virtual keyboards controlled by binary input.  Typically, the user performs a mental activity which is dependent on the selection element they are trying to control \cite{molina_direct}.  The resulting brain signals are recorded via electrodes on the scalp, amplified and digitized \cite{lotte_review_2007}.  Classification algorithms identify features, or patterns, which correlate to certain identifiable brain events \cite{lotte_review_2007}.  Finally, these features are translated into a bit, which is sent to the keyboard, whose interface changes accordingly.
+
+We present a virtual keyboard, BinSpell, which is designed for noisy EEG signals leading to low-accuracy binary classifiers.  We use Huffman encoding techniques to more efficiently represent the user's intent as a series of binary choices.  We implement a language model to exploit the dependancies in language and infer intended symbols, in order to increase the rate of communication. Redundancy is used to counter the error rate of the classifier, and also help increase the communication rate.
 
 A second keyboard design presented, Circ-O-Spell, is an extension of an existing keyboard, 
-Hex-O-Spell [13].  With Circ-O-Spell, we present an alternative method of making selections, 
-which we argue requires fewer steps on average.  We also employ a Hidden Markov Model and 
+Hex-O-Spell \cite{blankertz_advanced}.  With Circ-O-Spell, we present an alternative method of making selections, which we show requires fewer steps on average.  We also employ a Hidden Markov Model and 
 borrow from Huffman coding such as to reduce the number of steps to a correct selection, and 
 hence increase communication speed.  Circ-O-Spell provided us with the exploratory ideas 
 which led to BinSpell.  Thus we focus primarily on BinSpell.
-
 
 \begin{figure}[t]
 \begin{center}
@@ -572,6 +561,14 @@ discriminate between words.
 
 \subsection{Relative Performance}
 
+\begin{figure}[h]
+\begin{center}
+	\includegraphics[scale=0.40]{fig12.jpg}
+	\captionof{figure}{Information transfer rate in bits/selection and bits/min. $N$ is the number of possible choices. Shown only for accuracy greater than chance. }
+	\label{fig:itrvsacc}
+\end{center}
+\end{figure}
+
 \subsubsection{BinSpell vs.\ P300}
 
 One of the aims of research into BCI typing designs is to reduce the cognitive load on the user.
@@ -674,7 +671,7 @@ keyboards. Our results suggest that it is possible to enable communication rates
 low bandwidth channels, comparable to those of existing BCI-controlled spellers.
 
 
-\section{Improving BinSpell and Future Work}
+\subsection{Improving BinSpell and Future Work}
 
 An ideal BCI keyboard with given our limitation of 0.33 bits/choice would provide 0.33 bit of 
 additional information each choice, with respect to the language model.  A higher order, adaptive 

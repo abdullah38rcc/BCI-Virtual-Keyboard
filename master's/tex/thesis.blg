@@ -4,24 +4,24 @@ The style file: ieeepes.bst
 Database file #1: biblio.bib
 You've used 4 entries,
             1821 wiz_defined-function locations,
-            485 strings with 4380 characters,
-and the built_in function-call counts, 937 in all, are:
-= -- 75
+            485 strings with 4378 characters,
+and the built_in function-call counts, 919 in all, are:
+= -- 73
 > -- 53
 < -- 0
 + -- 19
 - -- 15
-* -- 85
-:= -- 159
+* -- 83
+:= -- 157
 add.period$ -- 4
 call.type$ -- 4
 change.case$ -- 3
 chr.to.int$ -- 0
 cite$ -- 4
 duplicate$ -- 36
-empty$ -- 88
+empty$ -- 86
 format.name$ -- 15
-if$ -- 201
+if$ -- 197
 int.to.chr$ -- 0
 int.to.str$ -- 4
 missing$ -- 6
@@ -33,7 +33,7 @@ purify$ -- 0
 quote$ -- 0
 skip$ -- 7
 stack$ -- 0
-substring$ -- 55
+substring$ -- 49
 swap$ -- 4
 text.length$ -- 0
 text.prefix$ -- 0
