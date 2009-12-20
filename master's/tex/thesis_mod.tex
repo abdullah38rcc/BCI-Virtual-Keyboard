@@ -10,26 +10,19 @@
 
 \begin{document}
 
-\title{Design of a BCI-controlled Virtual Keyboard for a Noisy Environment and Limited Bandwidth} % Insert title
+\title{Design of a BCI-Controlled Virtual Keyboard for a Noisy Environment and Limited Bandwidth} % Insert title
 \author{Tamara Blain}
 \maketitle
 
 \begin{abstract}
-This master's report addresses the problem of making effective BCI-controlled communication possible, given a noisy channel and extremely low bandwidth. 
+This master's report addresses the problem of making effective BCI-controlled communication possible, given error and extremely low bandwidth.
 
-Brain computer interfaces (BCI) affords individuals with severe neuro-muscular impairments, 
-direct neural control of external devices, with those enabling communication being among 
-the most critical.  There are a variety of approaches to the recording of brain activity, which can also serve as direct control 
-and communication pathways from the brain to external devices.  We choose here to focus on electroencephalography (EEG) based BCI.
+Brain computer interfaces (BCI) afford individuals with severe neuro-muscular impairments, direct neural control of external devices, with those enabling communication being among the most critical.  There are a variety approaches to the recording of brain activity, which can also serve as direct control and communication pathways from the brain to external devices.  We choose here to focus on electroencephalography (EEG)-controlled BCI.
 
-Control of external devices requires that the BCI system be able to differentiate between 
-different patterns in continuous brain signals \cite{lotte_review_2007}.  But currently, there remains a significant 
-imbalance in bandwidths between a BCI system and its user.  find source and how much info is sent.
+Control of external devices requires that the BCI system be able to differentiate between different patterns in continuous brain signals \cite{lotte_review_2007}.  But currently, there remains a significant imbalance in bandwidths between a BCI system and its user.  Very little useful information is successfully extracted from an acquired neural signal, while feedback to the user can present a 
+great deal of information.  Typically, the bit-rate of EEG-based BCI has been limited to around 0.5 bit/s \cite{millan2004}.
 
-Amplitudes of EEG scalp recorded data are considerably small and difficult to distinguish from 
-artifacts \cite{nunez_electric_2005}.  Muscle contraction, eye movement, and even the heartbeat are a few sources of 
-artifacts which lend to a noisy environment [4].  In addition, EEG has fairly poor spatial 
-resolution, and brain tissue conducts electrical signals from many 
+Muscle contraction, eye movement, and even the heartbeat are a few sources of artifacts which lend to a noise in a scalp recorded EEG signal \cite{nunez_electric_2005}.  Amplitudes of EEG scalp recorded data are often on the order of microvolts, where amplitudes of artifacts such as those caused by eye movements, for example, can be on the order of millivolts \cite{tatum2007handbook}.  Thus, EEG signals are difficult to distinguish from artifacts \cite{nunez_electric_2005}.  In addition, EEG has fairly poor spatial resolution, and the tissue which makes up the brain conducts electrical signals from many 
 different neuronal sources.  Add the fact that the desired signals are only a small sub scale of all 
 brain activity, and the result is a very low signal to noise ratio.
 
@@ -64,18 +57,13 @@ Many of the devices designed to make communication possible for individuals with
 disabilities require some vestige of neuro-muscular control.  Brain computer interfaces (BCI) 
 affords individuals with severe neuro-muscular impairments direct neural control of external 
 devices.  There are a variety of different methods for obtaining brain signals which are suitable 
-for BCI control.  We choose here to focus on electroencephalography (EEG) based BCI.  One of the 
+for BCI control.  We choose here to focus on electroencephalography (EEG).  One of the 
 primary objectives of BCI research has been to enable motor-limited individuals to control 
 communication devices.  Thus, much research has gone into providing BCI-controlled spelling 
 devices, or virtual keyboards, to these individuals.
 
 Control of external devices requires that the BCI system be able to differentiate between 
-different patterns in continuous brain signals [8].  But amplitudes of scalp recorded data are considerably 
-small and difficult to distinguish from artifacts [9].  Muscle contraction, eye movement, and even 
-the heartbeat are a few sources of artifacts which lend to a noisy environment [10].  In addition, 
-EEG has fairly poor spatial resolution, and the tissue which makes up the brain conducts 
-electrical signals from many different neuronal sources.  Add the fact that the desired signals 
-are only a small sub scale of all brain activity, and the result is a very low signal to noise ratio.
+different patterns in continuous brain signals \cite{lotte_review_2007}.  Muscle contraction, eye movement, and even the heartbeat are a few sources of artifacts which lend to a noise in a scalp recorded EEG signal \cite{nunez_electric_2005}.  Amplitudes of EEG scalp recorded data are often on the order of microvolts, where amplitudes of artifacts such as those caused by eye movements, for example, can be on the order of millivolts \cite{tatum2007handbook}.  Thus, EEG signals are difficult to distinguish from artifacts \cite{nunez_electric_2005}.  In addition, EEG has fairly poor spatial resolution, and the tissue which makes up the brain conducts electrical signals from many different neuronal sources.  Add the fact that the desired signals are only a small sub scale of all brain activity, and the result is a very low signal to noise ratio.
 
 The number of distinguishable patterns---\emph{brain states}---partially hinges upon classification 
 accuracy [11].  BCIs using binary classifiers in general reach an accuracy of around 90\% [12], 
@@ -89,7 +77,7 @@ of 1 bit /3s.
 Currently, there remains a significant imbalance in bandwidths between a BCI system and its 
 user. Very little useful information is successfully extracted from an acquired neural signal (for 
 reasons explained briefly above), while feedback to the user can present a great deal of 
-information.  Thus in order to enable effective communication in such a noisy, low-bandwidth 
+information.  Typically, the bit-rate of EEG-based BCI has been limited to around 0.5 bit/s \cite{millan2004}.  Thus in order to enable effective communication in such a noisy, low-bandwidth 
 environment, communication aids designed for this environment have to include ways of 
 handling noise and error, while optimizing the use of the available bandwidth.
 
@@ -115,6 +103,14 @@ hence increase communication speed.  Circ-O-Spell provided us with the explorato
 which led to BinSpell.  Thus we focus primarily on BinSpell.
 
 
+\begin{figure}[t]
+\begin{center}
+	\includegraphics[scale=0.40]{Figure1.jpg}
+	\captionof{figure}{BCI}
+	\label{fig:BCI}
+\end{center}
+\end{figure}
+
 \section{Background}
 
 \subsection{Brain Imaging Techniques}
@@ -124,7 +120,7 @@ and communication pathways from the brain to external devices.  Among them are
 electroencephalography (EEG), magnetoencepholography (MEG), positron emission tomography 
 (PET), functional magnetic resonance imaging (fMRI), and near infrared spectroscopy (NIRS) [14].  EEG 
 appears to be the most practical, commercially viable option thus far, due to its portability, and 
-comparatively reasonable cost \cite{_next_little}.  The limitations of the remaining approaches are due mostly to the fact 
+comparatively reasonable cost [15].  The limitations of the remaining approaches are due mostly to the fact 
 that they are technically demanding and expensive [16].
 
 \subsubsection{EEG}
@@ -147,13 +143,8 @@ Additionally, the electrical and geometrical properties of the brain itself, as 
 all lend to the quality of recorded signals [22].  All of these factors contribute to the extremely low signal 
 to noise ratios in recorded signals.
 
-\subsection{BCI}
 
-\begin{center}
-	\includegraphics[scale=0.40]{Figure1.jpg}
-	\captionof{figure}{BCI}
-	\label{fig:BCI}
-\end{center}
+\subsection{BCI}
 
 \begin{table}
 \caption{Comparison of typing speeds achieved by existing virtual keyboards.}
@@ -202,11 +193,13 @@ more adaptable to compact mobile devices.
 
 \subsection{P300 Speller}
 
+\begin{figure}[t]
 \begin{center}
 	\includegraphics[scale=0.40]{Figure2.jpeg}
 	\captionof{figure}{P300 Speller}
 	\label{fig:P300}
 \end{center}
+\end{figure}
 
 The P300 Speller is an synchronous EEG controlled spelling system.   It relies on the P300 event 
 related potentials (ERPs) that result when users respond to specific stimuli generated by the BCI 
@@ -223,12 +216,13 @@ on improvement of classification algorithms designed to detect P300 signals [4],
 
 \subsection{Hex-O-Spell}
 
+\begin{figure}[t]
 \begin{center}
-	\includegraphics[scale=0.40]{figure3.jpeg}
+	\includegraphics[scale=0.10]{figure3.jpeg}
 	\captionof{figure}{Hex-O-Spell}
 	\label{fig:Hex}
 \end{center}
-
+\end{figure}
 
 Hex-O-Spell keyboard layout is comprised of $6$ hexagonal fields surrounding a circle, each containing 
 $5$ characters (figure~\ref{fig:Hex}).  The center of the circle contains an arrow used to make selections.  A language 
@@ -256,13 +250,6 @@ one subject, and between $4.6$ and $7.6$ char/min for the other, for error-free 
 
 \subsection{Dasher}
 
-\begin{center}
-	\includegraphics[scale=0.40]{figure4.jpeg}
-	\captionof{figure}{Dasher}
-	\label{fig:Dash}
-\end{center}
-
-
 Dasher is a zooming interface (figure~\ref{fig:Dash}) which uses a language model to predict the probabilities of 
 symbols given a context, and determine the size of the symbols based on those probabilities.  So the 
 letters with the largest probabilities given the output text will be more easily seleccted.  When the 
@@ -278,12 +265,13 @@ with an average of $\sim5.6$ chars/min.
 
 \section{Our Approach}
 
-Although advances in storage have allowed for greater memory capacity on mobile devices, the 
-number of applications available for portable devices has also increased.  Thus it is still 
-important to consider code size when writing for portable devices.  One way to avoid leaving 
-large footprints is to interpret a scripting language instead of executing compiled object code, 
-which tend to be much larger than the source [30].  For this reason, both virtual keyboards are 
-implemented in python.
+\begin{figure}[t]
+\begin{center}
+	\includegraphics[scale=0.25]{figure4.jpeg}
+	\captionof{figure}{Dasher}
+	\label{fig:Dash}
+\end{center}
+\end{figure}
 
 Natural language has a non-uniform information density---the amount of new information 
 communicated by each additional letter is highly dependent on previous letters and context. 
@@ -291,17 +279,6 @@ We use a language model to predict away as much of the redundancy as we can, so 
 choice the user makes provides the maximal amount of additional information.
 
 \subsection{Circ-O-Spell}
-
-
-
-\begin{figure}
-\centering
-\subfigure[]{\includegraphics[width=.5\textwidth]{fig4.png}\label{fig:CircA}}
-\subfigure[]{\includegraphics[width=.5\textwidth]{fig5.png}\label{fig:CircB}}
-\subfigure[]{\includegraphics[width=.5\textwidth]{fig6.png}\label{fig:CircC}}
-\subfigure[]{\includegraphics[width=.5\textwidth]{fig7.png}\label{fig:CircD}}
-\caption{Circ-O-Spell}
-\end{figure}
 
 This keyboard is an extension of the Hex-O-Spell keyboard [31].  The hexagonal fields are replaced by 
 circular fields, containing sets of symbols (figure~\ref{fig:CircA}).  Circ-O-Spell is intended to be controlled by the 
@@ -330,25 +307,14 @@ bigram frequency tables reflect unrealistic counts because they do not use the p
 bigrams within words as contextual information.  They demonstrate a marked difference in letter 
 bigram frequencies, depending on their positions within words.
 
-\begin{table}
-\caption{Explanation of notation.}
-\begin{center}
-\begin{tabular}{ll}
-\hline\hline
-$X_t$ & State variable at time $t$ \\
-$C_1(.)$ & Count of bigrams found solely and the beginning of a word \\
-$C_2(.)$ & Count of bigrams found at any other position in a word \\
-$x_i$ & Letter of the alphabet \\
-$C_1^W(.)$ & Word-level unigram counts \\
-$C_2^W(.)$ & Word-level bigram counts \\
-$W_t$ & State variable in word-level Markov process \\
-$w_i$ & A single word \\
-$C_3^X(.)$ & Letter-level trigram counts \\
-\hline\hline
-\end{tabular}
-\end{center}
-\label{table:Not}
-\end{table}
+\begin{figure}[t]
+\centering
+\subfigure[]{\includegraphics[scale=0.30]{fig4.png}\label{fig:CircA}}
+\subfigure[]{\includegraphics[scale=0.30]{fig5.png}\label{fig:CircB}}
+\subfigure[]{\includegraphics[scale=0.30]{fig6.png}\label{fig:CircC}}
+\subfigure[]{\includegraphics[scale=0.30]{fig7.png}\label{fig:CircD}}
+\caption{Circ-O-Spell}
+\end{figure}
 
 Markov models are models of probabilistic temporal processes, which satisfy the Markov assumption---that
 is, the current state depends only on a finite history of previous states [41].  The order of a Markov 
@@ -378,16 +344,27 @@ words, of words occurring at least once per million in normal usage, and of more
 
 \subsection{BinSpell}
 
-\begin{figure}
-\centering
-\subfigure[]{\includegraphics[width=.5\textwidth]{fig8.png}\label{fig:BinA}}
-\subfigure[]{\includegraphics[width=.5\textwidth]{fig9.png}\label{fig:BinB}}
-\subfigure[]{\includegraphics[width=.5\textwidth]{fig10.png}\label{fig:BinC}}
-\caption{BinSpell}
-\label{fig:Bin}
-\end{figure}
-
 \subsubsection{Design and Operation}
+
+\begin{table}
+\caption{Explanation of notation.}
+\begin{center}
+\begin{tabular}{ll}
+\hline\hline
+$X_t$ & State variable at time $t$ \\
+$C_1(.)$ & Count of bigrams found solely and the beginning of a word \\
+$C_2(.)$ & Count of bigrams found at any other position in a word \\
+$x_i$ & Letter of the alphabet \\
+$C_1^W(.)$ & Word-level unigram counts \\
+$C_2^W(.)$ & Word-level bigram counts \\
+$W_t$ & State variable in word-level Markov process \\
+$w_i$ & A single word \\
+$C_3^X(.)$ & Letter-level trigram counts \\
+\hline\hline
+\end{tabular}
+\end{center}
+\label{table:Not}
+\end{table}
 
 BinSpell (Figure~\ref{fig:BinA}) is also designed to be controlled by the output of a binary classifier.  State 0 causes 
 selection of the box on the left and state 1 selects the box on the right.  The user is intended to select the 
@@ -402,6 +379,15 @@ until one of the probabilities surpasses a threshold, and the associated symbol 
 at the top (Figure~\ref{fig:BinC}). 
 
 \subsubsection{Implementation Details}
+
+\begin{figure}
+\centering
+\subfigure[]{\includegraphics[width=.4\textwidth]{fig8.png}\label{fig:BinA}}
+\subfigure[]{\includegraphics[width=.4\textwidth]{fig9.png}\label{fig:BinB}}
+\subfigure[]{\includegraphics[width=.4\textwidth]{fig10.png}\label{fig:BinC}}
+\caption{BinSpell}
+\label{fig:Bin}
+\end{figure}
 
 Huffman coding is an algorithm originally designed for the binary encoding of sequences of ASCII 
 symbols.  It uses each symbol's frequency of occurrence to build up an optimal way of representing that 
@@ -419,13 +405,6 @@ of the classifier (80\% in our case).  The probabilities of the symbols in the b
 weighted by one minus the accuracy.  All of the probabilities are then re-normalized, and a new 
 Huffman tree is generated and used to determine the new layout.  The flowchart representing this 
 process can be seen in Figure~\ref{fig:BinFlow}.
-
-\begin{center}
-	\includegraphics[scale=0.40]{fig11.jpg}
-	\captionof{figure}{BinSpell FlowChart}
-	\label{fig:BinFlow}
-\end{center}
-
 
 Selections also cause the background of the selected box to be shaded in orange, while the background 
 color of the non-selected box becomes white (Figure~\ref{fig:BinB}).  If a box is selected in succession, the border of the 
@@ -481,6 +460,14 @@ the user.
 
 \subsection{Varying Weight, Threshold, and Error-rate}
 
+\begin{figure}[t]
+\begin{center}
+	\includegraphics[scale=0.60]{fig11.jpg}
+	\captionof{figure}{BinSpell FlowChart}
+	\label{fig:BinFlow}
+\end{center}
+\end{figure}
+
 We began by attempting to determine the most effective combination of weights and 
 thresholding levels.  For this purpose, we modified BinSpell to include a routine which 
 automates the typing out of text strings.  Strings are parsed  into individual word-tokens, using 
@@ -513,10 +500,10 @@ typed for each accuracy simulation was 193.
 
 \section{Results}
 
-\begin{figure}
+\begin{figure}[t]
 \centering
-\subfigure[]{\includegraphics[width=.5\textwidth]{WeightComp_80.jpg}}
-\subfigure[]{\includegraphics[width=.5\textwidth]{WeightComp_90.jpg}}
+\subfigure[]{\includegraphics[width=.4\textwidth]{WeightComp_80.jpg}}
+\subfigure[]{\includegraphics[width=.4\textwidth]{WeightComp_90.jpg}}
 \caption{Effects of varying weight and threshold on the typing performance.}
 \label{fig:WeightComp}
 \end{figure}
@@ -532,11 +519,11 @@ were set to lower than the classifier accuracy.
 
 \begin{figure}
 \centering
-\subfigure[]{\includegraphics[width=.5\textwidth]{AutoProjTime_70.jpg}}
-\subfigure[]{\includegraphics[width=.5\textwidth]{AutoProjTime_75.jpg}}
-\subfigure[]{\includegraphics[width=.5\textwidth]{AutoProjTime_80.jpg}}
-\subfigure[]{\includegraphics[width=.5\textwidth]{AutoProjTime_85.jpg}}
-\subfigure[]{\includegraphics[width=.5\textwidth]{AutoProjTime_90.jpg}}
+\subfigure[]{\includegraphics[width=.4\textwidth]{AutoProjTime_70.jpg}}
+\subfigure[]{\includegraphics[width=.4\textwidth]{AutoProjTime_75.jpg}}
+\subfigure[]{\includegraphics[width=.4\textwidth]{AutoProjTime_80.jpg}}
+\subfigure[]{\includegraphics[width=.4\textwidth]{AutoProjTime_85.jpg}}
+\subfigure[]{\includegraphics[width=.4\textwidth]{AutoProjTime_90.jpg}}
 \caption{Time to type each phrase for varying error rates.}
 \label{fig:ProjTime}
 \end{figure}
@@ -546,11 +533,13 @@ Predictably, the lowest time for all error-rates corresponds to the shortest sen
 times vary fairly significantly with error-rates.  There is a noticeable pattern in variation among 
 the error-rates.
 
+\begin{figure}[t]
 \begin{center}
 	\includegraphics[scale=0.40]{ProjTypeSpeedComp.jpg}
 	\captionof{figure}{Comparison of typing speeds for varying error rates.}
 	\label{fig:TypeSpeed}
 \end{center}
+\end{figure}
 
 \section{Discussion}
 
@@ -690,8 +679,7 @@ low bandwidth channels, comparable to those of existing BCI-controlled spellers.
 An ideal BCI keyboard with given our limitation of 0.33 bits/choice would provide 0.33 bit of 
 additional information each choice, with respect to the language model.  A higher order, adaptive 
 language model would allow BinSpell to use bits more efficiently, while adding to a speed up in typing 
-rates.  We intend to further investigate the question of how best to weigh letter-level and word-level $n$- 
-grams, with respect to one another. 
+rates.  We intend to further investigate the question of how best to weigh letter-level and word-level n-grams, with respect to one another. 
 
 Keyboards with static layouts do not incur a penalty (due to scanning time) on the typing speed [16]. 
 Static layouts allow users to develop strategies which facilitate their learning the keyboard, thus 

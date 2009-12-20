@@ -10,29 +10,19 @@
 
 \begin{document}
 
-\title{Design of a Virtual Keyboard for a Noisy Environment and Limited Bandwidth} % Insert title
+\title{Design of a BCI-Controlled Virtual Keyboard for a Noisy Environment and Limited Bandwidth} % Insert title
 \author{Tamara Blain}
 \maketitle
 
 \begin{abstract}
-This master's report addresses the problem of communication given extremely low bandwidth and a 
-noisy channel.
+This master's report addresses the problem of making effective BCI-controlled communication possible, given error and extremely low bandwidth.
 
-Brain computer interfaces (BCI) affords individuals with severe neuro-muscular impairments, 
-direct neural control of external devices, with devices enabling communication being among 
-the most critical.  EEG appears to be the most practical, commercially viable mode of BCI 
-control thus far, due to its portability, and comparatively reasonable cost [1].
+Brain computer interfaces (BCI) afford individuals with severe neuro-muscular impairments, direct neural control of external devices, with those enabling communication being among the most critical.  There are a variety approaches to the recording of brain activity, which can also serve as direct control and communication pathways from the brain to external devices.  We choose here to focus on electroencephalography (EEG)-controlled BCI.
 
-Control of external devices requires that the BCI system be able to differentiate between 
-different patterns in continuous brain signals [2].  But currently, there remains a significant 
-imbalance in bandwidths between a BCI system and its user.  Very little useful information is 
-successfully extracted from an acquired neural signal, while feedback to the user can present a 
-great deal of information.
+Control of external devices requires that the BCI system be able to differentiate between different patterns in continuous brain signals \cite{lotte_review_2007}.  But currently, there remains a significant imbalance in bandwidths between a BCI system and its user.  Very little useful information is successfully extracted from an acquired neural signal, while feedback to the user can present a 
+great deal of information.  Typically, the bit-rate of EEG-based BCI has been limited to around 0.5 bit/s \cite{millan2004}.
 
-Amplitudes of EEG scalp recorded data are quite small and difficult to distinguish from 
-artifacts [3].  Muscle contraction, eye movement, and even the heartbeat are a few sources of 
-artifacts which lend to a noisy environment [4].  In addition, EEG has fairly poor spatial 
-resolution, and the tissue which makes up the brain conducts electrical signals from many 
+Muscle contraction, eye movement, and even the heartbeat are a few sources of artifacts which lend to a noise in a scalp recorded EEG signal \cite{nunez_electric_2005}.  Amplitudes of EEG scalp recorded data are often on the order of microvolts, where amplitudes of artifacts such as those caused by eye movements, for example, can be on the order of millivolts \cite{tatum2007handbook}.  Thus, EEG signals are difficult to distinguish from artifacts \cite{nunez_electric_2005}.  In addition, EEG has fairly poor spatial resolution, and the tissue which makes up the brain conducts electrical signals from many 
 different neuronal sources.  Add the fact that the desired signals are only a small sub scale of all 
 brain activity, and the result is a very low signal to noise ratio.
 
@@ -67,19 +57,13 @@ Many of the devices designed to make communication possible for individuals with
 disabilities require some vestige of neuro-muscular control.  Brain computer interfaces (BCI) 
 affords individuals with severe neuro-muscular impairments direct neural control of external 
 devices.  There are a variety of different methods for obtaining brain signals which are suitable 
-for BCI control.  We choose here to focus on electroencephalography (EEG) as it is   currently 
-the most widely used modality[citation], and the most commercially viable [6], [7].  One of the 
+for BCI control.  We choose here to focus on electroencephalography (EEG).  One of the 
 primary objectives of BCI research has been to enable motor-limited individuals to control 
 communication devices.  Thus, much research has gone into providing BCI-controlled spelling 
 devices, or virtual keyboards, to these individuals.
 
 Control of external devices requires that the BCI system be able to differentiate between 
-different patterns in continuous brain signals [8].  But amplitudes of scalp recorded data are quite 
-small and difficult to distinguish from artifacts [9].  Muscle contraction, eye movement, and even 
-the heartbeat are a few sources of artifacts which lend to a noisy environment [10].  In addition, 
-EEG has fairly poor spatial resolution, and the tissue which makes up the brain conducts 
-electrical signals from many different neuronal sources.  Add the fact that the desired signals 
-are only a small sub scale of all brain activity, and the result is a very low signal to noise ratio.
+different patterns in continuous brain signals \cite{lotte_review_2007}.  Muscle contraction, eye movement, and even the heartbeat are a few sources of artifacts which lend to a noise in a scalp recorded EEG signal \cite{nunez_electric_2005}.  Amplitudes of EEG scalp recorded data are often on the order of microvolts, where amplitudes of artifacts such as those caused by eye movements, for example, can be on the order of millivolts \cite{tatum2007handbook}.  Thus, EEG signals are difficult to distinguish from artifacts \cite{nunez_electric_2005}.  In addition, EEG has fairly poor spatial resolution, and the tissue which makes up the brain conducts electrical signals from many different neuronal sources.  Add the fact that the desired signals are only a small sub scale of all brain activity, and the result is a very low signal to noise ratio.
 
 The number of distinguishable patterns---\emph{brain states}---partially hinges upon classification 
 accuracy [11].  BCIs using binary classifiers in general reach an accuracy of around 90\% [12], 
@@ -93,7 +77,7 @@ of 1 bit /3s.
 Currently, there remains a significant imbalance in bandwidths between a BCI system and its 
 user. Very little useful information is successfully extracted from an acquired neural signal (for 
 reasons explained briefly above), while feedback to the user can present a great deal of 
-information.  Thus in order to enable effective communication in such a noisy, low-bandwidth 
+information.  Typically, the bit-rate of EEG-based BCI has been limited to around 0.5 bit/s \cite{millan2004}.  Thus in order to enable effective communication in such a noisy, low-bandwidth 
 environment, communication aids designed for this environment have to include ways of 
 handling noise and error, while optimizing the use of the available bandwidth.
 
@@ -695,8 +679,7 @@ low bandwidth channels, comparable to those of existing BCI-controlled spellers.
 An ideal BCI keyboard with given our limitation of 0.33 bits/choice would provide 0.33 bit of 
 additional information each choice, with respect to the language model.  A higher order, adaptive 
 language model would allow BinSpell to use bits more efficiently, while adding to a speed up in typing 
-rates.  We intend to further investigate the question of how best to weigh letter-level and word-level $n$- 
-grams, with respect to one another. 
+rates.  We intend to further investigate the question of how best to weigh letter-level and word-level n-grams, with respect to one another. 
 
 Keyboards with static layouts do not incur a penalty (due to scanning time) on the typing speed [16]. 
 Static layouts allow users to develop strategies which facilitate their learning the keyboard, thus 
@@ -708,5 +691,8 @@ dynamic approach would reduce the amount of searching done by the user, and allo
 strategies associated with static interfaces. 
 
 We also intend to test the performance of BinSpell with a BCI.
+
+\bibliography{biblio}
+\bibliographystyle{ieeepes}
 
 \end{document}
