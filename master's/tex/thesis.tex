@@ -10,12 +10,12 @@
 
 \begin{document}
 
-\title{Design of a BCI-Controlled Virtual Keyboard for a Noisy Environment and Limited Bandwidth} % Insert title
+\title{A Virtual Keyboard Design for Noisy Input and Limited Bandwidth} % Insert title
 \author{Tamara Blain}
 \maketitle
 
 \begin{abstract}
-This master's report addresses the problem of making effective BCI-controlled communication possible, given error and extremely low bandwidth.
+This master's report addresses the problem of making BCI-controlled communication possible, given a high error-rate and extremely low bandwidth.
 
 Brain computer interfaces (BCI) afford individuals with severe neuro-muscular impairments, direct neural control of external devices, with those enabling communication being among the most critical.  There are a variety approaches to the recording of brain activity, which can also serve as direct control and communication pathways from the brain to external devices.  We choose here to focus on electroencephalography (EEG)-controlled BCI.
 
@@ -510,7 +510,12 @@ the error-rates.
 
 \section{Discussion}
 
-Performance in BCI controlled applications is usually reported as theoretical performance or performance with regards to an application \cite{wolpaw_braincomputer_2002}.  With regard to virtual keyboards, performance is often determined according to speed, and measured in chars/min \cite{blankertz_berlin_2006} \cite{donchin_mental_2000} \cite{wolpaw_braincomputer_2002}.  Theoretically, performance in a communication system is calculated as information transfer rate, and measured in bits/s \cite{wolpaw_braincomputer_2002}.  In this section, we discuss the performance of BinSpell with respect to both metrics.  We follow this with comparisons of BinSpell with other virtual keyboards, using the metrics they have reported.
+Performance in BCI controlled applications is usually reported as theoretical performance or performance with regards to an application \cite{wolpaw_braincomputer_2002}.  With regard to virtual keyboards, performance is often determined according to speed, and measured in chars/min \cite{blankertz_berlin_2006} \cite{donchin_mental_2000} \cite{wolpaw_braincomputer_2002}.  Theoretically, performance in a communication system is calculated as information transfer rate (ITR), and measured in bits/s \cite{wolpaw_braincomputer_2002}.  In this section, we discuss the performance of BinSpell with respect to both metrics.  We follow this with comparisons of BinSpell with other virtual keyboards, using the metrics they have reported.  The formula for number of bits per trial is given as \cite{mcfarland2003brain}:
+
+$ $ \[ \begin{equation}
+	B = log_2 N + P log2P + (1-P)log_2[(1-P)/(N-1)]\tag{7}
+\end{equation} \] $ $
+where N is the number of choices available (2 in our case), and P is the accuracy.  The bit rate is then calculated as B divided by the trial length \cite{wolpaw_braincomputer_2002} \cite{mcfarland2003brain} \cite{millan2004}.
 
 \subsection{Absolute Performance}
 
@@ -524,6 +529,8 @@ also mean more opportunity for error to occur, also reducing the typing speed.
 
 Redundancy is a simple information theoretic tool used for the detection and correction of noise.  Thresholding is intended to introduce the redundancy intended to help deal with classifier error.  Setting the thresholding value equal to the classifier accuracy does away with the redundancy, placing too much confidence in the classifier.
 
+Theoretically, with 0.2 error-rate and using Equation 7, we calculate a bit-rate of 
+
 We calculate the fraction of symbols output that are deletes as the error-rate of BinSpell.  For a classifier error-rate of 0.2, BinSpell's error rate is 0.1.  For a binary choice, 90\% accuracy is a significant improvement.  
 
 The pattern in the variation of the times to type each phrase, can be explained by 
@@ -535,14 +542,6 @@ dictionary.  The pattern also reflects a need for higher order $n$-grams, in ord
 discriminate between words.
 
 \subsection{Relative Performance}
-
-\begin{figure}[h]
-\begin{center}
-	\includegraphics[scale=0.40]{fig12.jpg}
-	\captionof{figure}{Information transfer rate in bits/selection and bits/min. $N$ is the number of possible choices. Shown only for accuracy greater than chance. }
-	\label{fig:itrvsacc}
-\end{center}
-\end{figure}
 
 \subsubsection{Circ-O-Spell vs.\ Hex-O-Spell}
 
@@ -572,6 +571,14 @@ in time, due to the  lengthy rotation is necessary to return to the desired loca
 
 
 \subsection{Additional Advantages}
+
+\begin{figure}[t]
+\begin{center}
+	\includegraphics[scale=0.75]{fig12.jpg}
+	\captionof{figure}{Information transfer rate in bits/selection and bits/min. $N$ is the number of possible choices. Shown only for accuracy greater than chance. }
+	\label{fig:itrvsacc}
+\end{center}
+\end{figure}
 
 \subsubsection{P300}
 
@@ -618,18 +625,7 @@ the BCI training time as well.
 One of the aims of research into BCI typing designs is to reduce the cognitive load on the user.  Dasher's zooming interface requires greater intense sustained attention and control for 
 holding a mouse pointer steady than is required by most BCI target acquisition tasks \cite{felton2007neural}.
 
-\section{Conclusion}
-
-We have presented a virtual keyboard designed for effective control in a severely noisy and
-bandwidth-limited environment.  We borrow from machine learning and  information theory, in 
-order to minimize the adverse effects of the low signal to noise ratio inherent in EEG signals, 
-and the limitations of an inaccurate classifier, thus allowing communication.  We argue that our 
-design is better suited for noisy, bandwidth-limited communication than existing virtual 
-keyboards. Our results suggest that it is possible to enable communication rates over extremely 
-low bandwidth channels, comparable to those of existing BCI-controlled spellers.
-
-
-\subsection{Improving BinSpell and Future Work}
+\section{Improving BinSpell and Future Work}
 
 An ideal BCI keyboard with given our limitation of 0.33 bits/choice would provide 0.33 bit of 
 additional information each choice, with respect to the language model.  A higher order, adaptive 
@@ -646,6 +642,16 @@ dynamic approach would reduce the amount of searching done by the user, and allo
 strategies associated with static interfaces. 
 
 We also intend to test the performance of BinSpell with a BCI.
+
+\section{Conclusion}
+
+We have presented a virtual keyboard designed for effective control in a severely noisy and
+bandwidth-limited environment.  We borrow from machine learning and  information theory, in 
+order to minimize the adverse effects of the low signal to noise ratio inherent in EEG signals, 
+and the limitations of an inaccurate classifier, thus allowing communication.  We argue that our 
+design is better suited for noisy, bandwidth-limited communication than existing virtual 
+keyboards. Our results suggest that it is possible to enable communication rates over extremely 
+low bandwidth channels, comparable to those of existing BCI-controlled spellers.
 
 \bibliography{biblio}
 \bibliographystyle{ieeepes}

@@ -3,45 +3,45 @@ The top-level auxiliary file: thesis.aux
 The style file: ieeepes.bst
 Database file #1: biblio.bib
 Warning--empty year in blankertz_advanced
-You've used 15 entries,
+You've used 29 entries,
             1821 wiz_defined-function locations,
-            547 strings with 7049 characters,
-and the built_in function-call counts, 3670 in all, are:
-= -- 299
-> -- 193
-< -- 2
-+ -- 70
-- -- 55
-* -- 319
-:= -- 580
-add.period$ -- 16
-call.type$ -- 15
-change.case$ -- 14
+            628 strings with 9737 characters,
+and the built_in function-call counts, 6933 in all, are:
+= -- 584
+> -- 328
+< -- 4
++ -- 121
+- -- 92
+* -- 603
+:= -- 1078
+add.period$ -- 30
+call.type$ -- 29
+change.case$ -- 28
 chr.to.int$ -- 0
-cite$ -- 16
-duplicate$ -- 156
-empty$ -- 352
-format.name$ -- 55
-if$ -- 817
+cite$ -- 30
+duplicate$ -- 297
+empty$ -- 682
+format.name$ -- 92
+if$ -- 1552
 int.to.chr$ -- 0
-int.to.str$ -- 15
-missing$ -- 16
-newline$ -- 77
-num.names$ -- 14
-pop$ -- 51
+int.to.str$ -- 29
+missing$ -- 31
+newline$ -- 146
+num.names$ -- 27
+pop$ -- 91
 preamble$ -- 1
 purify$ -- 0
 quote$ -- 0
-skip$ -- 64
+skip$ -- 122
 stack$ -- 0
-substring$ -- 225
-swap$ -- 42
-text.length$ -- 2
+substring$ -- 458
+swap$ -- 78
+text.length$ -- 4
 text.prefix$ -- 0
 top$ -- 0
 type$ -- 0
 warning$ -- 1
-while$ -- 26
-width$ -- 17
-write$ -- 160
+while$ -- 54
+width$ -- 31
+write$ -- 310
 (There was 1 warning)
