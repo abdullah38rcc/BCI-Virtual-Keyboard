@@ -1,4 +1,4 @@
-This is pdfTeXk, Version 3.141592-1.40.3 (Web2C 7.5.6) (format=pdflatex 2009.12.19)  20 DEC 2009 14:58
+This is pdfTeXk, Version 3.141592-1.40.3 (Web2C 7.5.6) (format=pdflatex 2009.12.19)  20 DEC 2009 18:51
 entering extended mode
  %&-line parsing enabled.
 **\nonstopmode \input{"/home/spidermumbai/virtKeyBoard/BCI-Virtual-Keyboard/mas
@@ -270,78 +270,12 @@ LaTeX Font Info:    Try loading font information for U+msb on input line 15.
 File: umsb.fd 2002/01/19 v2.2g AMS font definitions
 ) [1
 
-{/var/lib/texmf/fonts/map/pdftex/updmap/pdftex.map}]
-
-LaTeX Warning: Citation `nunez_electric_2005' on page 1 undefined on input line
- 22.
-
-
-LaTeX Warning: Citation `tatum2007handbook' on page 1 undefined on input line 2
-2.
-
-
-LaTeX Warning: Citation `nunez_electric_2005' on page 1 undefined on input line
- 22.
-
-
-LaTeX Warning: Citation `lotte_review_2007' on page 1 undefined on input line 2
-6.
-
-
-LaTeX Warning: Citation `millan2004' on page 1 undefined on input line 27.
-
-
-LaTeX Warning: Citation `lotte_review_2007' on page 1 undefined on input line 3
-0.
-
-[1]
-
-LaTeX Warning: Citation `lotte_review_2007' on page 1 undefined on input line 5
-3.
-
-
-LaTeX Warning: Citation `nunez_electric_2005' on page 1 undefined on input line
- 53.
-
-
-LaTeX Warning: Citation `tatum2007handbook' on page 1 undefined on input line 5
-3.
-
-
-LaTeX Warning: Citation `nunez_electric_2005' on page 1 undefined on input line
- 53.
-
-
-LaTeX Warning: Citation `millan2004' on page 1 undefined on input line 58.
-
-
-LaTeX Warning: Citation `lotte_review_2007' on page 1 undefined on input line 6
-1.
-
-
-LaTeX Warning: Citation `molina_direct' on page 1 undefined on input line 70.
-
-
-LaTeX Warning: Citation `lotte_review_2007' on page 1 undefined on input line 7
-0.
-
-
-LaTeX Warning: Citation `lotte_review_2007' on page 1 undefined on input line 7
-0.
-
-[1]
-
-LaTeX Warning: Citation `blankertz_advanced' on page 2 undefined on input line 
-75.
-
+{/var/lib/texmf/fonts/map/pdftex/updmap/pdftex.map}] [1] [1]
 <Figure1.jpg, id=16, 561.0561pt x 480.5955pt>
 File: Figure1.jpg Graphic file (type jpg)
- <use Figure1.jpg>
-
-LaTeX Warning: Citation `_next_????' on page 2 undefined on input line 97.
-
-[2 </home/spidermumbai/virtKeyBoard/BCI-Virtual-Keyboard/master's/tex/Figure1.j
-pg>] <Figure2.jpeg, id=20, 477.785pt x 477.785pt>
+ <use Figure1.jpg> [2 </home/spidermumbai/virtKeyBoard/BCI-Virtual-Keyboard/mas
+ter's/tex/Figure1.jpg>]
+<Figure2.jpeg, id=20, 477.785pt x 477.785pt>
 File: Figure2.jpeg Graphic file (type jpg)
  <use Figure2.jpeg> [3]
 <figure3.jpeg, id=25, 4846.105pt x 1265.72874pt>
@@ -420,9 +354,12 @@ dermumbai/virtKeyBoard/BCI-Virtual-Keyboard/master's/tex/AutoProjTime_80.jpg> <
 ProjTime_90.jpg>] <fig12.jpg, id=87, 251.4996pt x 235.6002pt>
 File: fig12.jpg Graphic file (type jpg)
  <use fig12.jpg>
+
+LaTeX Warning: `h' float specifier changed to `ht'.
+
 [14 </home/spidermumbai/virtKeyBoard/BCI-Virtual-Keyboard/master's/tex/ProjType
-SpeedComp.jpg> </home/spidermumbai/virtKeyBoard/BCI-Virtual-Keyboard/master's/t
-ex/fig12.jpg>] [15] [16]
+SpeedComp.jpg>] [15 </home/spidermumbai/virtKeyBoard/BCI-Virtual-Keyboard/maste
+r's/tex/fig12.jpg>] [16]
 (/home/spidermumbai/virtKeyBoard/BCI-Virtual-Keyboard/master's/tex/thesis.bbl
 
 ! LaTeX Error: Command \quotesinglbase unavailable in encoding OT1.
@@ -443,7 +380,7 @@ File: omscmr.fd 1999/05/25 v2.5h Standard LaTeX font definitions
 )
 LaTeX Font Info:    Font shape `OMS/cmr/m/it' in size <12> not available
 (Font)              Font shape `OMS/cmsy/m/n' tried instead on input line 30.
-
+ [17]
 ! Missing $ inserted.
 <inserted text> 
                 $
@@ -494,35 +431,512 @@ you forgot something else, as in `\hbox{$x}'. In such cases
 the way to recover is to insert both the forgotten and the
 deleted material, e.g., by typing `I$}'.
 
-) [17]
-(/home/spidermumbai/virtKeyBoard/BCI-Virtual-Keyboard/master's/tex/thesis.aux)
 
-LaTeX Warning: There were undefined references.
+! LaTeX Error: Command \quotesinglbase unavailable in encoding OT1.
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.49 \newblock ``Brainâ
+                       €“computer interfaces for communication and control'',
+Your command was ignored.
+Type  I <command> <return>  to replace it with another command,
+or  <return>  to continue without it.
 
 
-LaTeX Warning: Label(s) may have changed. Rerun to get cross-references right.
+! LaTeX Error: Command \quotesinglbase unavailable in encoding OT1.
 
- ) 
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.50 ...europhysiology}, vol. 113, no. 6, pp. 767â
+                                                  €“791, 2002.
+Your command was ignored.
+Type  I <command> <return>  to replace it with another command,
+or  <return>  to continue without it.
+
+
+Underfull \hbox (badness 1661) in paragraph at lines 47--51
+[]\OT1/cmr/m/n/12 J. R Wol-paw, N. Bir-baumer, D. J Mc-Far-land, G. Pfurtschell
+er, and T. M Vaughan,
+ []
+
+
+! LaTeX Error: Command \quotesinglbase unavailable in encoding OT1.
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.59   1-2, pp. 12â
+                   €“16, 1999.
+Your command was ignored.
+Type  I <command> <return>  to replace it with another command,
+or  <return>  to continue without it.
+
+
+! LaTeX Error: Command \quotesinglbase unavailable in encoding OT1.
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.69 \newblock ``A p300-based brainâ
+                                    €“computer interface: initial tests by {...
+
+Your command was ignored.
+Type  I <command> <return>  to replace it with another command,
+or  <return>  to continue without it.
+
+
+! LaTeX Error: Command \quotesinglbase unavailable in encoding OT1.
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.71 ...europhysiology}, vol. 117, no. 3, pp. 538â
+                                                  €“548, 2006.
+Your command was ignored.
+Type  I <command> <return>  to replace it with another command,
+or  <return>  to continue without it.
+
+LaTeX Font Info:    Font shape `OMS/cmr/m/n' in size <12> not available
+(Font)              Font shape `OMS/cmsy/m/n' tried instead on input line 74.
+! Missing $ inserted.
+<inserted text> 
+                $
+l.74 E.~W Sellers, A.~K{\textbackslash}Ã
+                                        ¼bler, and E.~Donchin,
+I've inserted a begin-math/end-math symbol since I think
+you left one out. Proceed, with fingers crossed.
+
+! Extra }, or forgotten $.
+<recently read> }
+                 
+l.74 E.~W Sellers, A.~K{\textbackslash}Ã
+                                        ¼bler, and E.~Donchin,
+I've deleted a group-closing symbol because it seems to be
+spurious, as in `$x}$'. But perhaps the } is legitimate and
+you forgot something else, as in `\hbox{$x}'. In such cases
+the way to recover is to insert both the forgotten and the
+deleted material, e.g., by typing `I$}'.
+
+
+LaTeX Warning: Command \textordmasculine invalid in math mode on input line 74.
+
+
+
+LaTeX Warning: Command \quotesinglbase invalid in math mode on input line 75.
+
+
+! LaTeX Error: Command \quotesinglbase unavailable in encoding OT1.
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.75 \newblock ``Brainâ
+                       €“computer interface research at the university of south
+
+Your command was ignored.
+Type  I <command> <return>  to replace it with another command,
+or  <return>  to continue without it.
+
+
+LaTeX Warning: Command \" invalid in math mode on input line 75.
+
+! Please use \mathaccent for accents in math mode.
+\add@accent ...@spacefactor \spacefactor }\accent 
+                                                  #1 #2\egroup \spacefactor ...
+l.75 \newblock ``Brainâ€
+                        “computer interface research at the university of south
+I'm changing \accent to \mathaccent here; wish me luck.
+(Accents are not the same in formulas as they are in text.)
+
+! You can't use `\spacefactor' in math mode.
+\add@accent ...}\accent #1 #2\egroup \spacefactor 
+                                                  \accent@spacefactor 
+l.75 \newblock ``Brainâ€
+                        “computer interface research at the university of south
+Sorry, but I'm not programmed to handle this case;
+I'll just pretend that you didn't ask for it.
+If you're in the wrong mode, you might be able to
+return to the right one by typing `I}' or `I$' or `I\par'.
+
+
+LaTeX Warning: Command \` invalid in math mode on input line 75.
+
+! Please use \mathaccent for accents in math mode.
+\add@accent ...@spacefactor \spacefactor }\accent 
+                                                  #1 #2\egroup \spacefactor ...
+l.75 \newblock ``Brainâ€“
+                         computer interface research at the university of south
+I'm changing \accent to \mathaccent here; wish me luck.
+(Accents are not the same in formulas as they are in text.)
+
+! Missing { inserted.
+<to be read again> 
+                   \begingroup 
+l.75 \newblock ``Brainâ€“
+                         computer interface research at the university of south
+A left brace was mandatory here, so I've put one in.
+You might want to delete and/or insert some corrections
+so that I will find a matching right brace soon.
+(If you're confused by all this, try typing `I}' now.)
+
+
+LaTeX Warning: Command \i invalid in math mode on input line 75.
+
+! You can't use `\spacefactor' in math mode.
+\add@accent ...}\accent #1 #2\egroup \spacefactor 
+                                                  \accent@spacefactor 
+l.75 \newblock ``Brainâ€“
+                         computer interface research at the university of south
+Sorry, but I'm not programmed to handle this case;
+I'll just pretend that you didn't ask for it.
+If you're in the wrong mode, you might be able to
+return to the right one by typing `I}' or `I$' or `I\par'.
+
+
+LaTeX Font Warning: Command \em invalid in math mode on input line 77.
+
+
+! LaTeX Error: Command \itshape invalid in math mode.
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.77 \newblock {\em
+                    Biomed. Eng}, vol. 51, no. 4, pp. 647â€“656, 2004.
+Please use the math alphabet \mathit instead of the \itshape command. 
+
+
+LaTeX Warning: Command \quotesinglbase invalid in math mode on input line 77.
+
+
+! LaTeX Error: Command \quotesinglbase unavailable in encoding OT1.
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.77 ...\em Biomed. Eng}, vol. 51, no. 4, pp. 647â
+                                                  €“656, 2004.
+Your command was ignored.
+Type  I <command> <return>  to replace it with another command,
+or  <return>  to continue without it.
+
+
+LaTeX Warning: Command \" invalid in math mode on input line 77.
+
+! Please use \mathaccent for accents in math mode.
+\add@accent ...@spacefactor \spacefactor }\accent 
+                                                  #1 #2\egroup \spacefactor ...
+l.77 ...em Biomed. Eng}, vol. 51, no. 4, pp. 647â€
+                                                  “656, 2004.
+I'm changing \accent to \mathaccent here; wish me luck.
+(Accents are not the same in formulas as they are in text.)
+
+! You can't use `\spacefactor' in math mode.
+\add@accent ...}\accent #1 #2\egroup \spacefactor 
+                                                  \accent@spacefactor 
+l.77 ...em Biomed. Eng}, vol. 51, no. 4, pp. 647â€
+                                                  “656, 2004.
+Sorry, but I'm not programmed to handle this case;
+I'll just pretend that you didn't ask for it.
+If you're in the wrong mode, you might be able to
+return to the right one by typing `I}' or `I$' or `I\par'.
+
+
+LaTeX Warning: Command \` invalid in math mode on input line 77.
+
+! Please use \mathaccent for accents in math mode.
+\add@accent ...@spacefactor \spacefactor }\accent 
+                                                  #1 #2\egroup \spacefactor ...
+l.77 ...m Biomed. Eng}, vol. 51, no. 4, pp. 647â€“
+                                                  656, 2004.
+I'm changing \accent to \mathaccent here; wish me luck.
+(Accents are not the same in formulas as they are in text.)
+
+! Missing { inserted.
+<to be read again> 
+                   \begingroup 
+l.77 ...m Biomed. Eng}, vol. 51, no. 4, pp. 647â€“
+                                                  656, 2004.
+A left brace was mandatory here, so I've put one in.
+You might want to delete and/or insert some corrections
+so that I will find a matching right brace soon.
+(If you're confused by all this, try typing `I}' now.)
+
+
+LaTeX Warning: Command \i invalid in math mode on input line 77.
+
+! You can't use `\spacefactor' in math mode.
+\add@accent ...}\accent #1 #2\egroup \spacefactor 
+                                                  \accent@spacefactor 
+l.77 ...m Biomed. Eng}, vol. 51, no. 4, pp. 647â€“
+                                                  656, 2004.
+Sorry, but I'm not programmed to handle this case;
+I'll just pretend that you didn't ask for it.
+If you're in the wrong mode, you might be able to
+return to the right one by typing `I}' or `I$' or `I\par'.
+
+! Missing $ inserted.
+<inserted text> 
+                $
+l.78 
+     
+I've inserted a begin-math/end-math symbol since I think
+you left one out. Proceed, with fingers crossed.
+
+! Missing } inserted.
+<inserted text> 
+                }
+l.78 
+     
+I've inserted something that you may have forgotten.
+(See the <inserted text> above.)
+With luck, this will get me unwedged. But if you
+really didn't forget anything, try typing `2' now; then
+my insertion and my current dilemma will both disappear.
+
+! Missing } inserted.
+<inserted text> 
+                }
+l.78 
+     
+I've inserted something that you may have forgotten.
+(See the <inserted text> above.)
+With luck, this will get me unwedged. But if you
+really didn't forget anything, try typing `2' now; then
+my insertion and my current dilemma will both disappear.
+
+! Missing } inserted.
+<inserted text> 
+                }
+l.78 
+     
+I've inserted something that you may have forgotten.
+(See the <inserted text> above.)
+With luck, this will get me unwedged. But if you
+really didn't forget anything, try typing `2' now; then
+my insertion and my current dilemma will both disappear.
+
+Missing character: There is no ç in font cmex10!
+Missing character: There is no è in font cmex10!
+Missing character: There is no ç in font cmex10!
+Missing character: There is no è in font cmex10!
+
+Overfull \hbox (599.42812pt too wide) in paragraph at lines 74--78
+[]\OT1/cmr/m/n/12 E. W Sell-ers, A. K\OMS/cmsy/m/n/12 n$[] []\OML/cmm/m/it/12 b
+ler; andE: []Donchin;  \OT1/cmr/m/n/12 \\OML/cmm/m/it/12 Brain[][]$ 
+ []
+
+! Missing $ inserted.
+<inserted text> 
+                $
+l.86 ...ge, M.~Krauledat, M.~Schr{\textbackslash}Ã
+                                                  ¶der,
+I've inserted a begin-math/end-math symbol since I think
+you left one out. Proceed, with fingers crossed.
+
+! Extra }, or forgotten $.
+<recently read> }
+                 
+l.86 ...ge, M.~Krauledat, M.~Schr{\textbackslash}Ã
+                                                  ¶der,
+I've deleted a group-closing symbol because it seems to be
+spurious, as in `$x}$'. But perhaps the } is legitimate and
+you forgot something else, as in `\hbox{$x}'. In such cases
+the way to recover is to insert both the forgotten and the
+deleted material, e.g., by typing `I$}'.
+
+
+LaTeX Warning: Command \textbackslash invalid in math mode on input line 87.
+
+
+LaTeX Warning: Command \textbackslash invalid in math mode on input line 87.
+
+
+LaTeX Warning: Command \textordmasculine invalid in math mode on input line 87.
+
+
+
+LaTeX Font Warning: Command \em invalid in math mode on input line 90.
+
+
+! LaTeX Error: Command \itshape invalid in math mode.
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.90 \newblock in {\em
+                       Proceedings of the 3rd International {Brain-Computer}
+Please use the math alphabet \mathit instead of the \itshape command. 
+
+
+LaTeX Warning: Command \quotesinglbase invalid in math mode on input line 91.
+
+
+! LaTeX Error: Command \quotesinglbase unavailable in encoding OT1.
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.91 ...rkshop and Training Course}, 2006, p. 108â
+                                                  €“109.
+Your command was ignored.
+Type  I <command> <return>  to replace it with another command,
+or  <return>  to continue without it.
+
+
+LaTeX Warning: Command \" invalid in math mode on input line 91.
+
+! Please use \mathaccent for accents in math mode.
+\add@accent ...@spacefactor \spacefactor }\accent 
+                                                  #1 #2\egroup \spacefactor ...
+l.91 ...kshop and Training Course}, 2006, p. 108â€
+                                                  “109.
+I'm changing \accent to \mathaccent here; wish me luck.
+(Accents are not the same in formulas as they are in text.)
+
+! You can't use `\spacefactor' in math mode.
+\add@accent ...}\accent #1 #2\egroup \spacefactor 
+                                                  \accent@spacefactor 
+l.91 ...kshop and Training Course}, 2006, p. 108â€
+                                                  “109.
+Sorry, but I'm not programmed to handle this case;
+I'll just pretend that you didn't ask for it.
+If you're in the wrong mode, you might be able to
+return to the right one by typing `I}' or `I$' or `I\par'.
+
+
+LaTeX Warning: Command \` invalid in math mode on input line 91.
+
+! Please use \mathaccent for accents in math mode.
+\add@accent ...@spacefactor \spacefactor }\accent 
+                                                  #1 #2\egroup \spacefactor ...
+l.91 ...shop and Training Course}, 2006, p. 108â€“
+                                                  109.
+I'm changing \accent to \mathaccent here; wish me luck.
+(Accents are not the same in formulas as they are in text.)
+
+! Missing { inserted.
+<to be read again> 
+                   \begingroup 
+l.91 ...shop and Training Course}, 2006, p. 108â€“
+                                                  109.
+A left brace was mandatory here, so I've put one in.
+You might want to delete and/or insert some corrections
+so that I will find a matching right brace soon.
+(If you're confused by all this, try typing `I}' now.)
+
+
+LaTeX Warning: Command \i invalid in math mode on input line 91.
+
+! You can't use `\spacefactor' in math mode.
+\add@accent ...}\accent #1 #2\egroup \spacefactor 
+                                                  \accent@spacefactor 
+l.91 ...shop and Training Course}, 2006, p. 108â€“
+                                                  109.
+Sorry, but I'm not programmed to handle this case;
+I'll just pretend that you didn't ask for it.
+If you're in the wrong mode, you might be able to
+return to the right one by typing `I}' or `I$' or `I\par'.
+
+! Missing $ inserted.
+<inserted text> 
+                $
+l.92 
+     
+I've inserted a begin-math/end-math symbol since I think
+you left one out. Proceed, with fingers crossed.
+
+! Missing } inserted.
+<inserted text> 
+                }
+l.92 
+     
+I've inserted something that you may have forgotten.
+(See the <inserted text> above.)
+With luck, this will get me unwedged. But if you
+really didn't forget anything, try typing `2' now; then
+my insertion and my current dilemma will both disappear.
+
+! Missing } inserted.
+<inserted text> 
+                }
+l.92 
+     
+I've inserted something that you may have forgotten.
+(See the <inserted text> above.)
+With luck, this will get me unwedged. But if you
+really didn't forget anything, try typing `2' now; then
+my insertion and my current dilemma will both disappear.
+
+Missing character: There is no ç in font cmex10!
+Missing character: There is no è in font cmex10!
+
+Overfull \hbox (188.19312pt too wide) in paragraph at lines 86--92
+[]\OT1/cmr/m/n/12 B. Blankertz, G. Dorn-hege, M. Kraule-dat, M. Schr\OMS/cmsy/m
+/n/12 n$[] \OML/cmm/m/it/12 @der; J: []Williamson; R: [][]; andK: []RMn[][]ller
+;  \OT1/cmr/m/n/12 \\OML/cmm/m/it/12 Theberlinbrain \OMS/cmsy/m/n/12 ^^@
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 86--92
+\OML/cmm/m/it/12 computerinterfacepresentsthenovelmentaltypewriterhex \OMS/cmsy
+/m/n/12 ^^@ \OML/cmm/m/it/12 o \OMS/cmsy/m/n/12 ^^@
+ []
+
+
+Overfull \hbox (136.88182pt too wide) in paragraph at lines 86--92
+\OML/cmm/m/it/12 spell[];  in[]; \OT1/cmr/m/n/12 2006\OML/cmm/m/it/12 ; p:\OT1/
+cmr/m/n/12 108[][]$ 
+ []
+
+
+! LaTeX Error: Command \quotesinglbase unavailable in encoding OT1.
+
+See the LaTeX manual or LaTeX Companion for explanation.
+Type  H <return>  for immediate help.
+ ...                                              
+                                                  
+l.98   2, pp. 174â
+                  €“179, 2000.
+Your command was ignored.
+Type  I <command> <return>  to replace it with another command,
+or  <return>  to continue without it.
+
+) [18]
+(/home/spidermumbai/virtKeyBoard/BCI-Virtual-Keyboard/master's/tex/thesis.aux) 
+) 
 Here is how much of TeX's memory you used:
- 2952 strings out of 94074
- 40863 string characters out of 1165152
+ 2963 strings out of 94074
+ 41103 string characters out of 1165152
  95542 words of memory out of 1500000
- 6181 multiletter control sequences out of 10000+50000
+ 6192 multiletter control sequences out of 10000+50000
  12759 words of font info for 49 fonts, out of 1200000 for 2000
  645 hyphenation exceptions out of 8191
  36i,10n,38p,977b,275s stack positions out of 5000i,500n,6000p,200000b,5000s
-</usr/share/texmf-texlive/fonts/type1/bluesky/cm/cmbx12.pfb></usr/share/texmf
--texlive/fonts/type1/bluesky/cm/cmex10.pfb></usr/share/texmf-texlive/fonts/type
-1/bluesky/cm/cmmi12.pfb></usr/share/texmf-texlive/fonts/type1/bluesky/cm/cmmi8.
-pfb></usr/share/texmf-texlive/fonts/type1/bluesky/cm/cmr10.pfb></usr/share/texm
-f-texlive/fonts/type1/bluesky/cm/cmr12.pfb></usr/share/texmf-texlive/fonts/type
-1/bluesky/cm/cmr17.pfb></usr/share/texmf-texlive/fonts/type1/bluesky/cm/cmr8.pf
-b></usr/share/texmf-texlive/fonts/type1/bluesky/cm/cmsy10.pfb></usr/share/texmf
--texlive/fonts/type1/bluesky/cm/cmsy8.pfb></usr/share/texmf-texlive/fonts/type1
-/bluesky/cm/cmti12.pfb>
-Output written on thesis.pdf (19 pages, 2165036 bytes).
+</usr/share/texmf-texlive/fonts/type1/bluesky/cm/cmbx12.pfb></usr/share/texmf-
+texlive/fonts/type1/bluesky/cm/cmex10.pfb></usr/share/texmf-texlive/fonts/type1
+/bluesky/cm/cmmi12.pfb></usr/share/texmf-texlive/fonts/type1/bluesky/cm/cmmi8.p
+fb></usr/share/texmf-texlive/fonts/type1/bluesky/cm/cmr10.pfb></usr/share/texmf
+-texlive/fonts/type1/bluesky/cm/cmr12.pfb></usr/share/texmf-texlive/fonts/type1
+/bluesky/cm/cmr17.pfb></usr/share/texmf-texlive/fonts/type1/bluesky/cm/cmr8.pfb
+></usr/share/texmf-texlive/fonts/type1/bluesky/cm/cmsy10.pfb></usr/share/texmf-
+texlive/fonts/type1/bluesky/cm/cmsy8.pfb></usr/share/texmf-texlive/fonts/type1/
+bluesky/cm/cmti12.pfb>
+Output written on thesis.pdf (20 pages, 2175152 bytes).
 PDF statistics:
- 136 PDF objects out of 1000 (max. 8388607)
+ 139 PDF objects out of 1000 (max. 8388607)
  0 named destinations out of 1000 (max. 131072)
  106 words of extra memory for PDF output out of 10000 (max. 10000000)
 
