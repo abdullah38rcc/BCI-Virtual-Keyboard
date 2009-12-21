@@ -194,27 +194,27 @@ P300 typing speed, of up to $16.67$~chars/min \cite{wolpaw_braincomputer_2002}. 
 
 Hex-O-Spell keyboard layout is comprised of $6$ hexagonal fields surrounding a circle, each containing 
 $5$ characters (figure~\ref{fig:Hex}).  The center of the circle contains an arrow used to make selections.  A language 
-model determines how the letters are arranged within each hexagon [6].
+model determines how the letters are arranged within each hexagon \cite{blankertz_berlin_2006}.
 
-Hex-O-Spell is mentally controlled by imagined right hand and foot movements [7].  Imagined right 
+Hex-O-Spell is mentally controlled by imagined right hand and foot movements \cite{blankertz_advanced}.  Imagined right 
 hand movement effects a clockwise rotation of the arrow in the center of the circle.  Imagined right foot 
-movement ceases rotation, and causes the arrow to extend towards a hexagon [7].  Selection of a 
+movement ceases rotation, and causes the arrow to extend towards a hexagon \cite{williamson_designing_2009}.  Selection of a 
 hexagon is caused by sustained right foot motor imagery, and causes all other hexagons to be 
-cleared [7].  The 5 characters in the chosen hexagon are then redistributed among the empty hexagons, 
-and the arrow is reset to its minimal length [7].  Parameters such as the arrow turning and growing 
+cleared \cite{williamson_designing_2009}.  The 5 characters in the chosen hexagon are then redistributed among the empty hexagons, 
+and the arrow is reset to its minimal length \cite{williamson_designing_2009}.  Parameters such as the arrow turning and growing 
 speeds can be tailored to the user.
 
-Hex-O-Spell [26], [27] is controlled by the Berlin Brain Computer Interface (BBCI).  The BBCI is an EEG-based
-system which decodes motor imagery without subject training [28].  Much of the  focus 
+Hex-O-Spell is controlled by the Berlin Brain Computer Interface (BBCI), an EEG-based
+system which decodes motor imagery without subject training \cite{schalk_bci2000:general-purpose_2004}.  Much of the  focus 
 concerning the improvement of Hex-O-Spell, has been on the improvement of the front end.  The 
 relationship between control, action, and belief were considered in its design, as was the ``cost'' of an 
-action [7].  The language model used by Hex,  its use of machine learning techniques and its ability to 
-operate at high decision speeds, affords high quality feedback to the user. [29] reports 98\% accuracy at 
-an average speed of $1$~decision every  $2.1$~s.
+action \cite{williamson_designing_2009}.  It The language model used by Hex, its use of machine learning techniques and its ability to 
+operate at high decision speeds, affords high quality feedback to the user \cite{blankertz_advanced}. \cite{blankertz_advanced} reports 98\% accuracy at 
+an average speed of $1$~decision every  $2.1$~s and a peak ITR of $22.1$ bits/s.
 
 Hex-O-Spell was tested with two subjects who had no training on the BBCI, and who had very little 
-experience with the keyboard [7].  The achieved typing speeds were between $2.3$ and $5$ chars/min for 
-one subject, and between $4.6$ and $7.6$ char/min for the other, for error-free completed phrases [6].
+experience with the keyboard \cite{blankertz_berlin_2006}.  The achieved typing speeds were between $2.3$ and $5$ chars/min for 
+one subject, and between $4.6$ and $7.6$ char/min for the other, for error-free completed phrases \cite{blankertz_berlin_2006}.
 
 \subsection{Dasher}
 
@@ -224,12 +224,11 @@ letters with the largest probabilities given the output text will be more easily
 predictions are correct, sequences of letters can be chosen quickly with a continous gesture.
 
 Dasher was designed as an alternative to the standard keyboard, and designed to be used with any input 
-methods.  It uses a sextuplet-gram language model to accurately predict letters contextually [8]. The 
+methods.  It uses a sextuplet-gram language model to accurately predict letters contextually \cite{mackay_dasherefficient_2003}. The 
 language model can be trained on any text, making it biased towards the set of words and phrases the 
-user is most likely to use [9].  With error-free, binary input, Dasher can emit text at a rate of $1$ character 
-every $1$ bits [9].  Spelling rates of up to $14.4$ chars/min have been reported with BCI-controlled Dasher [10], 
+user is most likely to use \cite{wills_dasher-efficient_2006}.  With error-free, binary input, Dasher can emit text at a rate of $1$ character 
+every $1$ bits \cite{mackay_dasherefficient_2003}.  Spelling rates of up to $14.4$ chars/min have been reported with BCI-controlled Dasher \cite{felton2007neural}, 
 with an average of $\sim5.6$ chars/min.
-
 
 \section{Our Approach}
 
@@ -241,12 +240,9 @@ with an average of $\sim5.6$ chars/min.
 \end{center}
 \end{figure}
 
-Natural language has a non-uniform information density---the amount of new information 
-communicated by each additional letter is highly dependent on previous letters and context. 
-We use a language model to predict away as much of the redundancy as we can, so that each 
-choice the user makes provides the maximal amount of additional information.
-
 \subsection{Circ-O-Spell}
+
+\subsubsection{Design and Operation}
 
 This keyboard is an extension of the Hex-O-Spell keyboard [31].  The hexagonal fields are replaced by 
 circular fields, containing sets of symbols (figure~\ref{fig:CircA}).  Circ-O-Spell is intended to be controlled by the 
@@ -260,20 +256,22 @@ immediately preceding entrance into the new layout.  If the selected circle cont
 that symbol is added to the text box at the top of the window, and the user is returned to a layout where 
 all the letters are presented (figure~\ref{fig:CircD}).
 
-Letter and word frequencies are an important consideration when designing a system for the purpose of 
-enabling communication.  They can be used to calculate probabilities which help capture important 
-properties of language, and allow for prediction of a letter, word, or phrase in a speech sequence.  $n$- 
-grams are groups of letters, words, or phrases of size~$n$, which serve as the basis for many probabilistic 
-language models [32].  $n$-grams do have shortcomings in that they can only capture dependencies within 
-their own length [33].  They cannot explicitly represent any long range dependencies and are thus unable 
-to distinguish them from noise [34].
+\subsubsection*{Implementation Details}
 
-Higher order $n$-grams can provide more information, as they reflect the frequencies of larger units [35] 
-but tend to introduce more sparsity [36].  This sparsity can be resolved, however, with large corpora, 
-smoothing techniques, and the incorporation of contextual information [37], [38], [39].  [40] argues that most letter-level
+Letter and word frequencies are an important consideration when designing a system for the purpose of 
+enabling communication \cite{jones_case-sensitive_2004}.  They can be used to calculate probabilities which help capture important 
+properties of language, and allow for prediction of a letter, word, or phrase in a speech sequence \cite{jones_case-sensitive_2004}.  n- 
+grams are groups of letters, words, or phrases of size~$n$, which serve as the basis for many probabilistic 
+language models \cite{reviewer-lee_review_2000}.  n-grams do have shortcomings in that they can only capture dependencies within 
+their own length \cite{reviewer-lee_review_2000}.  They cannot explicitly represent any long range dependencies and are thus unable 
+to distinguish them from noise \cite{reviewer-lee_review_2000}.
+
+Higher order $n$-grams can provide more information, as they reflect the frequencies of larger units \cite{jones_case-sensitive_2004} 
+but tend to introduce more sparsity \cite{_url.ppt_????}.  This sparsity can be resolved, however, with large corpora, 
+smoothing techniques, and the incorporation of contextual information \cite{curran_very_2002}, \cite{russell_artificial_2002}.  \cite{rawlinson_bigram_1976} argues that most letter-level
 bigram frequency tables reflect unrealistic counts because they do not use the positions of  those 
 bigrams within words as contextual information.  They demonstrate a marked difference in letter 
-bigram frequencies, depending on their positions within words.
+bigram frequencies, depending on their positions within words \cite{rawlinson_bigram_1976}.
 
 \begin{figure}[t]
 \centering
@@ -285,30 +283,31 @@ bigram frequencies, depending on their positions within words.
 \end{figure}
 
 Markov models are models of probabilistic temporal processes, which satisfy the Markov assumption---that
-is, the current state depends only on a finite history of previous states [41].  The order of a Markov 
+is, the current state depends only on a finite history of previous states \cite{russell_artificial_2002}.  The order of a Markov 
 process defines the number of previous states on which the current state is Dependent.  The simplest is 
 the first-order Markov process, which assume that the current state is dependant only on the previous 
-state, not any other earlier states [42].  First-order Markov processes are characterized by their prior
-probabilities, transition models, and emission models.  Borrowing notation from [43], where $X_t$  denotes
+state, not any other earlier states \cite{russell_artificial_2002}.  First-order Markov processes are characterized by their prior
+probabilities, transition models, and emission models.  Borrowing notation from \cite{russell_artificial_2002}, where $X_t$  denotes
 a state variable at time $t$, prior probabilities $P(X_.)$ define the probabilities over the states at the first 
 time step.  The transition model is a conditional distribution $P(X_t | X_{t?1})$  describing how the state 
 evolves over time.  The observation model is also a conditional distribution $P(E_t | X_t)$ which describes 
 the probabilities on the evidence variables $E_t$ , the output, at every time step.  Markov models often 
-make up the formalism behind $n$-gram models used in natural language processing [44], [45]. 
+make up the formalism behind $n$-gram models used in natural language processing \cite{brown_class-based_1992}, \cite{makhoul_state_1995}. 
 Circ-O-Spell uses a first-order Markov Model to attempt to reduce the number of steps needed to make 
 a selection.  We describe our calculations below and use the notation in Table~\ref{table:Not}.
+
 \begin{gather*}
-P(X_0 = x_i) = \frac{\displaystyle \sum_{j=1}^k C_1(x_i x_j)}{\displaystyle \sum_{i=1}^k \sum_{j=1}^k C_1(x_i x_j)} \tag{1} \\
-P(X_1 = x_j | X_0 = x_i) = \frac{C_1(x_i x_j)}{\displaystyle \sum_{i=1}^k \sum_{j=1}^k C_1(x_i x_j)} \tag{2} \\
-P(X_t = x_j | X_{t-1} = x_i) = \frac{C_2(x_i x_j)}{\displaystyle \sum_{i=1}^k \sum{j=1}^k C_2(x_i x_j)} \tag{3}
+P(X_0 = x_i) = \frac{\displaystyle C_1(x_i x_j)}{\displaystyle \sum_{i=1}^k \sum_{j=1}^k C_1(x_i x_j)} \tag{1} \\
+P(X_1 = x_j | X_0 = x_i) = \frac{\displaystyle C_1(x_i x_j)}{\displaystyle C_1(x_i)} \tag{2} \\
+P(X_t = x_j | X_{t-1} = x_i) = \frac{\displaystyle C_2(x_i x_j)}{\displaystyle C_2(x_i)} \tag{3}
 \end{gather*}
 
 The default letter layout is determined by the order of the probabilities calculated by Equation (1). 
 When a circle-set containing the letter of choice is selected, the letter with the highest probability 
-among that set, is highlighted to facilitate faster selection.  The arrangement of the letters after a single 
+among that set, is highlighted in the next layout to facilitate faster selection.  The arrangement of the letters, after a single 
 letter is output into the text box, is determined by Equation (2).  Equation (3) describes the conditional 
-probabilities for any states which follow.  The frequency tables represent bigram frequencies per $1000$ 
-words, of words occurring at least once per million in normal usage, and of more than three letters [46].
+probabilities for each letter in any states which follow.  The frequency tables from which the counts are obtained, represent bigram frequencies per $1000$ 
+words, of words occurring at least once per million in normal usage, and of more than three letters \cite{rawlinson_bigram_1976}.
 
 \subsection{BinSpell}
 
@@ -359,10 +358,10 @@ at the top (Figure~\ref{fig:BinC}).
 
 Huffman coding is an algorithm originally designed for the binary encoding of sequences of ASCII 
 symbols.  It uses each symbol's frequency of occurrence to build up an optimal way of representing that 
-character as a binary string [47].  It works by creating a binary tree of nodes, each of which represents a 
+character as a binary string \cite{cormen_introduction_2001}.  It works by creating a binary tree of nodes, each of which represents a 
 symbol and it's associated probability. The way in which the tree is walked produces codes that 
 represent the symbols.  Thus the least number of bits encode the most commonly used symbols.  It is 
-most commonly used within lossless compression schemes, such as JPEG, or MP3 [48].
+most commonly used within lossless compression schemes, such as JPEG, or MP3 \cite{cormen_introduction_2001}.
 
 We use Huffman coding to determine the members of a box-set,  reducing the number of steps it would 
 take to access the most likely symbols.  Thus, the left and right boxes reflect loosely the left and right 
@@ -389,12 +388,12 @@ states, and no other history.  We calculate prior probabilities, transition prob
 probabilities for both processes and describe them below (notation is in Table~\ref{table:Not}).
 \begin{gather*}
 P(W_0 = w_i) = \frac{C_1^W(w_i)}{\displaystyle \sum_{j=1}^n C_1^W(w_j)} \tag{4} \\
-P(W_t = w_j | W_{t-1} = w_i) = \frac{C_2^W(w_i w_j)}{\displaystyle \sum_{i=1}^n \sum_{j=1}^n C_2^W(w_i w_j)} \tag{5} \\
-P(X_t = x_k | X_{t-1} = x_j, X_{t-2} = x_i) = \frac{C_3^X(x_i x_j x_k)}{\displaystyle \sum_{i=1}^n \sum_{j=1}^n \sum_{k=1}^n C_3^X(x_i x_j x_k)} \tag{6}
+P(W_t = w_j | W_{t-1} = w_i) = \frac{C_2^W(w_i w_j)}{\displaystyle C_2^W(w_i)} \tag{5} \\
+P(X_t = x_k | X_{t-1} = x_j, X_{t-2} = x_i) = \frac{C_3^X(x_i x_j x_k)}{\displaystyle C_3^X(x_i x_j)} \tag{6}
 \end{gather*}
 
 Priors at the letter-level are calculated as in Equation (1), utilizing the same bigram frequency counts 
-used in Circ-O-Spell.  Word-level unigram counts [citation] determine prior probabilities for each word 
+used in Circ-O-Spell.  Word-level unigram counts determine prior probabilities for each word 
 as in Equation (4).  In designing BinSpell, we had to make a choice about how to weigh letter-level and 
 word-level probabilities relative to one another.  For lack of information on how to optimally make this 
 choice, we assigned them equal weight, and put off further investigation of this question, to a future 
@@ -402,13 +401,13 @@ date.  We chose to restrict the number of words presented to the user to 3, and 
 selection below.  Next, the priors of all the letters and words presented are renormalized.  Finally, 
 Huffman coding determines in which box they will be displayed conditional probabilities which 
 determine the state transitions at both levels are calculated after a single symbol has been output.  At 
-the letter level, the distribution over the state is determined by the length of the string of text which has 
+the letter level, the distribution over the state is dependent on the length of the string of text which has 
 been typed.  If a single letter has been typed, the probabilities for  the next letter are calculated 
 according to Equation (2).  If more than one letter has been typed, Equation (6) describes the 
 conditional probabilities associated with letter-level state transitions.
 
 After a whole word has been typed out, the probabilities for the next word are determined by Equation 
-(5).  The last whole word typed is kept track of, with the space character used as a word delimiter.  We 
+(5).  The last whole word typed is stored; the space character being used as a word delimiter.  We 
 should mention here that we adopt a policy of calculating the probability for the delete option 
 dynamically with every state transition.  For lack of access to key logging data, and thus frequency 
 counts for the delete key, we chose to implement a strategy which is intended to facilitate its access, 
@@ -440,10 +439,10 @@ We began by attempting to determine the most effective combination of weights an
 thresholding levels.  For this purpose, we modified BinSpell to include a routine which 
 automates the typing out of text strings.  Strings are parsed  into individual word-tokens, using 
 space as delimiter and words are parsed into character-tokens.  Then character-tokens are 
-passed sequentially, accompanied by the word-token to which they belong  Both boxes of 
+passed sequentially, accompanied by the word-token to which they belong, to a seperate routine, which decides which box to select.  In this routine, both boxes of 
 symbols are checked for the presence of the word first, followed by its accompanying 
-character, and a bit corresponding to each box is sent to BinSpell's state update routine. 
-Misclassification are simulated by the flipping of a bit at error-rates $0.1$, and $0.2$.  A count is 
+character.  A bit corresponding to the box containing either the word or character, is sent to BinSpell's state update routine. 
+Misclassification are simulated by the flipping of a bit at error-rates $0.1$, and $0.2$.  The output text is checked against the original string, each time a symbol is output.  A mismatch causes delete to be output until the output string sequence exactly matches the original string sequence from it's begginning to the length of the output string.  A count is 
 kept of both the number of bits and the number of characters correctly output.  Once a phrase 
 has been typed out completely without error, the number of bits sent is used to calculate a 
 typing speed.  The calculated typing speeds assume 3s per bit.
@@ -523,21 +522,16 @@ results in an increase in the number of decisions necessary to access the symbol
 incurring a penalty on typing speed.  An increase in the number of steps to a given symbol may 
 also mean more opportunity for error to occur, also reducing the typing speed.
 
-Thresholding is intended to minimize the number of incorrect symbols typed due to classifier 
-error.  It is possible that setting the thresholding value equal to the classifier error reduces the 
-amount of redundancy needed to correct the error, resulting in lower performance.
+Redundancy is a simple information theoretic tool used for the detection and correction of noise.  Thresholding is intended to introduce the redundancy intended to help deal with classifier error.  Setting the thresholding value equal to the classifier accuracy does away with the redundancy, placing too much confidence in the classifier.
 
-Redundancy is a tool used in information theory for the detection and correction of noise.  The 
-redundancy introduced by the re-ordering of the symbols is intended minimize the effect of 
-classifier error on the ability to communicate using BCI, but at a sacrifice in speed.  A language 
-model is employed to help counter this trade off, thus enabling communication.
+We calculate the fraction of symbols output that are deletes as the error-rate of BinSpell.  For a classifier error-rate of 0.2, BinSpell's error rate is 0.1.  For a binary choice, 90\% accuracy is a significant improvement.  
 
-The pattern in the variation of the times to type each phrase, can be most likely explained by 
-the presence of a dictionary.  It is likely that each reduction in time corresponds to a phrase 
+The pattern in the variation of the times to type each phrase, can be explained by 
+the presence of a dictionary.  Each reduction in time corresponds to a phrase 
 which contains a significant number of words found in BinSpell's dictionary.  Thus there were 
 more opportunities to suggest the correct word completion, and the number of decisions made 
 to complete the phrase was reduced.  All of the words in the 40-character phrase were in the 
-dictionary.  The pattern may also reflect a need for higher order $n$-grams, in order to better 
+dictionary.  The pattern also reflects a need for higher order $n$-grams, in order to better 
 discriminate between words.
 
 \subsection{Relative Performance}
@@ -550,44 +544,32 @@ discriminate between words.
 \end{center}
 \end{figure}
 
-\subsubsection{BinSpell vs.\ P300}
-
-Although the number of signals evoked through the flashing rows and columns have to be averaged, the P300 virtual keyboard performs signigicantly better than BinSpell.  In terms of typing speed and bit-rate.  But their speed-up is obtained primarily through the reduction of errors which come from the classifier.
-
 \subsubsection{Circ-O-Spell vs.\ Hex-O-Spell}
 
-Circ-O-Spell's primary advantage over Hex-O-Spell is its flexible layout.  The number of 
+Circ-O-Spell was not the focus of this study, although it did provide us with many of the exploratory ideas which led to the development of BinSpell.  Although the symbol layout of both are very similar, Circ-O-Spell's primary advantage over Hex-O-Spell is its flexible layout.  The number of 
 symbols per set is not fixed.  Thus, in the best case scenario, it may only take one bit to select a 
-letter, if a single letter is in a set.  The best case scenario for Hex-O-Spell is 2: one for selection 
-of the set, followed by selection of the character.  In addition, the dynamic layout of Circ-O- 
-Spell, given a robust language model, would facilitate access to the most frequently used 
+letter, if a single letter is in a set; in the worst case it would take 11.  The best case scenario for Hex-O-Spell is 2: one for selection 
+of the set, followed by selection of the character; the worst case also being 11.  In addition, the selection element of Circ-O- 
+Spell, automatically orients itself over the next most probable selection, when a circle set is chosen.  This facilitates access to the most frequently used 
 characters, given the typed context.  Thus, on average, fewer bits would be required for 
 communication.
 
-\subsubsection{BinSpell vs.\ Hex-O-Spell and Dasher}
+\subsubsection{BinSpell vs.\ P300}
 
-There is evidence to suggest that, given a selection task, using standard keyboard  presented 
-less frustration and less visual strain than the use of standard mouse input [53], [54].  Generally, 
-cursors are controlled using several bytes/s.  Thus, using only a fraction of a bit per second, 
-effective control of cursor presents even more challenge to a user.  Addition of an extremely 
-noisy environment would make the cursor unmanageable.  In the same way, control of key- 
-selection elements which required a continuous control process would be difficult to 
-impractical if that control was effected over a low-bandwidth noisy channel.  Thus, BinSpell's 
-lack of reliance on continuous control makes it better suited then keyboards such as Dasher and 
-Hex-O-Spell for such an environment.
+Although the number of signals evoked through the flashing rows and columns have to be averaged, the P300 virtual keyboard performs signigicantly better than BinSpell, in terms of typing speed.  Our increase in accuracy due to redudancy comes with a significant sacrifice in speed.  But their speed-up is obtained primarily through the reduction of errors which come from the classifier.  The speller itself is not designed to handle a noisy environment, and thus would fare worse in performance given our restrictions.
 
-Hex-O-Spell requires a user be able to reliably maintain a state in order to make a selection [7]. 
-But factors such as fatigue and attention level, can cause significant BCI performance 
-drops [10], [11], [12].  Because Hex-O-Spell is designed for binary input, the selection element 
-can only rotate in one direction.  Thus overshooting targets can introduce significant penalties 
-in time, due to the  lengthy rotation is necessary to return to the desired location [7].  BCI 
-control of BinSpell only requires that the user be able to switch states.
+\subsubsection{BinSpell vs Dasher}
 
-It is difficult to control a cursor with a single bit.  Effective cursor control via BCI often 
-requires several hours to weeks of training [13], [14], [10].  Dasher was designed for continuous
-relatively noise-free input.  Given $0.33$ bits/s, and a high error-rate,  BinSpell was designed to 
-enable meaningful communication with extremely limited bandwidth.  Given same bandwidth 
-limitation and noisy environment, Dasher's cursor would become unmanageable.
+Dasher's zooming interface out-performs all existing virtual keyboards (see Table 1), in terms of both bit-rate and typing speed.  But effective control of cursor presents even more challenge to a user, using only a fraction of a bit per second.  Addition of an extremely 
+noisy environment would make the cursor unmanageable, as Dasher was written primarily for relatively noise-free input. As there is no method of compensating for erroneous cursor movement due to classifier error, use of Dasher given $0.33$ bits/s, and a high error-rate, would result in significantly reduced performance.
+
+\subsubsection{BinSpell vs Hex-O-Spell}
+
+Similarly, control of Hex-O-Spell's growing selection arrow, requires a continuous control process which would be difficult to impractical if that control was attempted in the presence of high error-rate.  Also, 
+because Hex-O-Spell is designed for binary input, the selection element 
+can only rotate in one direction.  Thus overshooting targets due to misclassifications can introduce significant penalties 
+in time, due to the  lengthy rotation is necessary to return to the desired location \cite{blankertz_advanced}.  
+
 
 \subsection{Additional Advantages}
 
@@ -596,7 +578,7 @@ limitation and noisy environment, Dasher's cursor would become unmanageable.
 The P300 paradigm places limits on the user in several ways.  The P300's reliance on 
 endogenous signals makes it a strictly synchronous system.  The user is forced to proceed at the 
 pace of the stimuli, and does not have the option of varying the pace at which they proceed.  It 
-relies on a single signal type, which may not be the best suited for the user [15].  Also, P300's 
+relies on a single signal type, which may not be the best suited for the user \cite{wolpaw_braincomputer_2002}.  Also, P300's 
 fixed grid approach means it is not easily modified to include alternate selection options.
 
 In contrast, BinSpell can be extended to work with an asynchronous BCI and any type of BCI 
@@ -615,7 +597,7 @@ to a user communicating with BinSpell in a sub-optimal environment.
 
 \subsubsection{Hex-O-Spell}
 
-Parameters relating to the selection element employed by Hex-O-Spell, have to be tuned to the 
+Parameters relating to the selection growing selection arrow employed by Hex-O-Spell, have to be tuned to the 
 user for optimal performance.  Thus a new user is forced to rely on an outside expert or a 
 trained user in order use Hex-O-Spell optimally.  In contrast, BinSpell requires no extra tuning, 
 which makes it better suited for the general population. 
@@ -627,15 +609,14 @@ plan of BinSpell was designed with this adaptability in mind.
 \subsubsection{Dasher}
 
 Although Dasher offers the highest typing rates, there is a steep learning curve associated with 
-it's control, even by conventional input methods [10].  Additionally, BCI control of continuous 
+it's control, even by conventional input methods \cite{felton2007neural}.  Additionally, BCI control of continuous 
 targets often require significant training time, and often impose significant cognitive load on 
-the user [10].  Training for BinSpell, in comparison, consists of a short explanation on it's 
+the user \cite{felton2007neural}.  Training for BinSpell, in comparison, consists of a short explanation on it's 
 manipulation.  And BinSpell's lack of dependence on a continuous selection element, reduces 
 the BCI training time as well.
 
-One of the aims of research into BCI typing designs is to reduce the cognitive load on the user.
-[50]  Dasher's zooming interface requires greater intense sustained attention and control for 
-holding a mouse pointer steady than is required by most BCI target acquisition tasks.
+One of the aims of research into BCI typing designs is to reduce the cognitive load on the user.  Dasher's zooming interface requires greater intense sustained attention and control for 
+holding a mouse pointer steady than is required by most BCI target acquisition tasks \cite{felton2007neural}.
 
 \section{Conclusion}
 

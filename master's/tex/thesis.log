@@ -1,4 +1,4 @@
-This is pdfTeXk, Version 3.141592-1.40.3 (Web2C 7.5.6) (format=pdflatex 2009.12.19)  20 DEC 2009 18:51
+This is pdfTeXk, Version 3.141592-1.40.3 (Web2C 7.5.6) (format=pdflatex 2009.12.19)  20 DEC 2009 21:10
 entering extended mode
  %&-line parsing enabled.
 **\nonstopmode \input{"/home/spidermumbai/virtKeyBoard/BCI-Virtual-Keyboard/mas
@@ -280,12 +280,92 @@ File: Figure2.jpeg Graphic file (type jpg)
  <use Figure2.jpeg> [3]
 <figure3.jpeg, id=25, 4846.105pt x 1265.72874pt>
 File: figure3.jpeg Graphic file (type jpg)
- <use figure3.jpeg> [4 </home/spidermumbai/virtKeyBoard/BCI-Virtual-Keyboard/ma
-ster's/tex/Figure2.jpeg>]
+ <use figure3.jpeg>
+
+LaTeX Warning: Citation `williamson_designing_2009' on page 4 undefined on inpu
+t line 201.
+
+
+LaTeX Warning: Citation `williamson_designing_2009' on page 4 undefined on inpu
+t line 203.
+
+
+LaTeX Warning: Citation `williamson_designing_2009' on page 4 undefined on inpu
+t line 204.
+
+
+LaTeX Warning: Citation `schalk_bci2000:general-purpose_2004' on page 4 undefin
+ed on input line 208.
+
+
+LaTeX Warning: Citation `williamson_designing_2009' on page 4 undefined on inpu
+t line 211.
+
+[4 </home/spidermumbai/virtKeyBoard/BCI-Virtual-Keyboard/master's/tex/Figure2.j
+peg>]
+
+LaTeX Warning: Citation `mackay_dasherefficient_2003' on page 5 undefined on in
+put line 227.
+
+
+LaTeX Warning: Citation `wills_dasher-efficient_2006' on page 5 undefined on in
+put line 229.
+
+
+LaTeX Warning: Citation `mackay_dasherefficient_2003' on page 5 undefined on in
+put line 230.
+
+
+LaTeX Warning: Citation `felton2007neural' on page 5 undefined on input line 23
+0.
+
 <figure4.jpeg, id=29, 786.94pt x 726.715pt>
 File: figure4.jpeg Graphic file (type jpg)
  <use figure4.jpeg> [5 </home/spidermumbai/virtKeyBoard/BCI-Virtual-Keyboard/ma
 ster's/tex/figure3.jpeg>]
+
+LaTeX Warning: Citation `jones_case-sensitive_2004' on page 6 undefined on inpu
+t line 262.
+
+
+LaTeX Warning: Citation `jones_case-sensitive_2004' on page 6 undefined on inpu
+t line 263.
+
+
+LaTeX Warning: Citation `reviewer-lee_review_2000' on page 6 undefined on input
+ line 265.
+
+
+LaTeX Warning: Citation `reviewer-lee_review_2000' on page 6 undefined on input
+ line 266.
+
+
+LaTeX Warning: Citation `reviewer-lee_review_2000' on page 6 undefined on input
+ line 267.
+
+
+LaTeX Warning: Citation `jones_case-sensitive_2004' on page 6 undefined on inpu
+t line 269.
+
+
+LaTeX Warning: Citation `_url.ppt_????' on page 6 undefined on input line 270.
+
+
+LaTeX Warning: Citation `curran_very_2002' on page 6 undefined on input line 27
+1.
+
+
+LaTeX Warning: Citation `russell_artificial_2002' on page 6 undefined on input 
+line 271.
+
+
+LaTeX Warning: Citation `rawlinson_bigram_1976' on page 6 undefined on input li
+ne 271.
+
+
+LaTeX Warning: Citation `rawlinson_bigram_1976' on page 6 undefined on input li
+ne 274.
+
 <fig4.png, id=34, 403.5075pt x 432.61626pt>
 File: fig4.png Graphic file (type png)
  <use fig4.png>
@@ -297,12 +377,37 @@ File: fig6.png Graphic file (type png)
  <use fig6.png>
 <fig7.png, id=37, 403.5075pt x 432.61626pt>
 File: fig7.png Graphic file (type png)
- <use fig7.png> [6 </home/spidermumbai/virtKeyBoard/BCI-Virtual-Keyboard/master
-'s/tex/figure4.jpeg>] [7 </home/spidermumbai/virtKeyBoard/BCI-Virtual-Keyboard/
-master's/tex/fig4.png> </home/spidermumbai/virtKeyBoard/BCI-Virtual-Keyboard/ma
-ster's/tex/fig5.png> </home/spidermumbai/virtKeyBoard/BCI-Virtual-Keyboard/mast
-er's/tex/fig6.png> </home/spidermumbai/virtKeyBoard/BCI-Virtual-Keyboard/master
-'s/tex/fig7.png>]
+ <use fig7.png>
+
+LaTeX Warning: Citation `russell_artificial_2002' on page 6 undefined on input 
+line 286.
+
+
+LaTeX Warning: Citation `russell_artificial_2002' on page 6 undefined on input 
+line 289.
+
+
+LaTeX Warning: Citation `russell_artificial_2002' on page 6 undefined on input 
+line 290.
+
+
+LaTeX Warning: Citation `brown_class-based_1992' on page 6 undefined on input l
+ine 295.
+
+
+LaTeX Warning: Citation `makhoul_state_1995' on page 6 undefined on input line 
+295.
+
+[6 </home/spidermumbai/virtKeyBoard/BCI-Virtual-Keyboard/master's/tex/figure4.j
+peg>]
+
+LaTeX Warning: Citation `rawlinson_bigram_1976' on page 7 undefined on input li
+ne 310.
+
+[7 </home/spidermumbai/virtKeyBoard/BCI-Virtual-Keyboard/master's/tex/fig4.png>
+ </home/spidermumbai/virtKeyBoard/BCI-Virtual-Keyboard/master's/tex/fig5.png> <
+/home/spidermumbai/virtKeyBoard/BCI-Virtual-Keyboard/master's/tex/fig6.png> </h
+ome/spidermumbai/virtKeyBoard/BCI-Virtual-Keyboard/master's/tex/fig7.png>]
 <fig8.png, id=53, 1214.5375pt x 668.4975pt>
 File: fig8.png Graphic file (type png)
  <use fig8.png>
@@ -311,11 +416,19 @@ File: fig9.png Graphic file (type png)
  <use fig9.png>
 <fig10.png, id=55, 1214.5375pt x 668.4975pt>
 File: fig10.png Graphic file (type png)
- <use fig10.png> [8] [9 </home/spidermumbai/virtKeyBoard/BCI-Virtual-Keyboard/m
-aster's/tex/fig8.png> </home/spidermumbai/virtKeyBoard/BCI-Virtual-Keyboard/mas
-ter's/tex/fig9.png> </home/spidermumbai/virtKeyBoard/BCI-Virtual-Keyboard/maste
-r's/tex/fig10.png>]
-<fig11.jpg, id=65, 327.1422pt x 586.1097pt>
+ <use fig10.png>
+
+LaTeX Warning: Citation `cormen_introduction_2001' on page 8 undefined on input
+ line 361.
+
+
+LaTeX Warning: Citation `cormen_introduction_2001' on page 8 undefined on input
+ line 364.
+
+[8] [9 </home/spidermumbai/virtKeyBoard/BCI-Virtual-Keyboard/master's/tex/fig8.
+png> </home/spidermumbai/virtKeyBoard/BCI-Virtual-Keyboard/master's/tex/fig9.pn
+g> </home/spidermumbai/virtKeyBoard/BCI-Virtual-Keyboard/master's/tex/fig10.png
+>] <fig11.jpg, id=65, 327.1422pt x 586.1097pt>
 File: fig11.jpg Graphic file (type jpg)
  <use fig11.jpg> [10]
 <WeightComp_80.jpg, id=69, 562.1pt x 421.575pt>
@@ -324,23 +437,23 @@ File: WeightComp_80.jpg Graphic file (type jpg)
 <WeightComp_90.jpg, id=70, 562.1pt x 421.575pt>
 File: WeightComp_90.jpg Graphic file (type jpg)
  <use WeightComp_90.jpg>
-[11 </home/spidermumbai/virtKeyBoard/BCI-Virtual-Keyboard/master's/tex/fig11.jp
-g>] <AutoProjTime_70.jpg, id=75, 562.1pt x 421.575pt>
+<AutoProjTime_70.jpg, id=71, 562.1pt x 421.575pt>
 File: AutoProjTime_70.jpg Graphic file (type jpg)
-
-<use AutoProjTime_70.jpg> <AutoProjTime_75.jpg, id=76, 562.1pt x 421.575pt>
+ <use AutoProjTime_70.jpg>
+<AutoProjTime_75.jpg, id=72, 562.1pt x 421.575pt>
 File: AutoProjTime_75.jpg Graphic file (type jpg)
-
-<use AutoProjTime_75.jpg> <AutoProjTime_80.jpg, id=77, 562.1pt x 421.575pt>
+ <use AutoProjTime_75.jpg>
+<AutoProjTime_80.jpg, id=73, 562.1pt x 421.575pt>
 File: AutoProjTime_80.jpg Graphic file (type jpg)
-
-<use AutoProjTime_80.jpg> <AutoProjTime_85.jpg, id=78, 562.1pt x 421.575pt>
+ <use AutoProjTime_80.jpg>
+<AutoProjTime_85.jpg, id=74, 562.1pt x 421.575pt>
 File: AutoProjTime_85.jpg Graphic file (type jpg)
-
-<use AutoProjTime_85.jpg> <AutoProjTime_90.jpg, id=79, 562.1pt x 421.575pt>
+ <use AutoProjTime_85.jpg>
+<AutoProjTime_90.jpg, id=75, 562.1pt x 421.575pt>
 File: AutoProjTime_90.jpg Graphic file (type jpg)
-
-<use AutoProjTime_90.jpg> <ProjTypeSpeedComp.jpg, id=80, 562.1pt x 421.575pt>
+ <use AutoProjTime_90.jpg>
+[11 </home/spidermumbai/virtKeyBoard/BCI-Virtual-Keyboard/master's/tex/fig11.jp
+g>] <ProjTypeSpeedComp.jpg, id=80, 562.1pt x 421.575pt>
 File: ProjTypeSpeedComp.jpg Graphic file (type jpg)
 
 <use ProjTypeSpeedComp.jpg> [12 </home/spidermumbai/virtKeyBoard/BCI-Virtual-Ke
@@ -354,12 +467,9 @@ dermumbai/virtKeyBoard/BCI-Virtual-Keyboard/master's/tex/AutoProjTime_80.jpg> <
 ProjTime_90.jpg>] <fig12.jpg, id=87, 251.4996pt x 235.6002pt>
 File: fig12.jpg Graphic file (type jpg)
  <use fig12.jpg>
-
-LaTeX Warning: `h' float specifier changed to `ht'.
-
 [14 </home/spidermumbai/virtKeyBoard/BCI-Virtual-Keyboard/master's/tex/ProjType
-SpeedComp.jpg>] [15 </home/spidermumbai/virtKeyBoard/BCI-Virtual-Keyboard/maste
-r's/tex/fig12.jpg>] [16]
+SpeedComp.jpg> </home/spidermumbai/virtKeyBoard/BCI-Virtual-Keyboard/master's/t
+ex/fig12.jpg>] [15] [16]
 (/home/spidermumbai/virtKeyBoard/BCI-Virtual-Keyboard/master's/tex/thesis.bbl
 
 ! LaTeX Error: Command \quotesinglbase unavailable in encoding OT1.
@@ -380,7 +490,7 @@ File: omscmr.fd 1999/05/25 v2.5h Standard LaTeX font definitions
 )
 LaTeX Font Info:    Font shape `OMS/cmr/m/it' in size <12> not available
 (Font)              Font shape `OMS/cmsy/m/n' tried instead on input line 30.
- [17]
+
 ! Missing $ inserted.
 <inserted text> 
                 $
@@ -736,6 +846,7 @@ Overfull \hbox (599.42812pt too wide) in paragraph at lines 74--78
 ler; andE: []Donchin;  \OT1/cmr/m/n/12 \\OML/cmm/m/it/12 Brain[][]$ 
  []
 
+[17]
 ! Missing $ inserted.
 <inserted text> 
                 $
@@ -915,26 +1026,29 @@ Type  I <command> <return>  to replace it with another command,
 or  <return>  to continue without it.
 
 ) [18]
-(/home/spidermumbai/virtKeyBoard/BCI-Virtual-Keyboard/master's/tex/thesis.aux) 
-) 
+(/home/spidermumbai/virtKeyBoard/BCI-Virtual-Keyboard/master's/tex/thesis.aux)
+
+LaTeX Warning: There were undefined references.
+
+ ) 
 Here is how much of TeX's memory you used:
- 2963 strings out of 94074
- 41103 string characters out of 1165152
+ 2976 strings out of 94074
+ 41431 string characters out of 1165152
  95542 words of memory out of 1500000
- 6192 multiletter control sequences out of 10000+50000
+ 6205 multiletter control sequences out of 10000+50000
  12759 words of font info for 49 fonts, out of 1200000 for 2000
  645 hyphenation exceptions out of 8191
  36i,10n,38p,977b,275s stack positions out of 5000i,500n,6000p,200000b,5000s
-</usr/share/texmf-texlive/fonts/type1/bluesky/cm/cmbx12.pfb></usr/share/texmf-
-texlive/fonts/type1/bluesky/cm/cmex10.pfb></usr/share/texmf-texlive/fonts/type1
-/bluesky/cm/cmmi12.pfb></usr/share/texmf-texlive/fonts/type1/bluesky/cm/cmmi8.p
-fb></usr/share/texmf-texlive/fonts/type1/bluesky/cm/cmr10.pfb></usr/share/texmf
--texlive/fonts/type1/bluesky/cm/cmr12.pfb></usr/share/texmf-texlive/fonts/type1
-/bluesky/cm/cmr17.pfb></usr/share/texmf-texlive/fonts/type1/bluesky/cm/cmr8.pfb
-></usr/share/texmf-texlive/fonts/type1/bluesky/cm/cmsy10.pfb></usr/share/texmf-
-texlive/fonts/type1/bluesky/cm/cmsy8.pfb></usr/share/texmf-texlive/fonts/type1/
-bluesky/cm/cmti12.pfb>
-Output written on thesis.pdf (20 pages, 2175152 bytes).
+</usr/share/texmf-texlive/fonts/type1/bluesky/cm/cmbx12.pfb></usr/share/texmf
+-texlive/fonts/type1/bluesky/cm/cmex10.pfb></usr/share/texmf-texlive/fonts/type
+1/bluesky/cm/cmmi12.pfb></usr/share/texmf-texlive/fonts/type1/bluesky/cm/cmmi8.
+pfb></usr/share/texmf-texlive/fonts/type1/bluesky/cm/cmr10.pfb></usr/share/texm
+f-texlive/fonts/type1/bluesky/cm/cmr12.pfb></usr/share/texmf-texlive/fonts/type
+1/bluesky/cm/cmr17.pfb></usr/share/texmf-texlive/fonts/type1/bluesky/cm/cmr8.pf
+b></usr/share/texmf-texlive/fonts/type1/bluesky/cm/cmsy10.pfb></usr/share/texmf
+-texlive/fonts/type1/bluesky/cm/cmsy8.pfb></usr/share/texmf-texlive/fonts/type1
+/bluesky/cm/cmti12.pfb>
+Output written on thesis.pdf (20 pages, 2174733 bytes).
 PDF statistics:
  139 PDF objects out of 1000 (max. 8388607)
  0 named destinations out of 1000 (max. 131072)
