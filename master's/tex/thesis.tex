@@ -342,8 +342,8 @@ computation of which we explain later.  Symbols with the lowest probabilities ar
 next largest are black.  The most likely symbol is the largest and is displayed in red.  Whole words are 
 provided in cyan to help distinguish them from single letters.  Selection of a box causes all of the 
 symbols to be reordered and redistributed between the boxes (Figure~\ref{fig:BinB}).  This selection process is repeated 
-until one of the probabilities surpasses a threshold, and the associated symbol is output into the text box 
-at the top (Figure~\ref{fig:BinC}). 
+until one of the probabilities surpasses a threshold (Figure~\ref{fig:BinD}), and the associated symbol is output into the text box 
+at the top (Figure~\ref{fig:BinD}). 
 
 \subsubsection{Implementation Details}
 
@@ -351,7 +351,8 @@ at the top (Figure~\ref{fig:BinC}).
 \centering
 \subfigure[]{\includegraphics[width=.4\textwidth]{fig8.png}\label{fig:BinA}}
 \subfigure[]{\includegraphics[width=.4\textwidth]{fig9.png}\label{fig:BinB}}
-\subfigure[]{\includegraphics[width=.4\textwidth]{fig10.png}\label{fig:BinC}}
+\subfigure[]{\includegraphics[width=.4\textwidth]{binA.png}\label{fig:BinC}}
+\subfigure[]{\includegraphics[width=.4\textwidth]{fig10.png}\label{fig:BinD}}
 \caption{BinSpell}
 \label{fig:Bin}
 \end{figure}
@@ -365,7 +366,7 @@ most commonly used within lossless compression schemes, such as JPEG, or MP3 \ci
 
 We use Huffman coding to determine the members of a box-set,  reducing the number of steps it would 
 take to access the most likely symbols.  Thus, the left and right boxes reflect loosely the left and right 
-halves of a Huffman tree.  Individual letters are alphabetized, however, to facilitate visual scanning.
+halves of a Huffman tree, and the selection process is based on a Huffman-coded decision tree.  Individual letters within a box are alphabetized, however, to facilitate visual scanning.
 
 When a selection is made, the probabilities of all symbols within that box are weighted by the accuracy 
 of the classifier (80\% in our case).  The probabilities of the symbols in the box that was not chosen are 
@@ -439,10 +440,10 @@ We began by attempting to determine the most effective combination of weights an
 thresholding levels.  For this purpose, we modified BinSpell to include a routine which 
 automates the typing out of text strings.  Strings are parsed  into individual word-tokens, using 
 space as delimiter and words are parsed into character-tokens.  Then character-tokens are 
-passed sequentially, accompanied by the word-token to which they belong, to a seperate routine, which decides which box to select.  In this routine, both boxes of 
+passed sequentially, accompanied by the word-token to which they belong, to a separate routine, which decides which box to select.  In this routine, both boxes of 
 symbols are checked for the presence of the word first, followed by its accompanying 
 character.  A bit corresponding to the box containing either the word or character, is sent to BinSpell's state update routine. 
-Misclassification are simulated by the flipping of a bit at error-rates $0.1$, and $0.2$.  The output text is checked against the original string, each time a symbol is output.  A mismatch causes delete to be output until the output string sequence exactly matches the original string sequence from it's begginning to the length of the output string.  A count is 
+Misclassification are simulated by the flipping of a bit at error-rates $0.1$, and $0.2$.  The output text is checked against the original string, each time a symbol is output.  A mismatch causes delete to be output until the output string sequence exactly matches the original string sequence from it's beginning to the length of the output string.  A count is 
 kept of both the number of bits and the number of characters correctly output.  Once a phrase 
 has been typed out completely without error, the number of bits sent is used to calculate a 
 typing speed.  The calculated typing speeds assume 3s per bit.
@@ -510,12 +511,14 @@ the error-rates.
 
 \section{Discussion}
 
-Performance in BCI controlled applications is usually reported as theoretical performance or performance with regards to an application \cite{wolpaw_braincomputer_2002}.  With regard to virtual keyboards, performance is often determined according to speed, and measured in chars/min \cite{blankertz_berlin_2006} \cite{donchin_mental_2000} \cite{wolpaw_braincomputer_2002}.  Theoretically, performance in a communication system is calculated as information transfer rate (ITR), and measured in bits/s \cite{wolpaw_braincomputer_2002}.  In this section, we discuss the performance of BinSpell with respect to both metrics.  We follow this with comparisons of BinSpell with other virtual keyboards, using the metrics they have reported.  The formula for number of bits per trial is given as \cite{mcfarland2003brain}:
+Performance in BCI controlled applications is usually reported as theoretical performance or performance with regards to an application \cite{wolpaw_braincomputer_2002}.  With regard to virtual keyboards, performance is often determined according to speed, and measured in chars/min \cite{blankertz_berlin_2006} \cite{donchin_mental_2000} \cite{wolpaw_braincomputer_2002}.  Theoretically, performance in a communication system is calculated as information transfer rate (ITR), and measured in bits/s \cite{wolpaw_braincomputer_2002}.  In this section, we discuss the performance of BinSpell with respect to both metrics.  We follow this with comparisons of BinSpell with other virtual keyboards, using the metrics they have reported.  The formula for number of bits per symbol is given as \cite{mcfarland2003brain}:
 
 $ $ \[ \begin{equation}
 	B = log_2 N + P log2P + (1-P)log_2[(1-P)/(N-1)]\tag{7}
 \end{equation} \] $ $
-where N is the number of choices available (2 in our case), and P is the accuracy.  The bit rate is then calculated as B divided by the trial length \cite{wolpaw_braincomputer_2002} \cite{mcfarland2003brain} \cite{millan2004}.
+where N is the number of choices available (2 in our case), and P is the accuracy.  The bit rate is then calculated as B divided by the trial length \cite{wolpaw_braincomputer_2002} \cite{mcfarland2003brain} \cite{kelly_visual_2005}.
+
+
 
 \subsection{Absolute Performance}
 
@@ -529,11 +532,9 @@ also mean more opportunity for error to occur, also reducing the typing speed.
 
 Redundancy is a simple information theoretic tool used for the detection and correction of noise.  Thresholding is intended to introduce the redundancy intended to help deal with classifier error.  Setting the thresholding value equal to the classifier accuracy does away with the redundancy, placing too much confidence in the classifier.
 
-Theoretically, with 0.2 error-rate and using Equation 7, we calculate a bit-rate of 
+The error-rate of BinSpell is calculated as the fraction of symbols output that are deletes.  For a classifier error-rate of 0.2, BinSpell's error rate is 0.1.  We calculate the actual number of bits per symbol as the number of decisions divided by the number of characters typed.  The result on average is 1.2 bits per character.  Using Equation 8, we calculate the ITR to be .03 bits/s.  
 
-We calculate the fraction of symbols output that are deletes as the error-rate of BinSpell.  For a classifier error-rate of 0.2, BinSpell's error rate is 0.1.  For a binary choice, 90\% accuracy is a significant improvement.  
-
-The pattern in the variation of the times to type each phrase, can be explained by 
+The pattern in the variation of the times in \ref{fig:ProjTime}, can be explained by 
 the presence of a dictionary.  Each reduction in time corresponds to a phrase 
 which contains a significant number of words found in BinSpell's dictionary.  Thus there were 
 more opportunities to suggest the correct word completion, and the number of decisions made 
@@ -555,22 +556,21 @@ communication.
 
 \subsubsection{BinSpell vs.\ P300}
 
-Although the number of signals evoked through the flashing rows and columns have to be averaged, the P300 virtual keyboard performs signigicantly better than BinSpell, in terms of typing speed.  Our increase in accuracy due to redudancy comes with a significant sacrifice in speed.  But their speed-up is obtained primarily through the reduction of errors which come from the classifier.  The speller itself is not designed to handle a noisy environment, and thus would fare worse in performance given our restrictions.
+Although the number of signals evoked through the flashing rows and columns have to be averaged, the P300 virtual keyboard performs significantly better than BinSpell, in terms of typing speed.  Our increase in accuracy due to redundancy comes with a significant sacrifice in speed.  But their speed-up is obtained primarily through the reduction of errors which come from the classifier.  The speller itself is not designed to handle a noisy environment, and thus would fare worse in performance given our limitations.
 
 \subsubsection{BinSpell vs Dasher}
 
-Dasher's zooming interface out-performs all existing virtual keyboards (see Table 1), in terms of both bit-rate and typing speed.  But effective control of cursor presents even more challenge to a user, using only a fraction of a bit per second.  Addition of an extremely 
+Dasher's zooming interface out-performs all existing virtual keyboards (see Table 1), in terms of both bit-rate and typing speed.  But using only 0.33 bit per second to effectively control a cursor would present considerable challenge to the user.  Addition of an extremely 
 noisy environment would make the cursor unmanageable, as Dasher was written primarily for relatively noise-free input. As there is no method of compensating for erroneous cursor movement due to classifier error, use of Dasher given $0.33$ bits/s, and a high error-rate, would result in significantly reduced performance.
 
 \subsubsection{BinSpell vs Hex-O-Spell}
 
-Similarly, control of Hex-O-Spell's growing selection arrow, requires a continuous control process which would be difficult to impractical if that control was attempted in the presence of high error-rate.  Also, 
+Similarly, control of Hex-O-Spell's growing selection arrow, requires a continuous control process which would be difficult to impractical if that control was attempted in the presence of high error-rate.  Additionally, 
 because Hex-O-Spell is designed for binary input, the selection element 
-can only rotate in one direction.  Thus overshooting targets due to misclassifications can introduce significant penalties 
-in time, due to the  lengthy rotation is necessary to return to the desired location \cite{blankertz_advanced}.  
+can only rotate in one direction.  Thus overshooting targets due to missclassifications introduces significant penalties 
+in time, due to the lengthy rotation necessary to return to the desired location \cite{blankertz_advanced}.  Thus, Hex-O-Spell performance would also display greatly reduced performance given our operating constraints.
 
-
-\subsection{Additional Advantages}
+\subsection{Design Advantages}
 
 \begin{figure}[t]
 \begin{center}
@@ -627,31 +627,28 @@ holding a mouse pointer steady than is required by most BCI target acquisition t
 
 \section{Improving BinSpell and Future Work}
 
-An ideal BCI keyboard with given our limitation of 0.33 bits/choice would provide 0.33 bit of 
+An ideal BCI keyboard given our limitation of 0.33 bits/choice would provide 0.33 bit of 
 additional information each choice, with respect to the language model.  A higher order, adaptive 
 language model would allow BinSpell to use bits more efficiently, while adding to a speed up in typing 
-rates.  We intend to further investigate the question of how best to weigh letter-level and word-level n-grams, with respect to one another. 
+rates.  We intend to further investigate optimal policies regarding the weighting of letter with respect to words.  We also intend to use key-logging data for accurate statistics on non-alphanumeric keys.  
 
-Keyboards with static layouts do not incur a penalty (due to scanning time) on the typing speed [16]. 
+Keyboards with static layouts do not incur a penalty (due to scanning time) on the typing speed \cite{darragh_reactive_1992}. 
 Static layouts allow users to develop strategies which facilitate their learning the keyboard, thus 
-increasing the overall communication speed [16].  We have devised a way to keep our policy of 
+increasing the overall communication speed \cite{darragh_reactive_1992}.  We have devised a way to keep our policy of 
 reordering symbols, while allowing for a static interface.  Using this approach, both sets of symbols 
 would be drawn in exactly the same locations in both boxes.  The  shuffling would consist of making 
 them visible or not, depending on what side of the Huffman tree they were found.  This minimally 
 dynamic approach would reduce the amount of searching done by the user, and allow them to devise 
 strategies associated with static interfaces. 
 
-We also intend to test the performance of BinSpell with a BCI.
+Despite a successful strategy for BCI-enabled communication, tests with actual severely motor-impaired subjects indicated that the P300 presented undue challenge to the user \cite{sellers_p300-based_2006}.  Thus, we also intend to test the performance of BinSpell with a BCI and motor impaired subjects in the near future.
 
 \section{Conclusion}
-
-We have presented a virtual keyboard designed for effective control in a severely noisy and
-bandwidth-limited environment.  We borrow from machine learning and  information theory, in 
+BinSpell's design is based on a Huffman coded decision tree.  Selection of a character using Huffman-coded trees is given as 4.2 bits per character \cite{mackay_information_2002}.  We use a language model to predict away as much of the redundancy in language as we can, so that each choice the user makes provides the maximal amount of additional information.  Our use of language model has afforded us a decrease in information needed to select a letter, to 1.2 bits per character.    
+We have presented a virtual keyboard designed for control in a severely noisy and
+bandwidth-limited environment.  We borrow from natural language processing and information theory, in 
 order to minimize the adverse effects of the low signal to noise ratio inherent in EEG signals, 
-and the limitations of an inaccurate classifier, thus allowing communication.  We argue that our 
-design is better suited for noisy, bandwidth-limited communication than existing virtual 
-keyboards. Our results suggest that it is possible to enable communication rates over extremely 
-low bandwidth channels, comparable to those of existing BCI-controlled spellers.
+and the limitations of an inaccurate classifier, thus allowing communication.  Our results suggest that it is possible to enable communication rates comparable to those displayed by existing virtual keyboards, despite low classification accuracy and restricted bandwidth.
 
 \bibliography{biblio}
 \bibliographystyle{ieeepes}
