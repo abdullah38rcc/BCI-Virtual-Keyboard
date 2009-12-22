@@ -7,15 +7,16 @@
 \usepackage{multirow}
 \usepackage[margin=.79in]{geometry}
 \usepackage{caption}
+\usepackage{url}
 
 \begin{document}
 
-\title{A Virtual Keyboard Design for Noisy Input and Limited Bandwidth} % Insert title
+\title{A BCI-Controlled Virtual Keyboard Design for Noisy Input and Limited Bandwidth} % Insert title
 \author{Tamara Blain}
 \maketitle
 
 \begin{abstract}
-This master's report addresses the problem of making BCI-controlled communication possible, given a high error-rate and extremely low bandwidth.
+This master's report addresses the problem of making BCI-controlled communication possible, given high classifier error-rate and extremely low bandwidth.
 
 Brain computer interfaces (BCI) afford individuals with severe neuro-muscular impairments, direct neural control of external devices, with those enabling communication being among the most critical.  There are a variety approaches to the recording of brain activity, which can also serve as direct control and communication pathways from the brain to external devices.  We choose here to focus on electroencephalography (EEG)-controlled BCI.
 
@@ -511,13 +512,13 @@ the error-rates.
 
 \section{Discussion}
 
-Performance in BCI controlled applications is usually reported as theoretical performance or performance with regards to an application \cite{wolpaw_braincomputer_2002}.  With regard to virtual keyboards, performance is often determined according to speed, and measured in chars/min \cite{blankertz_berlin_2006} \cite{donchin_mental_2000} \cite{wolpaw_braincomputer_2002}.  Theoretically, performance in a communication system is calculated as information transfer rate (ITR), and measured in bits/s \cite{wolpaw_braincomputer_2002}.  In this section, we discuss the performance of BinSpell with respect to both metrics.  We follow this with comparisons of BinSpell with other virtual keyboards, using the metrics they have reported.  The formula for number of bits per symbol is given as \cite{mcfarland2003brain}:
+Performance in BCI controlled applications is usually reported as theoretical performance or performance with regards to an application \cite{wolpaw_braincomputer_2002}.  With regard to virtual keyboards, performance is often determined according to speed, and measured in chars/min \cite{blankertz_berlin_2006} \cite{donchin_mental_2000} \cite{wolpaw_braincomputer_2002}.  Theoretically, performance in a communication system is calculated as information transfer rate (ITR), and measured in bits/s \cite{wolpaw_braincomputer_2002}.  In this section, we discuss the performance of BinSpell with respect to both metrics.  We follow this with comparisons of BinSpell with other virtual keyboards, using the metrics they have reported.  The formula for number of bits per symbol is given as \cite{mcfarland2003brain}\cite{kelly_visual_2005}:
 
-$ $ \[ \begin{equation}
-	B = log_2 N + P log2P + (1-P)log_2[(1-P)/(N-1)]\tag{7}
-\end{equation} \] $ $
-where N is the number of choices available (2 in our case), and P is the accuracy.  The bit rate is then calculated as B divided by the trial length \cite{wolpaw_braincomputer_2002} \cite{mcfarland2003brain} \cite{kelly_visual_2005}.
-
+\begin{gather*}
+	B = log_2 N + P log_2P + (1-P)log_2[\frac{(1-P)}{(N-1)}]\tag{7}\\
+	BitRate = \frac{bits}{symbol} * \frac{symbols}{minute}\tag{8}
+\end{gather*}
+where N is the number of choices available (2 in our case), and P is the accuracy.  The bit rate is then calculated as B divided by the trial length \cite{wolpaw_braincomputer_2002}\cite{mcfarland2003brain}\cite{kelly_visual_2005}.
 
 
 \subsection{Absolute Performance}
