@@ -1,0 +1,47 @@
+This is BibTeX, Version 0.99c (Web2C 7.5.6)
+The top-level auxiliary file: thesis.aux
+The style file: ieeepes.bst
+Database file #1: biblio.bib
+Warning--empty year in blankertz_advanced
+You've used 33 entries,
+            1821 wiz_defined-function locations,
+            647 strings with 9987 characters,
+and the built_in function-call counts, 7670 in all, are:
+= -- 673
+> -- 365
+< -- 4
++ -- 135
+- -- 102
+* -- 677
+:= -- 1206
+add.period$ -- 34
+call.type$ -- 33
+change.case$ -- 32
+chr.to.int$ -- 0
+cite$ -- 34
+duplicate$ -- 317
+empty$ -- 748
+format.name$ -- 102
+if$ -- 1692
+int.to.chr$ -- 0
+int.to.str$ -- 33
+missing$ -- 37
+newline$ -- 166
+num.names$ -- 31
+pop$ -- 103
+preamble$ -- 1
+purify$ -- 0
+quote$ -- 0
+skip$ -- 107
+stack$ -- 0
+substring$ -- 502
+swap$ -- 66
+text.length$ -- 4
+text.prefix$ -- 0
+top$ -- 0
+type$ -- 0
+warning$ -- 1
+while$ -- 76
+width$ -- 35
+write$ -- 354
+(There was 1 warning)
