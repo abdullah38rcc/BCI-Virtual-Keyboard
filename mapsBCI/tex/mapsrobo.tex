@@ -1,0 +1,89 @@
+\documentclass{article}
+\usepackage[applemac]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage[LY1]{fontenc}
+\usepackage{amssymb}
+\usepackage{subfigure}
+\usepackage[margin=.79in]{geometry}
+\usepackage{url}
+
+\begin{document}
+
+\section{Introduction}
+The goal of this project is to extend an approach to shared control of a robotic wheelchair, which is centered around a maps-based interface \cite{cheen_maps_2007} and the simultaneous localization and mapping (SLAM) algorithm \cite{dissanayake_solution_2001}.
+
+But a more practical and flexible environment involves shared control between the user and the wheelchair.    The complexity of everyday environments makes it difficult to design robust systems able to dead with such complexity \cite{philips2007adaptive}.  Share control also has a significant impact on performance during BCI control of a robot.
+
+Continuing research into non-invasive BCI's have enabled people with severe nuero-muscular disabilities, more control over important aspects of their lives \cite{vanacker_context_based_2007}.    One of the most important, is control over their mobility.  Successful strategies have been employed, allowing users to steer wheelchairs with EEG signals \cite{tanaka_electroencephalogram-based_2005}, \cite{leeb_self-pacedasynchronous_2007}, \cite{cheen_maps_2007}.  But EEG signals are not very reliable, as they are inherently noisy.  In addition, depending on the nature of the disability, varying degrees of difficulty may be encountered in complete control of a mobile vehicle.  Finally, the complexity of everyday environments, makes it a challenge to design systems which allow for mental control but are still robust enough to be able to cope with such complexity \cite{philips2007adaptive}.  Hence, adaptive shared control strategies have been employed in the control of smart wheelchairs \cite{levine_navchair_1999}, \cite{philips2007adaptive}.  These strategies provide the most flexibility in allowing a wider range of mobility-limited users with varying degrees of cognitive capabilities, to control their wheelchairs using brain signals.  Shared control is also more suitable for the restoration of a wheelchair user's sense of independence \cite{philips2007adaptive}.  This project extends the work of \cite{philips2007adaptive}, and presents additional options to present to the user, which help facilitate their mobility.  An alternate implementation of the SLAM algorithm using a particle filter is also part of this approach.
+
+
+\section{Background}
+
+\subsection{Smart Wheelchairs}
+
+In \cite{levine_navchair_1999}, robotic wheelchairs are classified by the the way control is allocated between itself and the user.  The ones most similar to autonomous robots usually require a complete map of the environment through which they navigate, or modification to the environment such as tape tracks \cite{levine_navchair_1999}.  They plan and execute paths to destinations chosen by the user in known controlled environments \cite{levine_navchair_1999}.  This class of smart wheelchairs is best suited for users who experience difficulty planning and/or executing paths \cite{levine_navchair_1999}.  A alternative class consists of wheelchairs whose assistance is limited to obstacle detection and avoidance, and require most of the planning and navigation be left to the user \cite{levine_navchair_1999}.  They require more continuous effort on the part of the user \cite{levine_navchair_1999}.  A third class allows for shared control between the user and the wheelchair.  The newest and most promising class is that of the adaptive shared control wheelchairs \cite{levine_navchair_1999} \cite{philips2007adaptive}.  They offer multiple context-based operating modes, and seem the most flexible and practical.
+
+\subsubsection{EEG}
+
+Electroencephalography (EEG) uses electrodes which sit on the scalp, to measure voltage fluctua- 
+tions in the brain. The number of sensors used can range from 25 to 128 sensors. Typically, a small 
+area of the scalp is lightly abraded right before the application of a sensor. This is done to reduce 
+the impedance caused by dead skin cells. A conductive gel is applied with each sensor, and each 
+sensor is connected to a wire which feeds into an amplifier. Scalp EEG is widely used in diagnosing 
+many medical conditions such as epilepsy, strokes, and sleep disorders \cite{1}. But translating those 
+signals into meaningful information is very difficult. One of the largest obstacles is the noise. 
+EEG has inherently low spatial 
+resolution, so the signals picked up from EEG sensors reflect the activity of millions of neurons \cite{1}. 
+In addition to brain activity, electrical signals from the scalp can also come from sources such as 
+eye blinks or tongue movement \cite{1}. Electrical impulses from the heart can actually produce scalp 
+potentials greater than EEG amplitudes \cite{1}, thus making recorded signals even more difficult to 
+discriminate.
+
+\subsection{BCI}
+
+A brain computer interface (BCI) is a communication channel between the brain and a computer. It records changes in electrical activity in the brain, and translates them into control 
+signals. Acquired signals are frst amplifed, then digitized for analysis. Unwanted artifacts, such 
+as those produced by a heartbeat, and eye blinks, are fltered out, and the target signal feature is 
+extracted \cite{lotte_review_2007}. Built-in classifers characterize brain state by correlating specifc mental activities 
+with the target features \cite{lotte_review_2007}. The interpreted brain state is commuted into control signals (a single 
+bit in our case), and sent to the device being operated. 
+BCI痴 can be either invasive, such as single-unit recording or electrocorticography (EcoG), or 
+non-invasive, such as EEG or MEG. Invasive techniques provide the most information per channel, 
+but carry the greatest risk, as they require surgery to provide openings in the skull. Most BCI 
+systems are non-invasive, and use EEG signals recorded from the scalp \cite{guger_design_1999}.   But typically, scalp-recorded EEG-based BCIs tend to be synchronous; they tend to be time-locked to cues, resulting in very low bandwidth \cite{millan_non-invasive_2003}.
+
+\subsection{Extended Kalman Filter (EKF)}
+
+A Kalman filter is a technique used for state estimation in probabilistic temporal models.  It assumes a linear gaussian transition model: a linear gaussian distribution is used to represent the transition model, and gaussian noise is assumed \cite{russell_artificial_2002}.  Extended Kalman filters were designed to deal with non-linearities in the system being modeled \cite{russell_artificial_2002}.  The extended version works by modeling the system as locally linear near the mean of the current state distribution \cite{russell_artificial_2002}.  Both versions are limited by their ability to only model state distributions as a single multivariate Gaussian, while many real world applications require the flexibility of being able to model arbitrary distributions \cite{russell_artificial_2002}.  
+
+\subsection{Particle Filtering}
+
+Particle filtering is a family of sampling algorithms which use the samples themselves to approximate state distributions \cite{russell_artificial_2002} in bayesian models.  It works because samples are weighted according to the observations, and those samples in the space where the posterior is low (those with low weights), are discarded \cite{russell_artificial_2002}.  This way the samples stay fairly close to reality.  They are advantageous in that they are able to model hybrid distributions \cite{russell_artificial_2002}.
+
+\subsection{Simultaneous Localization and Mapping (SLAM)}
+
+SLAM is an algorithm for autonomous mobile agents involving the generation of a probabilistic map of the agent's environment, and the use of information in the map for the purpose of navigation. \cite{montemerlo_fastslam_2003}.  It assumes a known kinematic model, a linear synchronous discrete time model, and sensors which can take measurements of locations between any landmark and the autonomous agent itself \cite{dissanayake_solution_2001}.  In the original solution to SLAM \cite{dissanayake_solution_2001}, the use of extended Kalman filters (EKF) for solving the SLAM problem is proposed.
+
+\section{Related Work}
+
+The maps BCI interface is a graphical interface is presented which allows a user shared control of an autonomous mobile agent \cite{cheen_maps_2007}.  The  interface is a hierarchy of operating levels, each of which requires different degrees of control form the user.  On one level, the user is able to navigate freely using only brain signals.  A control strategy which includes obstacle avoidance, is employed while the user navigates the wheelchair freely.  Internal representations of the environment (maps) \cite{slam for domestic} are generated by the agent using the simultaneous location and mapping algorithm (SLAM), while it is controlled solely through the BCI \cite{cheen_maps_2007}.  A grid map of the environment is built using the EKF-based SLAM algorithm \cite{cheen_maps_2007}.  The grid map is used to build a probabilistic map, which is then used to build an evidence grid \cite{cheen_maps_2007}.  This grid is then stored in its database as a map.
+Another level presents the user the option to select from the stored maps.  Options are presented to the user as a grid of cells which are scanned sequentially \cite{cheen_maps_2007}.  A selection is made when a specific brain event is detected by the BCI.  Once a map is selected, the user can generate trajectories to navigate through it by selecting the initial and final positions of the mobile agent \cite{cheen_maps_2007}.  
+
+\section{My Approach}
+
+This project proposes improvements to the MAPs-BCI interface.  The first modification is relatively simple and is aimed at reducing the time it takes the user to get to a known landmark.  In the MAPs-BCI interface, the user can generate trajectories to navigate through it by selecting the initial and final positions of the mobile agent \cite{cheen_maps_2007}.  The modification involves appending an acquired image of a landmark, to it's location stored in memory.  This could be done during the mapping process.  The idea is to allow users to choose from among images of known landmarks and make use of the wheelchair's already present localizing ability.   It could be implemented as separate level offered to the user or a replacement to a map.
+The MAPs-BCI interface uses the EKF-based SLAM algorithm in order to orient itself and create a stochastic map of the environment when it is in an unknown environment (an environment with no corresponding map in it's database) \cite{cheen_maps_2007}.  The second modification consists of replacing the SLAM algorithm with a version which is more accurate than the original - FastSLAM \cite{montemerlo_fastslam_2003}.  FastSLAM relies on motion estimation and data from the most recent sensor measurement to estimate an agents pose \cite{montemerlo_fastslam_2003}.  It also uses the fact that landmark estimates are conditionally independent of each other given the sensor measurement, to factor the posterior into a form which allows each particle to be associated with its own path.  
+
+\section{Work to date}
+
+Thus far, I have built a simulation in python, of a robot equipped with sonar and an encoder, which constructs a deterministic evidence grid of a room.  In simulation, the robot enters the room and immediately turns left.  It then proceeds forward for one step, stops and takes a reading to the left of it.  It records whether or not a cell is occupied, then takes a reading directly ahead.  If the closest obstacle ahead is within a threshold, it turns right and proceeds forward.  Else,  it simply proceeds forward.  This process is repeated as the robot makes its way around the room.  The step size is the size of the robot itself (a few pixels, in this case).
+In a separate routine, the robot, now outfitted with GPS, is placed randomly within the room.  The random location is first tested for validity, i.e. not inside an obstacle.  A nave particle filter explained presently, is used determine its position within the room.  Initially, its position is assumed to be anywhere in the room, with all positions equally likely.  Thus, the initial set of particles are sampled from a uniform distribution.  Each sample is first tested for validity.  Then, the standard deviation of each sample is compared to the standard deviation of the GPS distribution.  If the ratio of particle SD to GPS SD is more than 3, the particle is discarded.  The remaining particles are re-sampled.  GPS sensor readings are modeled as a gaussian centered at the actual location of the wheelchair.  
+
+\section{Future Work}
+
+GPS readings are only useful for outdoor situations.  The GPS will be replaced by a range sensor such as an IR range finder.  A particle filter such as that used in the FastSLAM \cite{montemerlo_fastslam_2003} will be implemented, for localization.  Also, as the MAPs algorithm requires a probabilistic map, a stochastic mapping technique will be integrated into this approach  Finally, the association of images to landmarks will be introduced.
+
+\bibliography{biblio}
+\bibliographystyle{ieeepes}
+
+\end{document}

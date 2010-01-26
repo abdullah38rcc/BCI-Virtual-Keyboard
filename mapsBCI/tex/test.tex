@@ -1,0 +1,21 @@
+\documentclass[11pt,a4paper]{article}  % selects the article macro set and 
+                                      
+\usepackage[english,dutch]{babel}      % use the babel multi-languages macros and 
+                                      
+\title{How to use \TeX}                % defines the title. This macro is defined by the 
+                                       
+\begin{document}                       % starts the actual document
+\maketitle                             % Produce the title. This macro is defined by the
+                                   
+\section{How to use \TeX}              % section header, defined by article class
+
+\TeX\ is a typesetting language \cite{kim2002performance}. Instead of visually formatting your text, you type
+your text combined with commands in a plain text file. 
+
+You can use macro packages like \LaTeX.
+TeX is a superb typesetter and is therefore very good at formulas: \[\Omega_0 = \left (\frac{\alpha}{\beta} \right ) ^ 4\]
+
+\bibliography{biblio}
+\bibliographystyle{ieeepes}
+
+\end{document}
