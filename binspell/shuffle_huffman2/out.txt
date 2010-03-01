@@ -1,0 +1,105 @@
+reading in unigram dictionary...
+reading in bigram dictionary...
+
+a selected.
+
+in output
+typed b4 edit: a
+
+
+in getNgram(): sz: 1
+typed b4 edit: a
+
+typed: a
+in getNgram: ngram: a
+
+number of characters typed: 1
+number of classifier errors: 0
+number of times delete used:  0
+total number of steps taken:  4
+simulation information transfer rate: 14.77260
+projected BCI-controlled information transfer rate: 5.00000 chars/min
+
+
+b selected.
+
+in output
+typed b4 edit: ab
+
+
+in getNgram(): sz: 2
+typed b4 edit: ab
+
+typed: ab
+in getNgram: ngram: ab
+
+number of characters typed: 2
+number of classifier errors: 0
+number of times delete used:  0
+total number of steps taken:  11
+simulation information transfer rate: 11.88030
+projected BCI-controlled information transfer rate: 3.63636 chars/min
+
+
+about selected.
+
+in output
+typed b4 edit: about 
+
+
+
+number of characters typed: 6
+number of classifier errors: 0
+number of times delete used:  0
+total number of steps taken:  13
+simulation information transfer rate: 29.16934
+projected BCI-controlled information transfer rate: 9.23077 chars/min
+
+
+[DEL] selected.
+
+in output
+typed b4 edit: 
+
+
+in output
+typed b4 edit: a
+
+
+in output
+typed b4 edit: ab
+
+
+in getNgram(): sz: 2
+typed b4 edit: ab
+
+typed: ab
+in getNgram: ngram: ab
+
+number of characters typed: 2
+number of classifier errors: 0
+number of times delete used:  1
+total number of steps taken:  13
+simulation information transfer rate: 6.65533
+projected BCI-controlled information transfer rate: 3.07692 chars/min
+
+
+[DEL] selected.
+
+in output
+typed b4 edit: a
+
+
+in getNgram(): sz: 2
+typed b4 edit: a
+
+typed: a
+in getNgram: ngram: a
+
+number of characters typed: 1
+number of classifier errors: 0
+number of times delete used:  2
+total number of steps taken:  13
+simulation information transfer rate: 2.34208
+projected BCI-controlled information transfer rate: 1.53846 chars/min
+

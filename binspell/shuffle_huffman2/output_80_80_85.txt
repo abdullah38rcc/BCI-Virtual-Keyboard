@@ -1,0 +1,6255 @@
+reading in unigram dictionary...
+reading in bigram dictionary...
+harrison barnes
+
+h selected.
+
+
+a selected.
+
+
+r selected.
+
+
+r selected.
+
+
+harry selected.
+
+
+shearer selected.
+
+
+[DEL] selected.
+
+in return to prev: num typed: 6
+
+
+[DEL] selected.
+
+in return to prev: num typed: 4
+
+
+i selected.
+
+
+s selected.
+
+
+harrison selected.
+
+
+and selected.
+
+
+[DEL] selected.
+
+in return to prev: num typed: 9
+
+
+b selected.
+
+
+a selected.
+
+
+r selected.
+
+
+n selected.
+
+
+e selected.
+
+
+s selected.
+
+
+number of characters typed: 15
+number of classifier errors: 65
+number of times delete used:  3
+total number of steps taken:  296
+simulation information transfer rate: 0.00000
+projected BCI-controlled information transfer rate: 1.01351 chars/min
+
+harrison barnes
+
+h selected.
+
+
+a selected.
+
+
+r selected.
+
+
+r selected.
+
+
+i selected.
+
+
+s selected.
+
+
+harrison selected.
+
+
+and selected.
+
+
+[DEL] selected.
+
+in return to prev: num typed: 9
+
+
+b selected.
+
+
+a selected.
+
+
+r selected.
+
+
+n selected.
+
+
+[SPC] selected.
+
+
+is selected.
+
+
+[DEL] selected.
+
+in return to prev: num typed: 14
+
+
+[DEL] selected.
+
+in return to prev: num typed: 13
+
+
+barnum selected.
+
+
+[DEL] selected.
+
+in return to prev: num typed: 13
+
+
+e selected.
+
+
+s selected.
+
+
+number of characters typed: 15
+number of classifier errors: 49
+number of times delete used:  4
+total number of steps taken:  254
+simulation information transfer rate: 0.00000
+projected BCI-controlled information transfer rate: 1.18110 chars/min
+
+harrison barnes
+
+h selected.
+
+
+a selected.
+
+
+r selected.
+
+
+r selected.
+
+
+i selected.
+
+
+s selected.
+
+
+harrison selected.
+
+
+a selected.
+
+
+[DEL] selected.
+
+in return to prev: num typed: 9
+
+
+b selected.
+
+
+a selected.
+
+
+r selected.
+
+
+n selected.
+
+
+e selected.
+
+
+barnett selected.
+
+
+[DEL] selected.
+
+in return to prev: num typed: 14
+
+
+s selected.
+
+
+number of characters typed: 15
+number of classifier errors: 49
+number of times delete used:  2
+total number of steps taken:  249
+simulation information transfer rate: 0.00000
+projected BCI-controlled information transfer rate: 1.20482 chars/min
+
+harrison barnes
+
+h selected.
+
+
+a selected.
+
+
+r selected.
+
+
+r selected.
+
+
+i selected.
+
+
+s selected.
+
+
+harrison selected.
+
+
+p selected.
+
+
+[DEL] selected.
+
+in return to prev: num typed: 9
+
+
+b selected.
+
+
+a selected.
+
+
+r selected.
+
+
+n selected.
+
+
+e selected.
+
+
+s selected.
+
+
+number of characters typed: 15
+number of classifier errors: 47
+number of times delete used:  1
+total number of steps taken:  229
+simulation information transfer rate: 0.00000
+projected BCI-controlled information transfer rate: 1.31004 chars/min
+
+harrison barnes
+
+h selected.
+
+
+a selected.
+
+
+have selected.
+
+
+[DEL] selected.
+
+in return to prev: num typed: 2
+
+
+r selected.
+
+
+r selected.
+
+
+i selected.
+
+
+s selected.
+
+
+harrison selected.
+
+
+b selected.
+
+
+a selected.
+
+
+r selected.
+
+
+n selected.
+
+
+e selected.
+
+
+s selected.
+
+
+number of characters typed: 15
+number of classifier errors: 49
+number of times delete used:  1
+total number of steps taken:  234
+simulation information transfer rate: 0.00000
+projected BCI-controlled information transfer rate: 1.28205 chars/min
+
+harrison barnes
+
+h selected.
+
+
+his selected.
+
+
+[DEL] selected.
+
+in return to prev: num typed: 1
+
+
+a selected.
+
+
+r selected.
+
+
+hard selected.
+
+
+to selected.
+
+
+h selected.
+
+
+[DEL] selected.
+
+in return to prev: num typed: 8
+
+
+[DEL] selected.
+
+in return to prev: num typed: 5
+
+
+[DEL] selected.
+
+in return to prev: num typed: 3
+
+
+r selected.
+
+
+i selected.
+
+
+s selected.
+
+
+harrison selected.
+
+
+b selected.
+
+
+a selected.
+
+
+r selected.
+
+
+n selected.
+
+
+e selected.
+
+
+s selected.
+
+
+number of characters typed: 15
+number of classifier errors: 65
+number of times delete used:  4
+total number of steps taken:  308
+simulation information transfer rate: 0.00000
+projected BCI-controlled information transfer rate: 0.97403 chars/min
+
+harrison barnes
+
+h selected.
+
+
+a selected.
+
+
+r selected.
+
+
+r selected.
+
+
+i selected.
+
+
+s selected.
+
+
+harrison selected.
+
+
+b selected.
+
+
+buchanan selected.
+
+
+[DEL] selected.
+
+in return to prev: num typed: 10
+
+
+a selected.
+
+
+r selected.
+
+
+n selected.
+
+
+e selected.
+
+
+barnett selected.
+
+
+[DEL] selected.
+
+in return to prev: num typed: 14
+
+
+s selected.
+
+
+number of characters typed: 15
+number of classifier errors: 48
+number of times delete used:  2
+total number of steps taken:  254
+simulation information transfer rate: 0.00000
+projected BCI-controlled information transfer rate: 1.18110 chars/min
+
+harrison barnes
+
+h selected.
+
+
+a selected.
+
+
+r selected.
+
+
+r selected.
+
+
+i selected.
+
+
+harrington selected.
+
+
+[DEL] selected.
+
+in return to prev: num typed: 5
+
+
+s selected.
+
+
+harrison selected.
+
+
+b selected.
+
+
+a selected.
+
+
+r selected.
+
+
+n selected.
+
+
+e selected.
+
+
+s selected.
+
+
+number of characters typed: 15
+number of classifier errors: 35
+number of times delete used:  1
+total number of steps taken:  195
+simulation information transfer rate: 0.00000
+projected BCI-controlled information transfer rate: 1.53846 chars/min
+
+harrison barnes
+
+h selected.
+
+
+his selected.
+
+
+[DEL] selected.
+
+in return to prev: num typed: 1
+
+
+a selected.
+
+
+r selected.
+
+
+r selected.
+
+
+e selected.
+
+
+[DEL] selected.
+
+in return to prev: num typed: 4
+
+
+i selected.
+
+
+s selected.
+
+
+harrison selected.
+
+
+a selected.
+
+
+[DEL] selected.
+
+in return to prev: num typed: 9
+
+
+b selected.
+
+
+a selected.
+
+
+r selected.
+
+
+n selected.
+
+
+e selected.
+
+
+barney selected.
+
+
+[DEL] selected.
+
+in return to prev: num typed: 14
+
+
+s selected.
+
+
+number of characters typed: 15
+number of classifier errors: 83
+number of times delete used:  4
+total number of steps taken:  361
+simulation information transfer rate: 0.00000
+projected BCI-controlled information transfer rate: 0.83102 chars/min
+
+harrison barnes
+
+h selected.
+
+
+a selected.
+
+
+has selected.
+
+
+[DEL] selected.
+
+in return to prev: num typed: 2
+
+
+r selected.
+
+
+r selected.
+
+
+i selected.
+
+
+s selected.
+
+
+harrison selected.
+
+
+b selected.
+
+
+a selected.
+
+
+r selected.
+
+
+a selected.
+
+
+[DEL] selected.
+
+in return to prev: num typed: 12
+
+
+n selected.
+
+
+e selected.
+
+
+s selected.
+
+
+number of characters typed: 15
+number of classifier errors: 60
+number of times delete used:  2
+total number of steps taken:  280
+simulation information transfer rate: 0.00000
+projected BCI-controlled information transfer rate: 1.07143 chars/min
+
+harrison barnes
+
+h selected.
+
+
+a selected.
+
+
+r selected.
+
+
+i selected.
+
+
+[DEL] selected.
+
+in return to prev: num typed: 3
+
+
+r selected.
+
+
+i selected.
+
+
+s selected.
+
+
+harrison selected.
+
+
+b selected.
+
+
+a selected.
+
+
+r selected.
+
+
+barely selected.
+
+
+[DEL] selected.
+
+in return to prev: num typed: 12
+
+
+n selected.
+
+
+e selected.
+
+
+barnett selected.
+
+
+[DEL] selected.
+
+in return to prev: num typed: 14
+
+
+barney selected.
+
+
+[DEL] selected.
+
+in return to prev: num typed: 14
+
+
+s selected.
+
+
+number of characters typed: 15
+number of classifier errors: 56
+number of times delete used:  4
+total number of steps taken:  290
+simulation information transfer rate: 0.00000
+projected BCI-controlled information transfer rate: 1.03448 chars/min
+
+harrison barnes
+
+h selected.
+
+
+a selected.
+
+
+r selected.
+
+
+r selected.
+
+
+i selected.
+
+
+s selected.
+
+
+harrison selected.
+
+
+b selected.
+
+
+a selected.
+
+
+r selected.
+
+
+n selected.
+
+
+e selected.
+
+
+s selected.
+
+
+number of characters typed: 15
+number of classifier errors: 32
+number of times delete used:  0
+total number of steps taken:  181
+simulation information transfer rate: 0.00000
+projected BCI-controlled information transfer rate: 1.65746 chars/min
+
+harrison barnes
+
+h selected.
+
+
+a selected.
+
+
+r selected.
+
+
+r selected.
+
+
+i selected.
+
+
+g selected.
+
+
+[DEL] selected.
+
+in return to prev: num typed: 5
+
+
+harrington selected.
+
+
+[DEL] selected.
+
+in return to prev: num typed: 5
+
+
+s selected.
+
+
+harrison selected.
+
+
+b selected.
+
+
+a selected.
+
+
+r selected.
+
+
+n selected.
+
+
+e selected.
+
+
+s selected.
+
+
+number of characters typed: 15
+number of classifier errors: 55
+number of times delete used:  2
+total number of steps taken:  254
+simulation information transfer rate: 0.00000
+projected BCI-controlled information transfer rate: 1.18110 chars/min
+
+harrison barnes
+
+h selected.
+
+
+have selected.
+
+
+[DEL] selected.
+
+in return to prev: num typed: 1
+
+
+a selected.
+
+
+r selected.
+
+
+r selected.
+
+
+i selected.
+
+
+s selected.
+
+
+harrison selected.
+
+
+b selected.
+
+
+a selected.
+
+
+r selected.
+
+
+n selected.
+
+
+e selected.
+
+
+s selected.
+
+
+number of characters typed: 15
+number of classifier errors: 33
+number of times delete used:  1
+total number of steps taken:  193
+simulation information transfer rate: 0.00000
+projected BCI-controlled information transfer rate: 1.55440 chars/min
+
+harrison barnes
+
+h selected.
+
+
+a selected.
+
+
+r selected.
+
+
+r selected.
+
+
+i selected.
+
+
+s selected.
+
+
+harrison selected.
+
+
+and selected.
+
+
+[DEL] selected.
+
+in return to prev: num typed: 9
+
+
+b selected.
+
+
+a selected.
+
+
+r selected.
+
+
+n selected.
+
+
+e selected.
+
+
+s selected.
+
+
+number of characters typed: 15
+number of classifier errors: 43
+number of times delete used:  1
+total number of steps taken:  224
+simulation information transfer rate: 0.00000
+projected BCI-controlled information transfer rate: 1.33929 chars/min
+
+harrison barnes
+
+h selected.
+
+
+a selected.
+
+
+r selected.
+
+
+r selected.
+
+
+i selected.
+
+
+s selected.
+
+
+harrison selected.
+
+
+b selected.
+
+
+buchanan selected.
+
+
+[DEL] selected.
+
+in return to prev: num typed: 10
+
+
+a selected.
+
+
+r selected.
+
+
+n selected.
+
+
+barnum selected.
+
+
+[DEL] selected.
+
+in return to prev: num typed: 13
+
+
+e selected.
+
+
+s selected.
+
+
+number of characters typed: 15
+number of classifier errors: 50
+number of times delete used:  2
+total number of steps taken:  254
+simulation information transfer rate: 0.00000
+projected BCI-controlled information transfer rate: 1.18110 chars/min
+
+harrison barnes
+
+h selected.
+
+
+a selected.
+
+
+r selected.
+
+
+r selected.
+
+
+i selected.
+
+
+s selected.
+
+
+harrison selected.
+
+
+b selected.
+
+
+a selected.
+
+
+back selected.
+
+
+[DEL] selected.
+
+in return to prev: num typed: 11
+
+
+r selected.
+
+
+n selected.
+
+
+e selected.
+
+
+s selected.
+
+
+number of characters typed: 15
+number of classifier errors: 35
+number of times delete used:  1
+total number of steps taken:  201
+simulation information transfer rate: 0.00000
+projected BCI-controlled information transfer rate: 1.49254 chars/min
+
+harrison barnes
+
+h selected.
+
+
+a selected.
+
+
+r selected.
+
+
+r selected.
+
+
+i selected.
+
+
+s selected.
+
+
+harrison selected.
+
+
+b selected.
+
+
+but selected.
+
+
+[DEL] selected.
+
+in return to prev: num typed: 10
+
+
+a selected.
+
+
+r selected.
+
+
+n selected.
+
+
+e selected.
+
+
+s selected.
+
+
+number of characters typed: 15
+number of classifier errors: 33
+number of times delete used:  1
+total number of steps taken:  188
+simulation information transfer rate: 0.00000
+projected BCI-controlled information transfer rate: 1.59574 chars/min
+
+harrison barnes
+
+h selected.
+
+
+a selected.
+
+
+r selected.
+
+
+r selected.
+
+
+i selected.
+
+
+s selected.
+
+
+harrison selected.
+
+
+b selected.
+
+
+e selected.
+
+
+[DEL] selected.
+
+in return to prev: num typed: 10
+
+
+a selected.
+
+
+r selected.
+
+
+n selected.
+
+
+e selected.
+
+
+s selected.
+
+
+number of characters typed: 15
+number of classifier errors: 45
+number of times delete used:  1
+total number of steps taken:  225
+simulation information transfer rate: 0.00000
+projected BCI-controlled information transfer rate: 1.33333 chars/min
+
+harrison barnes
+
+h selected.
+
+
+a selected.
+
+
+r selected.
+
+
+r selected.
+
+
+i selected.
+
+
+s selected.
+
+
+harrison selected.
+
+
+b selected.
+
+
+a selected.
+
+
+n selected.
+
+
+[DEL] selected.
+
+in return to prev: num typed: 11
+
+
+r selected.
+
+
+n selected.
+
+
+e selected.
+
+
+s selected.
+
+
+number of characters typed: 15
+number of classifier errors: 61
+number of times delete used:  1
+total number of steps taken:  270
+simulation information transfer rate: 0.00000
+projected BCI-controlled information transfer rate: 1.11111 chars/min
+
+harrison barnes
+
+e selected.
+
+
+[DEL] selected.
+
+in return to prev: num typed: 0
+
+
+h selected.
+
+
+a selected.
+
+
+r selected.
+
+
+r selected.
+
+
+i selected.
+
+
+s selected.
+
+
+harrison selected.
+
+
+b selected.
+
+
+a selected.
+
+
+r selected.
+
+
+n selected.
+
+
+e selected.
+
+
+s selected.
+
+
+number of characters typed: 15
+number of classifier errors: 29
+number of times delete used:  1
+total number of steps taken:  187
+simulation information transfer rate: 0.00000
+projected BCI-controlled information transfer rate: 1.60428 chars/min
+
+harrison barnes
+
+h selected.
+
+
+a selected.
+
+
+r selected.
+
+
+r selected.
+
+
+i selected.
+
+
+e selected.
+
+
+[DEL] selected.
+
+in return to prev: num typed: 5
+
+
+s selected.
+
+
+harrison selected.
+
+
+b selected.
+
+
+a selected.
+
+
+r selected.
+
+
+n selected.
+
+
+e selected.
+
+
+s selected.
+
+
+number of characters typed: 15
+number of classifier errors: 33
+number of times delete used:  1
+total number of steps taken:  192
+simulation information transfer rate: 0.00000
+projected BCI-controlled information transfer rate: 1.56250 chars/min
+
+harrison barnes
+
+h selected.
+
+
+a selected.
+
+
+r selected.
+
+
+r selected.
+
+
+harry selected.
+
+
+[DEL] selected.
+
+in return to prev: num typed: 4
+
+
+i selected.
+
+
+s selected.
+
+
+harrison selected.
+
+
+b selected.
+
+
+a selected.
+
+
+r selected.
+
+
+n selected.
+
+
+e selected.
+
+
+s selected.
+
+
+number of characters typed: 15
+number of classifier errors: 34
+number of times delete used:  1
+total number of steps taken:  196
+simulation information transfer rate: 0.00000
+projected BCI-controlled information transfer rate: 1.53061 chars/min
+
+harrison barnes
+
+e selected.
+
+
+[DEL] selected.
+
+in return to prev: num typed: 0
+
+
+h selected.
+
+
+a selected.
+
+
+r selected.
+
+
+r selected.
+
+
+harry selected.
+
+
+[DEL] selected.
+
+in return to prev: num typed: 4
+
+
+harry selected.
+
+
+[DEL] selected.
+
+in return to prev: num typed: 4
+
+
+i selected.
+
+
+s selected.
+
+
+harrison selected.
+
+
+b selected.
+
+
+a selected.
+
+
+r selected.
+
+
+b selected.
+
+
+barbara selected.
+
+
+lippert selected.
+
+
+[DEL] selected.
+
+in return to prev: num typed: 17
+
+
+[DEL] selected.
+
+in return to prev: num typed: 13
+
+
+[DEL] selected.
+
+in return to prev: num typed: 12
+
+
+n selected.
+
+
+e selected.
+
+
+s selected.
+
+
+number of characters typed: 15
+number of classifier errors: 76
+number of times delete used:  6
+total number of steps taken:  354
+simulation information transfer rate: 0.00000
+projected BCI-controlled information transfer rate: 0.84746 chars/min
+
+harrison barnes
+
+h selected.
+
+
+a selected.
+
+
+r selected.
+
+
+r selected.
+
+
+i selected.
+
+
+b selected.
+
+
+[DEL] selected.
+
+in return to prev: num typed: 5
+
+
+harrington selected.
+
+
+[DEL] selected.
+
+in return to prev: num typed: 5
+
+
+s selected.
+
+
+harrison selected.
+
+
+b selected.
+
+
+a selected.
+
+
+r selected.
+
+
+n selected.
+
+
+barney selected.
+
+
+[DEL] selected.
+
+in return to prev: num typed: 13
+
+
+barney selected.
+
+
+[DEL] selected.
+
+in return to prev: num typed: 13
+
+
+e selected.
+
+
+s selected.
+
+
+number of characters typed: 15
+number of classifier errors: 82
+number of times delete used:  4
+total number of steps taken:  343
+simulation information transfer rate: 0.00000
+projected BCI-controlled information transfer rate: 0.87464 chars/min
+
+harrison barnes
+
+r selected.
+
+
+[DEL] selected.
+
+in return to prev: num typed: 0
+
+
+h selected.
+
+
+a selected.
+
+
+r selected.
+
+
+r selected.
+
+
+i selected.
+
+
+s selected.
+
+
+harrison selected.
+
+
+and selected.
+
+
+[DEL] selected.
+
+in return to prev: num typed: 9
+
+
+b selected.
+
+
+a selected.
+
+
+r selected.
+
+
+n selected.
+
+
+barnett selected.
+
+
+[DEL] selected.
+
+in return to prev: num typed: 13
+
+
+e selected.
+
+
+t selected.
+
+
+[DEL] selected.
+
+in return to prev: num typed: 14
+
+
+s selected.
+
+
+number of characters typed: 15
+number of classifier errors: 65
+number of times delete used:  4
+total number of steps taken:  299
+simulation information transfer rate: 0.00000
+projected BCI-controlled information transfer rate: 1.00334 chars/min
+
+harrison barnes
+
+h selected.
+
+
+a selected.
+
+
+r selected.
+
+
+hard selected.
+
+
+[DEL] selected.
+
+in return to prev: num typed: 3
+
+
+r selected.
+
+
+i selected.
+
+
+s selected.
+
+
+harrison selected.
+
+
+b selected.
+
+
+a selected.
+
+
+r selected.
+
+
+n selected.
+
+
+e selected.
+
+
+s selected.
+
+
+number of characters typed: 15
+number of classifier errors: 53
+number of times delete used:  1
+total number of steps taken:  251
+simulation information transfer rate: 0.00000
+projected BCI-controlled information transfer rate: 1.19522 chars/min
+
+harrison barnes
+
+h selected.
+
+
+a selected.
+
+
+r selected.
+
+
+r selected.
+
+
+i selected.
+
+
+s selected.
+
+
+t selected.
+
+
+[DEL] selected.
+
+in return to prev: num typed: 6
+
+
+harrison selected.
+
+
+b selected.
+
+
+o selected.
+
+
+[DEL] selected.
+
+in return to prev: num typed: 10
+
+
+a selected.
+
+
+r selected.
+
+
+n selected.
+
+
+e selected.
+
+
+s selected.
+
+
+number of characters typed: 15
+number of classifier errors: 37
+number of times delete used:  2
+total number of steps taken:  218
+simulation information transfer rate: 0.00000
+projected BCI-controlled information transfer rate: 1.37615 chars/min
+
+harrison barnes
+
+h selected.
+
+
+[SPC] selected.
+
+
+[DEL] selected.
+
+in return to prev: num typed: 1
+
+
+a selected.
+
+
+r selected.
+
+
+hard selected.
+
+
+g selected.
+
+
+i selected.
+
+
+[DEL] selected.
+
+in return to prev: num typed: 6
+
+
+[DEL] selected.
+
+in return to prev: num typed: 5
+
+
+[DEL] selected.
+
+in return to prev: num typed: 3
+
+
+r selected.
+
+
+i selected.
+
+
+s selected.
+
+
+harrison selected.
+
+
+b selected.
+
+
+a selected.
+
+
+r selected.
+
+
+n selected.
+
+
+barnum selected.
+
+
+[DEL] selected.
+
+in return to prev: num typed: 13
+
+
+barney selected.
+
+
+[DEL] selected.
+
+in return to prev: num typed: 13
+
+
+e selected.
+
+
+barnett selected.
+
+
+[DEL] selected.
+
+in return to prev: num typed: 14
+
+
+s selected.
+
+
+number of characters typed: 15
+number of classifier errors: 91
+number of times delete used:  7
+total number of steps taken:  399
+simulation information transfer rate: 0.00000
+projected BCI-controlled information transfer rate: 0.75188 chars/min
+
+harrison barnes
+
+h selected.
+
+
+a selected.
+
+
+r selected.
+
+
+hard selected.
+
+
+[DEL] selected.
+
+in return to prev: num typed: 3
+
+
+r selected.
+
+
+i selected.
+
+
+s selected.
+
+
+harrison selected.
+
+
+a selected.
+
+
+l selected.
+
+
+t selected.
+
+
+y selected.
+
+
+[DEL] selected.
+
+in return to prev: num typed: 12
+
+
+[DEL] selected.
+
+in return to prev: num typed: 11
+
+
+[SPC] selected.
+
+
+[SPC] selected.
+
+
+[DEL] selected.
+
+in return to prev: num typed: 12
+
+
+[DEL] selected.
+
+in return to prev: num typed: 11
+
+
+[DEL] selected.
+
+in return to prev: num typed: 10
+
+
+[DEL] selected.
+
+in return to prev: num typed: 9
+
+
+b selected.
+
+
+a selected.
+
+
+r selected.
+
+
+barely selected.
+
+
+[DEL] selected.
+
+in return to prev: num typed: 12
+
+
+n selected.
+
+
+e selected.
+
+
+s selected.
+
+
+number of characters typed: 15
+number of classifier errors: 93
+number of times delete used:  8
+total number of steps taken:  433
+simulation information transfer rate: 0.00000
+projected BCI-controlled information transfer rate: 0.69284 chars/min
+
+harrison barnes
+
+h selected.
+
+
+a selected.
+
+
+r selected.
+
+
+r selected.
+
+
+i selected.
+
+
+s selected.
+
+
+harrison selected.
+
+
+b selected.
+
+
+a selected.
+
+
+r selected.
+
+
+n selected.
+
+
+e selected.
+
+
+s selected.
+
+
+number of characters typed: 15
+number of classifier errors: 29
+number of times delete used:  0
+total number of steps taken:  172
+simulation information transfer rate: 0.00000
+projected BCI-controlled information transfer rate: 1.74419 chars/min
+
+harrison barnes
+
+h selected.
+
+
+a selected.
+
+
+r selected.
+
+
+r selected.
+
+
+i selected.
+
+
+s selected.
+
+
+harrison selected.
+
+
+b selected.
+
+
+a selected.
+
+
+r selected.
+
+
+barely selected.
+
+
+[DEL] selected.
+
+in return to prev: num typed: 12
+
+
+n selected.
+
+
+e selected.
+
+
+barnett selected.
+
+
+[DEL] selected.
+
+in return to prev: num typed: 14
+
+
+s selected.
+
+
+number of characters typed: 15
+number of classifier errors: 47
+number of times delete used:  2
+total number of steps taken:  248
+simulation information transfer rate: 0.00000
+projected BCI-controlled information transfer rate: 1.20968 chars/min
+
+harrison barnes
+
+h selected.
+
+
+a selected.
+
+
+r selected.
+
+
+r selected.
+
+
+i selected.
+
+
+s selected.
+
+
+harrison selected.
+
+
+b selected.
+
+
+o selected.
+
+
+[DEL] selected.
+
+in return to prev: num typed: 10
+
+
+a selected.
+
+
+r selected.
+
+
+n selected.
+
+
+e selected.
+
+
+s selected.
+
+
+number of characters typed: 15
+number of classifier errors: 37
+number of times delete used:  1
+total number of steps taken:  208
+simulation information transfer rate: 0.00000
+projected BCI-controlled information transfer rate: 1.44231 chars/min
+
+harrison barnes
+
+h selected.
+
+
+a selected.
+
+
+r selected.
+
+
+i selected.
+
+
+[DEL] selected.
+
+in return to prev: num typed: 3
+
+
+r selected.
+
+
+r selected.
+
+
+[DEL] selected.
+
+in return to prev: num typed: 4
+
+
+harry selected.
+
+
+[DEL] selected.
+
+in return to prev: num typed: 4
+
+
+i selected.
+
+
+s selected.
+
+
+t selected.
+
+
+[DEL] selected.
+
+in return to prev: num typed: 6
+
+
+harrison selected.
+
+
+b selected.
+
+
+a selected.
+
+
+r selected.
+
+
+n selected.
+
+
+e selected.
+
+
+s selected.
+
+
+number of characters typed: 15
+number of classifier errors: 56
+number of times delete used:  4
+total number of steps taken:  281
+simulation information transfer rate: 0.00000
+projected BCI-controlled information transfer rate: 1.06762 chars/min
+
+harrison barnes
+
+d selected.
+
+
+[DEL] selected.
+
+in return to prev: num typed: 0
+
+
+h selected.
+
+
+a selected.
+
+
+r selected.
+
+
+r selected.
+
+
+i selected.
+
+
+s selected.
+
+
+harrison selected.
+
+
+b selected.
+
+
+a selected.
+
+
+r selected.
+
+
+n selected.
+
+
+e selected.
+
+
+barnett selected.
+
+
+[DEL] selected.
+
+in return to prev: num typed: 14
+
+
+s selected.
+
+
+number of characters typed: 15
+number of classifier errors: 52
+number of times delete used:  2
+total number of steps taken:  251
+simulation information transfer rate: 0.00000
+projected BCI-controlled information transfer rate: 1.19522 chars/min
+
+harrison barnes
+
+h selected.
+
+
+a selected.
+
+
+had selected.
+
+
+[DEL] selected.
+
+in return to prev: num typed: 2
+
+
+r selected.
+
+
+r selected.
+
+
+o selected.
+
+
+[DEL] selected.
+
+in return to prev: num typed: 4
+
+
+i selected.
+
+
+s selected.
+
+
+harrison selected.
+
+
+b selected.
+
+
+a selected.
+
+
+r selected.
+
+
+n selected.
+
+
+e selected.
+
+
+s selected.
+
+
+number of characters typed: 15
+number of classifier errors: 31
+number of times delete used:  2
+total number of steps taken:  188
+simulation information transfer rate: 0.00000
+projected BCI-controlled information transfer rate: 1.59574 chars/min
+
+harrison barnes
+
+h selected.
+
+
+a selected.
+
+
+r selected.
+
+
+r selected.
+
+
+i selected.
+
+
+s selected.
+
+
+harrison selected.
+
+
+b selected.
+
+
+a selected.
+
+
+bad selected.
+
+
+[DEL] selected.
+
+in return to prev: num typed: 11
+
+
+r selected.
+
+
+n selected.
+
+
+e selected.
+
+
+s selected.
+
+
+number of characters typed: 15
+number of classifier errors: 40
+number of times delete used:  1
+total number of steps taken:  207
+simulation information transfer rate: 0.00000
+projected BCI-controlled information transfer rate: 1.44928 chars/min
+
+harrison barnes
+
+h selected.
+
+
+a selected.
+
+
+r selected.
+
+
+r selected.
+
+
+i selected.
+
+
+s selected.
+
+
+harrisburg selected.
+
+
+[DEL] selected.
+
+in return to prev: num typed: 6
+
+
+harrison selected.
+
+
+and selected.
+
+
+[DEL] selected.
+
+in return to prev: num typed: 9
+
+
+a selected.
+
+
+[DEL] selected.
+
+in return to prev: num typed: 9
+
+
+and selected.
+
+
+[DEL] selected.
+
+in return to prev: num typed: 9
+
+
+b selected.
+
+
+a selected.
+
+
+r selected.
+
+
+n selected.
+
+
+e selected.
+
+
+s selected.
+
+
+number of characters typed: 15
+number of classifier errors: 66
+number of times delete used:  4
+total number of steps taken:  304
+simulation information transfer rate: 0.00000
+projected BCI-controlled information transfer rate: 0.98684 chars/min
+
+harrison barnes
+
+h selected.
+
+
+a selected.
+
+
+b selected.
+
+
+l selected.
+
+
+i selected.
+
+
+[DEL] selected.
+
+in return to prev: num typed: 4
+
+
+[DEL] selected.
+
+in return to prev: num typed: 3
+
+
+habitat selected.
+
+
+[DEL] selected.
+
+in return to prev: num typed: 3
+
+
+[DEL] selected.
+
+in return to prev: num typed: 2
+
+
+r selected.
+
+
+r selected.
+
+
+i selected.
+
+
+p selected.
+
+
+[DEL] selected.
+
+in return to prev: num typed: 5
+
+
+s selected.
+
+
+harrison selected.
+
+
+b selected.
+
+
+a selected.
+
+
+r selected.
+
+
+n selected.
+
+
+e selected.
+
+
+s selected.
+
+
+number of characters typed: 15
+number of classifier errors: 78
+number of times delete used:  5
+total number of steps taken:  337
+simulation information transfer rate: 0.00000
+projected BCI-controlled information transfer rate: 0.89021 chars/min
+
+harrison barnes
+
+h selected.
+
+
+a selected.
+
+
+t selected.
+
+
+[DEL] selected.
+
+in return to prev: num typed: 2
+
+
+r selected.
+
+
+r selected.
+
+
+a selected.
+
+
+[DEL] selected.
+
+in return to prev: num typed: 4
+
+
+i selected.
+
+
+s selected.
+
+
+harrison selected.
+
+
+b selected.
+
+
+a selected.
+
+
+r selected.
+
+
+n selected.
+
+
+e selected.
+
+
+s selected.
+
+
+number of characters typed: 15
+number of classifier errors: 49
+number of times delete used:  2
+total number of steps taken:  254
+simulation information transfer rate: 0.00000
+projected BCI-controlled information transfer rate: 1.18110 chars/min
+
+harrison barnes
+
+h selected.
+
+
+a selected.
+
+
+r selected.
+
+
+r selected.
+
+
+i selected.
+
+
+s selected.
+
+
+t selected.
+
+
+[DEL] selected.
+
+in return to prev: num typed: 6
+
+
+harrison selected.
+
+
+b selected.
+
+
+a selected.
+
+
+r selected.
+
+
+n selected.
+
+
+e selected.
+
+
+s selected.
+
+
+number of characters typed: 15
+number of classifier errors: 56
+number of times delete used:  1
+total number of steps taken:  253
+simulation information transfer rate: 0.00000
+projected BCI-controlled information transfer rate: 1.18577 chars/min
+
+harrison barnes
+
+h selected.
+
+
+a selected.
+
+
+r selected.
+
+
+r selected.
+
+
+i selected.
+
+
+s selected.
+
+
+i selected.
+
+
+[DEL] selected.
+
+in return to prev: num typed: 6
+
+
+harrison selected.
+
+
+b selected.
+
+
+a selected.
+
+
+l selected.
+
+
+[DEL] selected.
+
+in return to prev: num typed: 11
+
+
+r selected.
+
+
+bars selected.
+
+
+[DEL] selected.
+
+in return to prev: num typed: 12
+
+
+n selected.
+
+
+e selected.
+
+
+s selected.
+
+
+number of characters typed: 15
+number of classifier errors: 70
+number of times delete used:  3
+total number of steps taken:  304
+simulation information transfer rate: 0.00000
+projected BCI-controlled information transfer rate: 0.98684 chars/min
+
+harrison barnes
+
+h selected.
+
+
+a selected.
+
+
+r selected.
+
+
+c selected.
+
+
+[DEL] selected.
+
+in return to prev: num typed: 3
+
+
+r selected.
+
+
+i selected.
+
+
+s selected.
+
+
+harrison selected.
+
+
+b selected.
+
+
+a selected.
+
+
+r selected.
+
+
+n selected.
+
+
+e selected.
+
+
+s selected.
+
+
+number of characters typed: 15
+number of classifier errors: 52
+number of times delete used:  1
+total number of steps taken:  246
+simulation information transfer rate: 0.00000
+projected BCI-controlled information transfer rate: 1.21951 chars/min
+
+harrison barnes
+
+h selected.
+
+
+a selected.
+
+
+r selected.
+
+
+r selected.
+
+
+i selected.
+
+
+s selected.
+
+
+harrison selected.
+
+
+b selected.
+
+
+a selected.
+
+
+r selected.
+
+
+n selected.
+
+
+e selected.
+
+
+s selected.
+
+
+number of characters typed: 15
+number of classifier errors: 18
+number of times delete used:  0
+total number of steps taken:  140
+simulation information transfer rate: 0.00000
+projected BCI-controlled information transfer rate: 2.14286 chars/min
+
+harrison barnes
+
+h selected.
+
+
+a selected.
+
+
+r selected.
+
+
+r selected.
+
+
+i selected.
+
+
+s selected.
+
+
+harrison selected.
+
+
+w selected.
+
+
+[DEL] selected.
+
+in return to prev: num typed: 9
+
+
+b selected.
+
+
+a selected.
+
+
+r selected.
+
+
+n selected.
+
+
+e selected.
+
+
+s selected.
+
+
+number of characters typed: 15
+number of classifier errors: 39
+number of times delete used:  1
+total number of steps taken:  208
+simulation information transfer rate: 0.00000
+projected BCI-controlled information transfer rate: 1.44231 chars/min
+
+harrison barnes
+
+h selected.
+
+
+a selected.
+
+
+r selected.
+
+
+r selected.
+
+
+i selected.
+
+
+s selected.
+
+
+harrison selected.
+
+
+b selected.
+
+
+a selected.
+
+
+r selected.
+
+
+n selected.
+
+
+barnett selected.
+
+
+[DEL] selected.
+
+in return to prev: num typed: 13
+
+
+e selected.
+
+
+s selected.
+
+
+number of characters typed: 15
+number of classifier errors: 32
+number of times delete used:  1
+total number of steps taken:  190
+simulation information transfer rate: 0.00000
+projected BCI-controlled information transfer rate: 1.57895 chars/min
+
+harrison barnes
+
+h selected.
+
+
+a selected.
+
+
+r selected.
+
+
+r selected.
+
+
+i selected.
+
+
+s selected.
+
+
+harrison selected.
+
+
+b selected.
+
+
+a selected.
+
+
+back selected.
+
+
+[DEL] selected.
+
+in return to prev: num typed: 11
+
+
+r selected.
+
+
+o selected.
+
+
+[DEL] selected.
+
+in return to prev: num typed: 12
+
+
+n selected.
+
+
+e selected.
+
+
+s selected.
+
+
+number of characters typed: 15
+number of classifier errors: 51
+number of times delete used:  2
+total number of steps taken:  250
+simulation information transfer rate: 0.00000
+projected BCI-controlled information transfer rate: 1.20000 chars/min
+
+harrison barnes
+
+h selected.
+
+
+a selected.
+
+
+r selected.
+
+
+r selected.
+
+
+i selected.
+
+
+s selected.
+
+
+harrison selected.
+
+
+b selected.
+
+
+a selected.
+
+
+r selected.
+
+
+n selected.
+
+
+e selected.
+
+
+s selected.
+
+
+number of characters typed: 15
+number of classifier errors: 35
+number of times delete used:  0
+total number of steps taken:  195
+simulation information transfer rate: 0.00000
+projected BCI-controlled information transfer rate: 1.53846 chars/min
+
+harrison barnes
+
+h selected.
+
+
+a selected.
+
+
+have selected.
+
+
+[DEL] selected.
+
+in return to prev: num typed: 2
+
+
+r selected.
+
+
+r selected.
+
+
+o selected.
+
+
+[DEL] selected.
+
+in return to prev: num typed: 4
+
+
+i selected.
+
+
+s selected.
+
+
+harrison selected.
+
+
+b selected.
+
+
+buchanan selected.
+
+
+[DEL] selected.
+
+in return to prev: num typed: 10
+
+
+a selected.
+
+
+back selected.
+
+
+[DEL] selected.
+
+in return to prev: num typed: 11
+
+
+r selected.
+
+
+n selected.
+
+
+e selected.
+
+
+barney selected.
+
+
+[DEL] selected.
+
+in return to prev: num typed: 14
+
+
+s selected.
+
+
+number of characters typed: 15
+number of classifier errors: 81
+number of times delete used:  5
+total number of steps taken:  352
+simulation information transfer rate: 0.00000
+projected BCI-controlled information transfer rate: 0.85227 chars/min
+
+harrison barnes
+
+e selected.
+
+
+[DEL] selected.
+
+in return to prev: num typed: 0
+
+
+h selected.
+
+
+a selected.
+
+
+r selected.
+
+
+r selected.
+
+
+i selected.
+
+
+s selected.
+
+
+harrison selected.
+
+
+b selected.
+
+
+a selected.
+
+
+r selected.
+
+
+n selected.
+
+
+e selected.
+
+
+s selected.
+
+
+number of characters typed: 15
+number of classifier errors: 33
+number of times delete used:  1
+total number of steps taken:  190
+simulation information transfer rate: 0.00000
+projected BCI-controlled information transfer rate: 1.57895 chars/min
+
+harrison barnes
+
+h selected.
+
+
+a selected.
+
+
+r selected.
+
+
+r selected.
+
+
+i selected.
+
+
+s selected.
+
+
+harrison selected.
+
+
+b selected.
+
+
+a selected.
+
+
+r selected.
+
+
+n selected.
+
+
+e selected.
+
+
+s selected.
+
+
+number of characters typed: 15
+number of classifier errors: 35
+number of times delete used:  0
+total number of steps taken:  194
+simulation information transfer rate: 0.00000
+projected BCI-controlled information transfer rate: 1.54639 chars/min
+
+harrison barnes
+
+e selected.
+
+
+[DEL] selected.
+
+in return to prev: num typed: 0
+
+
+h selected.
+
+
+a selected.
+
+
+r selected.
+
+
+r selected.
+
+
+i selected.
+
+
+s selected.
+
+
+s selected.
+
+
+[DEL] selected.
+
+in return to prev: num typed: 6
+
+
+harrisburg selected.
+
+
+[DEL] selected.
+
+in return to prev: num typed: 6
+
+
+harrisburg selected.
+
+
+[DEL] selected.
+
+in return to prev: num typed: 6
+
+
+harrison selected.
+
+
+b selected.
+
+
+a selected.
+
+
+r selected.
+
+
+n selected.
+
+
+e selected.
+
+
+s selected.
+
+
+number of characters typed: 15
+number of classifier errors: 57
+number of times delete used:  4
+total number of steps taken:  272
+simulation information transfer rate: 0.00000
+projected BCI-controlled information transfer rate: 1.10294 chars/min
+
+harrison barnes
+
+h selected.
+
+
+have selected.
+
+
+[DEL] selected.
+
+in return to prev: num typed: 1
+
+
+a selected.
+
+
+r selected.
+
+
+hard selected.
+
+
+[DEL] selected.
+
+in return to prev: num typed: 3
+
+
+r selected.
+
+
+i selected.
+
+
+s selected.
+
+
+harrison selected.
+
+
+b selected.
+
+
+a selected.
+
+
+r selected.
+
+
+c selected.
+
+
+[DEL] selected.
+
+in return to prev: num typed: 12
+
+
+n selected.
+
+
+e selected.
+
+
+s selected.
+
+
+number of characters typed: 15
+number of classifier errors: 54
+number of times delete used:  3
+total number of steps taken:  271
+simulation information transfer rate: 0.00000
+projected BCI-controlled information transfer rate: 1.10701 chars/min
+
+harrison barnes
+
+h selected.
+
+
+a selected.
+
+
+r selected.
+
+
+r selected.
+
+
+i selected.
+
+
+p selected.
+
+
+[DEL] selected.
+
+in return to prev: num typed: 5
+
+
+harrington selected.
+
+
+[DEL] selected.
+
+in return to prev: num typed: 5
+
+
+s selected.
+
+
+harrison selected.
+
+
+b selected.
+
+
+u selected.
+
+
+[DEL] selected.
+
+in return to prev: num typed: 10
+
+
+a selected.
+
+
+r selected.
+
+
+n selected.
+
+
+e selected.
+
+
+s selected.
+
+
+number of characters typed: 15
+number of classifier errors: 58
+number of times delete used:  3
+total number of steps taken:  270
+simulation information transfer rate: 0.00000
+projected BCI-controlled information transfer rate: 1.11111 chars/min
+
+harrison barnes
+
+h selected.
+
+
+his selected.
+
+
+wife selected.
+
+
+[DEL] selected.
+
+in return to prev: num typed: 4
+
+
+[DEL] selected.
+
+in return to prev: num typed: 1
+
+
+his selected.
+
+
+wife selected.
+
+
+t selected.
+
+
+[DEL] selected.
+
+in return to prev: num typed: 9
+
+
+[DEL] selected.
+
+in return to prev: num typed: 4
+
+
+[DEL] selected.
+
+in return to prev: num typed: 1
+
+
+a selected.
+
+
+has selected.
+
+
+[DEL] selected.
+
+in return to prev: num typed: 2
+
+
+r selected.
+
+
+r selected.
+
+
+i selected.
+
+
+s selected.
+
+
+harrison selected.
+
+
+b selected.
+
+
+[DEL] selected.
+
+in return to prev: num typed: 9
+
+
+b selected.
+
+
+a selected.
+
+
+r selected.
+
+
+n selected.
+
+
+e selected.
+
+
+s selected.
+
+
+number of characters typed: 15
+number of classifier errors: 86
+number of times delete used:  7
+total number of steps taken:  396
+simulation information transfer rate: 0.00000
+projected BCI-controlled information transfer rate: 0.75758 chars/min
+
+harrison barnes
+
+the selected.
+
+
+[DEL] selected.
+
+in return to prev: num typed: 0
+
+
+h selected.
+
+
+a selected.
+
+
+r selected.
+
+
+r selected.
+
+
+harry selected.
+
+
+[DEL] selected.
+
+in return to prev: num typed: 4
+
+
+i selected.
+
+
+s selected.
+
+
+harrison selected.
+
+
+b selected.
+
+
+but selected.
+
+
+[DEL] selected.
+
+in return to prev: num typed: 10
+
+
+a selected.
+
+
+r selected.
+
+
+n selected.
+
+
+e selected.
+
+
+s selected.
+
+
+number of characters typed: 15
+number of classifier errors: 60
+number of times delete used:  3
+total number of steps taken:  290
+simulation information transfer rate: 0.00000
+projected BCI-controlled information transfer rate: 1.03448 chars/min
+
+harrison barnes
+
+h selected.
+
+
+a selected.
+
+
+r selected.
+
+
+r selected.
+
+
+i selected.
+
+
+s selected.
+
+
+harrison selected.
+
+
+b selected.
+
+
+a selected.
+
+
+r selected.
+
+
+n selected.
+
+
+e selected.
+
+
+r selected.
+
+
+[DEL] selected.
+
+in return to prev: num typed: 14
+
+
+s selected.
+
+
+number of characters typed: 15
+number of classifier errors: 29
+number of times delete used:  1
+total number of steps taken:  173
+simulation information transfer rate: 0.00000
+projected BCI-controlled information transfer rate: 1.73410 chars/min
+
+harrison barnes
+
+h selected.
+
+
+a selected.
+
+
+r selected.
+
+
+r selected.
+
+
+i selected.
+
+
+s selected.
+
+
+harrison selected.
+
+
+b selected.
+
+
+a selected.
+
+
+r selected.
+
+
+n selected.
+
+
+e selected.
+
+
+s selected.
+
+
+number of characters typed: 15
+number of classifier errors: 19
+number of times delete used:  0
+total number of steps taken:  146
+simulation information transfer rate: 0.00000
+projected BCI-controlled information transfer rate: 2.05479 chars/min
+
+harrison barnes
+
+h selected.
+
+
+a selected.
+
+
+t selected.
+
+
+t selected.
+
+
+[DEL] selected.
+
+in return to prev: num typed: 3
+
+
+hate selected.
+
+
+[DEL] selected.
+
+in return to prev: num typed: 3
+
+
+[DEL] selected.
+
+in return to prev: num typed: 2
+
+
+r selected.
+
+
+r selected.
+
+
+i selected.
+
+
+s selected.
+
+
+harrison selected.
+
+
+b selected.
+
+
+a selected.
+
+
+r selected.
+
+
+n selected.
+
+
+e selected.
+
+
+s selected.
+
+
+number of characters typed: 15
+number of classifier errors: 75
+number of times delete used:  3
+total number of steps taken:  332
+simulation information transfer rate: 0.00000
+projected BCI-controlled information transfer rate: 0.90361 chars/min
+
+harrison barnes
+
+z selected.
+
+
+[DEL] selected.
+
+in return to prev: num typed: 0
+
+
+h selected.
+
+
+a selected.
+
+
+r selected.
+
+
+r selected.
+
+
+i selected.
+
+
+s selected.
+
+
+harrison selected.
+
+
+b selected.
+
+
+a selected.
+
+
+r selected.
+
+
+n selected.
+
+
+e selected.
+
+
+s selected.
+
+
+number of characters typed: 15
+number of classifier errors: 67
+number of times delete used:  1
+total number of steps taken:  283
+simulation information transfer rate: 0.00000
+projected BCI-controlled information transfer rate: 1.06007 chars/min
+
+harrison barnes
+
+d selected.
+
+
+[DEL] selected.
+
+in return to prev: num typed: 0
+
+
+h selected.
+
+
+a selected.
+
+
+r selected.
+
+
+i selected.
+
+
+[DEL] selected.
+
+in return to prev: num typed: 3
+
+
+r selected.
+
+
+i selected.
+
+
+s selected.
+
+
+harrison selected.
+
+
+b selected.
+
+
+a selected.
+
+
+r selected.
+
+
+n selected.
+
+
+e selected.
+
+
+s selected.
+
+
+number of characters typed: 15
+number of classifier errors: 51
+number of times delete used:  2
+total number of steps taken:  260
+simulation information transfer rate: 0.00000
+projected BCI-controlled information transfer rate: 1.15385 chars/min
+
+harrison barnes
+
+h selected.
+
+
+a selected.
+
+
+r selected.
+
+
+i selected.
+
+
+[DEL] selected.
+
+in return to prev: num typed: 3
+
+
+r selected.
+
+
+i selected.
+
+
+s selected.
+
+
+harrison selected.
+
+
+o selected.
+
+
+[DEL] selected.
+
+in return to prev: num typed: 9
+
+
+b selected.
+
+
+a selected.
+
+
+r selected.
+
+
+n selected.
+
+
+i selected.
+
+
+[DEL] selected.
+
+in return to prev: num typed: 13
+
+
+e selected.
+
+
+s selected.
+
+
+number of characters typed: 15
+number of classifier errors: 64
+number of times delete used:  3
+total number of steps taken:  293
+simulation information transfer rate: 0.00000
+projected BCI-controlled information transfer rate: 1.02389 chars/min
+
+harrison barnes
+
+h selected.
+
+
+a selected.
+
+
+r selected.
+
+
+r selected.
+
+
+i selected.
+
+
+harrington selected.
+
+
+[DEL] selected.
+
+in return to prev: num typed: 5
+
+
+s selected.
+
+
+harrison selected.
+
+
+a selected.
+
+
+[DEL] selected.
+
+in return to prev: num typed: 9
+
+
+b selected.
+
+
+a selected.
+
+
+r selected.
+
+
+barely selected.
+
+
+[DEL] selected.
+
+in return to prev: num typed: 12
+
+
+n selected.
+
+
+e selected.
+
+
+s selected.
+
+
+number of characters typed: 15
+number of classifier errors: 66
+number of times delete used:  3
+total number of steps taken:  301
+simulation information transfer rate: 0.00000
+projected BCI-controlled information transfer rate: 0.99668 chars/min
+
+harrison barnes
+
+the selected.
+
+
+[DEL] selected.
+
+in return to prev: num typed: 0
+
+
+h selected.
+
+
+a selected.
+
+
+r selected.
+
+
+r selected.
+
+
+i selected.
+
+
+s selected.
+
+
+harrison selected.
+
+
+b selected.
+
+
+a selected.
+
+
+r selected.
+
+
+n selected.
+
+
+e selected.
+
+
+s selected.
+
+
+number of characters typed: 15
+number of classifier errors: 24
+number of times delete used:  1
+total number of steps taken:  166
+simulation information transfer rate: 0.00000
+projected BCI-controlled information transfer rate: 1.80723 chars/min
+
+harrison barnes
+
+h selected.
+
+
+a selected.
+
+
+r selected.
+
+
+r selected.
+
+
+i selected.
+
+
+s selected.
+
+
+h selected.
+
+
+[DEL] selected.
+
+in return to prev: num typed: 6
+
+
+harrison selected.
+
+
+b selected.
+
+
+o selected.
+
+
+[DEL] selected.
+
+in return to prev: num typed: 10
+
+
+a selected.
+
+
+r selected.
+
+
+barely selected.
+
+
+[DEL] selected.
+
+in return to prev: num typed: 12
+
+
+n selected.
+
+
+p selected.
+
+
+[DEL] selected.
+
+in return to prev: num typed: 13
+
+
+e selected.
+
+
+s selected.
+
+
+number of characters typed: 15
+number of classifier errors: 57
+number of times delete used:  4
+total number of steps taken:  291
+simulation information transfer rate: 0.00000
+projected BCI-controlled information transfer rate: 1.03093 chars/min
+
+harrison barnes
+
+the selected.
+
+
+[DEL] selected.
+
+in return to prev: num typed: 0
+
+
+h selected.
+
+
+a selected.
+
+
+r selected.
+
+
+r selected.
+
+
+i selected.
+
+
+s selected.
+
+
+harrisburg selected.
+
+
+[DEL] selected.
+
+in return to prev: num typed: 6
+
+
+harrison selected.
+
+
+and selected.
+
+
+[DEL] selected.
+
+in return to prev: num typed: 9
+
+
+and selected.
+
+
+[DEL] selected.
+
+in return to prev: num typed: 9
+
+
+b selected.
+
+
+a selected.
+
+
+r selected.
+
+
+n selected.
+
+
+e selected.
+
+
+s selected.
+
+
+number of characters typed: 15
+number of classifier errors: 50
+number of times delete used:  4
+total number of steps taken:  266
+simulation information transfer rate: 0.00000
+projected BCI-controlled information transfer rate: 1.12782 chars/min
+
+harrison barnes
+
+h selected.
+
+
+a selected.
+
+
+r selected.
+
+
+r selected.
+
+
+i selected.
+
+
+s selected.
+
+
+harrison selected.
+
+
+b selected.
+
+
+a selected.
+
+
+r selected.
+
+
+n selected.
+
+
+e selected.
+
+
+s selected.
+
+
+number of characters typed: 15
+number of classifier errors: 21
+number of times delete used:  0
+total number of steps taken:  150
+simulation information transfer rate: 0.00000
+projected BCI-controlled information transfer rate: 2.00000 chars/min
+
+harrison barnes
+
+h selected.
+
+
+his selected.
+
+
+[DEL] selected.
+
+in return to prev: num typed: 1
+
+
+a selected.
+
+
+r selected.
+
+
+r selected.
+
+
+i selected.
+
+
+s selected.
+
+
+harrison selected.
+
+
+and selected.
+
+
+[DEL] selected.
+
+in return to prev: num typed: 9
+
+
+b selected.
+
+
+a selected.
+
+
+back selected.
+
+
+[DEL] selected.
+
+in return to prev: num typed: 11
+
+
+r selected.
+
+
+n selected.
+
+
+barnett selected.
+
+
+[DEL] selected.
+
+in return to prev: num typed: 13
+
+
+e selected.
+
+
+s selected.
+
+
+number of characters typed: 15
+number of classifier errors: 85
+number of times delete used:  4
+total number of steps taken:  369
+simulation information transfer rate: 0.00000
+projected BCI-controlled information transfer rate: 0.81301 chars/min
+
+harrison barnes
+
+the selected.
+
+
+[DEL] selected.
+
+in return to prev: num typed: 0
+
+
+h selected.
+
+
+his selected.
+
+
+[DEL] selected.
+
+in return to prev: num typed: 1
+
+
+a selected.
+
+
+r selected.
+
+
+r selected.
+
+
+i selected.
+
+
+s selected.
+
+
+harrison selected.
+
+
+g selected.
+
+
+[DEL] selected.
+
+in return to prev: num typed: 9
+
+
+b selected.
+
+
+a selected.
+
+
+r selected.
+
+
+n selected.
+
+
+e selected.
+
+
+s selected.
+
+
+number of characters typed: 15
+number of classifier errors: 44
+number of times delete used:  3
+total number of steps taken:  235
+simulation information transfer rate: 0.00000
+projected BCI-controlled information transfer rate: 1.27660 chars/min
+
+harrison barnes
+
+h selected.
+
+
+a selected.
+
+
+r selected.
+
+
+r selected.
+
+
+i selected.
+
+
+s selected.
+
+
+t selected.
+
+
+[DEL] selected.
+
+in return to prev: num typed: 6
+
+
+harrison selected.
+
+
+b selected.
+
+
+y selected.
+
+
+[SPC] selected.
+
+
+[DEL] selected.
+
+in return to prev: num typed: 11
+
+
+[DEL] selected.
+
+in return to prev: num typed: 10
+
+
+buchanan selected.
+
+
+[DEL] selected.
+
+in return to prev: num typed: 10
+
+
+a selected.
+
+
+r selected.
+
+
+n selected.
+
+
+e selected.
+
+
+s selected.
+
+
+number of characters typed: 15
+number of classifier errors: 64
+number of times delete used:  4
+total number of steps taken:  305
+simulation information transfer rate: 0.00000
+projected BCI-controlled information transfer rate: 0.98361 chars/min
+
+harrison barnes
+
+h selected.
+
+
+[DEL] selected.
+
+in return to prev: num typed: 0
+
+
+h selected.
+
+
+a selected.
+
+
+r selected.
+
+
+k selected.
+
+
+[DEL] selected.
+
+in return to prev: num typed: 3
+
+
+r selected.
+
+
+h selected.
+
+
+[DEL] selected.
+
+in return to prev: num typed: 4
+
+
+i selected.
+
+
+s selected.
+
+
+harrison selected.
+
+
+b selected.
+
+
+a selected.
+
+
+c selected.
+
+
+[DEL] selected.
+
+in return to prev: num typed: 11
+
+
+r selected.
+
+
+n selected.
+
+
+barney selected.
+
+
+[DEL] selected.
+
+in return to prev: num typed: 13
+
+
+e selected.
+
+
+s selected.
+
+
+number of characters typed: 15
+number of classifier errors: 61
+number of times delete used:  5
+total number of steps taken:  296
+simulation information transfer rate: 0.00000
+projected BCI-controlled information transfer rate: 1.01351 chars/min
+
+harrison barnes
+
+h selected.
+
+
+a selected.
+
+
+r selected.
+
+
+r selected.
+
+
+harry selected.
+
+
+[DEL] selected.
+
+in return to prev: num typed: 4
+
+
+i selected.
+
+
+s selected.
+
+
+harrison selected.
+
+
+b selected.
+
+
+a selected.
+
+
+r selected.
+
+
+n selected.
+
+
+e selected.
+
+
+s selected.
+
+
+number of characters typed: 15
+number of classifier errors: 25
+number of times delete used:  1
+total number of steps taken:  165
+simulation information transfer rate: 0.00000
+projected BCI-controlled information transfer rate: 1.81818 chars/min
+
+harrison barnes
+
+h selected.
+
+
+his selected.
+
+
+a selected.
+
+
+[DEL] selected.
+
+in return to prev: num typed: 4
+
+
+[DEL] selected.
+
+in return to prev: num typed: 1
+
+
+a selected.
+
+
+r selected.
+
+
+r selected.
+
+
+i selected.
+
+
+s selected.
+
+
+harrison selected.
+
+
+and selected.
+
+
+a selected.
+
+
+[DEL] selected.
+
+in return to prev: num typed: 13
+
+
+[DEL] selected.
+
+in return to prev: num typed: 9
+
+
+b selected.
+
+
+a selected.
+
+
+r selected.
+
+
+n selected.
+
+
+e selected.
+
+
+s selected.
+
+
+number of characters typed: 15
+number of classifier errors: 62
+number of times delete used:  4
+total number of steps taken:  306
+simulation information transfer rate: 0.00000
+projected BCI-controlled information transfer rate: 0.98039 chars/min
+
+harrison barnes
+
+h selected.
+
+
+a selected.
+
+
+has selected.
+
+
+[DEL] selected.
+
+in return to prev: num typed: 2
+
+
+r selected.
+
+
+r selected.
+
+
+i selected.
+
+
+s selected.
+
+
+harrison selected.
+
+
+b selected.
+
+
+a selected.
+
+
+r selected.
+
+
+n selected.
+
+
+e selected.
+
+
+s selected.
+
+
+number of characters typed: 15
+number of classifier errors: 39
+number of times delete used:  1
+total number of steps taken:  214
+simulation information transfer rate: 0.00000
+projected BCI-controlled information transfer rate: 1.40187 chars/min
+
+harrison barnes
+
+h selected.
+
+
+a selected.
+
+
+r selected.
+
+
+r selected.
+
+
+i selected.
+
+
+s selected.
+
+
+harrison selected.
+
+
+b selected.
+
+
+a selected.
+
+
+r selected.
+
+
+n selected.
+
+
+e selected.
+
+
+s selected.
+
+
+number of characters typed: 15
+number of classifier errors: 38
+number of times delete used:  0
+total number of steps taken:  203
+simulation information transfer rate: 0.00000
+projected BCI-controlled information transfer rate: 1.47783 chars/min
+
+harrison barnes
+
+the selected.
+
+
+[DEL] selected.
+
+in return to prev: num typed: 0
+
+
+h selected.
+
+
+a selected.
+
+
+r selected.
+
+
+r selected.
+
+
+i selected.
+
+
+harriet selected.
+
+
+p selected.
+
+
+[DEL] selected.
+
+in return to prev: num typed: 8
+
+
+[DEL] selected.
+
+in return to prev: num typed: 5
+
+
+harriet selected.
+
+
+chessman selected.
+
+
+[DEL] selected.
+
+in return to prev: num typed: 8
+
+
+[DEL] selected.
+
+in return to prev: num typed: 5
+
+
+s selected.
+
+
+harrison selected.
+
+
+b selected.
+
+
+a selected.
+
+
+r selected.
+
+
+n selected.
+
+
+e selected.
+
+
+s selected.
+
+
+number of characters typed: 15
+number of classifier errors: 81
+number of times delete used:  5
+total number of steps taken:  358
+simulation information transfer rate: 0.00000
+projected BCI-controlled information transfer rate: 0.83799 chars/min
+
+harrison barnes
+
+h selected.
+
+
+a selected.
+
+
+r selected.
+
+
+r selected.
+
+
+i selected.
+
+
+s selected.
+
+
+harrison selected.
+
+
+b selected.
+
+
+buchanan selected.
+
+
+[DEL] selected.
+
+in return to prev: num typed: 10
+
+
+a selected.
+
+
+r selected.
+
+
+n selected.
+
+
+e selected.
+
+
+s selected.
+
+
+number of characters typed: 15
+number of classifier errors: 17
+number of times delete used:  1
+total number of steps taken:  149
+simulation information transfer rate: 0.00000
+projected BCI-controlled information transfer rate: 2.01342 chars/min
+
+harrison barnes
+
+h selected.
+
+
+a selected.
+
+
+r selected.
+
+
+r selected.
+
+
+i selected.
+
+
+s selected.
+
+
+harrison selected.
+
+
+b selected.
+
+
+a selected.
+
+
+c selected.
+
+
+[DEL] selected.
+
+in return to prev: num typed: 11
+
+
+r selected.
+
+
+n selected.
+
+
+[SPC] selected.
+
+
+[DEL] selected.
+
+in return to prev: num typed: 13
+
+
+e selected.
+
+
+s selected.
+
+
+number of characters typed: 15
+number of classifier errors: 49
+number of times delete used:  2
+total number of steps taken:  248
+simulation information transfer rate: 0.00000
+projected BCI-controlled information transfer rate: 1.20968 chars/min
+
+harrison barnes
+
+h selected.
+
+
+a selected.
+
+
+r selected.
+
+
+r selected.
+
+
+i selected.
+
+
+s selected.
+
+
+harrison selected.
+
+
+b selected.
+
+
+a selected.
+
+
+r selected.
+
+
+n selected.
+
+
+e selected.
+
+
+s selected.
+
+
+number of characters typed: 15
+number of classifier errors: 36
+number of times delete used:  0
+total number of steps taken:  191
+simulation information transfer rate: 0.00000
+projected BCI-controlled information transfer rate: 1.57068 chars/min
+
+harrison barnes
+
+h selected.
+
+
+a selected.
+
+
+r selected.
+
+
+r selected.
+
+
+harry selected.
+
+
+[DEL] selected.
+
+in return to prev: num typed: 4
+
+
+i selected.
+
+
+s selected.
+
+
+harrison selected.
+
+
+a selected.
+
+
+[DEL] selected.
+
+in return to prev: num typed: 9
+
+
+b selected.
+
+
+a selected.
+
+
+r selected.
+
+
+n selected.
+
+
+e selected.
+
+
+s selected.
+
+
+number of characters typed: 15
+number of classifier errors: 52
+number of times delete used:  2
+total number of steps taken:  255
+simulation information transfer rate: 0.00000
+projected BCI-controlled information transfer rate: 1.17647 chars/min
+
+harrison barnes
+
+h selected.
+
+
+a selected.
+
+
+r selected.
+
+
+r selected.
+
+
+i selected.
+
+
+harriet selected.
+
+
+[DEL] selected.
+
+in return to prev: num typed: 5
+
+
+s selected.
+
+
+harrison selected.
+
+
+b selected.
+
+
+a selected.
+
+
+r selected.
+
+
+n selected.
+
+
+e selected.
+
+
+s selected.
+
+
+number of characters typed: 15
+number of classifier errors: 41
+number of times delete used:  1
+total number of steps taken:  223
+simulation information transfer rate: 0.00000
+projected BCI-controlled information transfer rate: 1.34529 chars/min
+
+harrison barnes
+
+h selected.
+
+
+a selected.
+
+
+r selected.
+
+
+i selected.
+
+
+[DEL] selected.
+
+in return to prev: num typed: 3
+
+
+r selected.
+
+
+i selected.
+
+
+s selected.
+
+
+harrison selected.
+
+
+b selected.
+
+
+a selected.
+
+
+[DEL] selected.
+
+in return to prev: num typed: 10
+
+
+a selected.
+
+
+r selected.
+
+
+n selected.
+
+
+e selected.
+
+
+s selected.
+
+
+number of characters typed: 15
+number of classifier errors: 45
+number of times delete used:  2
+total number of steps taken:  237
+simulation information transfer rate: 0.00000
+projected BCI-controlled information transfer rate: 1.26582 chars/min
+
+harrison barnes
+
+h selected.
+
+
+his selected.
+
+
+[DEL] selected.
+
+in return to prev: num typed: 1
+
+
+a selected.
+
+
+r selected.
+
+
+r selected.
+
+
+i selected.
+
+
+s selected.
+
+
+harrison selected.
+
+
+b selected.
+
+
+a selected.
+
+
+r selected.
+
+
+n selected.
+
+
+e selected.
+
+
+s selected.
+
+
+number of characters typed: 15
+number of classifier errors: 40
+number of times delete used:  1
+total number of steps taken:  217
+simulation information transfer rate: 0.00000
+projected BCI-controlled information transfer rate: 1.38249 chars/min
+
+harrison barnes
+
+h selected.
+
+
+a selected.
+
+
+r selected.
+
+
+r selected.
+
+
+i selected.
+
+
+s selected.
+
+
+harrison selected.
+
+
+b selected.
+
+
+a selected.
+
+
+r selected.
+
+
+n selected.
+
+
+e selected.
+
+
+s selected.
+
+
+number of characters typed: 15
+number of classifier errors: 26
+number of times delete used:  0
+total number of steps taken:  164
+simulation information transfer rate: 0.00000
+projected BCI-controlled information transfer rate: 1.82927 chars/min
+
+harrison barnes
+
+h selected.
+
+
+his selected.
+
+
+[DEL] selected.
+
+in return to prev: num typed: 1
+
+
+a selected.
+
+
+r selected.
+
+
+r selected.
+
+
+i selected.
+
+
+s selected.
+
+
+harrison selected.
+
+
+and selected.
+
+
+[DEL] selected.
+
+in return to prev: num typed: 9
+
+
+b selected.
+
+
+a selected.
+
+
+r selected.
+
+
+barely selected.
+
+
+[DEL] selected.
+
+in return to prev: num typed: 12
+
+
+n selected.
+
+
+e selected.
+
+
+s selected.
+
+
+number of characters typed: 15
+number of classifier errors: 57
+number of times delete used:  3
+total number of steps taken:  281
+simulation information transfer rate: 0.00000
+projected BCI-controlled information transfer rate: 1.06762 chars/min
+
+harrison barnes
+
+h selected.
+
+
+a selected.
+
+
+r selected.
+
+
+r selected.
+
+
+i selected.
+
+
+s selected.
+
+
+harrison selected.
+
+
+b selected.
+
+
+a selected.
+
+
+r selected.
+
+
+n selected.
+
+
+e selected.
+
+
+s selected.
+
+
+number of characters typed: 15
+number of classifier errors: 43
+number of times delete used:  0
+total number of steps taken:  210
+simulation information transfer rate: 0.00000
+projected BCI-controlled information transfer rate: 1.42857 chars/min
+
+harrison barnes
+
+h selected.
+
+
+a selected.
+
+
+r selected.
+
+
+r selected.
+
+
+i selected.
+
+
+s selected.
+
+
+harrison selected.
+
+
+b selected.
+
+
+a selected.
+
+
+r selected.
+
+
+n selected.
+
+
+e selected.
+
+
+s selected.
+
+
+number of characters typed: 15
+number of classifier errors: 34
+number of times delete used:  0
+total number of steps taken:  188
+simulation information transfer rate: 0.00000
+projected BCI-controlled information transfer rate: 1.59574 chars/min
+
+harrison barnes
+
+h selected.
+
+
+a selected.
+
+
+r selected.
+
+
+r selected.
+
+
+i selected.
+
+
+s selected.
+
+
+harrisburg selected.
+
+
+t selected.
+
+
+[DEL] selected.
+
+in return to prev: num typed: 11
+
+
+[DEL] selected.
+
+in return to prev: num typed: 6
+
+
+harrison selected.
+
+
+b selected.
+
+
+a selected.
+
+
+r selected.
+
+
+n selected.
+
+
+e selected.
+
+
+barnett selected.
+
+
+[DEL] selected.
+
+in return to prev: num typed: 14
+
+
+s selected.
+
+
+number of characters typed: 15
+number of classifier errors: 56
+number of times delete used:  3
+total number of steps taken:  265
+simulation information transfer rate: 0.00000
+projected BCI-controlled information transfer rate: 1.13208 chars/min
+
+harrison barnes
+
+h selected.
+
+
+a selected.
+
+
+r selected.
+
+
+r selected.
+
+
+i selected.
+
+
+s selected.
+
+
+harrison selected.
+
+
+b selected.
+
+
+buchanan selected.
+
+
+is selected.
+
+
+[DEL] selected.
+
+in return to prev: num typed: 18
+
+
+[DEL] selected.
+
+in return to prev: num typed: 10
+
+
+a selected.
+
+
+r selected.
+
+
+n selected.
+
+
+e selected.
+
+
+s selected.
+
+
+number of characters typed: 15
+number of classifier errors: 40
+number of times delete used:  2
+total number of steps taken:  224
+simulation information transfer rate: 0.00000
+projected BCI-controlled information transfer rate: 1.33929 chars/min
+
+harrison barnes
+
+h selected.
+
+
+a selected.
+
+
+r selected.
+
+
+r selected.
+
+
+i selected.
+
+
+s selected.
+
+
+harrison selected.
+
+
+b selected.
+
+
+a selected.
+
+
+r selected.
+
+
+n selected.
+
+
+e selected.
+
+
+s selected.
+
+
+number of characters typed: 15
+number of classifier errors: 42
+number of times delete used:  0
+total number of steps taken:  208
+simulation information transfer rate: 0.00000
+projected BCI-controlled information transfer rate: 1.44231 chars/min
+
+harrison barnes
+
+h selected.
+
+
+a selected.
+
+
+r selected.
+
+
+r selected.
+
+
+i selected.
+
+
+s selected.
+
+
+harrison selected.
+
+
+b selected.
+
+
+a selected.
+
+
+r selected.
+
+
+n selected.
+
+
+e selected.
+
+
+s selected.
+
+
+number of characters typed: 15
+number of classifier errors: 27
+number of times delete used:  0
+total number of steps taken:  165
+simulation information transfer rate: 0.00000
+projected BCI-controlled information transfer rate: 1.81818 chars/min
+
+harrison barnes
+
+h selected.
+
+
+a selected.
+
+
+r selected.
+
+
+r selected.
+
+
+i selected.
+
+
+s selected.
+
+
+harrison selected.
+
+
+b selected.
+
+
+a selected.
+
+
+r selected.
+
+
+n selected.
+
+
+e selected.
+
+
+s selected.
+
+
+number of characters typed: 15
+number of classifier errors: 34
+number of times delete used:  0
+total number of steps taken:  192
+simulation information transfer rate: 0.00000
+projected BCI-controlled information transfer rate: 1.56250 chars/min
+
+harrison barnes
+
+h selected.
+
+
+a selected.
+
+
+r selected.
+
+
+i selected.
+
+
+haring selected.
+
+
+[DEL] selected.
+
+in return to prev: num typed: 4
+
+
+[DEL] selected.
+
+in return to prev: num typed: 3
+
+
+r selected.
+
+
+i selected.
+
+
+s selected.
+
+
+harrison selected.
+
+
+b selected.
+
+
+a selected.
+
+
+r selected.
+
+
+n selected.
+
+
+e selected.
+
+
+s selected.
+
+
+number of characters typed: 15
+number of classifier errors: 39
+number of times delete used:  2
+total number of steps taken:  217
+simulation information transfer rate: 0.00000
+projected BCI-controlled information transfer rate: 1.38249 chars/min
+
+harrison barnes
+
+h selected.
+
+
+a selected.
+
+
+r selected.
+
+
+i selected.
+
+
+[DEL] selected.
+
+in return to prev: num typed: 3
+
+
+r selected.
+
+
+i selected.
+
+
+s selected.
+
+
+harrison selected.
+
+
+b selected.
+
+
+a selected.
+
+
+r selected.
+
+
+n selected.
+
+
+e selected.
+
+
+s selected.
+
+
+number of characters typed: 15
+number of classifier errors: 38
+number of times delete used:  1
+total number of steps taken:  203
+simulation information transfer rate: 0.00000
+projected BCI-controlled information transfer rate: 1.47783 chars/min
+
+harrison barnes
+
+h selected.
+
+
+a selected.
+
+
+r selected.
+
+
+r selected.
+
+
+i selected.
+
+
+s selected.
+
+
+harrison selected.
+
+
+b selected.
+
+
+buchanan selected.
+
+
+[DEL] selected.
+
+in return to prev: num typed: 10
+
+
+a selected.
+
+
+back selected.
+
+
+[DEL] selected.
+
+in return to prev: num typed: 11
+
+
+r selected.
+
+
+n selected.
+
+
+e selected.
+
+
+s selected.
+
+
+number of characters typed: 15
+number of classifier errors: 41
+number of times delete used:  2
+total number of steps taken:  227
+simulation information transfer rate: 0.00000
+projected BCI-controlled information transfer rate: 1.32159 chars/min
+
+harrison barnes
+
+h selected.
+
+
+a selected.
+
+
+r selected.
+
+
+r selected.
+
+
+i selected.
+
+
+harrington selected.
+
+
+[DEL] selected.
+
+in return to prev: num typed: 5
+
+
+s selected.
+
+
+harrisburg selected.
+
+
+[DEL] selected.
+
+in return to prev: num typed: 6
+
+
+harrisburg selected.
+
+
+[DEL] selected.
+
+in return to prev: num typed: 6
+
+
+harrison selected.
+
+
+b selected.
+
+
+a selected.
+
+
+r selected.
+
+
+n selected.
+
+
+e selected.
+
+
+barney selected.
+
+
+[DEL] selected.
+
+in return to prev: num typed: 14
+
+
+s selected.
+
+
+number of characters typed: 15
+number of classifier errors: 56
+number of times delete used:  4
+total number of steps taken:  

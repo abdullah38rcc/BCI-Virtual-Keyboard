@@ -1,0 +1,7263 @@
+reading in unigram dictionary...
+reading in bigram dictionary...
+what drives edward phase
+
+w selected.
+
+
+h selected.
+
+
+a selected.
+
+
+what selected.
+
+
+d selected.
+
+
+r selected.
+
+
+drives selected.
+
+
+e selected.
+
+
+d selected.
+
+
+w selected.
+
+
+edward selected.
+
+
+p selected.
+
+
+h selected.
+
+
+a selected.
+
+
+phase selected.
+
+
+number of characters typed: 25
+number of classifier errors: 35
+number of times delete used:  0
+total number of steps taken:  212
+simulation information transfer rate: 0.00000
+projected BCI-controlled information transfer rate: 2.35849 chars/min
+
+what drives edward phase
+
+w selected.
+
+
+h selected.
+
+
+a selected.
+
+
+what selected.
+
+
+the selected.
+
+
+[DEL] selected.
+
+in return to prev: num typed: 5
+
+
+d selected.
+
+
+r selected.
+
+
+drives selected.
+
+
+the selected.
+
+
+[DEL] selected.
+
+in return to prev: num typed: 12
+
+
+e selected.
+
+
+d selected.
+
+
+editorial selected.
+
+
+[DEL] selected.
+
+in return to prev: num typed: 14
+
+
+[SPC] selected.
+
+
+[DEL] selected.
+
+in return to prev: num typed: 14
+
+
+w selected.
+
+
+edward selected.
+
+
+p selected.
+
+
+o selected.
+
+
+[DEL] selected.
+
+in return to prev: num typed: 20
+
+
+h selected.
+
+
+a selected.
+
+
+phase selected.
+
+
+number of characters typed: 25
+number of classifier errors: 81
+number of times delete used:  5
+total number of steps taken:  379
+simulation information transfer rate: 0.00000
+projected BCI-controlled information transfer rate: 1.31926 chars/min
+
+what drives edward phase
+
+w selected.
+
+
+h selected.
+
+
+a selected.
+
+
+what selected.
+
+
+d selected.
+
+
+r selected.
+
+
+drives selected.
+
+
+e selected.
+
+
+d selected.
+
+
+w selected.
+
+
+edward selected.
+
+
+p selected.
+
+
+h selected.
+
+
+a selected.
+
+
+phase selected.
+
+
+number of characters typed: 25
+number of classifier errors: 16
+number of times delete used:  0
+total number of steps taken:  152
+simulation information transfer rate: 0.00000
+projected BCI-controlled information transfer rate: 3.28947 chars/min
+
+what drives edward phase
+
+the selected.
+
+
+[DEL] selected.
+
+in return to prev: num typed: 0
+
+
+w selected.
+
+
+h selected.
+
+
+a selected.
+
+
+what selected.
+
+
+d selected.
+
+
+r selected.
+
+
+drives selected.
+
+
+e selected.
+
+
+d selected.
+
+
+education selected.
+
+
+[DEL] selected.
+
+in return to prev: num typed: 14
+
+
+w selected.
+
+
+edward selected.
+
+
+c selected.
+
+
+[DEL] selected.
+
+in return to prev: num typed: 19
+
+
+p selected.
+
+
+h selected.
+
+
+a selected.
+
+
+phase selected.
+
+
+number of characters typed: 25
+number of classifier errors: 55
+number of times delete used:  3
+total number of steps taken:  294
+simulation information transfer rate: 0.00000
+projected BCI-controlled information transfer rate: 1.70068 chars/min
+
+what drives edward phase
+
+w selected.
+
+
+h selected.
+
+
+a selected.
+
+
+what selected.
+
+
+p selected.
+
+
+[DEL] selected.
+
+in return to prev: num typed: 5
+
+
+d selected.
+
+
+r selected.
+
+
+drives selected.
+
+
+e selected.
+
+
+d selected.
+
+
+w selected.
+
+
+edward selected.
+
+
+p selected.
+
+
+a selected.
+
+
+[DEL] selected.
+
+in return to prev: num typed: 20
+
+
+h selected.
+
+
+a selected.
+
+
+phase selected.
+
+
+number of characters typed: 25
+number of classifier errors: 40
+number of times delete used:  2
+total number of steps taken:  243
+simulation information transfer rate: 0.00000
+projected BCI-controlled information transfer rate: 2.05761 chars/min
+
+what drives edward phase
+
+w selected.
+
+
+h selected.
+
+
+a selected.
+
+
+what selected.
+
+
+d selected.
+
+
+r selected.
+
+
+i selected.
+
+
+drives selected.
+
+
+e selected.
+
+
+d selected.
+
+
+editorial selected.
+
+
+[DEL] selected.
+
+in return to prev: num typed: 14
+
+
+w selected.
+
+
+edward selected.
+
+
+p selected.
+
+
+h selected.
+
+
+a selected.
+
+
+phase selected.
+
+
+number of characters typed: 25
+number of classifier errors: 39
+number of times delete used:  1
+total number of steps taken:  218
+simulation information transfer rate: 0.00000
+projected BCI-controlled information transfer rate: 2.29358 chars/min
+
+what drives edward phase
+
+p selected.
+
+
+[DEL] selected.
+
+in return to prev: num typed: 0
+
+
+w selected.
+
+
+h selected.
+
+
+a selected.
+
+
+what selected.
+
+
+d selected.
+
+
+r selected.
+
+
+drives selected.
+
+
+e selected.
+
+
+d selected.
+
+
+w selected.
+
+
+edward selected.
+
+
+p selected.
+
+
+o selected.
+
+
+[DEL] selected.
+
+in return to prev: num typed: 20
+
+
+h selected.
+
+
+a selected.
+
+
+phase selected.
+
+
+number of characters typed: 25
+number of classifier errors: 62
+number of times delete used:  2
+total number of steps taken:  306
+simulation information transfer rate: 0.00000
+projected BCI-controlled information transfer rate: 1.63399 chars/min
+
+what drives edward phase
+
+w selected.
+
+
+h selected.
+
+
+o selected.
+
+
+[DEL] selected.
+
+in return to prev: num typed: 2
+
+
+a selected.
+
+
+what selected.
+
+
+d selected.
+
+
+r selected.
+
+
+drives selected.
+
+
+e selected.
+
+
+d selected.
+
+
+w selected.
+
+
+edward selected.
+
+
+h selected.
+
+
+a selected.
+
+
+[DEL] selected.
+
+in return to prev: num typed: 20
+
+
+[DEL] selected.
+
+in return to prev: num typed: 19
+
+
+a selected.
+
+
+[DEL] selected.
+
+in return to prev: num typed: 19
+
+
+p selected.
+
+
+paul selected.
+
+
+[DEL] selected.
+
+in return to prev: num typed: 20
+
+
+h selected.
+
+
+b selected.
+
+
+[DEL] selected.
+
+in return to prev: num typed: 21
+
+
+a selected.
+
+
+phase selected.
+
+
+number of characters typed: 25
+number of classifier errors: 83
+number of times delete used:  6
+total number of steps taken:  376
+simulation information transfer rate: 0.00000
+projected BCI-controlled information transfer rate: 1.32979 chars/min
+
+what drives edward phase
+
+w selected.
+
+
+h selected.
+
+
+a selected.
+
+
+what selected.
+
+
+d selected.
+
+
+r selected.
+
+
+drives selected.
+
+
+e selected.
+
+
+d selected.
+
+
+w selected.
+
+
+edward selected.
+
+
+p selected.
+
+
+h selected.
+
+
+a selected.
+
+
+phase selected.
+
+
+number of characters typed: 25
+number of classifier errors: 31
+number of times delete used:  0
+total number of steps taken:  192
+simulation information transfer rate: 0.00000
+projected BCI-controlled information transfer rate: 2.60417 chars/min
+
+what drives edward phase
+
+w selected.
+
+
+h selected.
+
+
+a selected.
+
+
+what selected.
+
+
+d selected.
+
+
+r selected.
+
+
+drives selected.
+
+
+e selected.
+
+
+d selected.
+
+
+a selected.
+
+
+[DEL] selected.
+
+in return to prev: num typed: 14
+
+
+w selected.
+
+
+edward selected.
+
+
+p selected.
+
+
+h selected.
+
+
+a selected.
+
+
+phase selected.
+
+
+number of characters typed: 25
+number of classifier errors: 40
+number of times delete used:  1
+total number of steps taken:  234
+simulation information transfer rate: 0.00000
+projected BCI-controlled information transfer rate: 2.13675 chars/min
+
+what drives edward phase
+
+w selected.
+
+
+h selected.
+
+
+a selected.
+
+
+what selected.
+
+
+d selected.
+
+
+did selected.
+
+
+[DEL] selected.
+
+in return to prev: num typed: 6
+
+
+r selected.
+
+
+drives selected.
+
+
+u selected.
+
+
+[DEL] selected.
+
+in return to prev: num typed: 12
+
+
+e selected.
+
+
+d selected.
+
+
+[SPC] selected.
+
+
+[DEL] selected.
+
+in return to prev: num typed: 14
+
+
+w selected.
+
+
+edward selected.
+
+
+p selected.
+
+
+h selected.
+
+
+a selected.
+
+
+phase selected.
+
+
+number of characters typed: 25
+number of classifier errors: 77
+number of times delete used:  3
+total number of steps taken:  348
+simulation information transfer rate: 0.00000
+projected BCI-controlled information transfer rate: 1.43678 chars/min
+
+what drives edward phase
+
+w selected.
+
+
+h selected.
+
+
+a selected.
+
+
+what selected.
+
+
+d selected.
+
+
+r selected.
+
+
+drives selected.
+
+
+the selected.
+
+
+[DEL] selected.
+
+in return to prev: num typed: 12
+
+
+e selected.
+
+
+d selected.
+
+
+w selected.
+
+
+edward selected.
+
+
+p selected.
+
+
+h selected.
+
+
+a selected.
+
+
+phase selected.
+
+
+number of characters typed: 25
+number of classifier errors: 40
+number of times delete used:  1
+total number of steps taken:  241
+simulation information transfer rate: 0.00000
+projected BCI-controlled information transfer rate: 2.07469 chars/min
+
+what drives edward phase
+
+w selected.
+
+
+h selected.
+
+
+a selected.
+
+
+what selected.
+
+
+d selected.
+
+
+r selected.
+
+
+drives selected.
+
+
+e selected.
+
+
+d selected.
+
+
+w selected.
+
+
+edward selected.
+
+
+p selected.
+
+
+h selected.
+
+
+a selected.
+
+
+phase selected.
+
+
+number of characters typed: 25
+number of classifier errors: 18
+number of times delete used:  0
+total number of steps taken:  163
+simulation information transfer rate: 0.00000
+projected BCI-controlled information transfer rate: 3.06748 chars/min
+
+what drives edward phase
+
+w selected.
+
+
+h selected.
+
+
+a selected.
+
+
+what selected.
+
+
+d selected.
+
+
+r selected.
+
+
+drives selected.
+
+
+and selected.
+
+
+[DEL] selected.
+
+in return to prev: num typed: 12
+
+
+c selected.
+
+
+culture selected.
+
+
+[DEL] selected.
+
+in return to prev: num typed: 13
+
+
+[DEL] selected.
+
+in return to prev: num typed: 12
+
+
+e selected.
+
+
+d selected.
+
+
+w selected.
+
+
+edward selected.
+
+
+p selected.
+
+
+h selected.
+
+
+a selected.
+
+
+phase selected.
+
+
+number of characters typed: 25
+number of classifier errors: 41
+number of times delete used:  3
+total number of steps taken:  239
+simulation information transfer rate: 0.00000
+projected BCI-controlled information transfer rate: 2.09205 chars/min
+
+what drives edward phase
+
+w selected.
+
+
+h selected.
+
+
+a selected.
+
+
+what selected.
+
+
+d selected.
+
+
+r selected.
+
+
+drives selected.
+
+
+a selected.
+
+
+[DEL] selected.
+
+in return to prev: num typed: 12
+
+
+e selected.
+
+
+d selected.
+
+
+w selected.
+
+
+edward selected.
+
+
+t selected.
+
+
+[DEL] selected.
+
+in return to prev: num typed: 19
+
+
+p selected.
+
+
+h selected.
+
+
+a selected.
+
+
+phase selected.
+
+
+number of characters typed: 25
+number of classifier errors: 64
+number of times delete used:  2
+total number of steps taken:  301
+simulation information transfer rate: 0.00000
+projected BCI-controlled information transfer rate: 1.66113 chars/min
+
+what drives edward phase
+
+w selected.
+
+
+h selected.
+
+
+when selected.
+
+
+[DEL] selected.
+
+in return to prev: num typed: 2
+
+
+a selected.
+
+
+what selected.
+
+
+d selected.
+
+
+r selected.
+
+
+drives selected.
+
+
+e selected.
+
+
+d selected.
+
+
+education selected.
+
+
+[DEL] selected.
+
+in return to prev: num typed: 14
+
+
+editor selected.
+
+
+[DEL] selected.
+
+in return to prev: num typed: 14
+
+
+w selected.
+
+
+edward selected.
+
+
+p selected.
+
+
+h selected.
+
+
+a selected.
+
+
+phase selected.
+
+
+number of characters typed: 25
+number of classifier errors: 66
+number of times delete used:  3
+total number of steps taken:  311
+simulation information transfer rate: 0.00000
+projected BCI-controlled information transfer rate: 1.60772 chars/min
+
+what drives edward phase
+
+w selected.
+
+
+h selected.
+
+
+a selected.
+
+
+what selected.
+
+
+d selected.
+
+
+r selected.
+
+
+drives selected.
+
+
+e selected.
+
+
+d selected.
+
+
+w selected.
+
+
+edward selected.
+
+
+p selected.
+
+
+h selected.
+
+
+a selected.
+
+
+phase selected.
+
+
+number of characters typed: 25
+number of classifier errors: 51
+number of times delete used:  0
+total number of steps taken:  252
+simulation information transfer rate: 0.00000
+projected BCI-controlled information transfer rate: 1.98413 chars/min
+
+what drives edward phase
+
+w selected.
+
+
+h selected.
+
+
+a selected.
+
+
+what selected.
+
+
+d selected.
+
+
+r selected.
+
+
+drives selected.
+
+
+and selected.
+
+
+[DEL] selected.
+
+in return to prev: num typed: 12
+
+
+e selected.
+
+
+d selected.
+
+
+w selected.
+
+
+edward selected.
+
+
+p selected.
+
+
+h selected.
+
+
+a selected.
+
+
+phase selected.
+
+
+number of characters typed: 25
+number of classifier errors: 53
+number of times delete used:  1
+total number of steps taken:  264
+simulation information transfer rate: 0.00000
+projected BCI-controlled information transfer rate: 1.89394 chars/min
+
+what drives edward phase
+
+w selected.
+
+
+who selected.
+
+
+[DEL] selected.
+
+in return to prev: num typed: 1
+
+
+h selected.
+
+
+a selected.
+
+
+what selected.
+
+
+d selected.
+
+
+r selected.
+
+
+dreams selected.
+
+
+[DEL] selected.
+
+in return to prev: num typed: 7
+
+
+drives selected.
+
+
+e selected.
+
+
+d selected.
+
+
+w selected.
+
+
+edward selected.
+
+
+p selected.
+
+
+h selected.
+
+
+a selected.
+
+
+phase selected.
+
+
+number of characters typed: 25
+number of classifier errors: 51
+number of times delete used:  2
+total number of steps taken:  274
+simulation information transfer rate: 0.00000
+projected BCI-controlled information transfer rate: 1.82482 chars/min
+
+what drives edward phase
+
+p selected.
+
+
+[DEL] selected.
+
+in return to prev: num typed: 0
+
+
+w selected.
+
+
+h selected.
+
+
+i selected.
+
+
+[DEL] selected.
+
+in return to prev: num typed: 2
+
+
+a selected.
+
+
+what selected.
+
+
+d selected.
+
+
+r selected.
+
+
+drives selected.
+
+
+e selected.
+
+
+d selected.
+
+
+w selected.
+
+
+edward selected.
+
+
+kennedy selected.
+
+
+school selected.
+
+
+[DEL] selected.
+
+in return to prev: num typed: 27
+
+
+[DEL] selected.
+
+in return to prev: num typed: 19
+
+
+p selected.
+
+
+m selected.
+
+
+[SPC] selected.
+
+
+[DEL] selected.
+
+in return to prev: num typed: 21
+
+
+[DEL] selected.
+
+in return to prev: num typed: 20
+
+
+h selected.
+
+
+a selected.
+
+
+phase selected.
+
+
+number of characters typed: 25
+number of classifier errors: 104
+number of times delete used:  6
+total number of steps taken:  449
+simulation information transfer rate: 0.00000
+projected BCI-controlled information transfer rate: 1.11359 chars/min
+
+what drives edward phase
+
+w selected.
+
+
+h selected.
+
+
+a selected.
+
+
+what selected.
+
+
+d selected.
+
+
+r selected.
+
+
+drives selected.
+
+
+e selected.
+
+
+d selected.
+
+
+w selected.
+
+
+edward selected.
+
+
+p selected.
+
+
+h selected.
+
+
+a selected.
+
+
+phase selected.
+
+
+number of characters typed: 25
+number of classifier errors: 32
+number of times delete used:  0
+total number of steps taken:  200
+simulation information transfer rate: 0.00000
+projected BCI-controlled information transfer rate: 2.50000 chars/min
+
+what drives edward phase
+
+w selected.
+
+
+h selected.
+
+
+a selected.
+
+
+what selected.
+
+
+d selected.
+
+
+r selected.
+
+
+drives selected.
+
+
+e selected.
+
+
+d selected.
+
+
+w selected.
+
+
+edward selected.
+
+
+p selected.
+
+
+h selected.
+
+
+a selected.
+
+
+phase selected.
+
+
+number of characters typed: 25
+number of classifier errors: 25
+number of times delete used:  0
+total number of steps taken:  182
+simulation information transfer rate: 0.00000
+projected BCI-controlled information transfer rate: 2.74725 chars/min
+
+what drives edward phase
+
+w selected.
+
+
+with selected.
+
+
+[DEL] selected.
+
+in return to prev: num typed: 1
+
+
+h selected.
+
+
+a selected.
+
+
+what selected.
+
+
+d selected.
+
+
+r selected.
+
+
+drives selected.
+
+
+e selected.
+
+
+d selected.
+
+
+w selected.
+
+
+edward selected.
+
+
+p selected.
+
+
+h selected.
+
+
+a selected.
+
+
+phase selected.
+
+
+number of characters typed: 25
+number of classifier errors: 30
+number of times delete used:  1
+total number of steps taken:  198
+simulation information transfer rate: 0.00000
+projected BCI-controlled information transfer rate: 2.52525 chars/min
+
+what drives edward phase
+
+w selected.
+
+
+h selected.
+
+
+a selected.
+
+
+what selected.
+
+
+d selected.
+
+
+r selected.
+
+
+drives selected.
+
+
+e selected.
+
+
+d selected.
+
+
+w selected.
+
+
+edward selected.
+
+
+p selected.
+
+
+h selected.
+
+
+a selected.
+
+
+phase selected.
+
+
+number of characters typed: 25
+number of classifier errors: 36
+number of times delete used:  0
+total number of steps taken:  205
+simulation information transfer rate: 0.00000
+projected BCI-controlled information transfer rate: 2.43902 chars/min
+
+what drives edward phase
+
+w selected.
+
+
+h selected.
+
+
+a selected.
+
+
+what selected.
+
+
+d selected.
+
+
+r selected.
+
+
+drives selected.
+
+
+e selected.
+
+
+d selected.
+
+
+editor selected.
+
+
+[DEL] selected.
+
+in return to prev: num typed: 14
+
+
+editorial selected.
+
+
+[DEL] selected.
+
+in return to prev: num typed: 14
+
+
+w selected.
+
+
+edward selected.
+
+
+p selected.
+
+
+h selected.
+
+
+a selected.
+
+
+phase selected.
+
+
+number of characters typed: 25
+number of classifier errors: 39
+number of times delete used:  2
+total number of steps taken:  226
+simulation information transfer rate: 0.00000
+projected BCI-controlled information transfer rate: 2.21239 chars/min
+
+what drives edward phase
+
+w selected.
+
+
+h selected.
+
+
+o selected.
+
+
+[DEL] selected.
+
+in return to prev: num typed: 2
+
+
+a selected.
+
+
+what selected.
+
+
+r selected.
+
+
+[DEL] selected.
+
+in return to prev: num typed: 5
+
+
+d selected.
+
+
+r selected.
+
+
+drives selected.
+
+
+e selected.
+
+
+d selected.
+
+
+education selected.
+
+
+[DEL] selected.
+
+in return to prev: num typed: 14
+
+
+[SPC] selected.
+
+
+[DEL] selected.
+
+in return to prev: num typed: 14
+
+
+w selected.
+
+
+edward selected.
+
+
+p selected.
+
+
+president selected.
+
+
+[DEL] selected.
+
+in return to prev: num typed: 20
+
+
+h selected.
+
+
+a selected.
+
+
+phase selected.
+
+
+number of characters typed: 25
+number of classifier errors: 75
+number of times delete used:  5
+total number of steps taken:  359
+simulation information transfer rate: 0.00000
+projected BCI-controlled information transfer rate: 1.39276 chars/min
+
+what drives edward phase
+
+w selected.
+
+
+h selected.
+
+
+a selected.
+
+
+what selected.
+
+
+d selected.
+
+
+r selected.
+
+
+drives selected.
+
+
+e selected.
+
+
+d selected.
+
+
+editorial selected.
+
+
+[DEL] selected.
+
+in return to prev: num typed: 14
+
+
+w selected.
+
+
+edward selected.
+
+
+p selected.
+
+
+h selected.
+
+
+a selected.
+
+
+phase selected.
+
+
+number of characters typed: 25
+number of classifier errors: 47
+number of times delete used:  1
+total number of steps taken:  240
+simulation information transfer rate: 0.00000
+projected BCI-controlled information transfer rate: 2.08333 chars/min
+
+what drives edward phase
+
+w selected.
+
+
+h selected.
+
+
+a selected.
+
+
+what selected.
+
+
+d selected.
+
+
+e selected.
+
+
+[DEL] selected.
+
+in return to prev: num typed: 6
+
+
+r selected.
+
+
+drives selected.
+
+
+e selected.
+
+
+d selected.
+
+
+r selected.
+
+
+[DEL] selected.
+
+in return to prev: num typed: 14
+
+
+w selected.
+
+
+edward selected.
+
+
+p selected.
+
+
+h selected.
+
+
+a selected.
+
+
+pharmaceutical selected.
+
+
+[DEL] selected.
+
+in return to prev: num typed: 22
+
+
+phase selected.
+
+
+number of characters typed: 25
+number of classifier errors: 51
+number of times delete used:  3
+total number of steps taken:  272
+simulation information transfer rate: 0.00000
+projected BCI-controlled information transfer rate: 1.83824 chars/min
+
+what drives edward phase
+
+w selected.
+
+
+h selected.
+
+
+a selected.
+
+
+what selected.
+
+
+f selected.
+
+
+[DEL] selected.
+
+in return to prev: num typed: 5
+
+
+d selected.
+
+
+r selected.
+
+
+drives selected.
+
+
+and selected.
+
+
+[DEL] selected.
+
+in return to prev: num typed: 12
+
+
+e selected.
+
+
+d selected.
+
+
+w selected.
+
+
+edward selected.
+
+
+p selected.
+
+
+h selected.
+
+
+a selected.
+
+
+phase selected.
+
+
+number of characters typed: 25
+number of classifier errors: 57
+number of times delete used:  2
+total number of steps taken:  290
+simulation information transfer rate: 0.00000
+projected BCI-controlled information transfer rate: 1.72414 chars/min
+
+what drives edward phase
+
+w selected.
+
+
+h selected.
+
+
+a selected.
+
+
+what selected.
+
+
+d selected.
+
+
+r selected.
+
+
+drives selected.
+
+
+the selected.
+
+
+i selected.
+
+
+in selected.
+
+
+a selected.
+
+
+[DEL] selected.
+
+in return to prev: num typed: 19
+
+
+[DEL] selected.
+
+in return to prev: num typed: 17
+
+
+[DEL] selected.
+
+in return to prev: num typed: 16
+
+
+p selected.
+
+
+[SPC] selected.
+
+
+[DEL] selected.
+
+in return to prev: num typed: 17
+
+
+[DEL] selected.
+
+in return to prev: num typed: 16
+
+
+in selected.
+
+
+[DEL] selected.
+
+in return to prev: num typed: 16
+
+
+[DEL] selected.
+
+in return to prev: num typed: 12
+
+
+e selected.
+
+
+d selected.
+
+
+w selected.
+
+
+edward selected.
+
+
+p selected.
+
+
+h selected.
+
+
+a selected.
+
+
+phase selected.
+
+
+number of characters typed: 25
+number of classifier errors: 86
+number of times delete used:  7
+total number of steps taken:  415
+simulation information transfer rate: 0.00000
+projected BCI-controlled information transfer rate: 1.20482 chars/min
+
+what drives edward phase
+
+w selected.
+
+
+h selected.
+
+
+a selected.
+
+
+what selected.
+
+
+d selected.
+
+
+did selected.
+
+
+[DEL] selected.
+
+in return to prev: num typed: 6
+
+
+r selected.
+
+
+drives selected.
+
+
+e selected.
+
+
+d selected.
+
+
+w selected.
+
+
+edward selected.
+
+
+p selected.
+
+
+h selected.
+
+
+a selected.
+
+
+phase selected.
+
+
+number of characters typed: 25
+number of classifier errors: 34
+number of times delete used:  1
+total number of steps taken:  213
+simulation information transfer rate: 0.00000
+projected BCI-controlled information transfer rate: 2.34742 chars/min
+
+what drives edward phase
+
+b selected.
+
+
+[DEL] selected.
+
+in return to prev: num typed: 0
+
+
+w selected.
+
+
+h selected.
+
+
+a selected.
+
+
+what selected.
+
+
+d selected.
+
+
+r selected.
+
+
+drives selected.
+
+
+e selected.
+
+
+d selected.
+
+
+w selected.
+
+
+edward selected.
+
+
+c selected.
+
+
+[DEL] selected.
+
+in return to prev: num typed: 19
+
+
+p selected.
+
+
+h selected.
+
+
+a selected.
+
+
+phase selected.
+
+
+number of characters typed: 25
+number of classifier errors: 55
+number of times delete used:  2
+total number of steps taken:  283
+simulation information transfer rate: 0.00000
+projected BCI-controlled information transfer rate: 1.76678 chars/min
+
+what drives edward phase
+
+of selected.
+
+
+[DEL] selected.
+
+in return to prev: num typed: 0
+
+
+w selected.
+
+
+h selected.
+
+
+a selected.
+
+
+what selected.
+
+
+d selected.
+
+
+r selected.
+
+
+drives selected.
+
+
+e selected.
+
+
+d selected.
+
+
+w selected.
+
+
+edward selected.
+
+
+p selected.
+
+
+h selected.
+
+
+a selected.
+
+
+phase selected.
+
+
+number of characters typed: 25
+number of classifier errors: 37
+number of times delete used:  1
+total number of steps taken:  215
+simulation information transfer rate: 0.00000
+projected BCI-controlled information transfer rate: 2.32558 chars/min
+
+what drives edward phase
+
+w selected.
+
+
+was selected.
+
+
+a selected.
+
+
+b selected.
+
+
+l selected.
+
+
+[DEL] selected.
+
+in return to prev: num typed: 6
+
+
+[DEL] selected.
+
+in return to prev: num typed: 5
+
+
+[DEL] selected.
+
+in return to prev: num typed: 4
+
+
+[DEL] selected.
+
+in return to prev: num typed: 1
+
+
+h selected.
+
+
+a selected.
+
+
+what selected.
+
+
+i selected.
+
+
+[DEL] selected.
+
+in return to prev: num typed: 5
+
+
+d selected.
+
+
+r selected.
+
+
+drives selected.
+
+
+e selected.
+
+
+d selected.
+
+
+w selected.
+
+
+edward selected.
+
+
+p selected.
+
+
+h selected.
+
+
+i selected.
+
+
+[DEL] selected.
+
+in return to prev: num typed: 21
+
+
+a selected.
+
+
+phase selected.
+
+
+number of characters typed: 25
+number of classifier errors: 64
+number of times delete used:  6
+total number of steps taken:  319
+simulation information transfer rate: 0.00000
+projected BCI-controlled information transfer rate: 1.56740 chars/min
+
+what drives edward phase
+
+w selected.
+
+
+h selected.
+
+
+a selected.
+
+
+what selected.
+
+
+d selected.
+
+
+r selected.
+
+
+drives selected.
+
+
+the selected.
+
+
+[DEL] selected.
+
+in return to prev: num typed: 12
+
+
+and selected.
+
+
+[DEL] selected.
+
+in return to prev: num typed: 12
+
+
+e selected.
+
+
+d selected.
+
+
+w selected.
+
+
+edward selected.
+
+
+p selected.
+
+
+h selected.
+
+
+a selected.
+
+
+phase selected.
+
+
+number of characters typed: 25
+number of classifier errors: 62
+number of times delete used:  2
+total number of steps taken:  296
+simulation information transfer rate: 0.00000
+projected BCI-controlled information transfer rate: 1.68919 chars/min
+
+what drives edward phase
+
+w selected.
+
+
+h selected.
+
+
+a selected.
+
+
+what selected.
+
+
+d selected.
+
+
+r selected.
+
+
+drives selected.
+
+
+o selected.
+
+
+on selected.
+
+
+the selected.
+
+
+[DEL] selected.
+
+in return to prev: num typed: 15
+
+
+[DEL] selected.
+
+in return to prev: num typed: 13
+
+
+[DEL] selected.
+
+in return to prev: num typed: 12
+
+
+e selected.
+
+
+d selected.
+
+
+w selected.
+
+
+edward selected.
+
+
+p selected.
+
+
+a selected.
+
+
+[DEL] selected.
+
+in return to prev: num typed: 20
+
+
+h selected.
+
+
+a selected.
+
+
+phase selected.
+
+
+number of characters typed: 25
+number of classifier errors: 90
+number of times delete used:  4
+total number of steps taken:  388
+simulation information transfer rate: 0.00000
+projected BCI-controlled information transfer rate: 1.28866 chars/min
+
+what drives edward phase
+
+w selected.
+
+
+h selected.
+
+
+when selected.
+
+
+[DEL] selected.
+
+in return to prev: num typed: 2
+
+
+a selected.
+
+
+what selected.
+
+
+d selected.
+
+
+r selected.
+
+
+drives selected.
+
+
+e selected.
+
+
+d selected.
+
+
+a selected.
+
+
+[DEL] selected.
+
+in return to prev: num typed: 14
+
+
+w selected.
+
+
+edward selected.
+
+
+p selected.
+
+
+paul selected.
+
+
+[DEL] selected.
+
+in return to prev: num typed: 20
+
+
+h selected.
+
+
+k selected.
+
+
+o selected.
+
+
+[DEL] selected.
+
+in return to prev: num typed: 22
+
+
+[DEL] selected.
+
+in return to prev: num typed: 21
+
+
+a selected.
+
+
+phase selected.
+
+
+number of characters typed: 25
+number of classifier errors: 77
+number of times delete used:  5
+total number of steps taken:  351
+simulation information transfer rate: 0.00000
+projected BCI-controlled information transfer rate: 1.42450 chars/min
+
+what drives edward phase
+
+the selected.
+
+
+[DEL] selected.
+
+in return to prev: num typed: 0
+
+
+w selected.
+
+
+h selected.
+
+
+a selected.
+
+
+what selected.
+
+
+d selected.
+
+
+r selected.
+
+
+drives selected.
+
+
+e selected.
+
+
+d selected.
+
+
+w selected.
+
+
+edward selected.
+
+
+p selected.
+
+
+h selected.
+
+
+a selected.
+
+
+phase selected.
+
+
+number of characters typed: 25
+number of classifier errors: 35
+number of times delete used:  1
+total number of steps taken:  210
+simulation information transfer rate: 0.00000
+projected BCI-controlled information transfer rate: 2.38095 chars/min
+
+what drives edward phase
+
+w selected.
+
+
+h selected.
+
+
+a selected.
+
+
+what selected.
+
+
+d selected.
+
+
+r selected.
+
+
+e selected.
+
+
+[DEL] selected.
+
+in return to prev: num typed: 7
+
+
+drives selected.
+
+
+the selected.
+
+
+in selected.
+
+
+[DEL] selected.
+
+in return to prev: num typed: 16
+
+
+[DEL] selected.
+
+in return to prev: num typed: 12
+
+
+and selected.
+
+
+[DEL] selected.
+
+in return to prev: num typed: 12
+
+
+e selected.
+
+
+d selected.
+
+
+editorial selected.
+
+
+[DEL] selected.
+
+in return to prev: num typed: 14
+
+
+w selected.
+
+
+edward selected.
+
+
+hopper selected.
+
+
+[DEL] selected.
+
+in return to prev: num typed: 19
+
+
+p selected.
+
+
+h selected.
+
+
+a selected.
+
+
+phase selected.
+
+
+number of characters typed: 25
+number of classifier errors: 76
+number of times delete used:  6
+total number of steps taken:  357
+simulation information transfer rate: 0.00000
+projected BCI-controlled information transfer rate: 1.40056 chars/min
+
+what drives edward phase
+
+w selected.
+
+
+h selected.
+
+
+a selected.
+
+
+what selected.
+
+
+d selected.
+
+
+r selected.
+
+
+y selected.
+
+
+[DEL] selected.
+
+in return to prev: num typed: 7
+
+
+drives selected.
+
+
+e selected.
+
+
+d selected.
+
+
+[SPC] selected.
+
+
+[DEL] selected.
+
+in return to prev: num typed: 14
+
+
+w selected.
+
+
+edward selected.
+
+
+p selected.
+
+
+a selected.
+
+
+[DEL] selected.
+
+in return to prev: num typed: 20
+
+
+h selected.
+
+
+a selected.
+
+
+phase selected.
+
+
+number of characters typed: 25
+number of classifier errors: 79
+number of times delete used:  3
+total number of steps taken:  353
+simulation information transfer rate: 0.00000
+projected BCI-controlled information transfer rate: 1.41643 chars/min
+
+what drives edward phase
+
+w selected.
+
+
+h selected.
+
+
+a selected.
+
+
+what selected.
+
+
+d selected.
+
+
+r selected.
+
+
+drives selected.
+
+
+c selected.
+
+
+[DEL] selected.
+
+in return to prev: num typed: 12
+
+
+e selected.
+
+
+[SPC] selected.
+
+
+[DEL] selected.
+
+in return to prev: num typed: 13
+
+
+d selected.
+
+
+w selected.
+
+
+edward selected.
+
+
+p selected.
+
+
+president selected.
+
+
+[DEL] selected.
+
+in return to prev: num typed: 20
+
+
+h selected.
+
+
+c selected.
+
+
+o selected.
+
+
+m selected.
+
+
+[DEL] selected.
+
+in return to prev: num typed: 23
+
+
+[DEL] selected.
+
+in return to prev: num typed: 22
+
+
+[DEL] selected.
+
+in return to prev: num typed: 21
+
+
+a selected.
+
+
+phase selected.
+
+
+number of characters typed: 25
+number of classifier errors: 91
+number of times delete used:  6
+total number of steps taken:  404
+simulation information transfer rate: 0.00000
+projected BCI-controlled information transfer rate: 1.23762 chars/min
+
+what drives edward phase
+
+w selected.
+
+
+o selected.
+
+
+world selected.
+
+
+[DEL] selected.
+
+in return to prev: num typed: 2
+
+
+[SPC] selected.
+
+
+[DEL] selected.
+
+in return to prev: num typed: 2
+
+
+[DEL] selected.
+
+in return to prev: num typed: 1
+
+
+h selected.
+
+
+when selected.
+
+
+t selected.
+
+
+[DEL] selected.
+
+in return to prev: num typed: 5
+
+
+[DEL] selected.
+
+in return to prev: num typed: 2
+
+
+b selected.
+
+
+[DEL] selected.
+
+in return to prev: num typed: 2
+
+
+[SPC] selected.
+
+
+[DEL] selected.
+
+in return to prev: num typed: 2
+
+
+a selected.
+
+
+what selected.
+
+
+they selected.
+
+
+[DEL] selected.
+
+in return to prev: num typed: 5
+
+
+d selected.
+
+
+r selected.
+
+
+drives selected.
+
+
+e selected.
+
+
+d selected.
+
+
+w selected.
+
+
+edward selected.
+
+
+p selected.
+
+
+h selected.
+
+
+a selected.
+
+
+phase selected.
+
+
+number of characters typed: 25
+number of classifier errors: 94
+number of times delete used:  8
+total number of steps taken:  438
+simulation information transfer rate: 0.00000
+projected BCI-controlled information transfer rate: 1.14155 chars/min
+
+what drives edward phase
+
+w selected.
+
+
+h selected.
+
+
+a selected.
+
+
+what selected.
+
+
+d selected.
+
+
+did selected.
+
+
+[DEL] selected.
+
+in return to prev: num typed: 6
+
+
+r selected.
+
+
+drives selected.
+
+
+e selected.
+
+
+d selected.
+
+
+editor selected.
+
+
+of selected.
+
+
+f selected.
+
+
+[DEL] selected.
+
+in return to prev: num typed: 22
+
+
+[DEL] selected.
+
+in return to prev: num typed: 19
+
+
+[DEL] selected.
+
+in return to prev: num typed: 14
+
+
+w selected.
+
+
+edward selected.
+
+
+p selected.
+
+
+h selected.
+
+
+a selected.
+
+
+phase selected.
+
+
+number of characters typed: 25
+number of classifier errors: 82
+number of times delete used:  4
+total number of steps taken:  355
+simulation information transfer rate: 0.00000
+projected BCI-controlled information transfer rate: 1.40845 chars/min
+
+what drives edward phase
+
+w selected.
+
+
+h selected.
+
+
+a selected.
+
+
+what selected.
+
+
+d selected.
+
+
+r selected.
+
+
+drives selected.
+
+
+e selected.
+
+
+d selected.
+
+
+u selected.
+
+
+[DEL] selected.
+
+in return to prev: num typed: 14
+
+
+[SPC] selected.
+
+
+[DEL] selected.
+
+in return to prev: num typed: 14
+
+
+[SPC] selected.
+
+
+[DEL] selected.
+
+in return to prev: num typed: 14
+
+
+w selected.
+
+
+edward selected.
+
+
+p selected.
+
+
+u selected.
+
+
+[DEL] selected.
+
+in return to prev: num typed: 20
+
+
+paul selected.
+
+
+[DEL] selected.
+
+in return to prev: num typed: 20
+
+
+h selected.
+
+
+a selected.
+
+
+phase selected.
+
+
+number of characters typed: 25
+number of classifier errors: 100
+number of times delete used:  5
+total number of steps taken:  443
+simulation information transfer rate: 0.00000
+projected BCI-controlled information transfer rate: 1.12867 chars/min
+
+what drives edward phase
+
+w selected.
+
+
+h selected.
+
+
+a selected.
+
+
+what selected.
+
+
+d selected.
+
+
+r selected.
+
+
+drives selected.
+
+
+e selected.
+
+
+d selected.
+
+
+w selected.
+
+
+edward selected.
+
+
+p selected.
+
+
+r selected.
+
+
+[DEL] selected.
+
+in return to prev: num typed: 20
+
+
+h selected.
+
+
+a selected.
+
+
+phase selected.
+
+
+number of characters typed: 25
+number of classifier errors: 54
+number of times delete used:  1
+total number of steps taken:  271
+simulation information transfer rate: 0.00000
+projected BCI-controlled information transfer rate: 1.84502 chars/min
+
+what drives edward phase
+
+w selected.
+
+
+h selected.
+
+
+a selected.
+
+
+what selected.
+
+
+d selected.
+
+
+o selected.
+
+
+[DEL] selected.
+
+in return to prev: num typed: 6
+
+
+do selected.
+
+
+[DEL] selected.
+
+in return to prev: num typed: 6
+
+
+r selected.
+
+
+drives selected.
+
+
+e selected.
+
+
+d selected.
+
+
+w selected.
+
+
+edward selected.
+
+
+p selected.
+
+
+h selected.
+
+
+a selected.
+
+
+phase selected.
+
+
+number of characters typed: 25
+number of classifier errors: 43
+number of times delete used:  2
+total number of steps taken:  243
+simulation information transfer rate: 0.00000
+projected BCI-controlled information transfer rate: 2.05761 chars/min
+
+what drives edward phase
+
+w selected.
+
+
+h selected.
+
+
+[DEL] selected.
+
+in return to prev: num typed: 1
+
+
+h selected.
+
+
+a selected.
+
+
+what selected.
+
+
+d selected.
+
+
+r selected.
+
+
+drives selected.
+
+
+e selected.
+
+
+d selected.
+
+
+u selected.
+
+
+[DEL] selected.
+
+in return to prev: num typed: 14
+
+
+w selected.
+
+
+edward selected.
+
+
+p selected.
+
+
+h selected.
+
+
+a selected.
+
+
+phase selected.
+
+
+number of characters typed: 25
+number of classifier errors: 43
+number of times delete used:  2
+total number of steps taken:  242
+simulation information transfer rate: 0.00000
+projected BCI-controlled information transfer rate: 2.06612 chars/min
+
+what drives edward phase
+
+w selected.
+
+
+h selected.
+
+
+a selected.
+
+
+what selected.
+
+
+d selected.
+
+
+r selected.
+
+
+drove selected.
+
+
+[DEL] selected.
+
+in return to prev: num typed: 7
+
+
+drives selected.
+
+
+e selected.
+
+
+d selected.
+
+
+w selected.
+
+
+edward selected.
+
+
+p selected.
+
+
+paul selected.
+
+
+[DEL] selected.
+
+in return to prev: num typed: 20
+
+
+h selected.
+
+
+a selected.
+
+
+phase selected.
+
+
+number of characters typed: 25
+number of classifier errors: 87
+number of times delete used:  2
+total number of steps taken:  360
+simulation information transfer rate: 0.00000
+projected BCI-controlled information transfer rate: 1.38889 chars/min
+
+what drives edward phase
+
+w selected.
+
+
+h selected.
+
+
+a selected.
+
+
+what selected.
+
+
+d selected.
+
+
+r selected.
+
+
+drives selected.
+
+
+e selected.
+
+
+d selected.
+
+
+[SPC] selected.
+
+
+[DEL] selected.
+
+in return to prev: num typed: 14
+
+
+w selected.
+
+
+edward selected.
+
+
+p selected.
+
+
+y selected.
+
+
+[DEL] selected.
+
+in return to prev: num typed: 20
+
+
+president selected.
+
+
+[DEL] selected.
+
+in return to prev: num typed: 20
+
+
+r selected.
+
+
+[DEL] selected.
+
+in return to prev: num typed: 20
+
+
+h selected.
+
+
+a selected.
+
+
+phase selected.
+
+
+number of characters typed: 25
+number of classifier errors: 73
+number of times delete used:  4
+total number of steps taken:  345
+simulation information transfer rate: 0.00000
+projected BCI-controlled information transfer rate: 1.44928 chars/min
+
+what drives edward phase
+
+w selected.
+
+
+h selected.
+
+
+who selected.
+
+
+[DEL] selected.
+
+in return to prev: num typed: 2
+
+
+a selected.
+
+
+what selected.
+
+
+d selected.
+
+
+do selected.
+
+
+[DEL] selected.
+
+in return to prev: num typed: 6
+
+
+r selected.
+
+
+drives selected.
+
+
+e selected.
+
+
+evolution selected.
+
+
+[DEL] selected.
+
+in return to prev: num typed: 13
+
+
+x selected.
+
+
+[DEL] selected.
+
+in return to prev: num typed: 13
+
+
+d selected.
+
+
+w selected.
+
+
+edward selected.
+
+
+p selected.
+
+
+h selected.
+
+
+a selected.
+
+
+phase selected.
+
+
+number of characters typed: 25
+number of classifier errors: 107
+number of times delete used:  4
+total number of steps taken:  428
+simulation information transfer rate: 0.00000
+projected BCI-controlled information transfer rate: 1.16822 chars/min
+
+what drives edward phase
+
+w selected.
+
+
+h selected.
+
+
+a selected.
+
+
+what selected.
+
+
+d selected.
+
+
+r selected.
+
+
+[DEL] selected.
+
+in return to prev: num typed: 6
+
+
+r selected.
+
+
+drives selected.
+
+
+e selected.
+
+
+expansion selected.
+
+
+[DEL] selected.
+
+in return to prev: num typed: 13
+
+
+a selected.
+
+
+[DEL] selected.
+
+in return to prev: num typed: 13
+
+
+d selected.
+
+
+w selected.
+
+
+edward selected.
+
+
+w selected.
+
+
+was selected.
+
+
+[DEL] selected.
+
+in return to prev: num typed: 20
+
+
+[DEL] selected.
+
+in return to prev: num typed: 19
+
+
+p selected.
+
+
+h selected.
+
+
+a selected.
+
+
+phase selected.
+
+
+number of characters typed: 25
+number of classifier errors: 79
+number of times delete used:  5
+total number of steps taken:  351
+simulation information transfer rate: 0.00000
+projected BCI-controlled information transfer rate: 1.42450 chars/min
+
+what drives edward phase
+
+w selected.
+
+
+h selected.
+
+
+a selected.
+
+
+what selected.
+
+
+d selected.
+
+
+r selected.
+
+
+drives selected.
+
+
+e selected.
+
+
+d selected.
+
+
+w selected.
+
+
+edward selected.
+
+
+p selected.
+
+
+h selected.
+
+
+a selected.
+
+
+phase selected.
+
+
+number of characters typed: 25
+number of classifier errors: 31
+number of times delete used:  0
+total number of steps taken:  193
+simulation information transfer rate: 0.00000
+projected BCI-controlled information transfer rate: 2.59067 chars/min
+
+what drives edward phase
+
+w selected.
+
+
+h selected.
+
+
+a selected.
+
+
+what selected.
+
+
+they selected.
+
+
+[DEL] selected.
+
+in return to prev: num typed: 5
+
+
+d selected.
+
+
+r selected.
+
+
+dreams selected.
+
+
+o selected.
+
+
+[DEL] selected.
+
+in return to prev: num typed: 12
+
+
+[DEL] selected.
+
+in return to prev: num typed: 7
+
+
+drives selected.
+
+
+e selected.
+
+
+d selected.
+
+
+editorial selected.
+
+
+p selected.
+
+
+[DEL] selected.
+
+in return to prev: num typed: 22
+
+
+[DEL] selected.
+
+in return to prev: num typed: 14
+
+
+w selected.
+
+
+edward selected.
+
+
+p selected.
+
+
+h selected.
+
+
+a selected.
+
+
+phase selected.
+
+
+number of characters typed: 25
+number of classifier errors: 85
+number of times delete used:  5
+total number of steps taken:  379
+simulation information transfer rate: 0.00000
+projected BCI-controlled information transfer rate: 1.31926 chars/min
+
+what drives edward phase
+
+w selected.
+
+
+h selected.
+
+
+a selected.
+
+
+what selected.
+
+
+d selected.
+
+
+r selected.
+
+
+drives selected.
+
+
+e selected.
+
+
+d selected.
+
+
+editorial selected.
+
+
+[DEL] selected.
+
+in return to prev: num typed: 14
+
+
+w selected.
+
+
+edward selected.
+
+
+p selected.
+
+
+h selected.
+
+
+a selected.
+
+
+phase selected.
+
+
+number of characters typed: 25
+number of classifier errors: 41
+number of times delete used:  1
+total number of steps taken:  235
+simulation information transfer rate: 0.00000
+projected BCI-controlled information transfer rate: 2.12766 chars/min
+
+what drives edward phase
+
+w selected.
+
+
+h selected.
+
+
+a selected.
+
+
+what selected.
+
+
+d selected.
+
+
+r selected.
+
+
+drives selected.
+
+
+e selected.
+
+
+d selected.
+
+
+w selected.
+
+
+edward selected.
+
+
+p selected.
+
+
+h selected.
+
+
+a selected.
+
+
+phase selected.
+
+
+number of characters typed: 25
+number of classifier errors: 19
+number of times delete used:  0
+total number of steps taken:  167
+simulation information transfer rate: 0.00000
+projected BCI-controlled information transfer rate: 2.99401 chars/min
+
+what drives edward phase
+
+the selected.
+
+
+[DEL] selected.
+
+in return to prev: num typed: 0
+
+
+w selected.
+
+
+h selected.
+
+
+a selected.
+
+
+what selected.
+
+
+the selected.
+
+
+[DEL] selected.
+
+in return to prev: num typed: 5
+
+
+d selected.
+
+
+r selected.
+
+
+dreams selected.
+
+
+[DEL] selected.
+
+in return to prev: num typed: 7
+
+
+drives selected.
+
+
+e selected.
+
+
+expansion selected.
+
+
+[DEL] selected.
+
+in return to prev: num typed: 13
+
+
+d selected.
+
+
+education selected.
+
+
+[DEL] selected.
+
+in return to prev: num typed: 14
+
+
+w selected.
+
+
+edward selected.
+
+
+p selected.
+
+
+h selected.
+
+
+a selected.
+
+
+phase selected.
+
+
+number of characters typed: 25
+number of classifier errors: 63
+number of times delete used:  5
+total number of steps taken:  321
+simulation information transfer rate: 0.00000
+projected BCI-controlled information transfer rate: 1.55763 chars/min
+
+what drives edward phase
+
+w selected.
+
+
+h selected.
+
+
+a selected.
+
+
+what selected.
+
+
+the selected.
+
+
+new selected.
+
+
+[DEL] selected.
+
+in return to prev: num typed: 9
+
+
+[DEL] selected.
+
+in return to prev: num typed: 5
+
+
+d selected.
+
+
+r selected.
+
+
+drives selected.
+
+
+e selected.
+
+
+d selected.
+
+
+w selected.
+
+
+edward selected.
+
+
+p selected.
+
+
+h selected.
+
+
+a selected.
+
+
+phase selected.
+
+
+number of characters typed: 25
+number of classifier errors: 47
+number of times delete used:  2
+total number of steps taken:  248
+simulation information transfer rate: 0.00000
+projected BCI-controlled information transfer rate: 2.01613 chars/min
+
+what drives edward phase
+
+w selected.
+
+
+h selected.
+
+
+a selected.
+
+
+what selected.
+
+
+d selected.
+
+
+r selected.
+
+
+drives selected.
+
+
+e selected.
+
+
+d selected.
+
+
+w selected.
+
+
+edward selected.
+
+
+p selected.
+
+
+h selected.
+
+
+a selected.
+
+
+phase selected.
+
+
+number of characters typed: 25
+number of classifier errors: 55
+number of times delete used:  0
+total number of steps taken:  271
+simulation information transfer rate: 0.00000
+projected BCI-controlled information transfer rate: 1.84502 chars/min
+
+what drives edward phase
+
+w selected.
+
+
+h selected.
+
+
+o selected.
+
+
+[DEL] selected.
+
+in return to prev: num typed: 2
+
+
+a selected.
+
+
+what selected.
+
+
+d selected.
+
+
+r selected.
+
+
+drives selected.
+
+
+e selected.
+
+
+d selected.
+
+
+w selected.
+
+
+edward selected.
+
+
+p selected.
+
+
+h selected.
+
+
+a selected.
+
+
+phase selected.
+
+
+number of characters typed: 25
+number of classifier errors: 38
+number of times delete used:  1
+total number of steps taken:  223
+simulation information transfer rate: 0.00000
+projected BCI-controlled information transfer rate: 2.24215 chars/min
+
+what drives edward phase
+
+w selected.
+
+
+h selected.
+
+
+a selected.
+
+
+what selected.
+
+
+d selected.
+
+
+o selected.
+
+
+[DEL] selected.
+
+in return to prev: num typed: 6
+
+
+r selected.
+
+
+drives selected.
+
+
+e selected.
+
+
+d selected.
+
+
+w selected.
+
+
+edward selected.
+
+
+p selected.
+
+
+h selected.
+
+
+a selected.
+
+
+phase selected.
+
+
+number of characters typed: 25
+number of classifier errors: 57
+number of times delete used:  1
+total number of steps taken:  271
+simulation information transfer rate: 0.00000
+projected BCI-controlled information transfer rate: 1.84502 chars/min
+
+what drives edward phase
+
+p selected.
+
+
+[DEL] selected.
+
+in return to prev: num typed: 0
+
+
+w selected.
+
+
+h selected.
+
+
+a selected.
+
+
+what selected.
+
+
+d selected.
+
+
+r selected.
+
+
+drives selected.
+
+
+e selected.
+
+
+d selected.
+
+
+w selected.
+
+
+edward selected.
+
+
+p selected.
+
+
+h selected.
+
+
+a selected.
+
+
+phase selected.
+
+
+number of characters typed: 25
+number of classifier errors: 27
+number of times delete used:  1
+total number of steps taken:  197
+simulation information transfer rate: 0.00000
+projected BCI-controlled information transfer rate: 2.53807 chars/min
+
+what drives edward phase
+
+w selected.
+
+
+h selected.
+
+
+a selected.
+
+
+what selected.
+
+
+d selected.
+
+
+r selected.
+
+
+drives selected.
+
+
+e selected.
+
+
+expansion selected.
+
+
+[DEL] selected.
+
+in return to prev: num typed: 13
+
+
+d selected.
+
+
+w selected.
+
+
+edward selected.
+
+
+p selected.
+
+
+h selected.
+
+
+a selected.
+
+
+phase selected.
+
+
+number of characters typed: 25
+number of classifier errors: 70
+number of times delete used:  1
+total number of steps taken:  312
+simulation information transfer rate: 0.00000
+projected BCI-controlled information transfer rate: 1.60256 chars/min
+
+what drives edward phase
+
+p selected.
+
+
+[DEL] selected.
+
+in return to prev: num typed: 0
+
+
+w selected.
+
+
+h selected.
+
+
+when selected.
+
+
+[DEL] selected.
+
+in return to prev: num typed: 2
+
+
+[DEL] selected.
+
+in return to prev: num typed: 1
+
+
+h selected.
+
+
+a selected.
+
+
+what selected.
+
+
+d selected.
+
+
+r selected.
+
+
+drives selected.
+
+
+the selected.
+
+
+[DEL] selected.
+
+in return to prev: num typed: 12
+
+
+e selected.
+
+
+d selected.
+
+
+e selected.
+
+
+[DEL] selected.
+
+in return to prev: num typed: 14
+
+
+w selected.
+
+
+edward selected.
+
+
+p selected.
+
+
+h selected.
+
+
+a selected.
+
+
+phase selected.
+
+
+number of characters typed: 25
+number of classifier errors: 72
+number of times delete used:  5
+total number of steps taken:  351
+simulation information transfer rate: 0.00000
+projected BCI-controlled information transfer rate: 1.42450 chars/min
+
+what drives edward phase
+
+w selected.
+
+
+h selected.
+
+
+a selected.
+
+
+what selected.
+
+
+he selected.
+
+
+[DEL] selected.
+
+in return to prev: num typed: 5
+
+
+d selected.
+
+
+r selected.
+
+
+drives selected.
+
+
+e selected.
+
+
+d selected.
+
+
+o selected.
+
+
+[DEL] selected.
+
+in return to prev: num typed: 14
+
+
+w selected.
+
+
+edward selected.
+
+
+p selected.
+
+
+h selected.
+
+
+a selected.
+
+
+phase selected.
+
+
+number of characters typed: 25
+number of classifier errors: 63
+number of times delete used:  2
+total number of steps taken:  307
+simulation information transfer rate: 0.00000
+projected BCI-controlled information transfer rate: 1.62866 chars/min
+
+what drives edward phase
+
+w selected.
+
+
+h selected.
+
+
+a selected.
+
+
+what selected.
+
+
+d selected.
+
+
+r selected.
+
+
+i selected.
+
+
+drives selected.
+
+
+e selected.
+
+
+d selected.
+
+
+w selected.
+
+
+edward selected.
+
+
+p selected.
+
+
+h selected.
+
+
+a selected.
+
+
+phase selected.
+
+
+number of characters typed: 25
+number of classifier errors: 38
+number of times delete used:  0
+total number of steps taken:  216
+simulation information transfer rate: 0.00000
+projected BCI-controlled information transfer rate: 2.31481 chars/min
+
+what drives edward phase
+
+w selected.
+
+
+h selected.
+
+
+a selected.
+
+
+what selected.
+
+
+d selected.
+
+
+r selected.
+
+
+drives selected.
+
+
+e selected.
+
+
+d selected.
+
+
+w selected.
+
+
+edward selected.
+
+
+p selected.
+
+
+h selected.
+
+
+a selected.
+
+
+phase selected.
+
+
+number of characters typed: 25
+number of classifier errors: 32
+number of times delete used:  0
+total number of steps taken:  205
+simulation information transfer rate: 0.00000
+projected BCI-controlled information transfer rate: 2.43902 chars/min
+
+what drives edward phase
+
+w selected.
+
+
+h selected.
+
+
+a selected.
+
+
+what selected.
+
+
+i selected.
+
+
+[DEL] selected.
+
+in return to prev: num typed: 5
+
+
+d selected.
+
+
+r selected.
+
+
+dreams selected.
+
+
+[DEL] selected.
+
+in return to prev: num typed: 7
+
+
+drives selected.
+
+
+e selected.
+
+
+d selected.
+
+
+w selected.
+
+
+edward selected.
+
+
+p selected.
+
+
+paul selected.
+
+
+[DEL] selected.
+
+in return to prev: num typed: 20
+
+
+h selected.
+
+
+a selected.
+
+
+phase selected.
+
+
+number of characters typed: 25
+number of classifier errors: 58
+number of times delete used:  3
+total number of steps taken:  268
+simulation information transfer rate: 0.00000
+projected BCI-controlled information transfer rate: 1.86567 chars/min
+
+what drives edward phase
+
+w selected.
+
+
+h selected.
+
+
+a selected.
+
+
+what selected.
+
+
+d selected.
+
+
+r selected.
+
+
+drives selected.
+
+
+e selected.
+
+
+x selected.
+
+
+[DEL] selected.
+
+in return to prev: num typed: 13
+
+
+d selected.
+
+
+w selected.
+
+
+edward selected.
+
+
+p selected.
+
+
+h selected.
+
+
+a selected.
+
+
+phase selected.
+
+
+number of characters typed: 25
+number of classifier errors: 52
+number of times delete used:  1
+total number of steps taken:  255
+simulation information transfer rate: 0.00000
+projected BCI-controlled information transfer rate: 1.96078 chars/min
+
+what drives edward phase
+
+w selected.
+
+
+with selected.
+
+
+[DEL] selected.
+
+in return to prev: num typed: 1
+
+
+with selected.
+
+
+[DEL] selected.
+
+in return to prev: num typed: 1
+
+
+h selected.
+
+
+a selected.
+
+
+what selected.
+
+
+d selected.
+
+
+r selected.
+
+
+drives selected.
+
+
+e selected.
+
+
+d selected.
+
+
+w selected.
+
+
+edward selected.
+
+
+p selected.
+
+
+h selected.
+
+
+a selected.
+
+
+phase selected.
+
+
+number of characters typed: 25
+number of classifier errors: 37
+number of times delete used:  2
+total number of steps taken:  229
+simulation information transfer rate: 0.00000
+projected BCI-controlled information transfer rate: 2.18341 chars/min
+
+what drives edward phase
+
+w selected.
+
+
+h selected.
+
+
+a selected.
+
+
+what selected.
+
+
+d selected.
+
+
+r selected.
+
+
+drives selected.
+
+
+e selected.
+
+
+d selected.
+
+
+w selected.
+
+
+edward selected.
+
+
+p selected.
+
+
+o selected.
+
+
+[DEL] selected.
+
+in return to prev: num typed: 20
+
+
+h selected.
+
+
+a selected.
+
+
+phase selected.
+
+
+number of characters typed: 25
+number of classifier errors: 52
+number of times delete used:  1
+total number of steps taken:  266
+simulation information transfer rate: 0.00000
+projected BCI-controlled information transfer rate: 1.87970 chars/min
+
+what drives edward phase
+
+w selected.
+
+
+h selected.
+
+
+a selected.
+
+
+what selected.
+
+
+d selected.
+
+
+r selected.
+
+
+drives selected.
+
+
+e selected.
+
+
+l selected.
+
+
+[DEL] selected.
+
+in return to prev: num typed: 13
+
+
+d selected.
+
+
+w selected.
+
+
+edward selected.
+
+
+said selected.
+
+
+[DEL] selected.
+
+in return to prev: num typed: 19
+
+
+p selected.
+
+
+h selected.
+
+
+a selected.
+
+
+phase selected.
+
+
+number of characters typed: 25
+number of classifier errors: 64
+number of times delete used:  2
+total number of steps taken:  294
+simulation information transfer rate: 0.00000
+projected BCI-controlled information transfer rate: 1.70068 chars/min
+
+what drives edward phase
+
+w selected.
+
+
+h selected.
+
+
+a selected.
+
+
+what selected.
+
+
+d selected.
+
+
+r selected.
+
+
+drives selected.
+
+
+e selected.
+
+
+d selected.
+
+
+editorial selected.
+
+
+[DEL] selected.
+
+in return to prev: num typed: 14
+
+
+[SPC] selected.
+
+
+column selected.
+
+
+[DEL] selected.
+
+in return to prev: num typed: 15
+
+
+[DEL] selected.
+
+in return to prev: num typed: 14
+
+
+i selected.
+
+
+[DEL] selected.
+
+in return to prev: num typed: 14
+
+
+[SPC] selected.
+
+
+[DEL] selected.
+
+in return to prev: num typed: 14
+
+
+w selected.
+
+
+edward selected.
+
+
+p selected.
+
+
+h selected.
+
+
+a selected.
+
+
+phase selected.
+
+
+number of characters typed: 25
+number of classifier errors: 81
+number of times delete used:  5
+total number of steps taken:  375
+simulation information transfer rate: 0.00000
+projected BCI-controlled information transfer rate: 1.33333 chars/min
+
+what drives edward phase
+
+w selected.
+
+
+h selected.
+
+
+a selected.
+
+
+what selected.
+
+
+d selected.
+
+
+r selected.
+
+
+drives selected.
+
+
+e selected.
+
+
+d selected.
+
+
+w selected.
+
+
+edward selected.
+
+
+p selected.
+
+
+h selected.
+
+
+a selected.
+
+
+phase selected.
+
+
+number of characters typed: 25
+number of classifier errors: 52
+number of times delete used:  0
+total number of steps taken:  260
+simulation information transfer rate: 0.00000
+projected BCI-controlled information transfer rate: 1.92308 chars/min
+
+what drives edward phase
+
+w selected.
+
+
+with selected.
+
+
+[DEL] selected.
+
+in return to prev: num typed: 1
+
+
+h selected.
+
+
+a selected.
+
+
+what selected.
+
+
+d selected.
+
+
+r selected.
+
+
+drives selected.
+
+
+e selected.
+
+
+d selected.
+
+
+w selected.
+
+
+edward selected.
+
+
+p selected.
+
+
+h selected.
+
+
+a selected.
+
+
+phase selected.
+
+
+number of characters typed: 25
+number of classifier errors: 42
+number of times delete used:  1
+total number of steps taken:  226
+simulation information transfer rate: 0.00000
+projected BCI-controlled information transfer rate: 2.21239 chars/min
+
+what drives edward phase
+
+w selected.
+
+
+h selected.
+
+
+a selected.
+
+
+what selected.
+
+
+d selected.
+
+
+r selected.
+
+
+drives selected.
+
+
+the selected.
+
+
+[DEL] selected.
+
+in return to prev: num typed: 12
+
+
+e selected.
+
+
+d selected.
+
+
+education selected.
+
+
+o selected.
+
+
+[DEL] selected.
+
+in return to prev: num typed: 22
+
+
+[DEL] selected.
+
+in return to prev: num typed: 14
+
+
+t selected.
+
+
+[DEL] selected.
+
+in return to prev: num typed: 14
+
+
+[SPC] selected.
+
+
+a selected.
+
+
+[DEL] selected.
+
+in return to prev: num typed: 15
+
+
+[DEL] selected.
+
+in return to prev: num typed: 14
+
+
+w selected.
+
+
+edward selected.
+
+
+p selected.
+
+
+h selected.
+
+
+i selected.
+
+
+[DEL] selected.
+
+in return to prev: num typed: 21
+
+
+a selected.
+
+
+pharmaceutical selected.
+
+
+[DEL] selected.
+
+in return to prev: num typed: 22
+
+
+phase selected.
+
+
+number of characters typed: 25
+number of classifier errors: 91
+number of times delete used:  8
+total number of steps taken:  460
+simulation information transfer rate: 0.00000
+projected BCI-controlled information transfer rate: 1.08696 chars/min
+
+what drives edward phase
+
+w selected.
+
+
+h selected.
+
+
+a selected.
+
+
+what selected.
+
+
+d selected.
+
+
+r selected.
+
+
+drives selected.
+
+
+e selected.
+
+
+d selected.
+
+
+w selected.
+
+
+edward selected.
+
+
+p selected.
+
+
+h selected.
+
+
+a selected.
+
+
+phase selected.
+
+
+number of characters typed: 25
+number of classifier errors: 47
+number of times delete used:  0
+total number of steps taken:  239
+simulation information transfer rate: 0.00000
+projected BCI-controlled information transfer rate: 2.09205 chars/min
+
+what drives edward phase
+
+w selected.
+
+
+h selected.
+
+
+a selected.
+
+
+what selected.
+
+
+d selected.
+
+
+r selected.
+
+
+drives selected.
+
+
+the selected.
+
+
+[DEL] selected.
+
+in return to prev: num typed: 12
+
+
+e selected.
+
+
+d selected.
+
+
+[SPC] selected.
+
+
+c selected.
+
+
+[DEL] selected.
+
+in return to prev: num typed: 15
+
+
+[DEL] selected.
+
+in return to prev: num typed: 14
+
+
+w selected.
+
+
+edward selected.
+
+
+p selected.
+
+
+h selected.
+
+
+a selected.
+
+
+phase selected.
+
+
+number of characters typed: 25
+number of classifier errors: 61
+number of times delete used:  3
+total number of steps taken:  312
+simulation information transfer rate: 0.00000
+projected BCI-controlled information transfer rate: 1.60256 chars/min
+
+what drives edward phase
+
+w selected.
+
+
+h selected.
+
+
+y selected.
+
+
+whyte selected.
+
+
+[DEL] selected.
+
+in return to prev: num typed: 3
+
+
+[DEL] selected.
+
+in return to prev: num typed: 2
+
+
+i selected.
+
+
+[DEL] selected.
+
+in return to prev: num typed: 2
+
+
+a selected.
+
+
+what selected.
+
+
+he selected.
+
+
+[DEL] selected.
+
+in return to prev: num typed: 5
+
+
+d selected.
+
+
+did selected.
+
+
+t selected.
+
+
+[DEL] selected.
+
+in return to prev: num typed: 9
+
+
+[DEL] selected.
+
+in return to prev: num typed: 6
+
+
+r selected.
+
+
+drives selected.
+
+
+e selected.
+
+
+d selected.
+
+
+w selected.
+
+
+a selected.
+
+
+edward selected.
+
+
+p selected.
+
+
+a selected.
+
+
+[DEL] selected.
+
+in return to prev: num typed: 20
+
+
+h selected.
+
+
+a selected.
+
+
+phase selected.
+
+
+number of characters typed: 25
+number of classifier errors: 78
+number of times delete used:  7
+total number of steps taken:  367
+simulation information transfer rate: 0.00000
+projected BCI-controlled information transfer rate: 1.36240 chars/min
+
+what drives edward phase
+
+w selected.
+
+
+h selected.
+
+
+a selected.
+
+
+what selected.
+
+
+d selected.
+
+
+r selected.
+
+
+drives selected.
+
+
+the selected.
+
+
+[DEL] selected.
+
+in return to prev: num typed: 12
+
+
+e selected.
+
+
+d selected.
+
+
+editorial selected.
+
+
+r selected.
+
+
+h selected.
+
+
+[DEL] selected.
+
+in return to prev: num typed: 23
+
+
+[DEL] selected.
+
+in return to prev: num typed: 22
+
+
+[DEL] selected.
+
+in return to prev: num typed: 14
+
+
+[SPC] selected.
+
+
+[DEL] selected.
+
+in return to prev: num typed: 14
+
+
+w selected.
+
+
+edward selected.
+
+
+p selected.
+
+
+h selected.
+
+
+a selected.
+
+
+phase selected.
+
+
+number of characters typed: 25
+number of classifier errors: 99
+number of times delete used:  5
+total number of steps taken:  441
+simulation information transfer rate: 0.00000
+projected BCI-controlled information transfer rate: 1.13379 chars/min
+
+what drives edward phase
+
+w selected.
+
+
+h selected.
+
+
+a selected.
+
+
+what selected.
+
+
+d selected.
+
+
+r selected.
+
+
+drives selected.
+
+
+e selected.
+
+
+d selected.
+
+
+w selected.
+
+
+edward selected.
+
+
+p selected.
+
+
+h selected.
+
+
+a selected.
+
+
+phase selected.
+
+
+number of characters typed: 25
+number of classifier errors: 32
+number of times delete used:  0
+total number of steps taken:  196
+simulation information transfer rate: 0.00000
+projected BCI-controlled information transfer rate: 2.55102 chars/min
+
+what drives edward phase
+
+w selected.
+
+
+h selected.
+
+
+a selected.
+
+
+what selected.
+
+
+d selected.
+
+
+r selected.
+
+
+drives selected.
+
+
+e selected.
+
+
+d selected.
+
+
+w selected.
+
+
+edward selected.
+
+
+p selected.
+
+
+h selected.
+
+
+a selected.
+
+
+phase selected.
+
+
+number of characters typed: 25
+number of classifier errors: 38
+number of times delete used:  0
+total number of steps taken:  212
+simulation information transfer rate: 0.00000
+projected BCI-controlled information transfer rate: 2.35849 chars/min
+
+what drives edward phase
+
+w selected.
+
+
+h selected.
+
+
+a selected.
+
+
+what selected.
+
+
+d selected.
+
+
+r selected.
+
+
+drives selected.
+
+
+e selected.
+
+
+d selected.
+
+
+w selected.
+
+
+edward selected.
+
+
+c selected.
+
+
+[DEL] selected.
+
+in return to prev: num typed: 19
+
+
+p selected.
+
+
+paul selected.
+
+
+[DEL] selected.
+
+in return to prev: num typed: 20
+
+
+h selected.
+
+
+a selected.
+
+
+phase selected.
+
+
+number of characters typed: 25
+number of classifier errors: 61
+number of times delete used:  2
+total number of steps taken:  304
+simulation information transfer rate: 0.00000
+projected BCI-controlled information transfer rate: 1.64474 chars/min
+
+what drives edward phase
+
+w selected.
+
+
+h selected.
+
+
+a selected.
+
+
+what selected.
+
+
+d selected.
+
+
+o selected.
+
+
+[DEL] selected.
+
+in return to prev: num typed: 6
+
+
+did selected.
+
+
+[DEL] selected.
+
+in return to prev: num typed: 6
+
+
+do selected.
+
+
+[DEL] selected.
+
+in return to prev: num typed: 6
+
+
+do selected.
+
+
+j selected.
+
+
+a selected.
+
+
+i selected.
+
+
+s selected.
+
+
+[DEL] selected.
+
+in return to prev: num typed: 11
+
+
+[DEL] selected.
+
+in return to prev: num typed: 10
+
+
+[DEL] selected.
+
+in return to prev: num typed: 9
+
+
+a selected.
+
+
+[DEL] selected.
+
+in return to prev: num typed: 9
+
+
+[DEL] selected.
+
+in return to prev: num typed: 8
+
+
+not selected.
+
+
+[DEL] selected.
+
+in return to prev: num typed: 8
+
+
+not selected.
+
+
+only selected.
+
+
+[DEL] selected.
+
+in return to prev: num typed: 12
+
+
+[DEL] selected.
+
+in return to prev: num typed: 8
+
+
+h selected.
+
+
+[DEL] selected.
+
+in return to prev: num typed: 8
+
+
+[DEL] selected.
+
+in return to prev: num typed: 6
+
+
+did selected.
+
+
+[DEL] selected.
+
+in return to prev: num typed: 6
+
+
+r selected.
+
+
+drives selected.
+
+
+e selected.
+
+
+d selected.
+
+
+i selected.
+
+
+[DEL] selected.
+
+in return to prev: num typed: 14
+
+
+w selected.
+
+
+edward selected.
+
+
+p selected.
+
+
+h selected.
+
+
+a selected.
+
+
+phase selected.
+
+
+number of characters typed: 25
+number of classifier errors: 118
+number of times delete used:  15
+total number of steps taken:  542
+simulation information transfer rate: 0.00000
+projected BCI-controlled information transfer rate: 0.92251 chars/min
+
+what drives edward phase
+
+w selected.
+
+
+h selected.
+
+
+a selected.
+
+
+what selected.
+
+
+d selected.
+
+
+r selected.
+
+
+drives selected.
+
+
+e selected.
+
+
+d selected.
+
+
+w selected.
+
+
+edward selected.
+
+
+p selected.
+
+
+h selected.
+
+
+a selected.
+
+
+phase selected.
+
+
+number of characters typed: 25
+number of classifier errors: 35
+number of times delete used:  0
+total number of steps taken:  208
+simulation information transfer rate: 0.00000
+projected BCI-controlled information transfer rate: 2.40385 chars/min
+
+what drives edward phase
+
+w selected.
+
+
+h selected.
+
+
+a selected.
+
+
+what selected.
+
+
+d selected.
+
+
+r selected.
+
+
+drives selected.
+
+
+e selected.
+
+
+d selected.
+
+
+w selected.
+
+
+edward selected.
+
+
+p selected.
+
+
+h selected.
+
+
+a selected.
+
+
+phase selected.
+
+
+number of characters typed: 25
+number of classifier errors: 25
+number of times delete used:  0
+total number of steps taken:  173
+simulation information transfer rate: 0.00000
+projected BCI-controlled information transfer rate: 2.89017 chars/min
+
+what drives edward phase
+
+w selected.
+
+
+h selected.
+
+
+a selected.
+
+
+n selected.
+
+
+[DEL] selected.
+
+in return to prev: num typed: 3
+
+
+what selected.
+
+
+d selected.
+
+
+do selected.
+
+
+[DEL] selected.
+
+in return to prev: num typed: 6
+
+
+r selected.
+
+
+drives selected.
+
+
+l selected.
+
+
+[DEL] selected.
+
+in return to prev: num typed: 12
+
+
+a selected.
+
+
+albeit selected.
+
+
+with selected.
+
+
+[DEL] selected.
+
+in return to prev: num typed: 19
+
+
+[DEL] selected.
+
+in return to prev: num typed: 13
+
+
+[DEL] selected.
+
+in return to prev: num typed: 12
+
+
+c selected.
+
+
+[DEL] selected.
+
+in return to prev: num typed: 12
+
+
+e selected.
+
+
+d selected.
+
+
+editorial selected.
+
+
+[DEL] selected.
+
+in return to prev: num typed: 14
+
+
+[SPC] selected.
+
+
+[DEL] selected.
+
+in return to prev: num typed: 14
+
+
+w selected.
+
+
+edward selected.
+
+
+p selected.
+
+
+h selected.
+
+
+a selected.
+
+
+phase selected.
+
+
+number of characters typed: 25
+number of classifier errors: 119
+number of times delete used:  9
+total number of steps taken:  478
+simulation information transfer rate: 0.00000
+projected BCI-controlled information transfer rate: 1.04603 chars/min
+
+what drives edward phase
+
+w selected.
+
+
+h selected.
+
+
+a selected.
+
+
+what selected.
+
+
+p selected.
+
+
+people selected.
+
+
+[DEL] selected.
+
+in return to prev: num typed: 6
+
+
+[DEL] selected.
+
+in return to prev: num typed: 5
+
+
+d selected.
+
+
+r selected.
+
+
+drives selected.
+
+
+e selected.
+
+
+evolution selected.
+
+
+[DEL] selected.
+
+in return to prev: num typed: 13
+
+
+d selected.
+
+
+w selected.
+
+
+edward selected.
+
+
+p selected.
+
+
+h selected.
+
+
+a selected.
+
+
+phase selected.
+
+
+number of characters typed: 25
+number of classifier errors: 66
+number of times delete used:  3
+total number of steps taken:  313
+simulation information transfer rate: 0.00000
+projected BCI-controlled information transfer rate: 1.59744 chars/min
+
+what drives edward phase
+
+w selected.
+
+
+h selected.
+
+
+a selected.
+
+
+what selected.
+
+
+d selected.
+
+
+r selected.
+
+
+drives selected.
+
+
+o selected.
+
+
+[DEL] selected.
+
+in return to prev: num typed: 12
+
+
+e selected.
+
+
+d selected.
+
+
+w selected.
+
+
+edward selected.
+
+
+p selected.
+
+
+h selected.
+
+
+i selected.
+
+
+[DEL] selected.
+
+in return to prev: num typed: 21
+
+
+a selected.
+
+
+phase selected.
+
+
+number of characters typed: 25
+number of classifier errors: 62
+number of times delete used:  2
+total number of steps taken:  298
+simulation information transfer rate: 0.00000
+projected BCI-controlled information transfer rate: 1.67785 chars/min
+
+what drives edward phase
+
+w selected.
+
+
+h selected.
+
+
+a selected.
+
+
+what selected.
+
+
+d selected.
+
+
+r selected.
+
+
+drives selected.
+
+
+e selected.
+
+
+d selected.
+
+
+w selected.
+
+
+edward selected.
+
+
+p selected.
+
+
+l selected.
+
+
+[DEL] selected.
+
+in return to prev: num typed: 20
+
+
+h selected.
+
+
+a selected.
+
+
+phase selected.
+
+
+number of characters typed: 25
+number of classifier errors: 56
+number of times delete used:  1
+total number of steps taken:  271
+simulation information transfer rate: 0.00000
+projected BCI-controlled information transfer rate: 1.84502 chars/min
+
+what drives edward phase
+
+w selected.
+
+
+was selected.
+
+
+[DEL] selected.
+
+in return to prev: num typed: 1
+
+
+h selected.
+
+
+a selected.
+
+
+what selected.
+
+
+d selected.
+
+
+r selected.
+
+
+dreams selected.
+
+
+[DEL] selected.
+
+in return to prev: num typed: 7
+
+
+drives selected.
+
+
+e selected.
+
+
+d selected.
+
+
+w selected.
+
+
+edward selected.
+
+
+p selected.
+
+
+h selected.
+
+
+y selected.
+
+
+[DEL] selected.
+
+in return to prev: num typed: 21
+
+
+a selected.
+
+
+phase selected.
+
+
+number of characters typed: 25
+number of classifier errors: 60
+number of times delete used:  3
+total number of steps taken:  295
+simulation information transfer rate: 0.00000
+projected BCI-controlled information transfer rate: 1.69492 chars/min
+
+what drives edward phase
+
+w selected.
+
+
+h selected.
+
+
+a selected.
+
+
+what selected.
+
+
+d selected.
+
+
+r selected.
+
+
+drives selected.
+
+
+e selected.
+
+
+evolution selected.
+
+
+[DEL] selected.
+
+in return to prev: num typed: 13
+
+
+d selected.
+
+
+w selected.
+
+
+edward selected.
+
+
+said selected.
+
+
+[DEL] selected.
+
+in return to prev: num typed: 19
+
+
+p selected.
+
+
+h selected.
+
+
+a selected.
+
+
+phase selected.
+
+
+number of characters typed: 25
+number of classifier errors: 66
+number of times delete used:  2
+total number of steps taken:  302
+simulation information transfer rate: 0.00000
+projected BCI-controlled information transfer rate: 1.65563 chars/min
+
+what drives edward phase
+
+w selected.
+
+
+h selected.
+
+
+a selected.
+
+
+what selected.
+
+
+d selected.
+
+
+r selected.
+
+
+drives selected.
+
+
+e selected.
+
+
+d selected.
+
+
+w selected.
+
+
+edward selected.
+
+
+p selected.
+
+
+h selected.
+
+
+a selected.
+
+
+pharmaceutical selected.
+
+
+industry selected.
+
+
+[DEL] selected.
+
+in return to prev: num typed: 34
+
+
+[DEL] selected.
+
+in return to prev: num typed: 22
+
+
+phase selected.
+
+
+number of characters typed: 25
+number of classifier errors: 52
+number of times delete used:  2
+total number of steps taken:  260
+simulation information transfer rate: 0.00000
+projected BCI-controlled information transfer rate: 1.92308 chars/min
+
+what drives edward phase
+
+w selected.
+
+
+h selected.
+
+
+when selected.
+
+
+[DEL] selected.
+
+in return to prev: num typed: 2
+
+
+a selected.
+
+
+what selected.
+
+
+r selected.
+
+
+[DEL] selected.
+
+in return to prev: num typed: 5
+
+
+d selected.
+
+
+r selected.
+
+
+drives selected.
+
+
+e selected.
+
+
+d selected.
+
+
+[SPC] selected.
+
+
+[DEL] selected.
+
+in return to prev: num typed: 14
+
+
+editor selected.
+
+
+[DEL] selected.
+
+in return to prev: num typed: 14
+
+
+w selected.
+
+
+edward selected.
+
+
+p selected.
+
+
+h selected.
+
+
+y selected.
+
+
+[DEL] selected.
+
+in return to prev: num typed: 21
+
+
+a selected.
+
+
+phase selected.
+
+
+number of characters typed: 25
+number of classifier errors: 63
+number of times delete used:  5
+total number of steps taken:  309
+simulation information transfer rate: 0.00000
+projected BCI-controlled information transfer rate: 1.61812 chars/min
+
+what drives edward phase
+
+w selected.
+
+
+h selected.
+
+
+when selected.
+
+
+the selected.
+
+
+[DEL] selected.
+
+in return to prev: num typed: 5
+
+
+[DEL] selected.
+
+in return to prev: num typed: 2
+
+
+o selected.
+
+
+[DEL] selected.
+
+in return to prev: num typed: 2
+
+
+who selected.
+
+
+[DEL] selected.
+
+in return to prev: num typed: 2
+
+
+o selected.
+
+
+[DEL] selected.
+
+in return to prev: num typed: 2
+
+
+a selected.
+
+
+what selected.
+
+
+d selected.
+
+
+r selected.
+
+
+drives selected.
+
+
+e selected.
+
+
+d selected.
+
+
+w selected.
+
+
+edward selected.
+
+
+p selected.
+
+
+h selected.
+
+
+a selected.
+
+
+phase selected.
+
+
+number of characters typed: 25
+number of classifier errors: 70
+number of times delete used:  5
+total number of steps taken:  337
+simulation information transfer rate: 0.00000
+projected BCI-controlled information transfer rate: 1.48368 chars/min
+
+what drives edward phase
+
+w selected.
+
+
+h selected.
+
+
+a selected.
+
+
+what selected.
+
+
+d selected.
+
+
+r selected.
+
+
+drives selected.
+
+
+e selected.
+
+
+d selected.
+
+
+editorial selected.
+
+
+in selected.
+
+
+g selected.
+
+
+[DEL] selected.
+
+in return to prev: num typed: 25
+
+
+[DEL] selected.
+
+in return to prev: num typed: 22
+
+
+[DEL] selected.
+
+in return to prev: num typed: 14
+
+
+w selected.
+
+
+edward selected.
+
+
+p selected.
+
+
+h selected.
+
+
+y selected.
+
+
+[DEL] selected.
+
+in return to prev: num typed: 21
+
+
+a selected.
+
+
+phase selected.
+
+
+number of characters typed: 25
+number of classifier errors: 78
+number of times delete used:  4
+total number of steps taken:  364
+simulation information transfer rate: 0.00000
+projected BCI-controlled information transfer rate: 1.37363 chars/min
+
+what drives edward phase
+
+w selected.
+
+
+h selected.
+
+
+a selected.
+
+
+what selected.
+
+
+d selected.
+
+
+r selected.
+
+
+drives selected.
+
+
+e selected.
+
+
+d selected.
+
+
+w selected.
+
+
+edward selected.
+
+
+p selected.
+
+
+h selected.
+
+
+y selected.
+
+
+[DEL] selected.
+
+in return to prev: num typed: 21
+
+
+a selected.
+
+
+phase selected.
+
+
+number of characters typed: 25
+number of classifier errors: 38
+number of times delete used:  1
+total number of steps taken:  224
+simulation information transfer rate: 0.00000
+projected BCI-controlled information transfer rate: 2.23214 chars/min
+
+what drives edward phase
+
+w selected.
+
+
+h selected.
+
+
+a selected.
+
+
+what selected.
+
+
+d selected.
+
+
+r selected.
+
+
+drives selected.
+
+
+e selected.
+
+
+d selected.
+
+
+w selected.
+
+
+edward selected.
+
+
+p selected.
+
+
+h selected.
+
+
+a selected.
+
+
+phase selected.
+
+
+number of characters typed: 25
+number of classifier errors: 30
+number of times delete used:  0
+total number of steps taken:  189
+simulation information trans

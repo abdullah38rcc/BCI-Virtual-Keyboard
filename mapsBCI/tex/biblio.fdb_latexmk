@@ -1,0 +1,10 @@
+# Fdb version 2
+["latex"] 0 "biblio.bib" "biblio.dvi" "biblio" 
+  "biblio.bib" 1261847154 5202 fc2aa2df7b271e2b8a7e90ffe312469a ""
+["pdflatex"] 1261847188 "biblio.bib" "biblio.pdf" "biblio" 
+  "/opt/local/share/texmf-dist/tex/latex/base/omscmr.fd" 1079230793 2092 9bd5bd4a77246de611ad664f26875a49 ""
+  "biblio.aux" 1261847188 8 a94a2480d3289e625eea47cd1b285758 ""
+  "biblio.bib" 1261847154 5202 fc2aa2df7b271e2b8a7e90ffe312469a ""
+  "e.g., `I\hbox'" 0 -1 0 ""
+  "e.g., `\hobx'" 0 -1 0 ""
+  "job aborted, no legal \end found" 0 -1 0 ""
