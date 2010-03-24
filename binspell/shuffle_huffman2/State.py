@@ -4,12 +4,13 @@ class State:
 	#def __init__(self,box1,box2,currprobs,hiprob,usrchoice):
 	#def __init__(self,lasttyped,conditionals):
 	#def __init__(self,ngrm,conditionals,trans,emiss,lastWrd,prefx,pos,top3):
-	def __init__(self,conditionals,trans,emiss,lastWrd,prefx,pos):
+	#def __init__(self,conditionals,trans,emiss,lastWrd,prefx,pos):
+	def __init__(self,conditionals,trans,lastWrd,prefx,pos):
 		#self._box1 = list(box1)
 		#self._box2 = list(box2)
 		#self._lasttyped = lasttyped
 		#self._conditionals = conditionals
-		self._currEmissProbs = emiss
+		#self._currEmissProbs = emiss
 		self._currTrnsProbs = trans
 		self._currCondTree = conditionals
 		self._lastWord = lastWrd

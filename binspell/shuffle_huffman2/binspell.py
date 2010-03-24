@@ -4,7 +4,7 @@
 # delete immediately available
 # up arrow = left   ::  down arrow = right
 #
-# last edit: 1/19
+# last edit: 3/23
 ################ CHANGES ############
 # 
 ########## TODO ##############
@@ -195,7 +195,8 @@ def saveState():
 	#print "box1"
 	#print "in saveState(): emissionProbs:"
 	#bg._print(bg._emissionProbs)
-	stateObj = State(gv._currCondTable, gv._transitionProbs, gv._emissionProbs, gv._lastWordTyped, gv._prefix, gv._posInWrd)
+	#stateObj = State(gv._currCondTable, gv._transitionProbs, gv._emissionProbs, gv._lastWordTyped, gv._prefix, gv._posInWrd)
+	stateObj = State(gv._currCondTable, gv._transitionProbs, gv._lastWordTyped, gv._prefix, gv._posInWrd)
 	stack._push(stateObj)
 
 
