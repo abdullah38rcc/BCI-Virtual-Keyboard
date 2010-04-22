@@ -1,8 +1,8 @@
 # particle filter simulation
 # last edit: 12/14
 # to run:
-#	>> ipython
-#	>> mapsSciPy
+#	>> python
+#	>> import mapsSciPy
 ##########################################----------QUESTIONS----------------############
 # 
 ########################################----------BUGS------------------------###############
@@ -11,6 +11,9 @@
 # filter()
 
 import time
+#from numpy import *
+#from scipy import *
+from pylab import *
 
 # create room map
 # args: room size as array(height,width)
@@ -49,7 +52,7 @@ def test():
 	  clf()
 	  # Show room map
 	  imshow(room, interpolation="nearest")
-	  #show robot
+	  # Show robot
 	  plot([roboLoc[0]],[roboLoc[1]],'sr')
 	  # Show particles
 	  plot( pt[:,1],pt[:,0], 'oy')
@@ -64,9 +67,13 @@ def test():
 	  pt %= sz
 
 
-# args: room size, room grid
-# rtns: robo coords
 def randRoboLoc(sz,rm):
+	"""
+	This function initializes the position of the robot randomly in a given room.
+	
+	args: room size, room grid
+	rtns: robo coords
+	"""
 	x = randint(1,sz[1])
 	y = randint(1,sz[0])
 	if rm[y,x]:
