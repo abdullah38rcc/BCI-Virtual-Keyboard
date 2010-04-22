@@ -3,34 +3,37 @@
 from heapq import *
 from TstClass import *
 from GlobalVariables import *
+from stoplight import *
 
 #why doesn't this work?
 #import TstClass
 
-def test_for():
-	d = {'one':1, 'two':2}
-	if False:
-		for i in range(1, 5):
-			print i
-		else:
-			print 'The for loop is over'
-		for element in [1, 2, 3]:
-		    print element
-		for element in (1, 2, 3):
-		    print element
-		for char in "123":
-		    print char
-		for line in open("myfile.txt"):
-		    print line
+if False:
+	def test_for():
+		print "in test_for"
+		d = {'one':1, 'two':2}
+		if False:
+			for i in range(1, 5):
+				print i
+			else:
+				print 'The for loop is over'
+			for element in [1, 2, 3]:
+			    print element
+			for element in (1, 2, 3):
+			    print element
+			for char in "123":
+			    print char
+			for line in open("myfile.txt"):
+			    print line
 	
-		for key in {'one':1, 'two':2}:
-		    print key
+			for key in {'one':1, 'two':2}:
+			    print key
 	
-	for value in d.values():
-		print key 
+		for value in d.values():
+			print key 
 		
-	for k,v in d.iteritems()  #only in python 2.6
-		print k,v
+		#for k,v in d.iteritems()  #only in python 2.6
+			#print k,v
 		
 def test_heap():
 	heap = []
@@ -46,7 +49,7 @@ def swap_dictionary(original_dict):
 	return dict([(v, k) for (k, v) in original_dict.iteritems()])
 	
 
-test_for()
+#test_for()
 
 if False:
 	#test_heap()
@@ -67,3 +70,6 @@ if False:
 #print gv._canvas
 	
 
+#test stoplight class
+timing = [5,2,1]
+tstSL = Stoplight(timing)
