@@ -8,30 +8,29 @@
 ########################################----------BUGS------------------------###############
 #
 #########################################---------CURRENTLY WORKING ON--------###############
-# filter()
+#
 
 import time
-#from numpy import *
-#from scipy import *
 from pylab import *
 
-# create room map
-# args: room size as array(height,width)
-# rtn: figure, room grid
 def createRoom(sz):
+	"""
+	This function intializes a grid representing a room
+	Args: room size as array(height,width)
+	Rtn: figure, room grid
+	"""
 	room = zeros( (sz[0], sz[1]),bool)
 	room[:,0]=1
 	room[:,-1]=1
 	room[0,:]=1
 	room[-1,:]=1
-	f = figure(1)
-	f.set_visible(0)
-	clf()
+	f = figure(1)								#create plot window
+	f.set_visible(0)							#hide
+	clf()										#clear window
 	# Show room map
 	imshow(room, interpolation="nearest")
-	f.set_visible(1)
+	f.set_visible(1)							
 	draw()
-	#print room.size
 	return f,room
 
 def test():
@@ -69,23 +68,24 @@ def test():
 
 def randRoboLoc(sz,rm):
 	"""
-	This function initializes the position of the robot randomly in a given room.
-	
-	args: room size, room grid
+	This function initializes the position of the robot randomly in a given room.	
+	args: room dims, room grid
 	rtns: robo coords
 	"""
 	x = randint(1,sz[1])
 	y = randint(1,sz[0])
-	if rm[y,x]:
-		#print "in wall: coord:", [x,y]
+	#test for legitimate coords
+	if rm[y,x]:								
 		return randRoboLoc(sz,rm)
-	#print "not in wall: coord:", [x,y]
 	return [x,y]
 
 
-# args: room dims[width,height], figure number, room coords (width x height array)
-# rtns: [x,y] coords
 def createRobo(sz,fig,room):
+	"""
+	This function plots a point on a grid which represents a robot in a room
+	Args: room dims[width,height], figure number, room coords (array[width x height])
+	Rtns: [x,y] coords of the robot
+	"""
 	roboLoc = randRoboLoc(sz,room)
 	fig.set_visible(0)
 	clf()
@@ -94,7 +94,6 @@ def createRobo(sz,fig,room):
 	axis([0,sz[1],0,sz[0]])
 	fig.set_visible(1)
 	draw()
-	#print room.size
 	return roboLoc
 
 
@@ -192,19 +191,13 @@ def filter(evidence,num,sz):
 
 
 def start():
-	#test()
-	N = 100							#number of particles
+	N = 100								#number of particles
 	sz = array([30,40])					#room dimensions
 	sigmaGps = 2						#gps noise
-
 	fig,room = createRoom(sz)
 	rloc = createRobo(sz,fig,room)
-	#print particles
-	#print #
-	gps = GPS(rloc,sigmaGps,N)				#distribution of gps readings
-	#print mean(gps[1])
-	#print std(gps[1])
-	filter(gps,N,sz)
+	gps = GPS(rloc,sigmaGps,N)			#get distribution of gps readings			
+	filter(gps,N,sz)					#particle filter
 
 
 ##########################------------main----------------############
