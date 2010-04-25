@@ -74,8 +74,7 @@ def randRoboLoc(sz,rm):
 	"""
 	x = randint(1,sz[1])
 	y = randint(1,sz[0])
-	#test for legitimate coords
-	if rm[y,x]:								
+	if rm[y,x]:									#test for legitimate coords					
 		return randRoboLoc(sz,rm)
 	return [x,y]
 
@@ -191,13 +190,13 @@ def filter(evidence,num,sz):
 
 
 def start():
-	N = 100								#number of particles
-	sz = array([30,40])					#room dimensions
-	sigmaGps = 2						#gps noise
+	N = 100										#number of particles
+	sz = array([30,40])							#room dimensions
+	sigmaGps = 2								#gps noise
 	fig,room = createRoom(sz)
 	rloc = createRobo(sz,fig,room)
-	gps = GPS(rloc,sigmaGps,N)			#get distribution of gps readings			
-	filter(gps,N,sz)					#particle filter
+	gps = GPS(rloc,sigmaGps,N)					#get distribution of gps readings			
+	filter(gps,N,sz)							#particle filter
 
 
 ##########################------------main----------------############
