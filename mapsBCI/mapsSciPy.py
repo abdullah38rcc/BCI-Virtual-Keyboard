@@ -104,16 +104,14 @@ def sampleUniform(dims,num):
 	return [locx,locy]
 
 
-# args: location[x,y], error, num samples
-# rtns: [normal(locx,sigma),normal(locy,sigma)]
 def GPS(loc,sigma,ns):
-	#print "in gps:"
-	print "gps reading:", loc
+	"""
+	This function returns a normal distribution simulating a noisy GPS position estimate
+	Args: location[x,y], error, num samples
+	Rtns: [normal(locx,sigma),normal(locy,sigma)]
+	"""
 	nx = normal(loc[0],sigma,ns)
 	ny = normal(loc[1],sigma,ns)
-	#print "std dev y:", std(ny)
-	#print "std dev x:", std(nx)
-	#print #
 	return [nx,ny]
 
 
@@ -144,15 +142,14 @@ def calcExp(smpl,ev):
 
 
 def filter(evidence,num,sz):
-	new = []							#new samples
-	weights = []							#weights
-	smx = 0								#sum of weights
+	new = []									#new samples
+	weights = []								#weights
+	smx = 0										#sum of weights
 	smy = 0
-	n =0								#num times to replicate new particles
+	n =0										#num times to replicate new particles
 	while new == []:
 		print "sampling"
-		samples = sampleUniform(sz,num)				#location samples
-		#print "old samples:", samples
+		samples = sampleUniform(sz,num)			#location samples
 		samples = array(samples)
 		for i in range(0,num):
 			sample = samples[:,i]
