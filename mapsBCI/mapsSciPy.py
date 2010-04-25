@@ -96,10 +96,13 @@ def createRobo(sz,fig,room):
 	return roboLoc
 
 
-# args: room dims[width,height], number of samples
-# rtns: numsamples x 2 array of uniformly drawn samples from 0-width and 0-height
 def sampleUniform(dims,num):
-	locx = uniform(1,dims[0],num)				#samples from a uniform distribution (low,high,size)
+	"""
+	This function returns random samples from a uniform distribution
+	Args: room dims[width,height], number of samples
+	Rtns: array[numsamples x 2] of uniformly drawn samples from 0-width and 0-height
+	"""
+	locx = uniform(1,dims[0],num)				#samples from uniform distr (low,high,size)
 	locy = uniform(1,dims[1],num)			
 	return [locx,locy]
 
@@ -149,17 +152,12 @@ def filter(evidence,num,sz):
 	n =0										#num times to replicate new particles
 	while new == []:
 		print "sampling"
-		samples = sampleUniform(sz,num)			#location samples
+		samples = sampleUniform(sz,num)			#get location samples
 		samples = array(samples)
 		for i in range(0,num):
 			sample = samples[:,i]
-			#print "sample",sample
 			exp = calcExp(sample,evidence)
-			#print exp
 			if exp != []:
-				#print "close enough", sample
-				#print "weight", exp
-				#print #
 				new.append(sample)
 				weights.append(exp)
 		if weights != []:
@@ -167,22 +165,10 @@ def filter(evidence,num,sz):
 			smx = sum(weights[:,0],axis=0)
 			smy = sum(weights[:,1],axis=0)
 		print "close enough",new
-		#print #
-		#print "weights",weights
-		#print "sum", smy
-
 		if smx > smy:	
 			n = floor(weights[:,0] * num * (1/smx))
 		else:
 			n = floor(weights[:,0] * num * (1/smy))
-
-		#print "n",n
-
-		#for i in range(0,len(new)):
-			#for i in range[1,n[i]]:
-				#new.append(new[i])
-		#print new
-		#print "n:",n
 
 
 
