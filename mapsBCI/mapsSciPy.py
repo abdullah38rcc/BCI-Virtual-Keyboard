@@ -120,14 +120,15 @@ def GPS(loc,sigma,ns):
 
 
 def calcExp(smpl,ev):
-	#print "in calcexp: sample:", smpl[0] 
-	#print "in calcexp: sample:", smpl[1]
-	print #
+	"""
+	This function 
+	Args: xy coord representing possible robot postition, sensor reading
+	Rtns: 
+	"""
 	mnx = mean(ev[0])
 	mny = mean(ev[1])
 	sdx = std(ev[0])
 	sdy = std(ev[1])
-	#print sd
 	xnum = (smpl[0] - mnx)**2				#numerators
 	ynum = (smpl[1] - mny)**2
 	exp_x = xnum / sdx**2
@@ -145,11 +146,15 @@ def calcExp(smpl,ev):
 
 
 def filter(evidence,num,sz):
+	"""
+	This function uses sensor evidence to estimate the postion of the robot
+	Args: sensor reading, number of particles, room size
+	"""
 	new = []									#new samples
 	weights = []								#weights
 	smx = 0										#sum of weights
 	smy = 0
-	n =0										#num times to replicate new particles
+	n = 0										#num times to replicate new particles
 	while new == []:
 		print "sampling"
 		samples = sampleUniform(sz,num)			#get location samples

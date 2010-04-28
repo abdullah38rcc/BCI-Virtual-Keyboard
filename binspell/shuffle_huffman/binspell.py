@@ -9,7 +9,6 @@
 # works with Word class (contains word unigrams and bigrams)
 ########## TODO ##############
 # tcp/ip socket
-# scan text and calculate freq
 # window resizable?
 # window on top?
 # addition of phrases: menu of topics,
@@ -18,12 +17,10 @@
 # window focus:
 # position root window in center of screen
 # do colors aid in text scanning?
-# is class._doc_ writable?
 # put del b4 spc in training version, then switch
 # draw_interface: allow for multiple boxes
-# delete state object after pop
 ###################### BUGS #######################
-# y and z fall off the screen -- make boxes bigger
+# 
 ############## CURRENTLY WORKING ON ##########
 # 
 
