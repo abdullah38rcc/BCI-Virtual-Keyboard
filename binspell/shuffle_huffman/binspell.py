@@ -5,6 +5,7 @@
 # up arrow = left   ::  down arrow = right
 #
 # last edit: 11/19
+# comments - column 65
 ################ CHANGES ############
 # works with Word class (contains word unigrams and bigrams)
 ########## TODO ##############
@@ -46,15 +47,12 @@ from Words import *
 def updateCanvas(hilite,norm):
 	gv._canvas.itemconfigure(hilite,fill='orange',width=3)
 	gv._canvas.itemconfigure(norm,fill='white')
-	#gv._canvas.itemconfigure(hilite,width=3)
-	#gv._canvas.itemconfigure(norm,width=1)
-	gv._canvas.update()		#process all events in event queue
+	gv._canvas.update()											#process all events in event queue
 	time.sleep(0.05)
 	gv._canvas.itemconfigure(hilite,width=1)
 	gv._canvas.delete('text')
-	#set_layout(gv._box1)
 	draw_interface(gv._canHt,gv._canWdth)
-	gv._canvas.update()		#process all events in event queue
+	gv._canvas.update()		
 
 
 
@@ -1206,7 +1204,7 @@ def start():
 
 ##################################-------------------main---------------########
 
-root = Tk()
+root = Tk()														#new window
 root.config(width=300,height=500)
 gv = GlobalVariables()
 bg = Bigraph()
@@ -1225,15 +1223,9 @@ gv._canvas = Canvas(root,height=canvHeight,width=canvWidth,bg='yellow')
 gv._canvas.create_window(100,100)
 gv._canvas.grid(row=2,column=1)
 
-#why doesn't tag work?
-#gv._txtBox = Text(root,width=txtBxWidth,height=txtBxHeight,padx=5,pady=5,insertofftime=250,takefocus=1,tags='txtBox')
 gv._txtBox = Text(root,width=txtBxWidth,height=txtBxHeight,padx=5,pady=5,insertofftime=250,takefocus=1, font='Courier 32 bold')
-
 gv._txtBox.grid(row=1,column=1)
 gv._txtBox.focus()
 
 start()
-#testing
-#test_interface()
-
 root.mainloop()
