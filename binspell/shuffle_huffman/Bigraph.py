@@ -37,6 +37,10 @@ class Bigraph:
 
 
 	def _start(self):
+		"""
+		This funtion reads in bigram frequencies from a text file, and calls functions which
+		build the joint and conditonal probability tables
+		"""
 		val = 1																	#flatten out distribution
 		
 		freqs1 = self._readFile(self._f1name)
@@ -71,21 +75,7 @@ class Bigraph:
 		
 
 
-
-################################## hmm #######################
-
-	def _buildEmission(self, chosen, notChosen):
-		alphabet = map(chr,range(97,123))
-		grph = {}
-		for item in alphabet:
-			for lett in alphabet:
-				if item == lett:
-					prob = float(0.8)
-				else:
-					prob = float(0.2/25)
-				self._add(grph,item,lett,prob)
-		return grph
-
+################################## fxns for hidden markov model #######################
 
 	#returns dict of prior probs
 	def _getPrior(self):
