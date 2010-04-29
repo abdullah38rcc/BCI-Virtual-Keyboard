@@ -5,7 +5,7 @@
 # up arrow = left   ::  down arrow = right
 #
 # last edit: 11/19
-# comments - column 65
+# comments - column 81
 ################ CHANGES ############
 # works with Word class (contains word unigrams and bigrams)
 ########## TODO ##############
@@ -47,7 +47,7 @@ from Words import *
 def updateCanvas(hilite,norm):
 	gv._canvas.itemconfigure(hilite,fill='orange',width=3)
 	gv._canvas.itemconfigure(norm,fill='white')
-	gv._canvas.update()											#process all events in event queue
+	gv._canvas.update()										#process all events in event queue
 	time.sleep(0.05)
 	gv._canvas.itemconfigure(hilite,width=1)
 	gv._canvas.delete('text')
@@ -962,27 +962,21 @@ def layoutHuff(hTree,box):
 
 
 
-# start with prior probs
 def default():
-	#print "in default()"
+	"""
+	This function initializes all probability tables and reads in, arranges, and displays all symbols.
+	"""
 	global gv, bg
-	#print gv._sortByValue(bg._prior)
-	#print "-" * 20
-	gv._currCondTable = bg._conditional1
-	gv._transitionProbs = gv._currCondTable
-	gv._emissionProbs = deepcopy(gv._transitionProbs)
-	gv._top3words = wd._closestWords(gv._prefix,gv._lastWordTyped)		#guess words based on what's been typed
-	updateDist(gv._top3words,gv._emissionProbs[gv._ngram])			#add words to emission probs
-	hiProb = getLrgstLeaf(gv._emissionProbs[gv._ngram])
-	gv._hiProb = hiProb[0]					####### HACK ########
-	#print "in default, hiprob:", hiProb
-	set_layout([],gv._emissionProbs[gv._ngram])
-	saveState()
-	#print gv._emissionProbs[gv._ngram]
-	#print "box1:", gv._box1
-	#print ###
-	#print "box2:", gv._box2
-	draw_interface(gv._canHt, gv._canWdth)
+	gv._currCondTable = bg._conditional1										#table of prior probabilities
+	gv._transitionProbs = gv._currCondTable										#table of transition probs
+	gv._emissionProbs = deepcopy(gv._transitionProbs)							#table of emission probs
+	gv._top3words = wd._closestWords(gv._prefix,gv._lastWordTyped)				#guess words based on what's been typed
+	updateDist(gv._top3words,gv._emissionProbs[gv._ngram])						#add words to emission probs
+	hiProb = getLrgstLeaf(gv._emissionProbs[gv._ngram])							#most probable symbol
+	gv._hiProb = hiProb[0]														####### HACK ########
+	set_layout([],gv._emissionProbs[gv._ngram])									#arrange the symbols (letters and words)
+	saveState()																	#in case of a later 'delete'
+	draw_interface(gv._canHt, gv._canWdth)										#display
 
 
 
@@ -1196,17 +1190,16 @@ def test_interface():
 
 
 def start():
-	default()		#display entire alphabet
-	#grab keyboard input
-	getKeyIn()
+	default()																	#display entire alphabet
+	getKeyIn()																	#grab keyboard input
 
 
 
-##################################-------------------main---------------########
+##################################-------------------main---------------################################
 
-root = Tk()														#new window
+root = Tk()																		#new window
 root.config(width=300,height=500)
-gv = GlobalVariables()
+gv = GlobalVariables()															#never a good idea but considering time constraint...
 bg = Bigraph()
 tg = Trigraph()
 wd = Words()
