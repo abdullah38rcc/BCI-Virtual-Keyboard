@@ -127,10 +127,10 @@ class Bigraph:
 		return self._mult(d, mplier)											#divide each value by sum
 
 
-	#adds n to every value in list
+
 	def _addN(self,d,n):
 		"""
-		This function adds an amount 'n' to each value in a dictionary
+		This function adds an amount 'n' to each value in the dictionary argument
 		Args: dict, amount to be added to each value
 		Rtns: dict{symbol:value+n}
 		"""
@@ -140,49 +140,50 @@ class Bigraph:
 
 #################################### graph fxns #####################
 
-	# build graph of conditional probs from joint list
 	def _buildGraph(self,lst):
-		#print lst
+		"""
+		This function builds a graph of conditional probabilities from the list of joint probabilities
+		Args: list of joint probabilities
+		Rtns: dictionary of conditional probabilities
+		"""
 		grph = {}
 		for item in lst:
-			#print item[0][0]
 			self._add(grph,item[0][0],item[0][1],item[1])
 		return grph
 
 
 
-	# read in frequency values from a text file into a list
 	def _readFile(self, flName):
-		#fd = open('bgTst.txt', 'r')
+		"""
+		This function reads in bigram frequency values from a text file into a list.
+		Text file is formatted: a,a,count,b,count,c,count
+							    b,a,count,etc...
+		Args: text file name
+		Rtns: list of bigrams and associated frequency counts
+		"""
 		fd = open(flName, 'r')
-		#print fd
-		#print fd.readline()
 		lst = []
 		for line in fd:
-			#print line
-			bits = string.split(line, ',')
-			#print float(bits[2].strip(' ')) + 1
-			del(bits[-1])
-			#print "bits:", bits
-			#print ####
+			bits = string.split(line, ',')										#tokenize string
+			del(bits[-1])														#delete junk at end
 			for i in range(1,len(bits),2):
 			    item = [(bits[0], bits[i]), float(bits[i+1]) ]
-			    #print item
 			    lst.append(item)
-		#print lst
 		return lst
 
 
 
 	def _add(self,bgrph,lett1,lett2,weight):
-	    #print weight
-	    #item = {weight:lett1,lett2}
-	    if lett1 not in bgrph:
-	        bgrph[lett1] = {lett2:weight}
-	    elif lett2 not in bgrph[lett1]:
-	        tmp = bgrph[lett1]
-	        tmp[lett2] = weight
-	        bgrph[lett1] = tmp
+		"""
+		This function builds a dictionary of dictionaries, using bigrams and their associated counts to a graph
+		Args: dictionary, first letter of bigram, 2nd letter of bigram, associated count
+		"""
+		if lett1 not in bgrph:		
+			bgrph[lett1] = {lett2:weight}
+		elif lett2 not in bgrph[lett1]:
+			tmp = bgrph[lett1]
+			tmp[lett2] = weight
+			bgrph[lett1] = tmp
 
 
 
