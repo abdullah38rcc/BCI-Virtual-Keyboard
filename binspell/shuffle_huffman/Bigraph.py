@@ -77,57 +77,63 @@ class Bigraph:
 
 ################################## fxns for hidden markov model #######################
 
-	#returns dict of prior probs
 	def _getPrior(self):
+		"""
+		This function calculates the probability of each letter or word being the first
+		Rtns: dict {symbol:probability}
+		"""
 		prior = {}
-		#print "in prior: joint1: "
-		#self._print(self._joint1)
 		for key in self._joint1:
-			prior[key] = sum(self._joint1[key][k] for k in self._joint1[key])
-		#print "prior b4 normalize:"
-		#self._print(prior)
-		return self._normalize(prior)
+			prior[key] = sum(self._joint1[key][k] for k in self._joint1[key])	#sum raw counts for each symbol
+		return self._normalize(prior)											#make counts for all symbols sum to one
 
 
 
-	# returns conditional prob for every val in dict
 	def _conditionalOn(self,joint):
-		#print joint
+		"""
+		This function calculates the probability of a symbol given the previous symbol, 
+		using the table	of joint probabilities
+		Args: dict of joint probabilities
+		Rtns: dict of conditional probabilities
+		"""
 		temp = []
-		tot = sum(joint[key] for key in joint)
-		return self._mult(joint, tot)
+		tot = sum(joint[key] for key in joint)									#sum up all joint probabilities
+		return self._mult(joint, tot)											#multiply every value by that total
 
 
 
 ################################### hmm helper functions ############
 
-	#multiplies mplier to every value in dict
 	def _mult(self, d, mplier):
-		#print "in mult: d:", d
-		#print ####
+		"""
+		This function multiplies every value in a dictionary by a multiplier
+		Args: dictionary, multiplier
+		Rtn: products of each value and the multiplier
+		"""
 		for key in d:
-			#print "val:", d[key]
-			#print "mplier:", mplier
 			d[key] = d[key] * mplier
-		#print "after mult: d:", d
-		#print ####
 		return d
 
 
 
-	# normalize so that they all sum to one
-	# args: dict{'lett':val}
 	def _normalize(self,d):
-		#print "in normalize: d:",
-		#print sum(sum([d[k][key] for key in d[k]]) for k in d)
-		tot = sum(d[key] for key in d)
-		#print "in normalize: tot:", tot
+		"""
+		This function normalizes all values in a dict so that they sum to one
+		Args: dict{'symbol':val}
+		Rtns: normalized dict
+		"""
+		tot = sum(d[key] for key in d)											#sum of all values in dict
 		mplier = float(1) / float(tot)
-		return self._mult(d, mplier)
+		return self._mult(d, mplier)											#divide each value by sum
 
 
 	#adds n to every value in list
 	def _addN(self,d,n):
+		"""
+		This function adds an amount 'n' to each value in a dictionary
+		Args: dict, amount to be added to each value
+		Rtns: dict{symbol:value+n}
+		"""
 		return [(item[0], item[1] + n) for item in d]
 
 
