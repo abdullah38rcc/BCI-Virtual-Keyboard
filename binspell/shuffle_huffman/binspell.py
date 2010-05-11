@@ -333,67 +333,18 @@ def resetConsts(typed):
 
 
 
-def split(chosen,Nchosen):
-	global gv
-	#output a character and/or reset state if final symbol
-	if len(chosen) == 1:
-		if wrongGrammar(chosen[0]):		#check for obvious errors
-			print "wrong grammar"
-			return
-		output(chosen[0])
-		if '[DEL]' in chosen[0]:
-			#print "deleting"
-			gv._numTyped = gv._numTyped - 1
-			gv._numDels += 1
-			return2PrevState()
-			return
-		elif '[BACK]' in chosen[0]:
-			print "in split: in elif [back]: chosen: ", chosen[0]
-			return2CurrState()
-			return
-		else:									#output into text box
-			saveState()
-			gv._obsOut.append(chosen[0])
-			#viterbi(gv._obsOut)
-			resetConsts(chosen[0])
-			infoTransferRate()
-			chosen = []
-	else:
-		if gv._numSteps > 1:
-			gv._box2.remove('[BACK]')		#remove BACKSPACE cuz its not in prob tree
-		if chosen != []:
-			gv._emissionProbs[gv._ngram] = updateEmiss(gv._emissionProbs[gv._ngram], chosen)
-
-	hiProb = getLrgstLeaf(gv._emissionProbs[gv._ngram])
-	gv._hiProb = hiProb[0]					####### HACK ########
-	#print "in update: hiProb:", gv._hiProb
-	set_layout(chosen,gv._emissionProbs[gv._ngram])
-
-
-
-
-#shuffles symbols
-#args: list of symbols in chosen box, not chosen box
 def shuffle(chosen,Nchosen):
+	"""
+	This function calls methods which update the state of the keyboard and re-orders the displayed symbols.
+	Args: set of symbols chosen by user, set of symbols not chosen by user
+	"""
 	global gv
-	#print "in shuffle"
-	#print "in shuffle: chosen:", chosen
-	#print "-" * 10
-	#print "ngram:", gv._ngram
-	#print "-" * 10
-	#print gv._emissionProbs[gv._ngram]
-	#print #
 
 	gv._emissionProbs[gv._ngram] = updateEmiss(gv._emissionProbs[gv._ngram], chosen)
-	#print "in shuffle: gv._ngram:", gv._ngram
-	#print gv._sortByValue(gv._emissionProbs[gv._ngram])
-	#print "-" * 10 
 
 	hiProb = getLrgstLeaf(gv._emissionProbs[gv._ngram])
 	hiProb = hiProb[0]					####### HACK ########
 	gv._hiProb = hiProb
-	#print "in shuffle: highest prob: ", gv._hiProb
-	#print #
 
 	if hiProb[1] > gv._threshold:			#output a symbol
 		print #
@@ -430,58 +381,18 @@ def shuffle(chosen,Nchosen):
 
 
 
-
-#exactly like shuffle except symbols are shuffled every 3 times instead of every time
-def shuffle_alternate(chosen,Nchosen):
-	global gv
-
-	gv._emissionProbs[gv._ngram] = updateEmiss(gv._emissionProbs[gv._ngram], chosen)
-	#print "in shuffle: gv._ngram:", gv._ngram
-	#print gv._sortByValue(gv._emissionProbs[gv._ngram])
-	#print "-" * 10 
-
-	hiProb = getLrgstLeaf(gv._emissionProbs[gv._ngram])
-	hiProb = hiProb[0]					####### HACK ########
-	gv._hiProb = hiProb
-
-
-	if hiProb[1] > gv._threshold:			#output a symbol
-		output(hiProb[0])
-		gv._obsOut.append(hiProb[0])
-		#print "in shuffle: obsout:", gv._obsOut
-		#print #
-		if '[DEL]' in hiProb[0]:
-			#print "deleting"
-			#print "in shuffle: ", chosen[0]
-			#print "numDels in shuffle: ", gv._numDels
-			gv._numDels += 1
-			return2PrevState()
-			return
-		else:
-			gv._numB4Shuffle = 3			#so that set_layout is called below
-			saveState()
-			#viterbi(gv._obsOut)
-			resetConsts(hiProb[0])
-			infoTransferRate()
-
-
-	if gv._numB4Shuffle == 3:
-		set_layout(chosen,gv._emissionProbs[gv._ngram])
-		gv._numB4Shuffle = 0
-	else:
-		gv._numB4Shuffle += 1
-
-
-
-
-# update state
-# user choice
 def update(decision):
+	"""
+	This function sets variables used to update the state of the keyboard, based on the user's input.
+	It then calls the method which re-orders and re-allocates the symbols between boxes, and calls the 
+	canvas to update the displayed keyboard with the new symbol order.
+	Args: User's left or right box selection
+	"""
 	global gv, bg
 
 	left = 1
 	right = 2
-	gv._numSteps = gv._numSteps + 1
+	gv._numSteps = gv._numSteps + 1												#keep track of number of user decisions
 
 	if decision == left:
 		hilite = "box%i" %left
@@ -494,11 +405,8 @@ def update(decision):
 		chosen = gv._box2
 		Nchosen = gv._box1
 
-	#split(chosen,Nchosen)			#split symbols like binary search
-	shuffle(chosen,Nchosen)		#shuffle symbols
-	#shuffle_alternate(chosen,Nchosen)	#shuffle every 3rd step
-
-	updateCanvas(hilite,norm)
+	shuffle(chosen,Nchosen)														#re-order symbols
+	updateCanvas(hilite,norm)													#update keyboard displayed
 
 
 
