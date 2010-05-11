@@ -1100,96 +1100,54 @@ def splitLayAlpha(symbs,probs):
 
 
 
-#################################--------------------------start/test------------###########
+#################################--------------------------start------------###########
 
-#get user input, send to keyboard
 def getKeyIn():
-	#print "in getKeyIn()"
-	##print event.keysym
-	##print "in getKeyIn, gv._highlighted=",gv._highlighted
-
+	"""
+	This function creates a binding between a keypress event and the nested keyCtrl() method
+	"""
 	def keyCtrl(event):
-		##print "in keyCtrl()"
+		"""
+		This function is an handler for keypress events.  It also simulates misclassifications
+		and calls the update() method to update the keyboard interface accordingly
+		Args: keypress event
+ 		"""
 		if gv._startTime == 0:
 			gv._startTime = time.time()
 
-		#simulate 80% classifier accuracy
-		#errArr = [1,0,1,1,1,0,1,1,1,1]
-
 		decision = 3
 
-		##print "key pressed:",event.keysym
-
 		if event.keysym == 'Up':
-			##print "key up"
-			decision = 1	#select left
+			decision = 1														#select left box
 		if event.keysym == 'Down':
-			##print "key down"
-			decision = 2	#select right
+			decision = 2														#select right box
 
 		#simulate misclassification
-		err_var = random.random()		#returns number b/t 0-1
-		
-		#bool = random.choice(errArr)
-		#bool = 1
-		#if bool == 0:
-
-		err_var = 1				#100% accuracy
-		if err_var <= float(1 - gv._classAcc): 	#bad case
-			if decision == 1:
+		err_var = random.random()												#returns number b/t 0-1
+		err_var = 1																#100% accuracy -- comment out for misclassfication
+		if err_var <= float(1 - gv._classAcc): 									#error case: test if err_var is <= classifier accuracy
+			if decision == 1:													#flip user input to simulate error
 				decision = 2
-			else:
+			else:																
 				decision = 1
-			#gv._numErrors = gv._numErrors + 1
 			gv._ttlNumErr = gv._ttlNumErr + 1
 			print "oops! classifier error number ", gv._ttlNumErr
-			print ####
+			print #
 
 		if decision < 3:
 			update(decision)
 
-		##print "after upddte call"
-		##print "in keyCtrl gv._highlighted=", gv._highlighted
-
 		return "break"
 
-	##print "before bind call"
-
-	gv._canvas.bind_all('<Key>',keyCtrl)
-	##print "end of getKeyIn"
-
-
-
-def test_interface():
-	global gv, bg
-
-	x = 200
-	y = 200
-	r = 100
-	tag = 'box1'
-	width = 3
-
-	gv.lastTyped = 'h'
-	#bg = Bigraph
-
-	buildGraph(gv._bigrphLst)
-	#print nxtProb(gv.lastTyped)
-	print bg.bigrphLst
-
-	#draw_square(x,y,r,width,tag)
-	#time.sleep(2)	#just to see initial interface
-	##print "in test_interface()"
-	numtries = 10
-	if False:
-		for i in range(1,numtries):
-		##print "user input #",i
-		##print "in test_interface: gv._highlighted=",gv._highlighted
-			update(1)
-			time.sleep(2)
+	gv._canvas.bind_all('<Key>',keyCtrl)										#bind keypress to method
 
 
 
 def start():
+	"""
+	This function calls the method for drawing the default interface, then calls the method which
+	processes keyboard inputs
+	"""
 	default()																	#display entire alphabet
 	getKeyIn()																	#grab keyboard input
 

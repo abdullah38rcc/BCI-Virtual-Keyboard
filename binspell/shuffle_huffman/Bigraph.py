@@ -4,7 +4,7 @@
 # _buildEmission()
 # _updateEmission()
 ##########TODO##############
-# change variable and method names to be more clear
+# 
 ######################BUGS#######################
 #
 ##############CURRENTLY WORKING ON##########
@@ -188,8 +188,10 @@ class Bigraph:
 
 
 	def _print(self,grph):
+		"""
+		This function prints out the graph of bigrams
+		Args: dictionary of bigrams and their frequencies
+		"""
 		for key in grph:
-			#print key
 			print key, " : ", grph[key]
 			print "-" * 10
-
