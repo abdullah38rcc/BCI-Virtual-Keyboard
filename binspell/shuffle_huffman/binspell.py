@@ -45,9 +45,13 @@ from Words import *
 ######################################---------------------- gui -----------#############
 
 def updateCanvas(hilite,norm):
+	"""
+	This function updates the canvas object reflecting changes due to user interaction
+	Args: tag name of user selected box, tag name of non-selected box
+	"""
 	gv._canvas.itemconfigure(hilite,fill='orange',width=3)
 	gv._canvas.itemconfigure(norm,fill='white')
-	gv._canvas.update()										#process all events in event queue
+	gv._canvas.update()															#process all events in event queue
 	time.sleep(0.05)
 	gv._canvas.itemconfigure(hilite,width=1)
 	gv._canvas.delete('text')
@@ -57,9 +61,10 @@ def updateCanvas(hilite,norm):
 
 
 def draw_interface(canHt, canWd):
-	#print "in draw interface()"
-	#print "gv._boxList @beginning of draw_interface():",gv._boxList
-
+	"""
+	This function draws the objects on the canvas
+	Args: canvas height, canvas width
+	"""
 	global gv
 	cntrx = 0.5 * canWd
 	cntry = 0.5 * canHt
@@ -76,55 +81,47 @@ def draw_interface(canHt, canWd):
 	cntry_b2 = 0.5 * canHt
 	tag2 = 'box2'
 
-	#test centers
-	#gv._canvas.create_text(cntrx, cntry, text='x')
-	#gv._canvas.create_text(cntrx_b2, cntry_b2, text='x')
-
-	draw_square(cntrx_b1, cntry_b1, height, width, brdr, tag1)
+	draw_square(cntrx_b1, cntry_b1, height, width, brdr, tag1)					#draw boxes
 	draw_square(cntrx_b2, cntry_b2, height, width, brdr, tag2)
 
-	#print "drawing box1"
-	draw_text(cntrx_b1, cntry_b1, height, width, gv._box1)
-	#print "drawing box2"
+	draw_text(cntrx_b1, cntry_b1, height, width, gv._box1)						#draw symbols in boxes
 	draw_text(cntrx_b2, cntry_b2, height, width, gv._box2)
 
-	gv._canvas.update()		#process all events in event queue
-	#time.sleep(1)
+	gv._canvas.update()															#process all events in event queue
 
 
 
 def draw_square(x, y, h, w, brdr, tag):
+	"""
+	This function draws a square onto the canvas object
+	Args: center x position, center y position, height, width, border width, tag name
+	"""
 	global gv
 	gv._canvas.create_rectangle(x-w, y-h, x+w, y+h, width=brdr, tags=tag)
 
 
 
 def draw_text(cntrx, cntry, h, w, symbolList):
+	"""
+	This function draws the symbols within the box objects
+	Args: center x postion of box, center y postion of box, height of box, width of box, list of symbols
+	"""
 	global gv, bg
 
-	#print symbolList
-	#print ###########
-	maxFntSz = 60			#largest font size
-	minFntSz = 15			#smallest font size
+	maxFntSz = 60																#largest font size
+	minFntSz = 15																#smallest font size
 	color = 'black'
 	x = cntrx - w
 	y = cntry - h
 
-	padx = w/7			#left and right margins
-	pady = h/5			#top and bottome margins
-	tab = 40			#space between symbols
-	pos = 'w'			#left justified
-	xtraSymbSpace = 0	#for whole words or large symbols
+	padx = w/7																	#left and right margins
+	pady = h/5																	#top and bottome margins
+	tab = 40																	#space between symbols
+	pos = 'w'																	#left justified
+	xtraSymbSpace = 0															#for whole words or large symbols
 
-	#print #
-	#print gv._hiProb
-	#print #
-
-	if len(symbolList) == 1:			#one symbol left in box
-		#print symbolList
-		#print "len(str(item)):", len(str(symbolList[0]))
-		#print #
-		if len(str(symbolList[0])) > 1:  #SPC or DEL, etc
+	if len(symbolList) == 1:													#one symbol left in box
+		if len(str(symbolList[0])) > 1:  										#SPC or DEL, etc
 			color = 'red'
 			fontSz = 40
 			font = 'Courier %i bold' %fontSz
@@ -136,11 +133,11 @@ def draw_text(cntrx, cntry, h, w, symbolList):
 		gv._canvas.create_text(cntrx, cntry, text=symbolList[0].upper(), font=font, tag='text', fill=color, anchor=pos)
 	else:
 		for item in symbolList:
-			color = 'black'		#reset
+			color = 'black'														#reset
 			tab = 40
 			xtraSymbSpace = 0
 
-			if len(str(item)) > 1:	#if '[DEL]' or '[SPC]' in item
+			if len(str(item)) > 1:												#if '[DEL]' or '[SPC]' is in item
 				color = 'cyan'
 				fontSz = 40
 				font = 'Courier %i bold' %fontSz
@@ -149,26 +146,20 @@ def draw_text(cntrx, cntry, h, w, symbolList):
 			else:
 				fontSz = getRelFntSz(item, maxFntSz, minFntSz)
 				font = 'Courier %i bold' %fontSz
-				#print item + ": %i" %fontSz
 
-			if fontSz <= 20:		#less space for small symbols
+			if fontSz <= 20:													#less space for small symbols
 				tab = 25
 				color = 'blue'
-				#print "in draw text: fontSz <= 20: ", item
 
-			if fontSz > 45:		#more space for large symbols
+			if fontSz > 45:														#more space for large symbols
 				xtraSymbSpace = round(fontSz / 3)
-				#print "in draw text: fontSz > 45: ", item
 
-			if item in gv._hiProb:		#most probable letter is red
+			if item in gv._hiProb:												#most probable letter is red
 				color = 'red'
-				#print "in draw text: item:", item
-				#print "in draw text: hiProb:", gv._hiProb
-			#print item + ":" + color
 
-			if x + padx + xtraSymbSpace > cntrx + w - padx:   #goin past the edge
-				x = cntrx - w   #reset x to rt edge
-				y = y + pady + fontSz   #\n
+			if x + padx + xtraSymbSpace > cntrx + w - padx:   					#goin past the edge of the box
+				x = cntrx - w   												#reset x to right edge
+				y = y + pady + fontSz   										#new line
 				gv._canvas.create_text(x+padx, y+pady, text='\n', font=font)
 
 			gv._canvas.create_text(x+padx, y+pady, text=item.upper(), font=font, tag='text', fill=color, anchor=pos)
