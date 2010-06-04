@@ -169,31 +169,30 @@ def draw_text(cntrx, cntry, h, w, symbolList):
 
 ###################################################---------------state fxns---------########
 
-#def saveState(usrChoice):
 def saveState():
+	"""
+	This function creates a State object, assigns State member variables the values of selected variables representing the state of the keyboard, 
+	and pushes the State object onto the stack
+	"""
 	global gv, bg, stack
-	#stateObj = State(gv._box1, gv._box2, gv._currProbs, gv._hiProb, usrChoice)
-	#print "in save state"
-	#print "last prefix:", gv._prefix
-	#print "gv._posInWrd",gv._posInWrd
-	#print "gv._ngram: ", gv._ngram
-	#print "box1"
-	#print "in saveState(): emissionProbs:"
-	#bg._print(bg._emissionProbs)
 	stateObj = State(gv._ngram, gv._currCondTable, gv._transitionProbs, gv._emissionProbs, gv._lastWordTyped, gv._prefix, gv._posInWrd, gv._top3words)
 	stack._push(stateObj)
 
 
-#return to state before last error
+
 def return2PrevState():
+	"""
+	This function pops the last State object off the stack, and assigns current keyboard state variables the values 
+	of the State member variables
+	"""
 	global gv, bg
 
 	gv._box1 = []
 	gv._box2 = []
-	flag = 0	#indicates whether or not gv._numTyped needs to be further modified
+	flag = 0																	#indicates whether or not gv._numTyped needs to be further modified
 
-	if gv._prefix == '' and gv._posInWrd == 0:				#whole word needs to be erased
-		gv._numTyped = gv._numTyped - len(gv._lastWordTyped) - 1	# -1 for [spc] automatically added after whole word selection
+	if gv._prefix == '' and gv._posInWrd == 0:									#whole word needs to be erased
+		gv._numTyped = gv._numTyped - len(gv._lastWordTyped) - 1				# -1 for [spc] automatically added after selection of a whole word
 		flag = 1
 	else:
 		gv._numTyped -= 1
@@ -208,31 +207,23 @@ def return2PrevState():
 	gv._posInWrd = stateObj._posinwrd
 	gv._top3words = stateObj._top3
 
-	#print "in return to prev state: pos in word:", gv._posInWrd
-	#print #
-
 	if flag == 1:
 		gv._numTyped += len(gv._prefix)
-		for lett in gv._prefix:					#replace letters user already typed out 
+		for lett in gv._prefix:													#replace letters user already typed out and don't want to delete
 			output(lett)
 
-	#if gv._numTyped > 1:
 	if gv._top3words != {}:
 		updateDist(gv._top3words,gv._emissionProbs[gv._ngram])
 	
 	set_layout(gv._emissionProbs[gv._ngram].keys(),gv._emissionProbs[gv._ngram])
 
 	hiProb = getLrgstLeaf(gv._emissionProbs[gv._ngram])
-	gv._hiProb = hiProb[0]				####### HACK ########
+	gv._hiProb = hiProb[0]														####### HACK ########
 
 	hilite = "box1"
 	norm = "box2"
 
-	updateCanvas(hilite,norm)	#process all events in event queue
-	print "in return to prev: num typed:", gv._numTyped
-	print #
-
-
+	updateCanvas(hilite,norm)													#process all events in event queue
 
 
 
