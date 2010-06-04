@@ -280,47 +280,30 @@ def resetConsts(typed):
 
 def shuffle(chosen,Nchosen):
 	"""
-	This function calls methods which update the state of the keyboard and re-orders the displayed symbols.
+	This function determines whether or not symbol should be typed out.  If so, it calls methods which 
+	modify the state of the keyboard according to the symbol being output.  It also calls a method which 
+	re-orders the displayed keyboard symbols.
 	Args: set of symbols chosen by user, set of symbols not chosen by user
 	"""
 	global gv
 
 	gv._emissionProbs[gv._ngram] = updateEmiss(gv._emissionProbs[gv._ngram], chosen)
-
 	hiProb = getLrgstLeaf(gv._emissionProbs[gv._ngram])
-	hiProb = hiProb[0]					####### HACK ########
+	hiProb = hiProb[0]															####### HACK ########
 	gv._hiProb = hiProb
 
-	if hiProb[1] > gv._threshold:			#output a symbol
-		print #
-		print hiProb[0] + " selected."
-		print #
+	if hiProb[1] > gv._threshold:												#output a symbol
 		output(hiProb[0])
 		gv._obsOut.append(hiProb[0])
-		#print "in shuffle: obsout:", gv._obsOut
-		#print #
 		if '[DEL]' in hiProb[0]:
-			#print "deleting"
-			#print "in shuffle: ", chosen[0]
-			#print "numDels in shuffle: ", gv._numDels
 			gv._numDels += 1
 			return2PrevState()
 			infoTransferRate()
 			return
 		else:
-			#print "in shuffle: begin else: bg._emissionProbs:",
-			#bg._print(bg._emissionProbs)
 			saveState()
-			#gv._obsOut.append(hiProb[0])
-			#viterbi(gv._obsOut)
 			resetConsts(hiProb[0])
 			infoTransferRate()
-			#print "in shuffle: new last typed: ", gv._ngram
-			#print "in shuffle: new emission probs:"
-			#print gv._sortByValue(gv._emissionProbs[gv._ngram])
-			#print "-" * 10 
-		#print "in shuffle: num typed:", gv._numTyped
-		#print #
 
 	set_layout(chosen,gv._emissionProbs[gv._ngram])
 
