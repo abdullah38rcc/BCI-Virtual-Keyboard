@@ -198,7 +198,7 @@ def return2PrevState():
 		gv._numTyped -= 1
 
 	stateObj = stack._pop()
-	gv._ngram = stateObj._ngram
+	gv._ngram = stateObj._ngram													#return keyboard to previous state
 	gv._currCondTable = stateObj._currCondTree
 	gv._transitionProbs = stateObj._currTrnsProbs
 	gv._emissionProbs = deepcopy(gv._transitionProbs)
@@ -227,53 +227,24 @@ def return2PrevState():
 
 
 
-#return to state b4 splits
-#for [back] fxn in split
-def return2CurrState():
-	global gv
-
-	#print "in return2CurrState"
-	#print "top3:", gv._top3words
-	#print #
-
-	gv._box1 = []
-	gv._box2 = []
-	
-	gv._emissionProbs = deepcopy(gv._transitionProbs)
-
-	if gv._numTyped > 1:
-		updateDist(gv._top3words,gv._emissionProbs[gv._ngram])
-	
-	set_layout(gv._emissionProbs[gv._ngram].keys(),gv._emissionProbs[gv._ngram])
-
-	hiProb = getLrgstLeaf(gv._emissionProbs[gv._ngram])
-	gv._hiProb = hiProb[0]				####### HACK ########
-
-	hilite = "box1"
-	norm = "box2"
-
-	updateCanvas(hilite,norm)	#process all events in event queue
-
-
-
-
-#reset global constants
 def resetConsts(typed):
+	"""
+	This function resets all global constants depending on what symbol was last chosen by the user
+	Args: last user symbol selected
+	"""
 	global gv, bg
 
-	if len(typed) > 1 and '[' not in typed[0]:	#check for selection of a full word, but not [spc] or [del]
+	if len(typed) > 1 and '[' not in typed[0]:									#check for selection of a full word, but not [spc] or [del]
 		gv._lastWordTyped = typed
 		gv._posInWrd = 0
-		gv._obsOut.append('[SPC]')		#cuz [spc] automatically inserted after a full word
-		gv._ngram = typed[-1] + '[SPC]'		#reset bigram to last letter of last word typed + spc
+		gv._obsOut.append('[SPC]')												#automatically insert [spc] after a full word
+		gv._ngram = typed[-1] + '[SPC]'											#reset bigram to last letter of last word typed + spc
 		gv._numTyped += (len(typed) - len(gv._prefix) + 1)
 		gv._currCondTable = tg._tgraph
 		gv._prefix = ''
 	else:			
 		gv._numTyped += 1
-		#print "in reset consts: gv._numTyped:", gv._numTyped
-		
-		if typed == '[SPC]':			#word spelled out by user
+		if typed == '[SPC]':													#a word was spelled out by user
 			gv._lastWordTyped = gv._prefix
 			gv._prefix = ''
 			gv._posInWrd = 0
@@ -281,26 +252,19 @@ def resetConsts(typed):
 			gv._posInWrd += 1
 			gv._prefix += typed
 
-		if gv._numTyped < 2:				#only one letter typed
+		if gv._numTyped < 2:													#only one letter typed thus far
 			gv._currCondTable = bg._conditional1
 			gv._ngram = typed
-		else:						#use trigram conditionals
+		else:																	#use trigram conditional probabilities
 			gv._ngram = getBgram()
 			gv._currCondTable = tg._tgraph
-		#print "in reset consts: last typed:", gv._ngram
-		#print "new transition probs:"
-		#print gv._sortByValue(gv._currCondTable[gv._ngram])
-		#print "-" * 10 
 
 	gv._transitionProbs = gv._currCondTable
 	gv._emissionProbs = deepcopy(gv._transitionProbs)
 
-	gv._top3words = wd._closestWords(gv._prefix,gv._lastWordTyped)		#guess words based on what's been typed
+	gv._top3words = wd._closestWords(gv._prefix,gv._lastWordTyped)				#guess words based on what's been typed
 	if gv._top3words != {}:
 		updateDist(gv._top3words,gv._emissionProbs[gv._ngram])
-
-	#print "in resetConsts"
-	#bg._print(gv._currCondTable)		#stub
 
 	gv._ttlNumSteps = gv._ttlNumSteps + gv._numSteps
 	gv._ttlNumErr = gv._ttlNumErr + gv._numErrors
@@ -309,8 +273,7 @@ def resetConsts(typed):
 	gv._typed = ['',0]
 
 	hiProb = getLrgstLeaf(gv._emissionProbs[gv._ngram])
-	gv._hiProb = hiProb[0]					####### HACK ########
-
+	gv._hiProb = hiProb[0]														####### HACK ########
 	gv._numTimesLargest = 0
 
 
