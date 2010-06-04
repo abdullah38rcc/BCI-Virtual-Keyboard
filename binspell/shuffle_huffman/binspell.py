@@ -340,34 +340,24 @@ def update(decision):
 
 ####################################################--------- helper fxns----------#########
 
-#update emission probs to include words
-#normalize emission probs so that they sum to 1 - word probs
-#args: dict of most likely words:probs, dict of emission probs of letters
 def updateDist(wrdProbs,eProbs):
-	#print "in update dist"
-	#print "old eprobs"
-	#bg._print(eProbs)
-
-	wtot = sum(wrdProbs[key] for key in wrdProbs)		#sum of probs in top words dict
-	ltot = sum(eProbs[key] for key in eProbs)		#sum of probs in emission probs dict
-
-	#print "in updatedist: wtot:", wtot
+	"""
+	This function updates the emission probability tables for the symbols, to include the probabilities
+	of the most likely words.
+	Args: dict of most likely words:probs, dict of emission probs of letters
+	"""
+	wtot = sum(wrdProbs[key] for key in wrdProbs)								#sum of probs in top words dict
+	ltot = sum(eProbs[key] for key in eProbs)									#sum of probs in emission probs dict
 
 	if '[DEL]' in eProbs.keys():
-		reWeightDel(eProbs,len(wrdProbs),wtot+ltot)	#assign [del] avg of all probs
-		ltot = sum(eProbs[key] for key in eProbs)
-		#print "new eprobs[del]:", eProbs['[DEL]']
-		#print #
+		reWeightDel(eProbs,len(wrdProbs),wtot+ltot)								#assign [del] avg of all probs
+		ltot = sum(eProbs[key] for key in eProbs)								#new sum
 
 	mplier = float(wtot)/float(ltot)
-	for key in eProbs:					#normalize
+	for key in eProbs:															#normalize
 		eProbs[key] *= mplier
 	
-	eProbs.update(wrdProbs)
-	#print "in update dist: symbols at end:", eProbs.keys()
-	#print #
-	#print "new eprobs"
-	#bg._print(eProbs)
+	eProbs.update(wrdProbs)														#update emission probabilities
 
 
 
