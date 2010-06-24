@@ -8,6 +8,8 @@ from stoplight import *
 #why doesn't this work?
 #import TstClass
 
+# see Trigraph.py for string processing routines
+
 if False:
 	def test_for():
 		print "in test_for"

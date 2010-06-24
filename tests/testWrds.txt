@@ -1,0 +1,19 @@
+microsoft.
+
+apple
+
+microsoft?
+
+Apple?
+
+security
+
+microsoft
+
+internet
+
+Example output:
+
+microsoft 3
+
+apple 2
