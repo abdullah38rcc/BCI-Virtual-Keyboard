@@ -1,0 +1,13 @@
+# Fdb version 2
+["latex"] 0 "exam1.tex" "exam1.dvi" "exam1" 
+  "exam1.tex" 1277679795 5589 fcbfbd2445cacd4f1e7c2843a4ecca6d ""
+["pdflatex"] 1277704313 "exam1.tex" "exam1.pdf" "exam1" 
+  "/opt/local/share/texmf-dist/tex/latex/base/article.cls" 1079230793 20545 af5f10c7588e0dedb430b7e03bb2007b ""
+  "/opt/local/share/texmf-dist/tex/latex/base/size11.clo" 1079230793 9031 8f7bc4969619b6c0939fde5c6e3d0543 ""
+  "/opt/local/share/texmf-dist/tex/latex/fancyhdr/fancyhdr.sty" 1097162935 20276 dd75b755768c9c78e560864d3dabe68b ""
+  "/opt/local/share/texmf-dist/tex/latex/geometry/geometry.cfg" 1086612120 638 48769ad4edde7f6438dc48323115ef3b ""
+  "/opt/local/share/texmf-dist/tex/latex/geometry/geometry.sty" 1086612120 32589 22bd6548ea1cfef015e8020251da5bb6 ""
+  "/opt/local/share/texmf-dist/tex/latex/graphics/keyval.sty" 1079231385 2265 81e14aac1e9b77d5c2b4fbab24dd933f ""
+  "Blanks.sty" 0 -1 0 ""
+  "exam1.aux" 1277703385 8 a94a2480d3289e625eea47cd1b285758 ""
+  "exam1.tex" 1277704272 2249 fde39a702a27b48693606ff2286c99a4 ""

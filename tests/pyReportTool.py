@@ -13,8 +13,10 @@ def openScript(sname):
 	#print rslt
 	return rslt
 	
-def htmlReport():
-	
+#def htmlReport():
+
+
+def genTags(txt):	
 	
 
 
