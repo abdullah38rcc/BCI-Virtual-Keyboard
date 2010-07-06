@@ -1,0 +1,943 @@
+/**
+ * Copyright (c) 2002, Quia Corporation. All rights reserved.
+ *
+ * Please update quia.style.QuiaCSS.java when updating this file.
+ *
+ * $Id$;
+ */
+
+/*
+// References
+//
+// Take a look at the following:
+//
+// http://css-discuss.incutio.com/?page=UsingEms
+// http://www.thenoodleincident.com/tutorials/typography/index.html
+*/
+
+.quia_monospace {
+ font:normal 12px  Courier, monospace;
+}
+.quia_standard_small {
+ font-family: verdana, arial, helvetica, sans-serif;
+ font-size: 10px;
+}
+.quia_standard {
+ font-family: verdana, arial, helvetica, sans-serif;
+ font-size: 12px;
+}
+.quia_standard_large {
+ font:normal 18px verdana, arial, helvetica, sans-serif;
+}
+.quia_standard_medium_bold {
+ font:bold 14px verdana, arial, helvetica, sans-serif;
+}
+#activityTleDscTbl h1.quia_standard_medium_bold {
+ font-size:14px;
+ float:left;
+ width:410px;
+}
+
+.quia_standard_non_fixed {
+ font-family: verdana, arial, helvetica, sans-serif;
+}
+.quia_standard_non_fixed_large {
+ font-family: verdana, arial, helvetica, sans-serif;
+ font-size: 120%;
+}
+.quia_unicode_standard_small {
+ font-family: arial unicode ms, arial, verdana, helvetica, sans-serif;
+ font-size: 10px;
+}
+.quia_unicode_standard {
+ font-family: arial unicode ms, arial, verdana, helvetica, sans-serif;
+ font-size: 12px;
+}
+.quia_unicode_standard_large {
+ font:normal 18px arial unicode ms, arial, verdana, helvetica, sans-serif;
+}
+.quia_unicode_standard_medium_bold {
+ font:bold 14px arial unicode ms, arial, verdana, helvetica, sans-serif;
+}
+.quia_unicode_standard_non_fixed {
+ font-family: arial unicode ms, arial, verdana, helvetica, sans-serif;
+}
+.quia_unicode_standard_non_fixed_large {
+ font-family: arial unicode ms, arial, verdana, helvetica, sans-serif;
+ font-size: 120%;  
+}
+/* This is used by alttxt */
+.navtext, .navtextnowrap {
+  font:normal 9pt verdana, arial, helvetica, sans-serif;
+  width: auto;
+  background-color: #FFFCE1;
+  border: 1px solid #666666;
+}
+.navtextnowrap {
+  white-space: nowrap;
+}
+.whiteLink a:link, .whiteLink a:visited {
+  color:#FFFFFF;
+}
+.whiteLink {
+  text-align:right;
+  font-weight:bold;
+}
+/* This is used to reset generated question styles in quia like they are in IXL. */
+.ixl-mproblem {
+  line-height: 1.4;
+  font: normal 16px verdana, arial, helvetica, sans-serif;
+  text-align: left;
+  width: 608px;
+  border: 1px solid #C0C0C0;
+  overflow: visible;
+}
+.ixl-mproblem p {
+  font-size: 1.0em;
+  line-height: 1.4;
+  margin: 0;
+}
+.ixl-mproblem table {
+  line-height: 1.4;
+}
+.ixl-mproblem br {
+  line-height: 15px;
+}
+.ixl-mproblem sup {
+  bottom: .9ex;
+  line-height: 1;
+  position: relative;
+  vertical-align: baseline;
+}
+.ixl-mproblem sup.negative {
+  bottom: .6ex;
+}
+.ixl-mproblem input[type="text"] {
+  min-width: 2em;
+}
+.ixl-mproblem .quia_standard {font-size:16px;}
+.ixl-mproblem table{border-collapse:collapse;border-spacing:0;}
+.ixl-mproblem input, .ixl-mproblem textarea, .ixl-mproblem th, .ixl-mproblem td{margin:0;padding:0;}
+.ixl-mproblem table, .ixl-mproblem th, .ixl-mproblem td{font-size:1em;}
+.ixl-mproblem input, .ixl-mproblem textarea, .ixl-mproblem select{font-family:inherit;font-size:inherit;font-weight:inherit;}
+.ixl-mproblem td.quia_standard {padding:2px 4px;border-spacing:1px;}
+.ixl-mproblem td.quia_standard input {width:23px;height:23px;font-size:16px;}
+.ixl-mproblem table.undoreset{border-collapse:separate;border-spacing:2px;}
+.ixl-mproblem table.undoreset td{padding:2px;}
+
+img.pngImg {
+  behavior: url(/script/iepngfix.htc);
+}
+
+/**
+ * Quia Web Special Message 
+ */
+#special_msg_inner {
+  background-color:#f4eba6;
+  border:0;
+  color:#666;
+  font:normal 10px Verdana,Arial,Helvetica,sans-serif;
+  margin:0;
+  padding:5px 15px;
+}
+
+#special_msg_inner a {
+  color:#666;
+}
+
+/**
+ * Quia Web Top Blue Banner
+ */
+div#quiaBlueTopNav {
+  background:url(/img/web/banner/background.gif) repeat-x;
+  height:48px;
+  position:relative;
+  width:100%;
+}
+
+a#quiaBlueTopNavLogo {
+  background:url(/img/web/banner/logo.gif) no-repeat;
+  float:left;
+  display:block;
+  height:48px;
+  margin:0 0 0 20px;
+  padding:0;
+  width:72px;
+}
+
+div#createUrOwnGif {
+  background:url(/img/web/homepage/createyourown.gif) no-repeat;
+  float:left;
+  height:14px;
+  margin:22px 0 0 20px;
+  padding:0;
+  width:106px;
+}
+
+/*************************************************************************/
+#qwbody {
+  padding: 10px;
+  width: 100%;
+  height: 100%;
+}
+div.qwlnav {
+  text-align: left;
+  margin: 0;
+}
+.qwlnav ul {
+  border: 2px solid #D8DFE6;
+  background: #FFFFFF;
+  padding: 5px 4px;
+  margin: 0 0 5px;
+  list-style: none outside;
+  width: 130px;
+  *width: 144px;
+  zoom: 1;
+}
+.qwlnav li {
+  list-style: none outside;
+  padding: 3px 0 4px 18px;
+  margin: 0;
+  background: transparent url(/img/web/instructor-zone/lnav_3.gif) no-repeat;
+  font: normal 11px/1.4 verdana, arial, helvetica, sans-serif;
+}
+.qwlnav li.sep {
+  border: 1px solid #EAEAEA;
+  padding: 1px 0;
+  margin: 3px 0;
+  background: none;
+  line-height: 1px;
+}
+.qwlnav li a, .qwlnav li a:link, .qwlnav li a:visited, .qwlnav li a:hover,
+.qwlnav li a:active {
+  text-decoration: none;
+  font:bold 11px verdana, arial, helvetica, sans-serif;
+  color: #666666;
+  padding: 0;
+  margin: 0;
+}
+.qwlnav li a:hover {
+  text-decoration: underline;
+}
+/*
+ * conslidating quia.css with quia_button.css
+ * following styles are from quia_button.css
+ * */
+.quia_web_button {
+  font: bold 11px verdana, arial, helvetica, sans-serif;
+  color: #005d89;
+  border: 2px solid #005d89;
+  background-color: #F6F8F9;
+  padding: 3px 5px;
+  width: auto;
+  overflow: visible; 
+}
+/* Added by ecurtis to have disabled buttons in Firefox */
+.quia_web_button:disabled {
+  border: 2px solid #afafaf;
+  color: #999999;
+}
+.quia_web_button_short {
+  font: bold 11px verdana, arial, helvetica, sans-serif;
+  color: #005d89;
+  border: 2px solid #005d89;
+  background-color: #F6F8F9;
+  padding: 1px 3px;
+  width: auto;
+  overflow: visible; 
+}
+.quia_web_button_short:disabled {
+  border: 2px solid #afafaf;
+  color: #999999;
+}
+.quia_books_button {
+  font: bold 11px verdana, arial, helvetica, sans-serif;
+  color: #333333;
+  background-color: #D4D0C8;
+  border: 2px outset;
+  padding: 2px;
+  width: auto;
+  overflow: visible;
+}
+.quia_books_button:disabled {
+  font: bold 11px verdana, arial, helvetica, sans-serif;
+  color: #999999;
+  background-color: #D4D0C8;
+  border: 2px outset;
+  padding: 2px;
+  width: auto;
+  overflow: visible;
+}
+.quia_accent_button {
+  font: 12px verdana, arial, helvetica, sans-serif;
+  width: 17px;
+  color: #333333;
+  background-color: #E2E2E2;
+  padding: 1px;
+  border: 1px solid #999999;
+}
+.quia_float_accent_button {
+  font: 12px verdana, arial, helvetica, sans-serif;
+  width: 100px;
+  color: #333333;
+  background-color: #E2E2E2;
+  padding: 1px;
+  border: 1px solid #999999;
+}
+/*
+ * ********************************************************************
+ * */
+.nbrCls {
+ color:#005b9a;
+ font:normal 12px verdana, arial, helvetica, sans-serif;
+ text-decoration:underline;
+}
+.nbrCls a:link, .nbrCls a:visited, .nbrCls a:hover, .nbrCls a:active {
+  color:#005b9a;text-decoration:underline;
+}
+/*
+ * bannerlink and footer link styles
+ * */
+a.bannerlink, a.bannerlink:link, a.bannerlink:visited, a.bannerlink:hover {
+  color:#FFFFFF;
+  display:block;
+  float:left;
+  font:normal bold 11px Verdana,Arial,Helvetica,sans-serif;
+  margin:21px 0 0 14px;
+  padding:0;
+  text-decoration:none;
+}
+a.bannerlink:hover {
+  text-decoration:underline;
+}
+a.bannerlinkbutton, a.bannerlinkbutton:link, a.bannerlinkbutton:visited, 
+a.bannerlinkbutton:hover {
+  background-color:#F6F8F9;
+  border:2px solid #005D89;
+  color:#005D89;
+  padding:3px 5px;
+  margin:16px 0 0 14px;
+  text-decoration:none;
+}
+
+a.footerlink, a.footerlink:link, a.footerlink:visited, a.footerlink:hover {
+  color:#444444;
+  font:normal 11px Verdana,Arial,Helvetica,sans-serif;
+}
+td.footertext {
+  color:#444444;
+  text-align:center;
+  font:normal 11px Verdana,Arial,Helvetica,sans-serif;
+}
+/*
+ * General Quia CSS, created during Facelift projects
+ * */
+.secHdr {
+  color:#444444;font:bold 14px verdana, sans-serif;
+}
+a.secHdr:link, a.secHdr:visited, a.secHdr:active {
+  color:#444444;text-decoration:none;
+}
+a.secHdr:hover {
+  color:#444444;text-decoration:underline;
+}
+.qia12 {
+  color:#444444;font:normal 12px verdana, sans-serif;
+}
+.qia12 a:link, .qia12 a:visited, .qia12 a:hover, .qia12 a:active {
+  color:#005B9A;text-decoration:underline;
+}
+.qia {
+  color:#444444;font:normal 11px verdana,sans-serif;
+}
+.qia a:link, .qia a:visited, .qia a:hover, .qia a:active {
+  color:#005B9A;text-decoration:underline;
+}
+#titleInstr {
+  color:#444444;font:normal 15px verdana,sans-serif;
+}
+#activityType {
+  color:#444444;font:bold 15px verdana,sans-serif;
+}
+#quickInstr {
+  color:#444444;font:normal 15px verdana,sans-serif;
+}
+input.qia {
+  color:#444444;font:normal 11px verdana,sans-serif;
+}
+h1.qia {
+  color:#444444;font:bold 18px verdana,sans-serif;
+  border:0;margin:0;padding:0; 
+}
+h2.qia {
+  color:#444444;font:bold 12px verdana,sans-serif;
+  border:0;margin:0;padding:0; 
+}
+.h2class {
+  color:#444444;font:bold 12px verdana,sans-serif;
+}
+h3.qia {
+  color:#444444;
+  font:bold 10px verdana,sans-serif;
+}
+.h3class {
+  color:#444444;
+  font:bold 10px verdana,sans-serif;
+  text-decoration:none;
+}
+.h3class a:link, .h3class a:visited, .h3class a:hover, .h3class a:active {
+  color:#005B9A;
+  text-decoration:underline;
+}
+.topnav {
+  color:#0064A2;
+  font:bold 11px verdana,sans-serif;
+  text-decoration:none;
+}
+.topnav a:link, .topnav a:visited, .topnav a:hover, .topnav a:active {
+  color:#444444;
+  text-decoration:underline;
+}
+label.qia12 {
+  color:#444444;font:bold 12px verdana, sans-serif;
+}
+label.qia {
+  color:#444444;font:bold 10px verdana,sans-serif;
+}
+label.qia a:link, label.qia a:visited, label.qia a:hover, label.qia a:active {
+  font-size:10px;
+}
+ul.qia {
+  list-style:none;padding-left:0;margin:0;
+}
+li.qia {
+  background:url(/img/web/homepage/blue_bullet.gif) no-repeat 0 4px;
+  margin:0;
+  padding:0 0 5px 15px;
+  font:bold 10px/12px verdana,sans-serif; color:#767472;
+}
+li.qia a:link, li.qia a:visited, li.qia a:hover, li.qia a:active {
+  font-size:10px;color:#767472;text-decoration:underline;
+}
+li.qia#copyToAcct {
+  background: url(/img/web/instructor-zone/action-icon/li_copy_2.gif)
+  no-repeat 0 50%;
+  margin:0;
+  padding:2px 0 4px 20px;
+}
+li.qia#emailToFriend {
+  background: url(/img/web/instructor-zone/action-icon/li_email.gif)
+  no-repeat 0 50%;
+  margin:0;
+  padding:2px 0 4px 20px;
+}
+li.qia#findOtherAct {
+  background: url(/img/web/instructor-zone/action-icon/li_find_activity.gif)
+  no-repeat 0 50%;
+  margin:0;
+  padding:2px 0 4px 20px;
+}
+li.qia#startOver {
+  background: url(/img/web/instructor-zone/action-icon/li_start_over.gif)
+  no-repeat 0 50%;
+  margin:0;
+  padding:2px 0 4px 20px;
+}
+li.qia#returnToClass {
+  background: url(/img/web/instructor-zone/action-icon/li_return_class.gif)
+  no-repeat 0 50%;
+  margin:0;
+  padding:2px 0 4px 20px;
+}
+li.qia#returnToProfile {
+  background: url(/img/web/instructor-zone/action-icon/li_return_profile.gif)
+  no-repeat 0 50%;
+  margin:0;
+  padding:2px 0 4px 20px;
+}
+li.qia#reviewAct {
+  background: url(/img/web/instructor-zone/action-icon/li_review_activity.gif)
+  no-repeat 0 50%;
+  margin:0;
+  padding:2px 0 4px 20px;
+}
+li.qia#toolsPrint {
+  background: url(/img/web/instructor-zone/action-icon/li_print.gif)
+  no-repeat 0 50%;
+  margin:0;
+  padding:2px 0 4px 20px;
+}
+li.qia#toolsHelp {
+  background: url(/img/web/instructor-zone/action-icon/li_help.gif)
+  no-repeat 0 50%;
+  margin:0;
+  padding:2px 0 4px 20px;
+}
+.network {
+  color:#444444;
+  font:bold 11px verdana,sans-serif;
+}
+.network a:link, .network a:visited, .network a:hover, .network a:active { 
+  color:#005B9A;
+  text-decoration:underline;
+}
+.split {
+  position:relative;zoom:1;
+}
+.split:after {
+  content:'.';display:block;clear:both;height:0;width:0;visibility:hidden;
+}
+.stateProvFineDv {
+  display:block;
+  font-size:10px;
+  padding:8px 0;
+}
+/*
+ * Quia Web Home CSS
+ */
+h1.home {
+  color:#444444;font:bold 15px verdana, sans-serif;
+}
+ul.home {
+  list-style:none;padding-left:0;margin:0 0 10px 0;
+}
+li.home {
+  background:url(/img/web/homepage/blue_bullet.gif) no-repeat 0 50%;
+  margin:0 0 7px 0;
+  padding:0 0 0 15px;
+  font:normal 10px verdana,sans-serif; color:#005B9A;
+}
+input.home {
+  font-size:12px;border:1px solid #ADADB5;
+}
+input.findTeacher {
+  font-size:11px;padding:2px;border:1px solid #ADADB5;
+}
+label.findTeacher {
+  color:#444444;font:bold 11px verdana, sans-serif;
+}
+.nInstStu {
+  color:#444444;font:normal 11px verdana, sans-serif;
+}
+.nInstStu a:link, .nInstStu a:visited, .nInstStu a:hover, .nInstStu a:active {
+  color:#444444;text-decoration:none;
+}
+.ourUsersSay {
+  margin:0;padding:0;color:#444444;font:normal 10px verdana, sans-serif;
+}
+.welNewLk {
+  font:normal 10px verdana, sans-serif;
+}
+.welNewLk a:link, .welNewLk a:visited, .welNewLk a:hover, .welNewLk a:active {
+  text-decoration:underline;
+}
+.moreLinks {
+  font:bold 10px verdana,sans-serif;
+}
+#instBloc { 
+  display:block;
+  width:370px;
+  height:184px;
+  position:absolute;
+  top:0;
+  left:0;
+  border:0;
+  margin:0;
+  padding:0;
+  z-index:99;
+}
+#studBloc { 
+  display:block;
+  width:370px;
+  height:125px;
+  position:absolute;
+  bottom:0;
+  left:0;
+  border:0;
+  margin:0;
+  padding:0;
+  z-index:99;
+}
+.iePad {
+  position:relative;
+  width:1px;
+  height:3px;
+}
+.indentFea {
+  display:block;
+  text-indent:20px;
+}
+.studFea {
+  display:block;
+  font-weight:bold;
+}
+.studFea a:link, .studFea a:visited, .studFea a:hover, .studFea a:active {
+  text-decoration:none;
+}
+.andMore {
+  margin:0 0 7px 0;
+  padding:0 0 0 3px;
+  font:bold 10px verdana, sans-serif;
+  color:#005B9A;
+}
+a.videoIcon {
+  background:url(/img/video.gif) 0 2px no-repeat;
+  border:0;
+  display:block;
+  margin:0;
+  padding:0 0 0 15px;
+}
+a.appleIcon {
+  background:url(/img/apple.gif) 0 -2px no-repeat;
+  font-weight:bold;
+  border:0;
+  display:block;
+  margin:0;
+  padding:0 0 0px 15px;
+}
+/*
+ * tablepadding used at Class Home Page
+ * */
+.tablepadding {
+  padding-bottom:4px;
+}
+
+/*
+ * .msg-uc was defined in ActivityPage.java, now in quia.css
+ * */
+.msg-uc {
+  font:bold 18px verdana, arial, helvetica, sans-serif;
+  color: #000000;
+}
+/*
+ * .headersort used in GradingByQuestionPage, GradingOverIvewPage, 
+ * InstResultsPage, InstAdminInstructorListPage and InstAdminStudentListpage
+ * */
+.headersort a {
+  color:#444444;
+  font:bold 11px verdana, sans-serif;
+  text-decoration:underline;
+}
+.actPlayWarning {
+  height: 40px;  
+  background: #FFE6DD url(/img/grading/icon_warning.gif) no-repeat 10px 50%;
+}
+
+.actPlayWarning td {
+  padding-left: 40px;
+}
+.actLevelFeedback {
+  padding: 10px;
+  background-color: #D0EAFD;
+}
+/*
+ * for new tutorial link embedded in page header bar
+ */
+.titleBarLkDv {
+  border:0;
+  float:right;
+  height:24px;
+  margin:0;
+  padding:0;
+  width:160px;
+}
+.helpLkDv {
+  border:2px solid #DDF0F7;
+  float:right;
+  height:20px;
+  margin:0;
+  padding:0;
+  width:61px;
+  text-align:center;
+}
+.helpLkImg {
+  padding:4px 0 0 0;
+}
+.tutorialLkDv {
+  border:2px solid #DDF0F7;
+  border-bottom:0px none #fff;
+  color:#444;
+  float:right;
+  margin:0;
+  padding:0;
+  height:20px;
+  width:91px;
+}
+
+.ttLkDvActive {
+  border-color:#C3D6DD #C3D6DD #DDF0F7 #C3D6DD;
+}
+.ttMenuCover {
+  background-color:#DDF0F7;
+  display:block;
+  border:0;
+  height:2px;
+  left:2px;
+  margin:0;
+  padding:0;
+  position:absolute;
+  top:0;
+  width:91px;
+  *width:87px;
+  z-index:99;
+}
+.ttMenuCoverToRight {
+  left:auto;
+  right:2px;
+}
+.tutorialLkImg {
+  background:transparent url(/img/web/instructor-zone/lnav_3.gif) no-repeat scroll 0 -318px;
+  cursor:pointer;
+  display:block;
+  margin:0 0 0 8px;
+  padding:4px 0 2px 0;
+  text-align:left;
+  text-decoration:underline;
+  text-indent:16px;
+}
+a.tutorialLkImg {
+  color:#444;text-decoration:underline;
+}
+.yui-skin-sam #tutorialMenu.yuimenu .bd {
+  border:2px solid #C3D6DD;
+  width:156px;
+  *width:152px;
+  background-color:#DDF0F7;
+}
+.yui-skin-sam #tutorialMenu .yuimenuitemlabel {
+  cursor:pointer;
+  color:#005B9A;
+  line-height:1.1em;
+  padding:0 5px;
+  text-decoration:underline;
+  white-space:normal;
+}
+.yui-skin-sam #tutorialMenu a.yuimenuitemlabel {
+  outline:none;
+}
+
+.yui-skin-sam #tutorialMenu .yuimenuitem {
+  border-bottom-width:0;
+  padding:7px 0 7px 0;
+  *padding:0 0 7px 0;
+}
+.yui-skin-sam #tutorialMenu .yuimenuitem-selected {
+  background-color:#c0dfeb;
+}
+#tutrShdow {
+  border:0;
+  left:5px;
+  margin:0;
+  padding:0;
+  position:absolute;
+  top:7px;
+  *top:5px;
+  width:422px;
+  z-index:49;
+}
+#shdowHd {
+  background:url(/img/tutorials/tutor_scrn_shots_parts_vs2.png) no-repeat 0 -100px;
+  border:0;
+  font-size:0;
+  margin:0;
+  padding:0;
+  position:relative;
+  height:3px;
+  width:100%;
+  z-index:50;
+}
+#shdowBd {
+  background-color:#EDEAEA;
+  border-right:3px solid #EDEAEA;
+  border-left:3px solid #EDEAEA;
+  margin:0;
+  border:0;
+  margin:0;
+  min-height:70px;
+  padding:0;
+  position:relative;
+  width:auto;
+  z-index:50;
+}
+#shdowFt {
+  background:url(/img/tutorials/tutor_scrn_shots_parts_vs2.png) no-repeat 0 -110px;
+  border:0;
+  font-size:0;
+  margin:0;
+  padding:0;
+  height:3px;
+  position:relative;
+  width:100%;
+  z-index:50;
+}
+#tutrScrn {
+  border:0;
+  margin:0;
+  padding:0;
+  position:absolute;
+  width:422px;
+  z-index:51;
+}
+#tutrScrn .hd {
+  background:url(/img/tutorials/tutor_scrn_shots_parts_vs2.png) no-repeat 0 -80px;
+  border:0;
+  font-size:0;
+  margin:0;
+  padding:0;
+  position:relative;
+  height:4px;
+  width:100%;
+  z-index:52;
+}
+#tutrScrn .bd {
+  background-color:#EEFDDC;
+  border:0;
+  border-right:3px solid #BBDF8F;
+  border-left:3px solid #BBDF8F;
+  margin:0;
+  min-height:70px;
+  padding:0;
+  position:relative;
+  width:auto;
+  z-index:52;
+}
+#tutrScrn .ft {
+  background:url(/img/tutorials/tutor_scrn_shots_parts_vs2.png) no-repeat 0 -90px;
+  border:0;
+  font-size:0;
+  margin:0;
+  padding:0;
+  height:4px;
+  position:relative;
+  width:100%;
+  z-index:52;
+}
+#arrowDv {
+  background-image:url(/img/tutorials/tutor_scrn_shots_parts_vs2.png);
+  background-repeat:no-repeat;
+  border:0;
+  height:40px;
+  margin:0;
+  padding:0;
+  position:absolute;
+  width:16px;
+  z-index:53;
+}
+.rightUp11 {
+  background-position:0 0;
+  bottom:30px;
+  left:-13px;
+  right:auto;
+  top:auto;
+}
+.rightUp01 {
+  background-position:0 -40px;
+  bottom:30px;
+  left:auto;
+  right:-13px;
+  top:auto;
+}
+.rightUp10 {
+  background-position:0 0;
+  bottom:auto;
+  left:-13px;
+  right:auto;
+  top:30px;
+}
+.rightUp00 {
+  background-position:0 -40px;
+  bottom:auto;
+  left:auto;
+  right:-13px;
+  top:30px;
+}
+#tutrScrn .hdr {
+  border:0;
+  color:#5e7790;
+  font-size:18px;
+  font-weight:bold;
+  line-height:1em;
+  margin:0;
+  padding:10px 5px 10px 15px;
+}
+#tutrScrn .divdr {
+  background-color:#ccc;
+  border:0;
+  border-bottom:2px solid #fff;
+  font-size:1px;
+  height:2px;
+  margin:0 8px;
+  padding:0;
+  width:400px;
+}
+#tutrScrn .scrnShot {
+  border:0;
+  margin:0;
+  padding:8px;
+}
+
+a.aJgLk, div.aJgLk {
+  border:0;
+  color:#005B9A;
+  font:bold 15px verdana, arial, helvetica, sans-serif;
+  float:left;
+  display:block;
+  height:136px;
+  *height:151px;
+  margin:0 7px 7px 0;
+  padding:15px 0 0 0;
+  position:relative;
+  text-align:center;
+  width:202px;
+}
+
+div.aJgLk {
+  height:151px;
+  padding:0;
+}
+
+a.aJgLkPairWithDv {
+  border:0;
+  color:#005B9A;
+  display:block;
+  height:136px;
+  *height:151px;
+  margin:0;
+  padding:15px 0 0 0;
+  position:relative;
+  width:202px;
+}
+
+div#flashJavaHtmlLkDv {
+  color:#484444;
+  font:normal 12px verdana, arial, helvetica, sans-serif;
+  left:60px;
+  position:absolute;
+  top:36px;
+}
+
+div#flashJavaHtmlLkDv a {
+  color:#005B9A;
+}
+
+a.flashcards {
+background:url(/img/web/instructor-zone/javaGames.png) no-repeat;
+}
+a.matching {
+background:url(/img/web/instructor-zone/javaGames.png) no-repeat 0 -181px;;
+}
+a.concentration{
+background:url(/img/web/instructor-zone/javaGames.png) no-repeat 0 -362px;
+}
+a.wordsearch {
+background:url(/img/web/instructor-zone/javaGames.png) no-repeat  0 -544px;
+}
+
+
+/**
+ * Quia Book Purchase
+ * Custom Book Purchase
+ */
+a#editBillingLk {
+  color:#333;
+}
