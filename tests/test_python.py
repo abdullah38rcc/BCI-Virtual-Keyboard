@@ -15,7 +15,7 @@ if False:
 		print "in test_for"
 		d = {'one':1, 'two':2}
 		if False:
-			for i in range(1, 5):
+			for i in range(1, 5):				#last number in range not included
 				print i
 			else:
 				print 'The for loop is over'
