@@ -1,0 +1,12 @@
+# Fdb version 2
+["latex"] 0 "notes_format.tex" "notes_format.dvi" "notes_format" 
+  "notes_format.tex" 1279032797 304 ae03dd9d048fcdcd5fb5beb167c9238e ""
+["pdflatex"] 1279033469 "notes_format.tex" "notes_format.pdf" "notes_format" 
+  "/opt/local/share/texmf-dist/tex/latex/base/article.cls" 1079230793 20545 af5f10c7588e0dedb430b7e03bb2007b ""
+  "/opt/local/share/texmf-dist/tex/latex/base/omscmr.fd" 1079230793 2092 9bd5bd4a77246de611ad664f26875a49 ""
+  "/opt/local/share/texmf-dist/tex/latex/base/size11.clo" 1079230793 9031 8f7bc4969619b6c0939fde5c6e3d0543 ""
+  "/opt/local/share/texmf-dist/tex/latex/geometry/geometry.cfg" 1086612120 638 48769ad4edde7f6438dc48323115ef3b ""
+  "/opt/local/share/texmf-dist/tex/latex/geometry/geometry.sty" 1086612120 32589 22bd6548ea1cfef015e8020251da5bb6 ""
+  "/opt/local/share/texmf-dist/tex/latex/graphics/keyval.sty" 1079231385 2265 81e14aac1e9b77d5c2b4fbab24dd933f ""
+  "notes_format.aux" 1279033470 8 a94a2480d3289e625eea47cd1b285758 ""
+  "notes_format.tex" 1279033468 485 4a6ed52de09fd3d50cff13346da7d8f5 ""

@@ -1,0 +1,1630 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+	"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en">
+	<head>
+		<meta http-equiv="content-type" content="text/html; charset=utf-8" />
+		<title>jQuery:  &raquo; jQuery 1.4.2 Released</title>
+		<link rel="stylesheet" href="http://static.jquery.com/files/rocker/css/reset.css" type="text/css" />
+		<link rel="stylesheet" href="http://static.jquery.com/files/rocker/css/screen.css" type="text/css" />
+		<link rel="stylesheet" type="text/css" href="http://blog.jquery.com/css/blog.css" />
+		<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.3/jquery.min.js"></script>
+		<script type="text/javascript" src="http://static.jquery.com/files/rocker/scripts/custom.js"></script>
+		<link rel="shortcut icon" href="http://static.jquery.com/favicon.ico" type="image/x-icon"/>
+		<link rel="search" type="application/opensearchdescription+xml" href="/opensearch_desc.php" title="jQuery JavaScript Library (English)" />
+		<link rel="alternate" type="application/rss+xml" title="jQuery Blog" href="http://blog.jquery.com/feed/" />
+		<link rel="shortcut icon" href="http://static.jquery.com/favicon.ico" type="image/x-icon"/>
+	</head>
+<body>
+
+
+<body id="jq-interior">
+
+	<div id="jq-siteContain">
+			<div id="jq-header">
+				<a id="jq-siteLogo" href="http://jquery.com/" title="jQuery Home"><img src="http://static.jquery.com/files/rocker/images/logo_jquery_215x53.gif" width="215" height="53" alt="jQuery: Write Less, Do More." /></a>
+
+				<div id="jq-primaryNavigation">
+
+					<ul>
+<li class="jq-jquery"><a href="http://jquery.com/" title="jQuery Home">jQuery</a></li>
+<li class="jq-plugins"><a href="http://plugins.jquery.com/" title="jQuery Plugins">Plugins</a></li>
+<li class="jq-ui"><a href="http://jqueryui.com/" title="jQuery UI">UI</a></li>
+<li class="jq-meetup"><a href="http://meetups.jquery.com/" title="jQuery Meetups">Meetups</a></li>
+<li class="jq-forum"><a href="http://forum.jquery.com/" title="jQuery Forum">Forum</a></li>
+<li class="jq-blog jq-current"><a href="http://blog.jquery.com/" title="jQuery Blog">Blog</a></li>
+<li class="jq-about"><a href="http://jquery.org/about" title="About jQuery">About</a></li>
+<li class="jq-donate"><a href="http://jquery.org/donate" title="Donate to jQuery">Donate</a></li>
+					</ul>
+				</div><!-- /#primaryNavigation -->
+
+				<div id="jq-secondaryNavigation">
+					<ul>
+						<li class="jq-download jq-first"><a href="http://docs.jquery.com/Downloading_jQuery">Download</a></li>
+						<li class="jq-documentation"><a href="http://docs.jquery.com/">Documentation</a></li>
+						<li class="jq-tutorials"><a href="http://docs.jquery.com/Tutorials">Tutorials</a></li>
+
+						<li class="jq-bugTracker"><a href="http://dev.jquery.com/">Bug Tracker</a></li>
+						<li class="jq-discussion jq-last"><a href="http://docs.jquery.com/Discussion">Discussion</a></li>
+					</ul>
+				</div><!-- /#secondaryNavigation -->
+
+				
+
+				<h1>Blog</h1>
+
+				<form id="jq-primarySearchForm" action="http://blog.jquery.com">
+
+					<div>
+						<input type="hidden" value="1" name="ns0"/>
+						<label for="primarySearch">Search <span class="jq-jquery">jQuery</span></label>
+						<input type="text" value="" name="s" accesskey="f" title="Search jQuery" id="jq-primarySearch"/>
+						<button type="submit" name="go" id="jq-searchGoButton"><span>Go</span></button>
+					</div>
+
+				</form>
+
+			</div><!-- /#header -->
+
+	<div id="jq-content" class="jq-clearfix">
+	
+	
+	<div id="jq-interiorNavigation">
+						<h5>Past Entries</h5>
+						<ul>
+	<li><a href='http://blog.jquery.com/2010/07/09/the-official-jquery-podcast-episodes-28-29/' title='The Official jQuery Podcast &#8211; Episodes 28 &amp; 29'>The Official jQuery Podcast &#8211; Episodes 28 &amp; 29</a></li>
+	<li><a href='http://blog.jquery.com/2010/06/18/the-official-jquery-podcast-episode-27-remy-sharp-part-2/' title='The Official jQuery Podcast &#8211; Episode 27 &#8211; Remy Sharp, Part 2'>The Official jQuery Podcast &#8211; Episode 27 &#8211; Remy Sharp, Part 2</a></li>
+	<li><a href='http://blog.jquery.com/2010/06/14/seattle-jquery-open-space-and-hack-attack-with-john-resig-july-5th/' title='Seattle jQuery Open Space and Hack Attack with John Resig &#8211; July 5th'>Seattle jQuery Open Space and Hack Attack with John Resig &#8211; July 5th</a></li>
+	<li><a href='http://blog.jquery.com/2010/06/11/the-official-jquery-podcast-episode-26-remy-sharp-part-1/' title='The Official jQuery Podcast &#8211; Episode 26 &#8211; Remy Sharp, Part 1'>The Official jQuery Podcast &#8211; Episode 26 &#8211; Remy Sharp, Part 1</a></li>
+	<li><a href='http://blog.jquery.com/2010/06/04/the-official-jquery-podcast-025-menno-van-slooten/' title='The Official jQuery Podcast &#8211; Episode 25 &#8211; Menno Van Slooten'>The Official jQuery Podcast &#8211; Episode 25 &#8211; Menno Van Slooten</a></li>
+	<li><a href='http://blog.jquery.com/2010/05/28/the-official-jquery-podcast-episode-24-yayquery/' title='The Official jQuery Podcast &#8211; Episode 24 &#8211; yayQuery'>The Official jQuery Podcast &#8211; Episode 24 &#8211; yayQuery</a></li>
+	<li><a href='http://blog.jquery.com/2010/05/18/the-official-jquery-podcast-episode-23-nicholas-zakas/' title='The Official jQuery Podcast &#8211; Episode 23 &#8211; Nicholas Zakas'>The Official jQuery Podcast &#8211; Episode 23 &#8211; Nicholas Zakas</a></li>
+	<li><a href='http://blog.jquery.com/2010/05/07/the-official-jquery-podcast-episode-22-james-senior/' title='The Official jQuery Podcast &#8211; Episode 22 &#8211; James Senior'>The Official jQuery Podcast &#8211; Episode 22 &#8211; James Senior</a></li>
+	<li><a href='http://blog.jquery.com/2010/04/28/microsofts-proposal-for-data-linking-in-jquery-feedback-requested/' title='Microsoft&#8217;s Proposal for Data Linking in jQuery. Feedback Requested.'>Microsoft&#8217;s Proposal for Data Linking in jQuery. Feedback Requested.</a></li>
+	<li><a href='http://blog.jquery.com/2010/04/24/the-official-jquery-podcast-episode-21-rey-bomb-2/' title='The Official jQuery Podcast &#8211; Episode 21 &#8211; Rey Bomb #2'>The Official jQuery Podcast &#8211; Episode 21 &#8211; Rey Bomb #2</a></li>
+	<li><a href='http://blog.jquery.com/2010/04/16/the-official-jquery-podcast-episode-20-barcamp-rochester/' title='The Official jQuery Podcast &#8211; Episode 20 &#8211; Barcamp Rochester'>The Official jQuery Podcast &#8211; Episode 20 &#8211; Barcamp Rochester</a></li>
+	<li><a href='http://blog.jquery.com/2010/04/09/the-official-jquery-podcast-episode-19-jquery-in-action-2nd-ed/' title='The Official jQuery Podcast &#8211; Episode 19 &#8211; jQuery in Action, 2nd Ed.'>The Official jQuery Podcast &#8211; Episode 19 &#8211; jQuery in Action, 2nd Ed.</a></li>
+	<li><a href='http://blog.jquery.com/2010/04/05/jqueryconf-speakers-schedule-announce/' title='jQuery Conference 2010: San Francisco Bay Area Speakers/Schedule Announced!'>jQuery Conference 2010: San Francisco Bay Area Speakers/Schedule Announced!</a></li>
+	<li><a href='http://blog.jquery.com/2010/04/02/the-official-jquery-podcast-episode-18-jeffery-way-nettuts/' title='The Official jQuery Podcast &#8211; Episode 18 &#8211; Jeffery Way (Nettuts)'>The Official jQuery Podcast &#8211; Episode 18 &#8211; Jeffery Way (Nettuts)</a></li>
+	<li><a href='http://blog.jquery.com/2010/03/26/the-official-jquery-podcast-episode-17-jquery-ui-1-8/' title='The Official jQuery Podcast &#8211; Episode 17 &#8211; jQuery UI 1.8'>The Official jQuery Podcast &#8211; Episode 17 &#8211; jQuery UI 1.8</a></li>
+						</ul>
+				</div><!-- /#interiorNavigation -->	
+	<div id="jq-primaryContent">
+				
+  	
+		<div class="post" id="post-370">
+			<h2><a href="/">Blog</a> &raquo; jQuery 1.4.2 Released</h2>
+<small>Posted February 19th, 2010 by John Resig</small>
+	
+			<div class="entrytext">
+				<p>jQuery 1.4.2 is now out! This is the second minor release on top of jQuery 1.4, fixing some outstanding bugs from the 1.4 release and landing some nice improvements.</p>
+<p>I would like to thank the following people that provided patches for this release: Ben Alman, Justin Meyer, Neeraj Singh, and Noah Sloan.</p>
+<h3>Downloading</h3>
+<p>As usual, we provide two copies of jQuery, one minified (we now use the <a href="http://code.google.com/closure/compiler/">Google Closure Compiler</a> as the default minifier) and one uncompressed (for debugging or reading).</p>
+<ul>
+<li><a href="http://code.jquery.com/jquery-1.4.2.min.js">jQuery Minified</a> (24kb <a href="http://www.julienlecomte.net/blog/2007/08/13/">Gzipped</a>)</li>
+<li><a href="http://code.jquery.com/jquery-1.4.2.js">jQuery Regular</a> (155kb)</li>
+</ul>
+<p>You can feel free to include the above URLs directly into your site and you will get the full performance benefits of a quickly-loading jQuery.</p>
+<p>Additionally you can also load the URLs directly from either Google or Microsoft&#8217;s CDNs:</p>
+<ul>
+<li><a href="http://ajax.googleapis.com/ajax/libs/jquery/1.4.2/jquery.min.js">http://ajax.googleapis.com/ajax/libs/jquery/1.4.2/jquery.min.js</a></li>
+<li><a href="http://ajax.microsoft.com/ajax/jQuery/jquery-1.4.2.min.js">http://ajax.microsoft.com/ajax/jQuery/jquery-1.4.2.min.js</a></li>
+</ul>
+<h3>New Features</h3>
+<p>A full list of the API changes can be found in the <a href="http://api.jquery.com/category/version/1.4.2/">1.4.2 category on the jQuery API site</a>.</p>
+<p>In this release we&#8217;ve added two new methods: <strong><a href="http://api.jquery.com/delegate">.delegate()</a> and <a href="http://api.jquery.com/undelegate">.undelegate()</a></strong>. These methods serve as complements to the existing <a href="http://api.jquery.com/live">.live()</a> and <a href="http://api.jquery.com/die">.die()</a> methods in jQuery. They simplify the process of watching for specific events from a certain root within the document.</p>
+<p>For example:</p>
+<pre class="javascript">$("table").delegate("td", "hover", function(){
+	$(this).toggleClass("hover");
+});</pre>
+<p>This is equivalent to the following code written using <code>.live()</code>:</p>
+<pre class="javascript">$("table").each(function(){
+	$("td", this).live("hover", function(){
+		$(this).toggleClass("hover");
+	});
+});</pre>
+<p>Additionally, <code>.live()</code> is roughly equivalent to the following <code>.delegate()</code> code.</p>
+<pre class="javascript">$(document).delegate("td", "hover", function(){
+	$(this).toggleClass("hover");
+});</pre>
+<h3>What&#8217;s Changed?</h3>
+<p>There has been some large code rewrites within this release, both for performance and for fixing long-standing issues.</p>
+<h4>Performance Improvements</h4>
+<p>As is the case with virtually every release of jQuery: We&#8217;ve worked hard to continue to improve the performance of the code base, making sure that you&#8217;re provided with the best performing JavaScript code possible.</p>
+<p>According to the numbers presented by the <a href="http://ejohn.org/files/142/">Taskspeed benchmark</a> we&#8217;ve improved the performance of jQuery about 2x compared to jQuery 1.4.1 and about 3x compared to jQuery 1.3.2.</p>
+<p><center><a href="http://www.flickr.com/photos/jeresig/4366089781/" title="jQuery Taskspeed Results (Feb 14, 2010) by John Resig, on Flickr"><img src="http://farm5.static.flickr.com/4015/4366089781_509c29aff8.jpg" width="500" height="375" alt="jQuery Taskspeed Results (Feb 14, 2010)" /></a></center></p>
+<p>Specifically we&#8217;ve improved the performance of 4 areas within jQuery:</p>
+<ul>
+<li>The performance of calling <a href="http://api.jquery.com/bind">.bind()</a> and <a href="http://api.jquery.com/unbind">.unbind()</a>. (<a href="http://dev.jquery.com/ticket/5972">Ticket</a>)</li>
+<li>The performance of <a href="http://api.jquery.com/empty">.empty()</a>, <a href="http://api.jquery.com/remove">.remove()</a>, and <a href="http://api.jquery.com/html">.html()</a>. (<a href="http://dev.jquery.com/ticket/5974">Ticket</a>)</li>
+<li>The performance of inserting a single DOM node into a document. (<a href="http://dev.jquery.com/ticket/5979">Ticket</a>, <a href="http://github.com/jquery/jquery/commit/0db207da238e879dad20f68178e6248750d3b984">Additional Commit</a>)</li>
+<li>The performace of calling <code>$("body")</code>. (<a href="http://github.com/jquery/jquery/commit/b8076a914ba9d400dc9c48d866b145df6fabafcf">Commit</a>)</li>
+</ul>
+<p>While comprehensive benchmarks like Taskspeed can be interesting if deconstructed into individual sub-tests for further study, as a project we tend to stay away from using them as an accurate measure of true, overall, library performance. Considering how many aspects make up a library, not to mention the different techniques that they offer, cumulative results rarely reflect how an actual user may use a library.</p>
+<p>For example, we saw significant overall performance speed-ups in Taskspeed simply by optimizing the <code>$("body")</code> selector because it&#8217;s called hundreds of times within the tests. Additionally we saw large gains by optimizing <code>.bind()</code> and <code>.unbind()</code> by a fraction of a millisecond &#8211; an inconsequential amount &#8211; especially considering that any cases where you would bind hundreds of events you would likely want to use <code>.live()</code> or <code>.delegate()</code> instead.</p>
+<p>We&#8217;ve collected some <a href="http://www.flickr.com/photos/jeresig/4366089661/">results from the other major libraries</a> as well but are less interested in those results and far more interested in the performance improvements that we&#8217;ve made relative to older versions of jQuery itself.</p>
+<p>We will continue to work on optimizing the jQuery code base &#8211; indefinitely. It&#8217;s always a major concern for us to try and provide the fastest JavaScript/DOM-development experience possible. And yes, there will likely always be ways to gain additional performance &#8211; either through internal optimizations or by pushing critical functionality off into browser-land for standardization.</p>
+<h4>Event Rewrite</h4>
+<p>The largest internal changes have come through a much-needed structural rewrite of the events module. Many quirky issues related to event binding have been resolved with these fixes.</p>
+<p>Namely event handlers are no longer stored as object properties in jQuery&#8217;s internal object store (with metadata attached to the handlers). Instead they&#8217;re now stored within an internal array of objects.</p>
+<p>If you&#8217;ve ever had the opportunity to play around with <code>.data("events")</code> on a jQuery element you would find that it returns an object with all the event types currently bound, within it.</p>
+<p>To enumerate some of the changes that have occurred during this rewrite:</p>
+<ul>
+<li>It&#8217;s now possible to bind identical handlers with different data, namespaces, and event types universally.</li>
+<li>Execution of event handlers will continue after one handler removes itself (or its sibling handlers).</li>
+<li>We no longer attach data/namespace information directly to the event handlers (only a unique tracking ID).</li>
+<li>We no longer use proxy functions, internally, to try and encapsulate handlers.</li>
+<li>Execution order of events is now guaranteed in all browsers. Google Chrome had a long-standing error in their object-looping logic that has been routed around.</li>
+</ul>
+<p>As a side-effect of these changes we had to change the newly-exposed special add/special remove APIs in order to accommodate the new event data objects. Ben Alman is in the process of writing up a large tutorial on jQuery&#8217;s special event system and we will be making additional announcements when that occurs.</p>
+<h4>Bug Fixes</h4>
+<p>There were a total of <a href="http://dev.jquery.com/report/40">40 tickets closed</a> in this minor release. Some relating to differences between jQuery 1.3.2 and jQuery 1.4.x, some fixing long-standing issues (like in the case of the event module rewrite).</p>
+<p><strong>Raw Data</strong></p>
+<p>This is the raw data that we collected to generate the aforementioned charts.</p>
+<pre>	jQuery 1.3.2	jQuery 1.4.1	jQuery 1.4.2	Prototype 1.6.1	MooTools 1.2.4	Dojo 1.4.1	YUI 3.0.0
+FF 3.5	2182	806	 565	 2156	 1073	 575	 1885
+FF 3.6	1352	677	 519	 2067	 857	 750	 1494
+Opera	983	697	 222	 793	 678	 218	 1201
+Safari	610	435	 252	 315	 235	 238	 612
+Chrome	1591	703	 293	 271	 312	 222	 745
+IE 8	2470	1937	 1141	 3045	 4749	 1420	 2922
+IE 7	4468	3470	 1705	 9863	 10034	 1737	 5830
+IE 6	6517	4468	 2110	 13499	 11453	 2202	 7295</pre>
+	
+				
+<hr/>
+	
+			</div>
+		</div>
+		
+	
+<!-- You can start editing here. -->
+
+	<h3 id="comments">108 Responses to &#8220;jQuery 1.4.2 Released&#8221;</h3> 
+
+	<ol class="commentlist">
+
+	
+		<li class="alt" id="comment-522844">
+			<cite><a href='http://manmohanjit.com' rel='external nofollow' class='url'>Manmohanjit</a></cite> Says:
+						<br />
+
+			<small class="commentmetadata"><a href="#comment-522844" title="">February 19th, 2010 at 4:34 pm</a> </small>
+
+			<p>Good stuff <img src='http://blog.jquery.com/wp-includes/images/smilies/icon_smile.gif' alt=':)' class='wp-smiley' /> </p>
+
+		</li>
+
+	
+	
+		<li class="" id="comment-522845">
+			<cite><a href='http://www.ryanjwood.com' rel='external nofollow' class='url'>Ryan</a></cite> Says:
+						<br />
+
+			<small class="commentmetadata"><a href="#comment-522845" title="">February 19th, 2010 at 5:07 pm</a> </small>
+
+			<p>Nice! Keep up the great work.</p>
+
+		</li>
+
+	
+	
+		<li class="alt" id="comment-522846">
+			<cite><a href='http://devloom.com/jquery-1-4-2-released/' rel='external nofollow' class='url'>jQuery 1.4.2 Released | Dev Loom</a></cite> Says:
+						<br />
+
+			<small class="commentmetadata"><a href="#comment-522846" title="">February 19th, 2010 at 5:09 pm</a> </small>
+
+			<p>[...] jQuery 1.4.2 Released [...]</p>
+
+		</li>
+
+	
+	
+		<li class="" id="comment-522848">
+			<cite><a href='http://stevesouders.com/' rel='external nofollow' class='url'>Steve Souders</a></cite> Says:
+						<br />
+
+			<small class="commentmetadata"><a href="#comment-522848" title="">February 19th, 2010 at 5:22 pm</a> </small>
+
+			<p>Great performance work!</p>
+
+		</li>
+
+	
+	
+		<li class="alt" id="comment-522849">
+			<cite><a href='http://ninofs.wordpress.com/2010/02/20/launching-jquery-1-4-2/' rel='external nofollow' class='url'>Launching jquery 1.4.2 &laquo; Ninofs menumpang</a></cite> Says:
+						<br />
+
+			<small class="commentmetadata"><a href="#comment-522849" title="">February 19th, 2010 at 5:28 pm</a> </small>
+
+			<p>[...] mulai kecepatan eksekusi script, sampai dengan lain-lainnya, mungkin bisa dilihat lebih jelas di blog resmi dari jquery sendiri. Padahal baru saja beberapa waktu yang lalu memutakhirkan theme-theme di produk [...]</p>
+
+		</li>
+
+	
+	
+		<li class="" id="comment-522850">
+			<cite>Doug</cite> Says:
+						<br />
+
+			<small class="commentmetadata"><a href="#comment-522850" title="">February 19th, 2010 at 5:34 pm</a> </small>
+
+			<p>awesomesauce!</p>
+
+		</li>
+
+	
+	
+		<li class="alt" id="comment-522851">
+			<cite><a href='http://www.vcarrer.com' rel='external nofollow' class='url'>Vladimir Carrer</a></cite> Says:
+						<br />
+
+			<small class="commentmetadata"><a href="#comment-522851" title="">February 19th, 2010 at 5:48 pm</a> </small>
+
+			<p>Wow, the performance improvements are overwhelming.</p>
+<p>One question. Can anyone write good tutorial about how core of jQuery works, something like &#8220;The core of JQuery for dummies&#8221;. I think that understanding of the core.js of JQuery can help many of us to write better jQuery code or better plugins.</p>
+
+		</li>
+
+	
+	
+		<li class="" id="comment-522852">
+			<cite>Dan</cite> Says:
+						<br />
+
+			<small class="commentmetadata"><a href="#comment-522852" title="">February 19th, 2010 at 6:02 pm</a> </small>
+
+			<p>That raw data chart looks pretty crappy! would love to see the comparisons lined up in a table instead of a pre tag =]</p>
+
+		</li>
+
+	
+	
+		<li class="alt" id="comment-522854">
+			<cite><a href='http://Blog.TweetSmarter.com/' rel='external nofollow' class='url'>Dave</a></cite> Says:
+						<br />
+
+			<small class="commentmetadata"><a href="#comment-522854" title="">February 19th, 2010 at 6:11 pm</a> </small>
+
+			<p>Caught up with Dojo&#8230;nice work!</p>
+
+		</li>
+
+	
+	
+		<li class="" id="comment-522855">
+			<cite><a href='http://www.joomlapolis.com/' rel='external nofollow' class='url'>Beat</a></cite> Says:
+						<br />
+
+			<small class="commentmetadata"><a href="#comment-522855" title="">February 19th, 2010 at 6:25 pm</a> </small>
+
+			<p>Wow !!!</p>
+<p>I&#8217;m amazed how many times you already doubled or more the performance!!</p>
+<p>jQuery, way to go ! <img src='http://blog.jquery.com/wp-includes/images/smilies/icon_smile.gif' alt=':-)' class='wp-smiley' /> </p>
+
+		</li>
+
+	
+	
+		<li class="alt" id="comment-522857">
+			<cite><a href='http://ajaxian.com/archives/jquery-1-4-2-performance-and-a-few-apis' rel='external nofollow' class='url'>Ajaxian &raquo; jQuery 1.4.2: performance and a few APIs</a></cite> Says:
+						<br />
+
+			<small class="commentmetadata"><a href="#comment-522857" title="">February 19th, 2010 at 6:59 pm</a> </small>
+
+			<p>[...] 1.4.2 has been released today and it comes with some performance bumps (aggressive ones according to Taskspeed). Benchmarks are [...]</p>
+
+		</li>
+
+	
+	
+		<li class="" id="comment-522858">
+			<cite>Krzysztof Tarnowski</cite> Says:
+						<br />
+
+			<small class="commentmetadata"><a href="#comment-522858" title="">February 19th, 2010 at 9:10 pm</a> </small>
+
+			<p>I think that delegate()/undelegate() should completely replace live()/die():<br />
+- live/die can be implemented using delegate/undelegate (potential feature bloat).<br />
+- delegate and undelegate naming scheme is more consistent than live/die pair.</p>
+
+		</li>
+
+	
+	
+		<li class="alt" id="comment-522860">
+			<cite><a href='http://www.maraksquires.com' rel='external nofollow' class='url'>Marak Squires</a></cite> Says:
+						<br />
+
+			<small class="commentmetadata"><a href="#comment-522860" title="">February 19th, 2010 at 9:33 pm</a> </small>
+
+			<p>jquery.require</p>
+<p>please <img src='http://blog.jquery.com/wp-includes/images/smilies/icon_sad.gif' alt=':-(' class='wp-smiley' /> </p>
+
+		</li>
+
+	
+	
+		<li class="" id="comment-522862">
+			<cite>Yansky</cite> Says:
+						<br />
+
+			<small class="commentmetadata"><a href="#comment-522862" title="">February 19th, 2010 at 11:52 pm</a> </small>
+
+			<p>That graph is difficult to decipher.</p>
+
+		</li>
+
+	
+	
+		<li class="alt" id="comment-522864">
+			<cite><a href='http://www.rame0.ru/2010/02/20/jquery-%d0%be%d0%b1%d0%bd%d0%be%d0%b2%d0%b8%d0%bb%d1%81%d1%8f-%d0%b4%d0%be-%d0%b2%d0%b5%d1%80%d1%81%d0%b8%d0%b8-1-4-2/' rel='external nofollow' class='url'>jQuery ????????? ?? ?????? 1.4.2- R@Me0!&#39;s blog</a></cite> Says:
+						<br />
+
+			<small class="commentmetadata"><a href="#comment-522864" title="">February 20th, 2010 at 5:17 am</a> </small>
+
+			<p>[...] ??????????? (eng) jQuery 1.4.2 Released (eng) — ??????? ????????????? ????? [...]</p>
+
+		</li>
+
+	
+	
+		<li class="" id="comment-522865">
+			<cite><a href='http://venlix.net' rel='external nofollow' class='url'>Martin</a></cite> Says:
+						<br />
+
+			<small class="commentmetadata"><a href="#comment-522865" title="">February 20th, 2010 at 5:23 am</a> </small>
+
+			<p>Nice work! Keep it up.</p>
+
+		</li>
+
+	
+	
+		<li class="alt" id="comment-522866">
+			<cite>Orson</cite> Says:
+						<br />
+
+			<small class="commentmetadata"><a href="#comment-522866" title="">February 20th, 2010 at 5:45 am</a> </small>
+
+			<p>Excellent!</p>
+
+		</li>
+
+	
+	
+		<li class="" id="comment-522867">
+			<cite><a href='http://wasimf.wordpress.com/2010/02/20/jquery-1-4-2-is-out/' rel='external nofollow' class='url'>jQuery 1.4.2 is out &laquo; Wasim Farhat Blog</a></cite> Says:
+						<br />
+
+			<small class="commentmetadata"><a href="#comment-522867" title="">February 20th, 2010 at 6:49 am</a> </small>
+
+			<p>[...] <a href="http://blog.jquery.com/2010/02/19/jquery-142-released/" rel="nofollow">http://blog.jquery.com/2010/02/19/jquery-142-released/</a> [...]</p>
+
+		</li>
+
+	
+	
+		<li class="alt" id="comment-522868">
+			<cite><a href='http://www.lickmychip.com/?p=1069' rel='external nofollow' class='url'>jQuery 1.4.2 Released | Lick My Chip !</a></cite> Says:
+						<br />
+
+			<small class="commentmetadata"><a href="#comment-522868" title="">February 20th, 2010 at 6:52 am</a> </small>
+
+			<p>[...] 1.4.2 Released  Via Official jQuery Blog by John [...]</p>
+
+		</li>
+
+	
+	
+		<li class="" id="comment-522869">
+			<cite><a href='http://localhost/wordpress-2.9/?p=14085' rel='external nofollow' class='url'>jQuery: &raquo; Page not found</a></cite> Says:
+						<br />
+
+			<small class="commentmetadata"><a href="#comment-522869" title="">February 20th, 2010 at 7:15 am</a> </small>
+
+			<p>[...] jQuery 1.4.2 Released [...]</p>
+
+		</li>
+
+	
+	
+		<li class="alt" id="comment-522871">
+			<cite><a href='http://www.sportsclubstats.com' rel='external nofollow' class='url'>Ken Roberts</a></cite> Says:
+						<br />
+
+			<small class="commentmetadata"><a href="#comment-522871" title="">February 20th, 2010 at 8:30 am</a> </small>
+
+			<p>Thank you John Resig, Ben Alman, Justin Meyer, Neeraj Singh, and Noah Sloan for 1.4.2.<br />
+And John, thanks for creating this post explaining it.  With examples, and charts, and thoughts on importance.  All organized nicely to pour straight into my brain.  I appreciate the quality.</p>
+
+		</li>
+
+	
+	
+		<li class="" id="comment-522872">
+			<cite><a href='http://sroucheray.org/' rel='external nofollow' class='url'>sroucheray</a></cite> Says:
+						<br />
+
+			<small class="commentmetadata"><a href="#comment-522872" title="">February 20th, 2010 at 8:32 am</a> </small>
+
+			<p>It seems that each minor release is still a major improvement. Good work !</p>
+
+		</li>
+
+	
+	
+		<li class="alt" id="comment-522873">
+			<cite><a href='http://microlibros.com/devteca/jquery-1-4-2/' rel='external nofollow' class='url'>Devteca &raquo; jQuery 1.4.2</a></cite> Says:
+						<br />
+
+			<small class="commentmetadata"><a href="#comment-522873" title="">February 20th, 2010 at 8:51 am</a> </small>
+
+			<p>[...] jQuery Blog.    Categorías: Programación Etiquetas: JavaScript, [...]</p>
+
+		</li>
+
+	
+	
+		<li class="" id="comment-522875">
+			<cite><a href='http://www.victusspiritus.com/2010/02/20/javascript-jquery-plugins-visualizations-dont-look-half-bad/' rel='external nofollow' class='url'>Javascript jQuery plugins visualizations don&#8217;t look half bad &raquo; Victus Spiritus</a></cite> Says:
+						<br />
+
+			<small class="commentmetadata"><a href="#comment-522875" title="">February 20th, 2010 at 9:05 am</a> </small>
+
+			<p>[...] JQuery 1.4.2 Released (jquery.com)     Share and Enjoy: [...]</p>
+
+		</li>
+
+	
+	
+		<li class="alt" id="comment-522876">
+			<cite><a href='http://www.uebbi.com/jquery-1-4/' rel='external nofollow' class='url'>jQuery 1.4 | uebbi.com</a></cite> Says:
+						<br />
+
+			<small class="commentmetadata"><a href="#comment-522876" title="">February 20th, 2010 at 9:48 am</a> </small>
+
+			<p>[...] está disponível a versão [...]</p>
+
+		</li>
+
+	
+	
+		<li class="" id="comment-522877">
+			<cite>Mike Howard</cite> Says:
+						<br />
+
+			<small class="commentmetadata"><a href="#comment-522877" title="">February 20th, 2010 at 11:09 am</a> </small>
+
+			<p>Here&#8217;s an HTML version of the raw data table:</p>
+<p>			&nbsp;<br />
+			jQuery 1.3.2<br />
+			jQuery 1.4.1<br />
+			jQuery 1.4.2<br />
+			Prototype 1.6.1<br />
+			MooTools 1.2.4<br />
+			Dojo 1.4.1<br />
+			YUI 3.0.0</p>
+<p>			FF 3.5<br />
+			2182<br />
+			806<br />
+			 565<br />
+			 2156<br />
+			 1073<br />
+			 575<br />
+			 1885</p>
+<p>			FF 3.6<br />
+			1352<br />
+			677<br />
+			 519<br />
+			 2067<br />
+			 857<br />
+			 750<br />
+			 1494</p>
+<p>			Opera<br />
+			983<br />
+			697<br />
+			 222<br />
+			 793<br />
+			 678<br />
+			 218<br />
+			 1201</p>
+<p>			Safari<br />
+			610<br />
+			435<br />
+			 252<br />
+			 315<br />
+			 235<br />
+			 238<br />
+			 612</p>
+<p>			Chrome<br />
+			1591<br />
+			703<br />
+			 293<br />
+			 271<br />
+			 312<br />
+			 222<br />
+			 745</p>
+<p>			IE 8<br />
+			2470<br />
+			1937<br />
+			 1141<br />
+			 3045<br />
+			 4749<br />
+			 1420<br />
+			 2922</p>
+<p>			IE 7<br />
+			4468<br />
+			3470<br />
+			 1705<br />
+			 9863<br />
+			 10034<br />
+			 1737<br />
+			 5830</p>
+<p>			IE 6<br />
+			6517<br />
+			4468<br />
+			 2110<br />
+			 13499<br />
+			 11453<br />
+			 2202<br />
+			 7295</p>
+
+		</li>
+
+	
+	
+		<li class="alt" id="comment-522878">
+			<cite>Mike Howard</cite> Says:
+						<br />
+
+			<small class="commentmetadata"><a href="#comment-522878" title="">February 20th, 2010 at 11:15 am</a> </small>
+
+			<p>opps: </p>
+<p>try <a href="http://clove.com/jquery-raw-data-comparison.html" rel="nofollow">http://clove.com/jquery-raw-data-comparison.html</a></p>
+<p>and delete previous comment.</p>
+
+		</li>
+
+	
+	
+		<li class="" id="comment-522879">
+			<cite><a href='http://www.fuegin.com/librairie-javascript-jquery-142-plus-rapide' rel='external nofollow' class='url'>jQuery accellère avec sa version 1.4.2</a></cite> Says:
+						<br />
+
+			<small class="commentmetadata"><a href="#comment-522879" title="">February 20th, 2010 at 1:10 pm</a> </small>
+
+			<p>[...] jQuery plait et ne cesse d&#8217;évoluer. La version 1.4 est sorti en janvier. Aujourd&#8217;hui, une nouvelle mise à jour vient améliorer la fameuse [...]</p>
+
+		</li>
+
+	
+	
+		<li class="alt" id="comment-522880">
+			<cite><a href='http://www.brettsinclair.net/2010/02/20/jquery-1-4-2-released-perform/' rel='external nofollow' class='url'>jQuery 1.4.2 released (Perform&#8230; | BrettSinclair.net</a></cite> Says:
+						<br />
+
+			<small class="commentmetadata"><a href="#comment-522880" title="">February 20th, 2010 at 1:17 pm</a> </small>
+
+			<p>[...] par Brett le 20-02-2010     jQuery 1.4.2 released (Performance improvements &amp; new features) <a href="http://blog.jquery.com/2010/02/19/jquery-142-released/" rel="nofollow">http://blog.jquery.com/2010/02/19/jquery-142-released/</a>    No [...]</p>
+
+		</li>
+
+	
+	
+		<li class="" id="comment-522881">
+			<cite><a href='http://moriwaki.net/cms/?p=471' rel='external nofollow' class='url'>MT22???? -</a></cite> Says:
+						<br />
+
+			<small class="commentmetadata"><a href="#comment-522881" title="">February 20th, 2010 at 1:57 pm</a> </small>
+
+			<p>[...] JQUERY 1.4.2 RELEASED [...]</p>
+
+		</li>
+
+	
+	
+		<li class="alt" id="comment-522882">
+			<cite><a href='http://www.tenmostimportant.de/' rel='external nofollow' class='url'>Langeweile</a></cite> Says:
+						<br />
+
+			<small class="commentmetadata"><a href="#comment-522882" title="">February 20th, 2010 at 2:41 pm</a> </small>
+
+			<p>Amazing… I´ll start working on something!</p>
+
+		</li>
+
+	
+	
+		<li class="" id="comment-522883">
+			<cite><a href='http://www.shamoxia.com/html/y2010/1223.html' rel='external nofollow' class='url'>jQuery 1.4.2 ??????? | ??</a></cite> Says:
+						<br />
+
+			<small class="commentmetadata"><a href="#comment-522883" title="">February 20th, 2010 at 6:45 pm</a> </small>
+
+			<p>[...] ???http://blog.jquery.com/2010/02/19/jquery-142-released/     11  Digg      ??: ?? ??: jQuery    ?????????jQuery????????? (10)     ?? (0) Trackbacks (0) ???? Trackback [...]</p>
+
+		</li>
+
+	
+	
+		<li class="alt" id="comment-522884">
+			<cite>fish4j</cite> Says:
+						<br />
+
+			<small class="commentmetadata"><a href="#comment-522884" title="">February 20th, 2010 at 9:42 pm</a> </small>
+
+			<p>??????</p>
+
+		</li>
+
+	
+	
+		<li class="" id="comment-522885">
+			<cite><a href='http://raakoo.wordpress.com' rel='external nofollow' class='url'>Rakesh T</a></cite> Says:
+						<br />
+
+			<small class="commentmetadata"><a href="#comment-522885" title="">February 21st, 2010 at 3:14 am</a> </small>
+
+			<p>I recently came to know about it, but I did not find a good help file. Help should also be available in pdf or chm format.</p>
+
+		</li>
+
+	
+	
+		<li class="alt" id="comment-522889">
+			<cite><a href='http://www.jquery.in.th/jquery-1-4-2-released/' rel='external nofollow' class='url'>JQUERY 1.4.2 RELEASED | jQuery Tutorials in Thailand.</a></cite> Says:
+						<br />
+
+			<small class="commentmetadata"><a href="#comment-522889" title="">February 22nd, 2010 at 12:21 am</a> </small>
+
+			<p>[...] jQuery 1.4.2    If you enjoyed this article please consider sharing [...]</p>
+
+		</li>
+
+	
+	
+		<li class="" id="comment-522890">
+			<cite><a href='http://blog.cwa.me.uk/2010/02/22/the-morning-brew-544/' rel='external nofollow' class='url'>The Morning Brew - Chris Alcock &raquo; The Morning Brew #544</a></cite> Says:
+						<br />
+
+			<small class="commentmetadata"><a href="#comment-522890" title="">February 22nd, 2010 at 3:41 am</a> </small>
+
+			<p>[...] jQuery 1.4.2 Released &#8211; jQuery gets a further minor release on top of the 1.4 platform bringing a number of bugfixes and some impressive performance improvements giving a 3x improvement over jQuery 1.3.2 [...]</p>
+
+		</li>
+
+	
+	
+		<li class="alt" id="comment-522891">
+			<cite><a href='http://www.senamion.com' rel='external nofollow' class='url'>Senamion</a></cite> Says:
+						<br />
+
+			<small class="commentmetadata"><a href="#comment-522891" title="">February 22nd, 2010 at 4:30 am</a> </small>
+
+			<p>I hope that soon certify plugins, some are good, but some should be optimized&#8230;</p>
+
+		</li>
+
+	
+	
+		<li class="" id="comment-522892">
+			<cite><a href='http://blog.websourcing.fr/breve-jquery-1-4-2-sannonce-avec-des-nouveautes/' rel='external nofollow' class='url'>[Brève] JQuery 1.4.2 s&#8217;annonce avec des nouveautés - Websourcing.fr</a></cite> Says:
+						<br />
+
+			<small class="commentmetadata"><a href="#comment-522892" title="">February 22nd, 2010 at 4:39 am</a> </small>
+
+			<p>[...] Plus de détails dans la note de version. [...]</p>
+
+		</li>
+
+	
+	
+		<li class="alt" id="comment-522894">
+			<cite><a href='http://t3o.org/2010/02/slickspeed-mit-aktuellen-js-versionen/' rel='external nofollow' class='url'>Slickspeed mit aktuellen JS-Versionen | web.dev.blog</a></cite> Says:
+						<br />
+
+			<small class="commentmetadata"><a href="#comment-522894" title="">February 22nd, 2010 at 5:42 am</a> </small>
+
+			<p>[...] von Slickspeed frei verfügbar sind. Da jQuery in der 1.4er Reihe angeblich massiv die Performance verbessert hat und Dojo nun auch einige Versionen weiter ist, wollte ich wissen wie sich die aktuellen [...]</p>
+
+		</li>
+
+	
+	
+		<li class="" id="comment-522896">
+			<cite><a href='http://www.jannet.com' rel='external nofollow' class='url'>Jannet Jackson</a></cite> Says:
+						<br />
+
+			<small class="commentmetadata"><a href="#comment-522896" title="">February 22nd, 2010 at 9:13 am</a> </small>
+
+			<p>Firefox 3.6 $(window).unload not work ?</p>
+
+		</li>
+
+	
+	
+		<li class="alt" id="comment-522897">
+			<cite><a href='http://iota.org.ru/blog/?p=46' rel='external nofollow' class='url'>jQuery 1.4.2 ??????? &laquo; Galcier&#39;s Blog</a></cite> Says:
+						<br />
+
+			<small class="commentmetadata"><a href="#comment-522897" title="">February 22nd, 2010 at 10:10 am</a> </small>
+
+			<p>[...] ????? jQuery Minified (24kb Gzipped) jQuery Regular (155kb) ???http://blog.jquery.com/2010/02/19/jquery-142-released/ [...]</p>
+
+		</li>
+
+	
+	
+		<li class="" id="comment-522898">
+			<cite><a href='http://www.homepagebewertung.de/webtec/jquery-1-4-2-erschienen/' rel='external nofollow' class='url'>jQuery 1.4.2 erschienen - Notes, Release, Funktion, Download, Interessante, jQuery-Blog, Infos, Elementen - homepagebewertung.de</a></cite> Says:
+						<br />
+
+			<small class="commentmetadata"><a href="#comment-522898" title="">February 22nd, 2010 at 10:56 am</a> </small>
+
+			<p>[...] Notes, Download und weitere Interessante Infos findet Ihr im jQuery-Blog.    &laquo; [Fundstück] 30 nützliche Web-Apps  2010-02-22 Tags: keine  Kategorie: WebTec    [...]</p>
+
+		</li>
+
+	
+	
+		<li class="alt" id="comment-522899">
+			<cite>Jeffrey Gilbert</cite> Says:
+						<br />
+
+			<small class="commentmetadata"><a href="#comment-522899" title="">February 22nd, 2010 at 11:47 am</a> </small>
+
+			<p>Outstanding. Would be awesome to see a larger historical performance comparison dating back to the early releases of jquery (1, 1.2, 1.3, etc). I know there were similar graphics back then before JQuery had quite this much love.</p>
+
+		</li>
+
+	
+	
+		<li class="" id="comment-522903">
+			<cite>Sgt Surge</cite> Says:
+						<br />
+
+			<small class="commentmetadata"><a href="#comment-522903" title="">February 22nd, 2010 at 12:43 pm</a> </small>
+
+			<p>Any word on when the vsdoc for Visual Studio will be published?</p>
+
+		</li>
+
+	
+	
+		<li class="alt" id="comment-522904">
+			<cite><a href='http://www.stoimen.com/blog/2010/02/22/jquery-1-4-2-comes-with-performance-improvements/' rel='external nofollow' class='url'>jQuery 1.4.2 comes with performance improvements! | stoimen.com/blog</a></cite> Says:
+						<br />
+
+			<small class="commentmetadata"><a href="#comment-522904" title="">February 22nd, 2010 at 1:51 pm</a> </small>
+
+			<p>[...] The new version of jQuery &#8211; 1.4.2 comes with some very good news. Check out the performance improvements here. [...]</p>
+
+		</li>
+
+	
+	
+		<li class="" id="comment-522905">
+			<cite><a href='http://www.waebo.com/jquery-1-4-2-meilleures-performances-pour-le-framework-javascript.html' rel='external nofollow' class='url'>Waebo &raquo; jQuery 1.4.2 : Meilleures performances pour le framework JavaScript</a></cite> Says:
+						<br />
+
+			<small class="commentmetadata"><a href="#comment-522905" title="">February 22nd, 2010 at 2:46 pm</a> </small>
+
+			<p>[...] : Blog jQuery    Framework, JavaScript, jQuery, MooTools, Prototype  Développement web   [...]</p>
+
+		</li>
+
+	
+	
+		<li class="alt" id="comment-522907">
+			<cite><a href='http://hitching.net/2010/02/23/fresh-from-twitter-2/' rel='external nofollow' class='url'>Fresh From Twitter | mobile geo social</a></cite> Says:
+						<br />
+
+			<small class="commentmetadata"><a href="#comment-522907" title="">February 23rd, 2010 at 5:50 am</a> </small>
+
+			<p>[...] 1.4.2 is blazing fast <a href="http://j.mp/9yUNZ9" rel="nofollow">http://j.mp/9yUNZ9</a> has anyone cut a Mobile Safari subset that fits under 25Kb, so that it is cached on [...]</p>
+
+		</li>
+
+	
+	
+		<li class="" id="comment-522910">
+			<cite><a href='http://www.computerworld.com' rel='external nofollow' class='url'>Sharon Machlis</a></cite> Says:
+						<br />
+
+			<small class="commentmetadata"><a href="#comment-522910" title="">February 23rd, 2010 at 8:52 am</a> </small>
+
+			<p>FYI the link to &#8220;Tutorials&#8221; here on this Web site is throwing a database error:</p>
+<p>A database query syntax error has occurred. This may indicate a bug in the software. The last attempted database query was:</p>
+<p>    (SQL query hidden)</p>
+<p>from within function &#8220;MediaWikiBagOStuff::_doquery&#8221;. MySQL returned error &#8220;1205: Lock wait timeout exceeded; try restarting transaction (localhost)&#8221;.</p>
+
+		</li>
+
+	
+	
+		<li class="alt" id="comment-522913">
+			<cite>Nicholas Araujo</cite> Says:
+						<br />
+
+			<small class="commentmetadata"><a href="#comment-522913" title="">February 23rd, 2010 at 2:44 pm</a> </small>
+
+			<p>I love jQuery! Really easy to use!</p>
+
+		</li>
+
+	
+	
+		<li class="" id="comment-522919">
+			<cite><a href='http://kobzarev.com:80/jquery/jquery-1-4-2.html' rel='external nofollow' class='url'>jQuery 1.4.2 &laquo; PHP Portal</a></cite> Says:
+						<br />
+
+			<small class="commentmetadata"><a href="#comment-522919" title="">February 24th, 2010 at 8:00 am</a> </small>
+
+			<p>[...] ??????????? ????? [...]</p>
+
+		</li>
+
+	
+	
+		<li class="alt" id="comment-522923">
+			<cite><a href='http://www.yourlifetools.com' rel='external nofollow' class='url'>Patrick</a></cite> Says:
+						<br />
+
+			<small class="commentmetadata"><a href="#comment-522923" title="">February 24th, 2010 at 2:25 pm</a> </small>
+
+			<p>You guys rock&#8230; again!!!</p>
+<p>Patrick</p>
+
+		</li>
+
+	
+	
+		<li class="" id="comment-522926">
+			<cite><a href='http://webstandard.kulando.de' rel='external nofollow' class='url'>Webstandard-Blog</a></cite> Says:
+						<br />
+
+			<small class="commentmetadata"><a href="#comment-522926" title="">February 25th, 2010 at 3:13 am</a> </small>
+
+			<p>Very cool, but 155kb isn&#8217;t such small anymore, right? OK, there excist an gzipped version, but 155kb is quite big.</p>
+
+		</li>
+
+	
+	
+		<li class="alt" id="comment-522933">
+			<cite>Sergey</cite> Says:
+						<br />
+
+			<small class="commentmetadata"><a href="#comment-522933" title="">February 25th, 2010 at 1:00 pm</a> </small>
+
+			<p>jQuery.getScript() does not work! old scripts run and run again when you call this function</p>
+
+		</li>
+
+	
+	
+		<li class="" id="comment-522947">
+			<cite>andy</cite> Says:
+						<br />
+
+			<small class="commentmetadata"><a href="#comment-522947" title="">February 27th, 2010 at 9:43 am</a> </small>
+
+			<p>greatt.. good job. we always need jquery.</p>
+
+		</li>
+
+	
+	
+		<li class="alt" id="comment-522955">
+			<cite><a href='http://blog.deobald.org/archive/2010/02/28/quergelesen-2010-02-28/' rel='external nofollow' class='url'>blog.deobald.org &raquo; Quergelesen 2010-02-28</a></cite> Says:
+						<br />
+
+			<small class="commentmetadata"><a href="#comment-522955" title="">February 28th, 2010 at 9:16 am</a> </small>
+
+			<p>[...] Die Javascript-Bibliothek ist dabei nochmals deutlich schneller geworden. (siehe auch jQuery Blog, [...]</p>
+
+		</li>
+
+	
+	
+		<li class="" id="comment-522956">
+			<cite><a href='http://www.tricksonrails.com/2010/02/jquery-1-4-2-is-out-its-again-blazing-fast/' rel='external nofollow' class='url'>jQuery 1.4.2 is Out, it&#8217;s again blazing fast ! | Whatever to succeed in rails&#39; world</a></cite> Says:
+						<br />
+
+			<small class="commentmetadata"><a href="#comment-522956" title="">February 28th, 2010 at 9:34 am</a> </small>
+
+			<p>[...] jQuery 1.4.2 release note [...]</p>
+
+		</li>
+
+	
+	
+		<li class="alt" id="comment-522967">
+			<cite>James</cite> Says:
+						<br />
+
+			<small class="commentmetadata"><a href="#comment-522967" title="">March 1st, 2010 at 12:36 pm</a> </small>
+
+			<p>Great stuff but need the vsdoc for Visual Studio. Any idea when that will be ready?</p>
+<p>Thanks,<br />
+James.</p>
+
+		</li>
+
+	
+	
+		<li class="" id="comment-522974">
+			<cite><a href='http://zhh.name' rel='external nofollow' class='url'>xdbjzhhh</a></cite> Says:
+						<br />
+
+			<small class="commentmetadata"><a href="#comment-522974" title="">March 1st, 2010 at 10:11 pm</a> </small>
+
+			<p>good!!!<br />
+thanks.</p>
+
+		</li>
+
+	
+	
+		<li class="alt" id="comment-522979">
+			<cite>Amit</cite> Says:
+						<br />
+
+			<small class="commentmetadata"><a href="#comment-522979" title="">March 2nd, 2010 at 7:32 am</a> </small>
+
+			<p>Thank You</p>
+
+		</li>
+
+	
+	
+		<li class="" id="comment-522981">
+			<cite><a href='http://www.tvdco.com' rel='external nofollow' class='url'>Brad</a></cite> Says:
+						<br />
+
+			<small class="commentmetadata"><a href="#comment-522981" title="">March 2nd, 2010 at 11:33 am</a> </small>
+
+			<p>jquery floatobject-1.4 breaks my page when I upgrade to 1.4.2, it contains UI accordions (jquery-1.4.2 and jquery-ui-1.8rc3).  The following call in floatobject-1.4 breaks;</p>
+<p>var offset = this.jqObj.offset();<br />
+this.currentX = offset.left;<br />
+this.currentY = offset.top;</p>
+<p>JavaScript says:<br />
+offset is null</p>
+<p>if you hardcode 0&#8217;s for this.CurrentX and this.currentY,  it eliminates any JavaScript errors.  I&#8217;m not saying that&#8217;s a fix or work around, just a clue as to what&#8217;s gone wrong.</p>
+
+		</li>
+
+	
+	
+		<li class="alt" id="comment-522996">
+			<cite><a href='http://howlingwolf.de/blog/?p=505' rel='external nofollow' class='url'>jQuery 1.4.2 &#8211; Galeon&#39;s Howlingwolf</a></cite> Says:
+						<br />
+
+			<small class="commentmetadata"><a href="#comment-522996" title="">March 4th, 2010 at 4:39 pm</a> </small>
+
+			<p>[...] I totally missed the jQuery 1.4.2 release. Guess I should release a new version of the Grails-jQuery-plugin soon [...]</p>
+
+		</li>
+
+	
+	
+		<li class="" id="comment-523001">
+			<cite><a href='http://charanyams.blogspot.com' rel='external nofollow' class='url'>Saranya</a></cite> Says:
+						<br />
+
+			<small class="commentmetadata"><a href="#comment-523001" title="">March 4th, 2010 at 11:21 pm</a> </small>
+
+			<p>There has been a great increase in performance.I found delegate() in this release.What is the actual difference between live() and delegate()? Is delegate() having high performance than live()?</p>
+
+		</li>
+
+	
+	
+		<li class="alt" id="comment-523003">
+			<cite>Aldo</cite> Says:
+						<br />
+
+			<small class="commentmetadata"><a href="#comment-523003" title="">March 5th, 2010 at 3:09 am</a> </small>
+
+			<p>Excelent, Jquery is very good</p>
+
+		</li>
+
+	
+	
+		<li class="" id="comment-523005">
+			<cite><a href='http://ralphwhitbeck.com' rel='external nofollow' class='url'>Ralph Whitbeck</a></cite> Says:
+						<br />
+
+			<small class="commentmetadata"><a href="#comment-523005" title="">March 5th, 2010 at 7:52 am</a> </small>
+
+			<p>@Saranya</p>
+<p><a href="http://brandonaaron.net/blog/2010/03/4/event-delegation-with-jquery" rel="nofollow">http://brandonaaron.net/blog/2010/03/4/event-delegation-with-jquery</a></p>
+<p>Take a look at this article by jQuery Core Team Member Brandon Aaron who describes each of the ways you can now do Event Delegation in jQuery which are $.bind(), $.live() and $.delegate().</p>
+
+		</li>
+
+	
+	
+		<li class="alt" id="comment-523018">
+			<cite><a href='http://autonws.ru/auto/23/' rel='external nofollow' class='url'>???? ????????</a></cite> Says:
+						<br />
+
+			<small class="commentmetadata"><a href="#comment-523018" title="">March 7th, 2010 at 6:07 pm</a> </small>
+
+			<p>?????????? ?????? ?????? ?? ??? ????! ??????????? ? ??? ?? ????.</p>
+
+		</li>
+
+	
+	
+		<li class="" id="comment-523057">
+			<cite><a href='http://blog.jquery.com/2010/03/12/the-official-jquery-podcast-episode-15-john-resig-jquery-1-4-1-1-4-2/' rel='external nofollow' class='url'>jQuery: &raquo; The Official jQuery Podcast &#8211; Episode 15 &#8211; John Resig (jQuery 1.4.1 &#8211; 1.4.2)</a></cite> Says:
+						<br />
+
+			<small class="commentmetadata"><a href="#comment-523057" title="">March 12th, 2010 at 10:27 am</a> </small>
+
+			<p>[...] jQuery 1.4.2 Released [...]</p>
+
+		</li>
+
+	
+	
+		<li class="alt" id="comment-523067">
+			<cite><a href='http://turnkeye.com/' rel='external nofollow' class='url'>TurnkeyEcommerce</a></cite> Says:
+						<br />
+
+			<small class="commentmetadata"><a href="#comment-523067" title="">March 14th, 2010 at 2:34 pm</a> </small>
+
+			<p>Jquery is great framework</p>
+
+		</li>
+
+	
+	
+		<li class="" id="comment-523082">
+			<cite>giutip</cite> Says:
+						<br />
+
+			<small class="commentmetadata"><a href="#comment-523082" title="">March 16th, 2010 at 5:18 am</a> </small>
+
+			<p>Where is the visual studio documentation for 1.4.2?</p>
+
+		</li>
+
+	
+	
+		<li class="alt" id="comment-523107">
+			<cite>venkatesh</cite> Says:
+						<br />
+
+			<small class="commentmetadata"><a href="#comment-523107" title="">March 17th, 2010 at 6:37 am</a> </small>
+
+			<p>very nice! performance wise its good.</p>
+
+		</li>
+
+	
+	
+		<li class="" id="comment-523157">
+			<cite>???</cite> Says:
+						<br />
+
+			<small class="commentmetadata"><a href="#comment-523157" title="">March 21st, 2010 at 10:48 am</a> </small>
+
+			<p>???</p>
+
+		</li>
+
+	
+	
+		<li class="alt" id="comment-523163">
+			<cite><a href='http://www.jgeppert.com/2010/03/struts2-jquery-plugin-version-2-0-0-is-now-available/' rel='external nofollow' class='url'>Java, Webprogrammierung, Linux und mehr</a></cite> Says:
+						<br />
+
+			<small class="commentmetadata"><a href="#comment-523163" title="">March 22nd, 2010 at 2:48 am</a> </small>
+
+			<p><strong>Struts2 jQuery Plugin Version 2.0.0 is now available&#8230;</strong></p>
+<p>The new version 2.0.0 of Struts2 jQuery Plugins is released and brings many Enhancements, like new jQuery UI Widgets and support for Form Validation, and Bug Fixes to you. The Plugin is now based on the latest versions of JavaScript Framework jQuery 1&#8230;.</p>
+
+		</li>
+
+	
+	
+		<li class="" id="comment-523179">
+			<cite>Johnson Li</cite> Says:
+						<br />
+
+			<small class="commentmetadata"><a href="#comment-523179" title="">March 24th, 2010 at 8:50 pm</a> </small>
+
+			<p>Nice , Thanks for your hard work, keep up the great wrok .</p>
+
+		</li>
+
+	
+	
+		<li class="alt" id="comment-523182">
+			<cite>Joel</cite> Says:
+						<br />
+
+			<small class="commentmetadata"><a href="#comment-523182" title="">March 25th, 2010 at 4:46 am</a> </small>
+
+			<p>From The Philippines</p>
+<p>wow! makes developer&#8217;s life whole lot easier! thanks to jquery and the brilliant minds behind it.</p>
+
+		</li>
+
+	
+	
+		<li class="" id="comment-523186">
+			<cite><a href='http://www.lazerfineart.com' rel='external nofollow' class='url'>Gary Stafford</a></cite> Says:
+						<br />
+
+			<small class="commentmetadata"><a href="#comment-523186" title="">March 25th, 2010 at 1:54 pm</a> </small>
+
+			<p>Great work, great performance increases. Looking forward to the Visual Studio vsdoc file &#8211; jquery-1.4.2-vsdoc.js. VS IntelliSense makes working jQuery that much easier.</p>
+
+		</li>
+
+	
+	
+		<li class="alt" id="comment-523214">
+			<cite><a href='http://alpindustria.nsk.ru/' rel='external nofollow' class='url'>???????</a></cite> Says:
+						<br />
+
+			<small class="commentmetadata"><a href="#comment-523214" title="">March 28th, 2010 at 3:49 am</a> </small>
+
+			<p>Good framework and all the best to all developers <img src='http://blog.jquery.com/wp-includes/images/smilies/icon_wink.gif' alt=';)' class='wp-smiley' /> </p>
+
+		</li>
+
+	
+	
+		<li class="" id="comment-523218">
+			<cite><a href='http://helptoit.com/?p=75' rel='external nofollow' class='url'>Help to IT &raquo; Blog Archive &raquo; Jquery New version 1.4.2</a></cite> Says:
+						<br />
+
+			<small class="commentmetadata"><a href="#comment-523218" title="">March 28th, 2010 at 3:12 pm</a> </small>
+
+			<p>[...] 1.4.2 (Release Notes) Minified, Uncompressed Documentation: Changelog [...]</p>
+
+		</li>
+
+	
+	
+		<li class="alt" id="comment-523227">
+			<cite>Mark</cite> Says:
+						<br />
+
+			<small class="commentmetadata"><a href="#comment-523227" title="">March 29th, 2010 at 7:37 pm</a> </small>
+
+			<p>All I get is a blank page ????<br />
+Im going back to 1.3</p>
+
+		</li>
+
+	
+	
+		<li class="" id="comment-523233">
+			<cite><a href='http://www.flashmint.com/' rel='external nofollow' class='url'>jquery</a></cite> Says:
+						<br />
+
+			<small class="commentmetadata"><a href="#comment-523233" title="">March 30th, 2010 at 7:15 am</a> </small>
+
+			<p>we&#8217;ve tried to use 1.4.2 for our jquery products but cant manage to show transitions correctly in IE7 <img src='http://blog.jquery.com/wp-includes/images/smilies/icon_sad.gif' alt=':(' class='wp-smiley' /> </p>
+
+		</li>
+
+	
+	
+		<li class="alt" id="comment-523399">
+			<cite>firedragon</cite> Says:
+						<br />
+
+			<small class="commentmetadata"><a href="#comment-523399" title="">March 31st, 2010 at 10:47 am</a> </small>
+
+			<p>good job!???</p>
+
+		</li>
+
+	
+	
+		<li class="" id="comment-523490">
+			<cite><a href='http://www.blags.org' rel='external nofollow' class='url'>Martin</a></cite> Says:
+						<br />
+
+			<small class="commentmetadata"><a href="#comment-523490" title="">April 14th, 2010 at 8:09 pm</a> </small>
+
+			<p>very good<br />
+i love you jquery.</p>
+
+		</li>
+
+	
+	
+		<li class="alt" id="comment-523586">
+			<cite><a href='http://blueeagle83.blogspot.com' rel='external nofollow' class='url'>blueeagle</a></cite> Says:
+						<br />
+
+			<small class="commentmetadata"><a href="#comment-523586" title="">April 26th, 2010 at 2:56 pm</a> </small>
+
+			<p>Awesome! I see from the chart you&#8217;ve provided that Jquery runs faster on Safari browsers than on Chrome. That&#8217;s a helpful piece of information</p>
+
+		</li>
+
+	
+	
+		<li class="" id="comment-523670">
+			<cite>Kat</cite> Says:
+						<br />
+
+			<small class="commentmetadata"><a href="#comment-523670" title="">April 30th, 2010 at 6:29 pm</a> </small>
+
+			<p>I cannot download this&#8230;is there something different for MAC?</p>
+
+		</li>
+
+	
+	
+		<li class="alt" id="comment-523673">
+			<cite>Mapping</cite> Says:
+						<br />
+
+			<small class="commentmetadata"><a href="#comment-523673" title="">May 1st, 2010 at 7:26 am</a> </small>
+
+			<p>JQuery, It makes my job more easy!Thank you!</p>
+
+		</li>
+
+	
+	
+		<li class="" id="comment-523686">
+			<cite><a href='http://lifeweb.kr' rel='external nofollow' class='url'>kim hyun jin</a></cite> Says:
+						<br />
+
+			<small class="commentmetadata"><a href="#comment-523686" title="">May 3rd, 2010 at 7:41 pm</a> </small>
+
+			<p>wow! good job! jquery love <img src='http://blog.jquery.com/wp-includes/images/smilies/icon_smile.gif' alt=':)' class='wp-smiley' /><br />
+thank you! John Resig brother.</p>
+
+		</li>
+
+	
+	
+		<li class="alt" id="comment-523695">
+			<cite><a href='http://manmohanjit.com/2010/02/jquery-1-4-2-released/' rel='external nofollow' class='url'>jQuery 1.4.2 Released - Manmohanjit Singh</a></cite> Says:
+						<br />
+
+			<small class="commentmetadata"><a href="#comment-523695" title="">May 5th, 2010 at 4:59 am</a> </small>
+
+			<p>[...] the second minor release of jQuery 1.4 was released. According to the jQuery team, it fixes a outstanding amount of bugs from the 1.4 release and landing some nice [...]</p>
+
+		</li>
+
+	
+	
+		<li class="" id="comment-523777">
+			<cite>marcusklaas</cite> Says:
+						<br />
+
+			<small class="commentmetadata"><a href="#comment-523777" title="">May 20th, 2010 at 5:23 pm</a> </small>
+
+			<p>Woa. Some awesome performance boosts for chrome. I&#8217;m loving it. Thanks.</p>
+
+		</li>
+
+	
+	
+		<li class="alt" id="comment-523780">
+			<cite>crazytom</cite> Says:
+						<br />
+
+			<small class="commentmetadata"><a href="#comment-523780" title="">May 20th, 2010 at 11:19 pm</a> </small>
+
+			<p>???????????</p>
+
+		</li>
+
+	
+	
+		<li class="" id="comment-523792">
+			<cite><a href='http://notnow' rel='external nofollow' class='url'>mylifestyle</a></cite> Says:
+						<br />
+
+			<small class="commentmetadata"><a href="#comment-523792" title="">May 23rd, 2010 at 7:22 pm</a> </small>
+
+			<p>??jquery</p>
+
+		</li>
+
+	
+	
+		<li class="alt" id="comment-523793">
+			<cite><a href='http://notnow' rel='external nofollow' class='url'>mylifestyle</a></cite> Says:
+						<br />
+
+			<small class="commentmetadata"><a href="#comment-523793" title="">May 23rd, 2010 at 7:23 pm</a> </small>
+
+			<p>why can&#8217;t submit the  chinese comment?</p>
+
+		</li>
+
+	
+	
+		<li class="" id="comment-523823">
+			<cite><a href='http://www.mmcybermedia.com' rel='external nofollow' class='url'>virux</a></cite> Says:
+						<br />
+
+			<small class="commentmetadata"><a href="#comment-523823" title="">May 26th, 2010 at 12:18 am</a> </small>
+
+			<p>vs doc ?????</p>
+
+		</li>
+
+	
+	
+		<li class="alt" id="comment-523826">
+			<cite><a href='http://blog.spookyismy.name/2010/05/27/customizable-and-flexible-jquery-carousel-rotator/' rel='external nofollow' class='url'>Customizable and Flexible jQuery Carousel Rotator &#8211; Spookyismy.name</a></cite> Says:
+						<br />
+
+			<small class="commentmetadata"><a href="#comment-523826" title="">May 27th, 2010 at 12:24 pm</a> </small>
+
+			<p>[...] and works with jQuery 1.4.x+ (work with your older code? let me know in the [...]</p>
+
+		</li>
+
+	
+	
+		<li class="" id="comment-523827">
+			<cite><a href='http://www.kankanz.com' rel='external nofollow' class='url'>????</a></cite> Says:
+						<br />
+
+			<small class="commentmetadata"><a href="#comment-523827" title="">May 27th, 2010 at 10:11 pm</a> </small>
+
+			<p>?????????</p>
+
+		</li>
+
+	
+	
+		<li class="alt" id="comment-523859">
+			<cite>cqabl18</cite> Says:
+						<br />
+
+			<small class="commentmetadata"><a href="#comment-523859" title="">June 5th, 2010 at 12:32 am</a> </small>
+
+			<p>how to download api</p>
+
+		</li>
+
+	
+	
+		<li class="" id="comment-523868">
+			<cite>allfakesmiles</cite> Says:
+						<br />
+
+			<small class="commentmetadata"><a href="#comment-523868" title="">June 9th, 2010 at 9:09 am</a> </small>
+
+			<p>I just started learning Jquery and your Tutorials are amazing<br />
+thanks.</p>
+
+		</li>
+
+	
+	
+		<li class="alt" id="comment-523894">
+			<cite><a href='http://www.ycu.edu.cn' rel='external nofollow' class='url'>zp.s</a></cite> Says:
+						<br />
+
+			<small class="commentmetadata"><a href="#comment-523894" title="">June 14th, 2010 at 10:20 pm</a> </small>
+
+			<p>great staff</p>
+
+		</li>
+
+	
+	
+		<li class="" id="comment-523895">
+			<cite><a href='http://www.ycu.edu.cn' rel='external nofollow' class='url'>GooDu</a></cite> Says:
+						<br />
+
+			<small class="commentmetadata"><a href="#comment-523895" title="">June 14th, 2010 at 10:24 pm</a> </small>
+
+			<p>I also  just started learning JQuery , I do believe it well to me!</p>
+
+		</li>
+
+	
+	
+		<li class="alt" id="comment-523897">
+			<cite><a href='http://www.maverickwebcreations.com/2010/06/15/include-the-latest-version-of-jquery-in-wordpress-without-duplicates.html' rel='external nofollow' class='url'>Include the Latest Version of jQuery in WordPress without Duplicates - Maverick Web Creations</a></cite> Says:
+						<br />
+
+			<small class="commentmetadata"><a href="#comment-523897" title="">June 15th, 2010 at 3:19 am</a> </small>
+
+			<p>[...] Include the Latest Version of jQuery in WordPress without Duplicates  Hello there! If you are new here, you might want to subscribe to the RSS feed for updates on this topic.At the time of this posting, WordPress 2.9.2 uses jQuery 1.3.2 but the latest version is 1.4.2. I wanted to use the latest version because it is supposedly about 3 times as fast as 1.3.2 as reported on the jQuery 1.4.2 release notes. [...]</p>
+
+		</li>
+
+	
+	
+		<li class="" id="comment-523902">
+			<cite>???</cite> Says:
+						<br />
+
+			<small class="commentmetadata"><a href="#comment-523902" title="">June 17th, 2010 at 9:14 pm</a> </small>
+
+			<p>???? jquery ??? ????.</p>
+
+		</li>
+
+	
+	
+		<li class="alt" id="comment-523907">
+			<cite>??</cite> Says:
+						<br />
+
+			<small class="commentmetadata"><a href="#comment-523907" title="">June 18th, 2010 at 7:41 pm</a> </small>
+
+			<p>???</p>
+
+		</li>
+
+	
+	
+		<li class="" id="comment-523908">
+			<cite>hame</cite> Says:
+						<br />
+
+			<small class="commentmetadata"><a href="#comment-523908" title="">June 18th, 2010 at 7:42 pm</a> </small>
+
+			<p>test charset!</p>
+
+		</li>
+
+	
+	
+		<li class="alt" id="comment-523911">
+			<cite>Nilay</cite> Says:
+						<br />
+
+			<small class="commentmetadata"><a href="#comment-523911" title="">June 19th, 2010 at 11:55 am</a> </small>
+
+			<p>Thanks a lot&#8230;..</p>
+
+		</li>
+
+	
+	
+		<li class="" id="comment-523912">
+			<cite>Nilay</cite> Says:
+						<br />
+
+			<small class="commentmetadata"><a href="#comment-523912" title="">June 19th, 2010 at 11:57 am</a> </small>
+
+			<p>Hey thanks a lot&#8230;.</p>
+
+		</li>
+
+	
+	
+		<li class="alt" id="comment-523941">
+			<cite>setu</cite> Says:
+						<br />
+
+			<small class="commentmetadata"><a href="#comment-523941" title="">June 26th, 2010 at 9:24 am</a> </small>
+
+			<p>Really nice<br />
+i got my aim to work on it after completing m project on jsp</p>
+
+		</li>
+
+	
+	
+		<li class="" id="comment-523960">
+			<cite><a href='http://www.beasrilankan.com/' rel='external nofollow' class='url'>Sameera Thilakasiri</a></cite> Says:
+						<br />
+
+			<small class="commentmetadata"><a href="#comment-523960" title="">July 5th, 2010 at 1:09 pm</a> </small>
+
+			<p>I love this, good for all the web arena,<br />
+Thanks Team gr8 effort.</p>
+
+		</li>
+
+	
+	
+		<li class="alt" id="comment-523964">
+			<cite><a href='http://www.hand-drawnmaps.co.uk' rel='external nofollow' class='url'>confused</a></cite> Says:
+						<br />
+
+			<small class="commentmetadata"><a href="#comment-523964" title="">July 7th, 2010 at 5:41 pm</a> </small>
+
+			<p>can I just say, as a self-taught dreamweaver user who is looking for a good picture gallery for my website &#8212; yes jquery is the best, but I am absolutely at my wits end trying to work out how to put it into my website&#8230;&#8230; I am fairly competent at doing the things that are relevant to my needs, and my website is quite nice looking (i think) but I really want to improve my site by adding a good picture viewer and there seems to be NO help out there for someone like me, untrained in HTML code talk&#8230;<br />
+I realise that I may be laughed out of this forum, and that I am probably in way over my head, but I literally don&#8217;t know where to look or what to look for. You have all this code, but there are NO SIMPLE STEP-BY-STEP INSTRUCTIONS &#8211; how do I organise the files? where do I put the code? why can&#8217;t I make it work? Why do you have to have a PhD to understand what to do? Or is there some secret code of honour amongst you web people that means you don&#8217;t want self taught &#8216;outsiders&#8217; to gain any knowledge and do things for themselves..?<br />
+can anyone please please help me?</p>
+
+		</li>
+
+	
+	
+		<li class="" id="comment-523965">
+			<cite><a href='http://www.hand-drawnmaps.co.uk' rel='external nofollow' class='url'>confused</a></cite> Says:
+						<br />
+
+			<small class="commentmetadata"><a href="#comment-523965" title="">July 7th, 2010 at 5:45 pm</a> </small>
+
+			<p>p.s In case anyone takes pity on me (after my rant) and decides to offer me some advice &#8212; I am a mac user, and my website (badly in need of updating) is hand-drawnmaps.co.uk</p>
+
+		</li>
+
+	
+	
+		<li class="alt" id="comment-523968">
+			<cite>Patrick</cite> Says:
+						<br />
+
+			<small class="commentmetadata"><a href="#comment-523968" title="">July 9th, 2010 at 12:52 pm</a> </small>
+
+			<p>Sorry about my English, I&#8217;m from Belgium.<br />
+At this moment I can&#8217;t say if it is great or not, i&#8217;m learning it.<br />
+I see many laguages of this tutorial, but no dutch one. Can anyone write this in Dutch? So I can understand the English details.<br />
+Thank you<br />
+Patrick</p>
+
+		</li>
+
+	
+	
+		<li class="" id="comment-523982">
+			<cite><a href='http://www.jnbclick.org/jn/?p=16' rel='external nofollow' class='url'>Installing JQUERY | JNBCLICK.ORG</a></cite> Says:
+						<br />
+
+			<small class="commentmetadata"><a href="#comment-523982" title="">July 13th, 2010 at 2:11 pm</a> </small>
+
+			<p>[...] Download JQUERY  from  <a href="http://blog.jquery.com/2010/02/19/jquery-142-released/ in" rel="nofollow">http://blog.jquery.com/2010/02/19/jquery-142-released/ in</a> this place there is 2 [...]</p>
+
+		</li>
+
+	
+	
+	</ol>
+
+ 
+
+
+<h3 id="respond">Leave a Reply</h3>
+
+
+<form action="http://blog.jquery.com/wp-comments-post.php" method="post" id="commentform">
+
+
+<p><input type="text" name="author" id="author" value="" size="22" tabindex="1" />
+<label for="author"><small>Name (required)</small></label></p>
+
+<p><input type="text" name="email" id="email" value="" size="22" tabindex="2" />
+<label for="email"><small>Mail (will not be published) (required)</small></label></p>
+
+<p><input type="text" name="url" id="url" value="" size="22" tabindex="3" />
+<label for="url"><small>Website</small></label></p>
+
+
+<!--<p><small><strong>XHTML:</strong> You can use these tags: &lt;a href=&quot;&quot; title=&quot;&quot;&gt; &lt;abbr title=&quot;&quot;&gt; &lt;acronym title=&quot;&quot;&gt; &lt;b&gt; &lt;blockquote cite=&quot;&quot;&gt; &lt;cite&gt; &lt;code&gt; &lt;del datetime=&quot;&quot;&gt; &lt;em&gt; &lt;i&gt; &lt;q cite=&quot;&quot;&gt; &lt;strike&gt; &lt;strong&gt; </small></p>-->
+
+<p><textarea name="comment" id="comment" rows="10" tabindex="4" style="width:100%"></textarea></p>
+
+<p><input name="submit" type="submit" id="submit" tabindex="5" value="Submit Comment" />
+<input type="hidden" name="comment_post_ID" value="370" />
+</p>
+
+
+<!-- This site's performance optimized by W3 Total Cache. Dramatically improve the speed and reliability of your blog!
+
+Learn more about our WordPress Plugins: http://www.w3-edge.com/wordpress-plugins/
+
+Page Caching using disk
+
+Served from: blog.jquery.com @ 2010-07-15 23:54:03 -->
