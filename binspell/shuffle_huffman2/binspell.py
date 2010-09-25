@@ -4,12 +4,12 @@
 # delete immediately available
 # up arrow = left   ::  down arrow = right
 #
-# last edit: 3/23
+# last edit: 11/19
+# comments - column 81
 ################ CHANGES ############
-# 
+# works with Word class (contains word unigrams and bigrams)
 ########## TODO ##############
 # tcp/ip socket
-# scan text and calculate freq
 # window resizable?
 # window on top?
 # addition of phrases: menu of topics,
@@ -18,15 +18,12 @@
 # window focus:
 # position root window in center of screen
 # do colors aid in text scanning?
-# is class._doc_ writable?
 # put del b4 spc in training version, then switch
 # draw_interface: allow for multiple boxes
-# delete state object after pop
-# delete to begginning
 ###################### BUGS #######################
-# y and z fall off the screen -- make boxes bigger
+# 
 ############## CURRENTLY WORKING ON ##########
-# saving less to stack --> determine ngram dynaimcally
+# 
 
 
 
@@ -48,24 +45,27 @@ from Words import *
 ######################################---------------------- gui -----------#############
 
 def updateCanvas(hilite,norm):
-	gv._canvas.itemconfigure(hilite,fill='orange',width=3)
-	gv._canvas.itemconfigure(norm,fill='white')
-	#gv._canvas.itemconfigure(hilite,width=3)
-	#gv._canvas.itemconfigure(norm,width=1)
-	gv._canvas.update()		#process all events in event queue
+	"""
+	This function updates the canvas object reflecting changes due to user interaction
+	Args: tag name of user selected box, tag name of non-selected box
+	"""
+	gv._canvas.itemconfigure(hilite,outline='orange',width=6)
+	gv._canvas.itemconfigure(norm,outline='white')
+	gv._canvas.update()															#process all events in event queue
 	time.sleep(0.05)
-	gv._canvas.itemconfigure(hilite,width=1)
+	gv._canvas.itemconfigure(hilite,outline='orange',width=3)
+	gv._canvas.itemconfigure(norm,outline='white')
 	gv._canvas.delete('text')
-	#set_layout(gv._box1)
 	draw_interface(gv._canHt,gv._canWdth)
-	gv._canvas.update()		#process all events in event queue
+	gv._canvas.update()		
 
 
 
 def draw_interface(canHt, canWd):
-	#print "in draw interface()"
-	#print "gv._boxList @beginning of draw_interface():",gv._boxList
-
+	"""
+	This function draws the objects on the canvas
+	Args: canvas height, canvas width
+	"""
 	global gv
 	cntrx = 0.5 * canWd
 	cntry = 0.5 * canHt
@@ -82,192 +82,201 @@ def draw_interface(canHt, canWd):
 	cntry_b2 = 0.5 * canHt
 	tag2 = 'box2'
 
-	#test centers
-	#gv._canvas.create_text(cntrx, cntry, text='x')
-	#gv._canvas.create_text(cntrx_b2, cntry_b2, text='x')
-
-	draw_square(cntrx_b1, cntry_b1, height, width, brdr, tag1)
+	draw_square(cntrx_b1, cntry_b1, height, width, brdr, tag1)					#draw boxes
 	draw_square(cntrx_b2, cntry_b2, height, width, brdr, tag2)
+	
+	symbList = orderSymbols()
+	
+	#print "in draw interface: box1:"
+	#print gv._box1
+	#print "\n box2:"
+	#print gv._box2
 
-	#print "drawing box1"
-	draw_text(cntrx_b1, cntry_b1, height, width, gv._box1)
-	#print "drawing box2"
-	draw_text(cntrx_b2, cntry_b2, height, width, gv._box2)
+	draw_text(cntrx_b1, cntry_b1, height, width, symbList, gv._box1, gv._canColor)						#draw symbols in boxes
+	draw_text(cntrx_b2, cntry_b2, height, width, symbList, gv._box2, gv._canColor)
 
-	gv._canvas.update()		#process all events in event queue
-	#time.sleep(1)
+	gv._canvas.update()															#process all events in event queue
 
 
 
 def draw_square(x, y, h, w, brdr, tag):
+	"""
+	This function draws a square onto the canvas object
+	Args: center x position, center y position, height, width, border width, tag name
+	"""
 	global gv
 	gv._canvas.create_rectangle(x-w, y-h, x+w, y+h, width=brdr, tags=tag)
 
 
 
-def draw_text(cntrx, cntry, h, w, symbolList):
+def draw_text(cntrx, cntry, h, w, allSymbols, currSymbolList, bgcolor):
+	"""
+	This function draws the symbols within the box objects
+	Args: center x postion of box, center y postion of box, height of box, width of box, 
+	list of all symbols, list of symbols for the current box, background color
+	"""
 	global gv, bg
-
-	#print symbolList
-	#print ###########
-	maxFntSz = 60			#largest font size
-	minFntSz = 15			#smallest font size
+	
+	#print "all symbols:"
+	#print allSymbols
+	#print #
+	
+	maxFntSz = 60																#largest font size
+	minFntSz = 15																#smallest font size
 	color = 'black'
 	x = cntrx - w
 	y = cntry - h
+	
+	#print "original box edge: %i" %x
 
-	padx = w/7			#left and right margins
-	pady = h/5			#top and bottome margins
-	tab = 40			#space between symbols
-	pos = 'w'			#left justified
-	xtraSymbSpace = 0	#for whole words or large symbols
+	padx = w/7																	#left and right margins
+	pady = h/5																	#top and bottome margins
+	tab = 40																	#space between symbols
+	pos = 'w'																	#left justified
+	xtraSymbSpace = 0															#for whole words or large symbols
 
-	#print #
-	#print gv._hiProb
-	#print #
+	
 
-	if len(symbolList) == 1:			#one symbol left in box
-		#print symbolList
-		#print "len(str(item)):", len(str(symbolList[0]))
-		#print #
-		if len(str(symbolList[0])) > 1:  #SPC or DEL, etc
-			color = 'red'
+	for item in allSymbols:
+		#print "item: %s\n" %item
+		color = 'black'														#reset
+		tab = 40
+		xtraSymbSpace = 0
+
+		if len(str(item)) > 1:												#if '[DEL]' or '[SPC]' is in item
+			color = 'green'
 			fontSz = 40
 			font = 'Courier %i bold' %fontSz
-			xtraSymbSpace = len(str(symbolList[0])) * fontSz/2
-			pos = 'c'
+			xtraSymbSpace = len(str(item)) * fontSz
+			pos = 'w'
 		else:
-			font = 'Courier %i bold' %maxFntSz
+			fontSz = getRelFntSz(item, maxFntSz, minFntSz)
+			#fontSz = 20													#for testing
+			font = 'Courier %i bold' %fontSz
+
+		if fontSz <= 20:													#less space for small symbols
+			tab = 25
+			color = 'blue'
+
+		if fontSz > 45:														#more space for large symbols
+			xtraSymbSpace = round(fontSz / 3)
+			#print "item: %s" %item
+			#print "box edge: %i" %x
+			#print "padding: %i\n" %padx
+
+		if item in gv._hiProb:												#most probable letter is red
 			color = 'red'
-		gv._canvas.create_text(cntrx, cntry, text=symbolList[0].upper(), font=font, tag='text', fill=color, anchor=pos)
-	else:
-		for item in symbolList:
-			color = 'black'		#reset
-			tab = 40
-			xtraSymbSpace = 0
 
-			if len(str(item)) > 1:	#if '[DEL]' or '[SPC]' in item
-				color = 'cyan'
-				fontSz = 40
-				font = 'Courier %i bold' %fontSz
-				xtraSymbSpace = len(str(item)) * fontSz
-				pos = 'w'
-			else:
-				fontSz = getRelFntSz(item, maxFntSz, minFntSz)
-				font = 'Courier %i bold' %fontSz
-				#print item + ": %i" %fontSz
+		if x + padx + xtraSymbSpace > cntrx + w - padx:   					#goin past the edge of the box
+			x = cntrx - w   												#reset x to right edge
+			y = y + pady + fontSz   										#new line
+			gv._canvas.create_text(x+padx, y+pady, text='\n', font=font)
+			#print "goin past edge: %s" %item
+			#print "box edge: %i" %x
+			#print "padding: %i" %padx
+		
+		if item not in currSymbolList:
+			color = bgcolor
+		else:
+			if len(currSymbolList) == 1:													#one symbol left in box
+				if len(str(currSymbolList[0])) > 1:  										#SPC or DEL, etc
+					color = 'red'
+					fontSz = 40
+					font = 'Courier %i bold' %fontSz
+					xtraSymbSpace = len(str(currSymbolList[0])) * fontSz/2
+					#pos = 'c'
+				else:
+					font = 'Courier %i bold' %maxFntSz
+					color = 'red'
+				#gv._canvas.create_text(cntrx, cntry, text=currSymbolList[0].upper(), font=font, tag='text', fill=color, anchor=pos)
 
-			if fontSz <= 20:		#less space for small symbols
-				tab = 25
-				color = 'blue'
-				#print "in draw text: fontSz <= 20: ", item
-
-			if fontSz > 45:		#more space for large symbols
-				xtraSymbSpace = round(fontSz / 3)
-				#print "in draw text: fontSz > 45: ", item
-
-			if item in gv._hiProb:		#most probable letter is red
-				color = 'red'
-				#print "in draw text: item:", item
-				#print "in draw text: hiProb:", gv._hiProb
-			#print item + ":" + color
-
-			if x + padx + xtraSymbSpace > cntrx + w - padx:   #goin past the edge
-				x = cntrx - w   #reset x to rt edge
-				y = y + pady + fontSz   #\n
-				gv._canvas.create_text(x+padx, y+pady, text='\n', font=font)
-
-			gv._canvas.create_text(x+padx, y+pady, text=item.upper(), font=font, tag='text', fill=color, anchor=pos)
-			x = x + tab + xtraSymbSpace
+		#print "item: %s" %item
+		#print "box edge: %i" %x
+		#print "padding: %i\n" %padx
+		#print "position: %s\n" %pos
+		gv._canvas.create_text(x+padx, y+pady, text=item.upper(), font=font, tag='text', fill=color, anchor=pos)
+		x = x + tab + xtraSymbSpace
 
 
 
 ###################################################---------------state fxns---------########
 
-#def saveState(usrChoice):
 def saveState():
+	"""
+	This function creates a State object, assigns State member variables the values of selected variables representing the state of the keyboard, 
+	and pushes the State object onto the stack
+	"""
 	global gv, bg, stack
-	#stateObj = State(gv._box1, gv._box2, gv._currProbs, gv._hiProb, usrChoice)
-	#print "in save state"
-	#print "last prefix:", gv._prefix
-	#print "gv._posInWrd",gv._posInWrd
-	#print "gv._ngram: ", gv._ngram
-	#print "box1"
-	#print "in saveState(): emissionProbs:"
-	#bg._print(bg._emissionProbs)
-	#stateObj = State(gv._currCondTable, gv._transitionProbs, gv._emissionProbs, gv._lastWordTyped, gv._prefix, gv._posInWrd)
-	stateObj = State(gv._currCondTable, gv._transitionProbs, gv._lastWordTyped, gv._prefix, gv._posInWrd)
+	stateObj = State(gv._ngram, gv._currCondTable, gv._transitionProbs, gv._emissionProbs, gv._lastWordTyped, gv._prefix, gv._posInWrd, gv._top3words)
 	stack._push(stateObj)
 
 
-#return to state before last error
+
 def return2PrevState():
+	"""
+	This function pops the last State object off the stack, and assigns current keyboard state variables the values 
+	of the State member variables
+	"""
 	global gv, bg
 
 	gv._box1 = []
 	gv._box2 = []
-	flag = 0	#indicates whether or not gv._numTyped needs to be further modified
+	flag = 0																	#indicates whether or not gv._numTyped needs to be further modified
 
-	if gv._prefix == '' and gv._posInWrd == 0:				#whole word needs to be erased
-		gv._numTyped = gv._numTyped - len(gv._lastWordTyped) - 1	# -1 for [spc] automatically added after whole word selection
+	if gv._prefix == '' and gv._posInWrd == 0:									#whole word needs to be erased
+		gv._numTyped = gv._numTyped - len(gv._lastWordTyped) - 1				# -1 for [spc] automatically added after selection of a whole word
 		flag = 1
 	else:
 		gv._numTyped -= 1
 
 	stateObj = stack._pop()
+	gv._ngram = stateObj._ngram													#return keyboard to previous state
 	gv._currCondTable = stateObj._currCondTree
 	gv._transitionProbs = stateObj._currTrnsProbs
 	gv._emissionProbs = deepcopy(gv._transitionProbs)
 	gv._lastWordTyped = stateObj._lastWord
 	gv._prefix = stateObj._prefix
 	gv._posInWrd = stateObj._posinwrd
-
-	#print "in return to prev state: pos in word:", gv._posInWrd
-	#print #
+	gv._top3words = stateObj._top3
 
 	if flag == 1:
 		gv._numTyped += len(gv._prefix)
-		for lett in gv._prefix:					#replace letters user already typed out 
+		for lett in gv._prefix:													#replace letters user already typed out and don't want to delete
 			output(lett)
 
-	gv._ngram = getNgram(gv._ngramSz)
-	
-	#if gv._numTyped > 1:
-	gv._top3words = wd._closestWords(gv._prefix,gv._lastWordTyped)		#guess words based on what's been typed
 	if gv._top3words != {}:
 		updateDist(gv._top3words,gv._emissionProbs[gv._ngram])
 	
 	set_layout(gv._emissionProbs[gv._ngram].keys(),gv._emissionProbs[gv._ngram])
 
 	hiProb = getLrgstLeaf(gv._emissionProbs[gv._ngram])
-	gv._hiProb = hiProb[0]				####### HACK ########
+	gv._hiProb = hiProb[0]														####### HACK ########
 
 	hilite = "box1"
 	norm = "box2"
 
-	updateCanvas(hilite,norm)	#process all events in event queue
-	#print "in return to prev: num typed:", gv._numTyped
-	#print #
+	updateCanvas(hilite,norm)													#process all events in event queue
 
 
 
-#reset global constants
 def resetConsts(typed):
+	"""
+	This function resets all global constants depending on what symbol was last chosen by the user
+	Args: last user symbol selected
+	"""
 	global gv, bg
 
-	if len(typed) > 1 and '[' not in typed[0]:	#check for selection of a full word, but not [spc] or [del]
+	if len(typed) > 1 and '[' not in typed[0]:									#check for selection of a full word, but not [spc] or [del]
 		gv._lastWordTyped = typed
 		gv._posInWrd = 0
-		gv._obsOut.append('[SPC]')		#cuz [spc] automatically inserted after a full word
-		gv._ngram = typed[-1] + '[SPC]'		#reset bigram to last letter of last word typed + spc
+		gv._obsOut.append('[SPC]')												#automatically insert [spc] after a full word
+		gv._ngram = typed[-1] + '[SPC]'											#reset bigram to last letter of last word typed + spc
 		gv._numTyped += (len(typed) - len(gv._prefix) + 1)
 		gv._currCondTable = tg._tgraph
 		gv._prefix = ''
 	else:			
 		gv._numTyped += 1
-		#print "in reset consts: gv._numTyped:", gv._numTyped
-		
-		if typed == '[SPC]':			#word spelled out by user
+		if typed == '[SPC]':													#a word was spelled out by user
 			gv._lastWordTyped = gv._prefix
 			gv._prefix = ''
 			gv._posInWrd = 0
@@ -275,27 +284,19 @@ def resetConsts(typed):
 			gv._posInWrd += 1
 			gv._prefix += typed
 
-		if gv._numTyped < 2:				#only one letter typed
+		if gv._numTyped < 2:													#only one letter typed thus far
 			gv._currCondTable = bg._conditional1
-			gv._ngramSz = 1
-		else:						#use trigram conditionals
-			gv._ngramSz = 2
+			gv._ngram = typed
+		else:																	#use trigram conditional probabilities
+			gv._ngram = getBgram()
 			gv._currCondTable = tg._tgraph
-		gv._ngram = getNgram(gv._ngramSz)
-		#print "in reset consts: last typed:", gv._ngram
-		#print "new transition probs:"
-		#print gv._sortByValue(gv._currCondTable[gv._ngram])
-		#print "-" * 10 
 
 	gv._transitionProbs = gv._currCondTable
 	gv._emissionProbs = deepcopy(gv._transitionProbs)
 
-	gv._top3words = wd._closestWords(gv._prefix,gv._lastWordTyped)		#guess words based on what's been typed
+	gv._top3words = wd._closestWords(gv._prefix,gv._lastWordTyped)				#guess words based on what's been typed
 	if gv._top3words != {}:
 		updateDist(gv._top3words,gv._emissionProbs[gv._ngram])
-
-	#print "in resetConsts"
-	#bg._print(gv._currCondTable)		#stub
 
 	gv._ttlNumSteps = gv._ttlNumSteps + gv._numSteps
 	gv._ttlNumErr = gv._ttlNumErr + gv._numErrors
@@ -304,122 +305,54 @@ def resetConsts(typed):
 	gv._typed = ['',0]
 
 	hiProb = getLrgstLeaf(gv._emissionProbs[gv._ngram])
-	gv._hiProb = hiProb[0]					####### HACK ########
-
+	gv._hiProb = hiProb[0]														####### HACK ########
 	gv._numTimesLargest = 0
 
 
 
-#shuffles symbols
-#args: list of symbols in chosen box, not chosen box
 def shuffle(chosen,Nchosen):
+	"""
+	This function determines whether or not symbol should be typed out.  If so, it calls methods which 
+	modify the state of the keyboard according to the symbol being output.  It also calls a method which 
+	re-orders the displayed keyboard symbols.
+	Args: set of symbols chosen by user, set of symbols not chosen by user
+	"""
 	global gv
-	#print "in shuffle"
-	#print "in shuffle: chosen:", chosen
-	#print "-" * 10
-	#print "ngram:", gv._ngram
-	#print "-" * 10
-	#print gv._emissionProbs[gv._ngram]
-	#print #
 
 	gv._emissionProbs[gv._ngram] = updateEmiss(gv._emissionProbs[gv._ngram], chosen)
-	#print "in shuffle: gv._ngram:", gv._ngram
-	#print gv._sortByValue(gv._emissionProbs[gv._ngram])
-	#print "-" * 10 
-
 	hiProb = getLrgstLeaf(gv._emissionProbs[gv._ngram])
-	hiProb = hiProb[0]					####### HACK ########
+	hiProb = hiProb[0]															####### HACK ########
 	gv._hiProb = hiProb
-	#print "in shuffle: highest prob: ", gv._hiProb
-	#print #
 
-	if hiProb[1] > gv._threshold:			#output a symbol
-		print #
-		print hiProb[0] + " selected."
-		print #
+	if hiProb[1] > gv._threshold:												#output a symbol
 		output(hiProb[0])
 		gv._obsOut.append(hiProb[0])
-		#print "in shuffle: obsout:", gv._obsOut
-		#print #
 		if '[DEL]' in hiProb[0]:
-			#print "deleting"
-			#print "in shuffle: ", chosen[0]
-			#print "numDels in shuffle: ", gv._numDels
 			gv._numDels += 1
 			return2PrevState()
 			infoTransferRate()
 			return
 		else:
-			#print "in shuffle: begin else: bg._emissionProbs:",
-			#bg._print(bg._emissionProbs)
 			saveState()
-			#gv._obsOut.append(hiProb[0])
-			#viterbi(gv._obsOut)
 			resetConsts(hiProb[0])
 			infoTransferRate()
-			#print "in shuffle: new last typed: ", gv._ngram
-			#print "in shuffle: new emission probs:"
-			#print gv._sortByValue(gv._emissionProbs[gv._ngram])
-			#print "-" * 10 
-		#print "in shuffle: num typed:", gv._numTyped
-		#print #
 
 	set_layout(chosen,gv._emissionProbs[gv._ngram])
 
 
 
-
-#exactly like shuffle except symbols are shuffled every 3 times instead of every time
-def shuffle_alternate(chosen,Nchosen):
-	global gv
-
-	gv._emissionProbs[gv._ngram] = updateEmiss(gv._emissionProbs[gv._ngram], chosen)
-	#print "in shuffle: gv._ngram:", gv._ngram
-	#print gv._sortByValue(gv._emissionProbs[gv._ngram])
-	#print "-" * 10 
-
-	hiProb = getLrgstLeaf(gv._emissionProbs[gv._ngram])
-	hiProb = hiProb[0]					####### HACK ########
-	gv._hiProb = hiProb
-
-
-	if hiProb[1] > gv._threshold:			#output a symbol
-		output(hiProb[0])
-		gv._obsOut.append(hiProb[0])
-		#print "in shuffle: obsout:", gv._obsOut
-		#print #
-		if '[DEL]' in hiProb[0]:
-			#print "deleting"
-			#print "in shuffle: ", chosen[0]
-			#print "numDels in shuffle: ", gv._numDels
-			gv._numDels += 1
-			return2PrevState()
-			return
-		else:
-			gv._numB4Shuffle = 3			#so that set_layout is called below
-			saveState()
-			#viterbi(gv._obsOut)
-			resetConsts(hiProb[0])
-			infoTransferRate()
-
-
-	if gv._numB4Shuffle == 3:
-		set_layout(chosen,gv._emissionProbs[gv._ngram])
-		gv._numB4Shuffle = 0
-	else:
-		gv._numB4Shuffle += 1
-
-
-
-
-# update state
-# user choice
 def update(decision):
+	"""
+	This function sets variables used to update the state of the keyboard, based on the user's input.
+	It then calls the method which re-orders and re-allocates the symbols between boxes, and calls the 
+	canvas to update the displayed keyboard with the new symbol order.
+	Args: User's left or right box selection
+	"""
 	global gv, bg
 
 	left = 1
 	right = 2
-	gv._numSteps = gv._numSteps + 1
+	gv._numSteps = gv._numSteps + 1												#keep track of number of user decisions
 
 	if decision == left:
 		hilite = "box%i" %left
@@ -432,44 +365,45 @@ def update(decision):
 		chosen = gv._box2
 		Nchosen = gv._box1
 
-	#split(chosen,Nchosen)			#split symbols like binary search
-	shuffle(chosen,Nchosen)		#shuffle symbols
-	#shuffle_alternate(chosen,Nchosen)	#shuffle every 3rd step
-
-	updateCanvas(hilite,norm)
+	shuffle(chosen,Nchosen)														#re-order symbols
+	updateCanvas(hilite,norm)													#update keyboard displayed
 
 
 
 ####################################################--------- helper fxns----------#########
 
-#update emission probs to include words
-#normalize emission probs so that they sum to 1 - word probs
-#args: dict of most likely words:probs, dict of emission probs of letters
+def orderSymbols():
+	chrs = []
+	wrds = []
+	for symbol in gv._emissionProbs[gv._ngram].keys():
+		if len(symbol) > 1:
+			wrds.append(symbol)	
+		else:
+			chrs.append(symbol)
+	wrds.sort()
+	chrs.sort()
+	for wrd in wrds:
+		chrs.append(wrd)
+	return chrs
+
 def updateDist(wrdProbs,eProbs):
-	#print "in update dist"
-	#print "old eprobs"
-	#bg._print(eProbs)
-
-	wtot = sum(wrdProbs[key] for key in wrdProbs)		#sum of probs in top words dict
-	ltot = sum(eProbs[key] for key in eProbs)		#sum of probs in emission probs dict
-
-	#print "in updatedist: wtot:", wtot
+	"""
+	This function updates the emission probability tables for the symbols, to include the probabilities
+	of the most likely words.
+	Args: dict of most likely words:probs, dict of emission probs of letters
+	"""
+	wtot = sum(wrdProbs[key] for key in wrdProbs)								#sum of probs in top words dict
+	ltot = sum(eProbs[key] for key in eProbs)									#sum of probs in emission probs dict
 
 	if '[DEL]' in eProbs.keys():
-		reWeightDel(eProbs,len(wrdProbs),wtot+ltot)	#assign [del] avg of all probs
-		ltot = sum(eProbs[key] for key in eProbs)
-		#print "new eprobs[del]:", eProbs['[DEL]']
-		#print #
+		reWeightDel(eProbs,len(wrdProbs),wtot+ltot)								#assign [del] avg of all probs
+		ltot = sum(eProbs[key] for key in eProbs)								#new sum
 
 	mplier = float(wtot)/float(ltot)
-	for key in eProbs:					#normalize
+	for key in eProbs:															#normalize
 		eProbs[key] *= mplier
 	
-	eProbs.update(wrdProbs)
-	#print "in update dist: symbols at end:", eProbs.keys()
-	#print #
-	#print "new eprobs"
-	#bg._print(eProbs)
+	eProbs.update(wrdProbs)														#update emission probabilities
 
 
 
@@ -493,23 +427,6 @@ def getBgram():
 	temp = gv._obsOut[-2:]
 	#print "in getBgram: temp:", temp
 	return temp[0]+temp[1]
-
-
-
-#args: ngram size
-#returns: string containing last ngram output
-def getNgram(sz):
-	global gv
-	#print "in getNgram(): sz:", sz
-	typed = gv._txtBox.get(1.0,END)
-	#print "typed b4 edit:",typed
-	typed = typed[0:-1]
-	#print "typed:",typed
-	ngram = typed[-sz:]
-	ngram = ''.join(ngram)
-	#print "in getNgram: ngram:", ngram
-	return ngram
-
 
 
 def consonant(symb):
@@ -593,7 +510,7 @@ def printProbs(probs):
 def output(item):
 	global gv
 	#global gv._canvas, gv._txtBox
-	#print "in output"
+
 	#print "in output(): pos in word: ", gv._posInWrd
 	#print item
 	#if False:
@@ -616,9 +533,6 @@ def output(item):
 		gv._txtBox.insert(INSERT,item)
 	#gv._ngram = item
 	##print "2rd cursor pos:", gv._txtBox.index(INSERT)
-	#typed = gv._txtBox.get(1.0,END)
-	#print "typed b4 edit:",typed
-	#print #
 
 
 
@@ -920,27 +834,23 @@ def layoutHuff(hTree,box):
 
 
 
-# start with prior probs
 def default():
-	#print "in default()"
+	"""
+	This function initializes all probability tables and reads in, arranges, and displays all symbols.
+	"""
 	global gv, bg
-	#print gv._sortByValue(bg._prior)
-	#print "-" * 20
-	gv._currCondTable = bg._conditional1
-	gv._transitionProbs = gv._currCondTable
-	gv._emissionProbs = deepcopy(gv._transitionProbs)
-	gv._top3words = wd._closestWords(gv._prefix,gv._lastWordTyped)		#guess words based on what's been typed
-	updateDist(gv._top3words,gv._emissionProbs[gv._ngram])			#add words to emission probs
-	hiProb = getLrgstLeaf(gv._emissionProbs[gv._ngram])
-	gv._hiProb = hiProb[0]					####### HACK ########
-	#print "in default, hiprob:", hiProb
-	set_layout([],gv._emissionProbs[gv._ngram])
-	saveState()
-	#print gv._emissionProbs[gv._ngram]
-	#print "box1:", gv._box1
-	#print ###
-	#print "box2:", gv._box2
-	draw_interface(gv._canHt, gv._canWdth)
+	gv._currCondTable = bg._conditional1										#table of prior probabilities
+	gv._transitionProbs = gv._currCondTable										#table of transition probs
+	gv._emissionProbs = deepcopy(gv._transitionProbs)							#table of emission probs
+	gv._top3words = wd._closestWords(gv._prefix,gv._lastWordTyped)				#guess words based on what's been typed
+	updateDist(gv._top3words,gv._emissionProbs[gv._ngram])						#add words to emission probs
+	hiProb = getLrgstLeaf(gv._emissionProbs[gv._ngram])							#most probable symbol
+	gv._hiProb = hiProb[0]														####### HACK ########
+	set_layout([],gv._emissionProbs[gv._ngram])									#arrange the symbols (letters and words)
+	saveState()																	#in case of a later 'delete'
+	#print "emission probs:"
+	#print gv._emissionProbs.keys()
+	draw_interface(gv._canHt, gv._canWdth)										#display
 
 
 
@@ -1064,107 +974,72 @@ def splitLayAlpha(symbs,probs):
 
 
 
-#################################--------------------------start/test------------###########
+#################################--------------------------start------------###########
 
-#get user input, send to keyboard
 def getKeyIn():
-	#print "in getKeyIn()"
-	##print event.keysym
-	##print "in getKeyIn, gv._highlighted=",gv._highlighted
-
+	"""
+	This function creates a binding between a keypress event and the nested keyCtrl() method
+	"""
 	def keyCtrl(event):
-		##print "in keyCtrl()"
+		"""
+		This function is an handler for keypress events.  It also simulates misclassifications
+		and calls the update() method to update the keyboard interface accordingly
+		Args: keypress event
+ 		"""
 		if gv._startTime == 0:
 			gv._startTime = time.time()
 
-		#simulate 80% classifier accuracy
-		#errArr = [1,0,1,1,1,0,1,1,1,1]
-
 		decision = 3
 
-		##print "key pressed:",event.keysym
-
 		if event.keysym == 'Up':
-			##print "key up"
-			decision = 1	#select left
+			decision = 1														#select left box
 		if event.keysym == 'Down':
-			##print "key down"
-			decision = 2	#select right
+			decision = 2														#select right box
 
 		#simulate misclassification
-		err_var = random.random()		#returns number b/t 0-1
-		
-		#bool = random.choice(errArr)
-		#bool = 1
-		#if bool == 0:
-
-		err_var = 1				#100% accuracy
-		if err_var <= float(1 - gv._classAcc): 	#bad case
-			if decision == 1:
+		err_var = random.random()												#returns number b/t 0-1
+		err_var = 1																#100% accuracy -- comment out for misclassfication
+		if err_var <= float(1 - gv._classAcc): 									#error case: test if err_var is <= classifier accuracy
+			if decision == 1:													#flip user input to simulate error
 				decision = 2
-			else:
+			else:																
 				decision = 1
-			#gv._numErrors = gv._numErrors + 1
 			gv._ttlNumErr = gv._ttlNumErr + 1
 			print "oops! classifier error number ", gv._ttlNumErr
-			print ####
+			print #
 
 		if decision < 3:
 			update(decision)
 
-		##print "after upddte call"
-		##print "in keyCtrl gv._highlighted=", gv._highlighted
-
 		return "break"
 
-	##print "before bind call"
-
-	gv._canvas.bind_all('<Key>',keyCtrl)
-	##print "end of getKeyIn"
-
-
-
-def test_interface():
-	global gv, bg
-
-	x = 200
-	y = 200
-	r = 100
-	tag = 'box1'
-	width = 3
-
-	gv.lastTyped = 'h'
-	#bg = Bigraph
-
-	buildGraph(gv._bigrphLst)
-	#print nxtProb(gv.lastTyped)
-	print bg.bigrphLst
-
-	#draw_square(x,y,r,width,tag)
-	#time.sleep(2)	#just to see initial interface
-	##print "in test_interface()"
-	numtries = 10
-	if False:
-		for i in range(1,numtries):
-		##print "user input #",i
-		##print "in test_interface: gv._highlighted=",gv._highlighted
-			update(1)
-			time.sleep(2)
+	gv._canvas.bind_all('<Key>',keyCtrl)										#bind keypress to method
 
 
 
 def start():
-	default()		#display entire alphabet
-	#grab keyboard input
-	getKeyIn()
+	"""
+	This function calls the method for drawing the default interface, then calls the method which
+	processes keyboard inputs
+	"""
+	default()																	#display entire alphabet
+	getKeyIn()																	#grab keyboard input
 
 
 
-##################################-------------------main---------------########
 
-root = Tk()
+def test_interface():
+	alphabet = map(chr,range(97,123))	
+	gv._testList = alphabet														#list of alphabet
+	gv._box1 = alphabet[0:len(alphabet)/2]
+	gv._box2 = alphabet[(len(alphabet)/2)+1:len(alphabet)]
+	draw_interface(gv._canHt, gv._canWdth)
+
+##################################-------------------main---------------################################
+
+root = Tk()																		#new window
 root.config(width=300,height=500)
-gv = GlobalVariables()
+gv = GlobalVariables()															#never a good idea but considering time constraint...
 bg = Bigraph()
 tg = Trigraph()
 wd = Words()
@@ -1177,19 +1052,14 @@ gv._canWdth = canvWidth
 txtBxWidth = canvWidth / 26
 txtBxHeight = 1
 
-gv._canvas = Canvas(root,height=canvHeight,width=canvWidth,bg='yellow')
+gv._canvas = Canvas(root,height=canvHeight,width=canvWidth,bg=gv._canColor)
 gv._canvas.create_window(100,100)
 gv._canvas.grid(row=2,column=1)
 
-#why doesn't tag work?
-#gv._txtBox = Text(root,width=txtBxWidth,height=txtBxHeight,padx=5,pady=5,insertofftime=250,takefocus=1,tags='txtBox')
 gv._txtBox = Text(root,width=txtBxWidth,height=txtBxHeight,padx=5,pady=5,insertofftime=250,takefocus=1, font='Courier 32 bold')
-
 gv._txtBox.grid(row=1,column=1)
 gv._txtBox.focus()
 
 start()
-#testing
 #test_interface()
-
 root.mainloop()
