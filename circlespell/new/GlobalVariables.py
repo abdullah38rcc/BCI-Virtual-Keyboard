@@ -37,6 +37,8 @@ class GlobalVariables:
 		self._suggested = ''
 		self._huffSuggest = ''
 		self._lastTyped = ' '				#assume start with a space
+		
+		self._keyFlag = False					#hack
 
 
 
